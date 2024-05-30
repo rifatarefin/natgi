@@ -87,7 +87,7 @@ class Bubble:
     the sequence, the context in which it occurs, and its overlap with other sequences.
     """
 
-    def __init__(self, new_nt: str, bubbled_elems: List[ParseNode], depth: int):
+    def __init__(self, new_nt: str, bubbled_elems: List[ParseNode], depth: int = 0):
         self.new_nt = new_nt
         self.bubbled_elems = bubbled_elems
         self.bubble_str = ''.join([e.payload for e  in bubbled_elems])

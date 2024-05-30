@@ -13,6 +13,7 @@ from replacement_utils import get_strings_with_replacement, get_strings_with_rep
     lvl_n_derivable
 
 from next_tid import allocate_tid
+from PrettyPrint import PrettyPrintTree
 
 """
 Bulk of the Arvada algorithm.
@@ -36,7 +37,6 @@ Bulk of the Arvada algorithm.
 MAX_SAMPLES_PER_COALESCE = 50
 MIN_GROUP_LEN = 3
 MAX_GROUP_LEN = 10
-GROUP_INCREMENT = False
 MUST_EXPAND_IN_COALESCE = False
 MUST_EXPAND_IN_PARTIAL= False
 
@@ -110,7 +110,7 @@ def build_naive_parse_trees(leaves: List[List[ParseNode]], bracket_items: List, 
     nonterminal.
     """
     terminals = list(dict.fromkeys([leaf.payload for leaf_lst in leaves for leaf in leaf_lst]))
-    get_class = {t: allocate_tid() for t in terminals}
+    get_class = {t: t for t in terminals}
 
     def braces_tree(leaves: List[ParseNode], index: int, root: bool = False):
         """ 
@@ -342,8 +342,10 @@ def build_trees(oracle, leaves):
     grammar, best_trees, _, _ = coalesce(oracle, best_trees, grammar)
     # grammar, best_trees, _ = coalesce_partial(oracle, best_trees, grammar)
 
+    pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
     for tree in best_trees:
         print(tree.to_newick())
+        pt(tree)
         
     ORIGINAL_COALESCE_TIME += time.time() - s
 
@@ -361,7 +363,7 @@ def build_trees(oracle, leaves):
         updated = True
         while updated:
             group_start = time.time()
-            all_groupings = group(best_trees, group_size, GROUP_INCREMENT)
+            all_groupings = group(best_trees, group_size)
             TIME_GROUPING += time.time() - group_start
             updated, nlg = False, len(all_groupings)
             for i, (grouping, the_score) in enumerate(all_groupings):
@@ -796,7 +798,7 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
             if node.is_terminal:
                 return
 
-            while len(node.children) == 1 and node.children[0].payload == node.payload:
+            while len(node.children) == 1 and node.children[0].payload == node.payload and not node.children[0].is_terminal:
                 # Won't go on forever because eventually length of children will be not 1,
                 # or the children's payload will not be the same as the top node (e.g. if
                 # the child is a terminal)

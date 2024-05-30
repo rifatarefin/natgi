@@ -278,3 +278,39 @@ class Rule():
 # grammar.add_rule(Rule('n2').add_body(['', 'n1', '']))
 # parser = grammar.parser()
 # print(parser.parse("aa").pretty())
+
+
+"""
+start: stmt EOF;
+stmt : 'L' SPACE '=' SPACE numexpr
+  | 'if' SPACE boolexpr SPACE 'then' SPACE stmt SPACE 'else' SPACE stmt
+  | stmt SPACE ';' SPACE stmt
+  | 'while' SPACE boolexpr SPACE 'do' SPACE stmt
+  | 'skip';
+boolexpr : 'true' | 'false' | numexpr SPACE '==' SPACE numexpr | boolexpr SPACE '&' SPACE boolexpr | '~' boolexpr;
+numexpr : 'L' | 'n' | '(' numexpr '+' numexpr ')';
+SPACE: ' ';
+"""
+
+def while_grammar():
+    grammar = Grammar('stmt')
+    grammar.add_rule(Rule('stmt').add_body(['"L"', '"="', '"n"']))
+    grammar.add_rule(Rule('stmt').add_body(['"if"', '"true"', '"then"', 'stmt', '"else"', 'stmt']))
+    grammar.add_rule(Rule('stmt').add_body(['stmt', 'stmt']))
+    grammar.add_rule(Rule('stmt').add_body(['"while"', '"true"', '"do"', 'stmt']))
+    grammar.add_rule(Rule('stmt').add_body(['"skip"']))
+
+    grammar.add_rule(Rule('boolexpr').add_body(['"true"']))
+    grammar.add_rule(Rule('boolexpr').add_body(['"false"']))
+    grammar.add_rule(Rule('boolexpr').add_body(['"n"']))
+    grammar.add_rule(Rule('boolexpr').add_body(['"("', 'boolexpr', '"=="', 'boolexpr', '")"']))
+    grammar.add_rule(Rule('boolexpr').add_body(['boolexpr', '"&"', 'boolexpr']))
+    grammar.add_rule(Rule('boolexpr').add_body(['"~"', 'boolexpr']))
+
+    grammar.add_rule(Rule('numexpr').add_body(['"L"']))
+    grammar.add_rule(Rule('numexpr').add_body(['"n"']))
+    grammar.add_rule(Rule('numexpr').add_body(['"("', 'numexpr', '"+', 'numexpr', '")"']))
+
+    grammar.add_rule(Rule('SPACE').add_body(['" "']))
+
+    return grammar
