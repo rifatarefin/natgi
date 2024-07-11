@@ -14,6 +14,9 @@ from replacement_utils import get_strings_with_replacement, get_strings_with_rep
 
 from next_tid import allocate_tid
 from PrettyPrint import PrettyPrintTree
+from label_llm import generate_label_api
+from bubble_llm import bubble_api
+import json
 
 """
 Bulk of the Arvada algorithm.
@@ -142,7 +145,7 @@ def build_naive_parse_trees(leaves: List[List[ParseNode]], bracket_items: List, 
             elif token == "}" or token == "]" or token == ")":
                 children.append(ParseNode(get_class[token], False, [node]))
                 bracket_items.append(len(children))
-                return ParseNode(allocate_tid(bracket=True), False, children), index
+                return ParseNode(allocate_tid(), False, children), index
             else:
                 children.append(ParseNode(get_class[token], False, [node]))
             index+=1
@@ -306,7 +309,33 @@ def build_trees(oracle, leaves):
     global BUILD_TIME
     global TIME_GROUPING
 
-    # def to_bubble(trees: List[ParseNode], new_bubble: Optional[Bubble]) \
+    """
+    
+    """
+    def to_bubble(best_trees, tokens):
+        # tokens = user_one.split(",")
+        for tree in best_trees:
+            """
+            Use BFS top-down to find the bubble
+            """
+            node_list = [tree]
+            bubble_one = None
+            while len(node_list) > 0:
+                node = node_list.pop(0)
+                n = len(node.children)
+                m = len(tokens)
+                """
+                    Skip if the number of children is less than the bubble size, instead add all children to the queue
+                    """
+                if n <= m:
+                    node_list.extend([i for i in node.children if not i.is_terminal])
+                    continue
+                for i in range(n-m+1):
+                    if [node.children[j].payload for j in range(i, i+m)] == tokens:
+                        bubble_one = Bubble(allocate_tid(), [node.children[j] for j in range(i, i+m)])
+                        return bubble_one
+                node_list.extend([i for i in node.children if not i.is_terminal])
+        return bubble_one
 
     def score(trees: List[ParseNode], new_bubble: Optional[Bubble]) \
             -> Tuple[int, List[ParseNode]]:
@@ -352,148 +381,138 @@ def build_trees(oracle, leaves):
     ORIGINAL_COALESCE_TIME += time.time() - s
 
 
-    max_example_size = max([len(leaf_lst) for leaf_lst in leaves])
-    max_node_size = max([len(child.children) for tree in best_trees for child in tree.children])
+    max_example_size = max([len(leaf_lst) for leaf_lst in leaves])          #largest seed input
+    max_node_size = max([len(child.children) for tree in best_trees for child in tree.children])            #maximum number of children node in a seed input
     print(f"max example size {max_example_size}, node size: {max_node_size}")
     s = time.time()
     # Main algorithm loop. Iteratively increase the length of groups allowed from MIN_GROUP_LEN to MAX_GROUP_LEN
     # break the group_size loop if no valid merge after increasing group size by threshold
     # for group_size in range(MIN_GROUP_LEN, MAX_GROUP_LEN):
 
-    threshold = 5
+    threshold = 3
     count = 1
     updated = True
-    while True:
+    prompt = ""
+    while threshold >= 0:
         group_start = time.time()
-        # all_groupings = group(best_trees, group_size)
-        
-        user_one = input("Enter first bubble: separated by comma. You can enter single or double bubble, or exit to quit\n")
-        user_two = input("Enter second bubble: hit enter to skip\n")
-
-        if user_one == "exit":
-            break
-
-        str_one = user_one.split(",")
         for tree in best_trees:
-            """
-            Use BFS top-down to find the bubble
-            """
-            node_list = [tree]
-            while len(node_list) > 0:
-                node = node_list.pop(0)
-                n = len(node.children)
-                m = len(str_one)
-                """
-                Skip if the number of children is less than the bubble size, instead add all children to the queue
-                """
-                if n <= m:
-                    node_list.extend([i for i in node.children if not i.is_terminal])
-                    continue
-                for i in range(n-m+1):
-                    if [node.children[j].payload for j in range(i, i+m)] == str_one:
-                        bubble_one = Bubble(allocate_tid(), [node.children[j] for j in range(i, i+m)])
-                        break
-                node_list.extend([i for i in node.children if not i.is_terminal])
-                
-        if user_two:
-            str_two = user_two.split(",")
-            for tree in best_trees:
-                node_list = [tree]
-                while len(node_list) > 0:
-                    node = node_list.pop(0)
-                    n = len(node.children)
-                    m = len(str_two)
-                    if n <= m:
-                        node_list.extend([i for i in node.children if not i.is_terminal])
-                        continue
-                    for i in range(n-m+1):
-                        if [node.children[j].payload for j in range(i, i+m)] == str_two:
-                            bubble_two = Bubble([node.children[j] for j in range(i, i+m)], allocate_tid())
-                            break
-                    node_list.extend([i for i in node.children if not i.is_terminal])
+            prompt += f"[{tree.to_newick()}]"
+        bubble_list = bubble_api(prompt)       # llm call here
+        bubble_list = json.loads(bubble_list)['siblings']
+        bubble_list = sorted(bubble_list, key=lambda x: len(x))
+        prompt = ""
+        # remove duplicates
+        # bubble_set = {}
+        # for l in bubble_list:
+        #     st = ''.join([x for x in l])
+        #     if not st in bubble_set:
+        #         single_bubble = to_bubble(best_trees, l)
+        #         if single_bubble is not None:
+        #             bubble_set[st] = single_bubble
+        #         else:
+        #             prompt += f"Invalid sibling or grouped already: {l}\n"
+
+        # bubbles = list(bubble_set.values())
+        # # all_groupings = list(bubbles)
+        # bubbles.extend([(bubbles[i], bubbles[j]) for i in range(len(bubbles))\
+        #                        for j in range(i+1, len(bubbles)) if not bubbles[i] == bubbles[j]])
         
-        grouping = (bubble_one, bubble_two) if user_two else bubble_one
 
         TIME_GROUPING += time.time() - group_start
-        # updated, nlg = False, len(all_groupings)
-        # for i, (grouping, the_score) in enumerate(all_groupings):
-        reapply = True
-        last = -1
-        while reapply:
-            # print(('[Group len %d] Bubbling iteration %d (%d/%d)...' % (group_size, count, i + 1, nlg)).ljust(50))
-            ### Perform the bubble
-            if isinstance(grouping, Bubble):
-                new_trees = apply(grouping, best_trees)
-                new_score, new_trees, coalesced_into = score(new_trees, grouping)
-                grouping_str = f"Successful grouping (single): {grouping.bubbled_elems}\n    (aka {[e.derived_string() for e in grouping.bubbled_elems]}"
-                # grouping_str += f"\n     [score of {the_score}]"
-            else:
-                bubble_one = grouping[0]
-                bubble_two = grouping[1]
-                new_trees = apply(bubble_one, best_trees)
-                new_trees = apply(bubble_two, new_trees)
-                new_score, new_trees, coalesced_into = score(new_trees, grouping)
-                grouping_str = f"Successful grouping (double): {bubble_one.bubbled_elems}, {bubble_two.bubbled_elems}"
-                grouping_str += f"\n     (aka {[e.derived_string() for e in bubble_one.bubbled_elems]}, {[e.derived_string() for e in bubble_two.bubbled_elems]}))"
-                # grouping_str += f"\n     [score of {the_score}]"
-            ### Score
-            best_trees = new_trees
-            if new_score > 0:
-                    
-                # if i == last:
-                #     global REAPPLY
-                #     REAPPLY += 1
-                #     print(f"Reapply: {REAPPLY}")
-                # last = i
-                print()
-                print(('[Count %d] Bubbling iteration ...' % (count)).ljust(50))
-                print(grouping_str)
-                print("coalesced into: ", coalesced_into)
+        updated, nlg = False, len(bubble_list)
+        for i, candidate in enumerate(bubble_list):
 
-                # pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
-                for tree in best_trees:
-                    print(tree.to_newick())
-                    pt(tree)
-
+            grouping = to_bubble(best_trees, candidate)
+            if grouping is None:
+                prompt += f"Invalid sibling or grouped already: {candidate}\n"
+                continue
+            reapply = True
+            last = -1
+            while reapply:
+                # print(('[Group len %d] Bubbling iteration %d (%d/%d)...' % (group_size, count, i + 1, nlg)).ljust(50))
+                ### Perform the bubble
                 if isinstance(grouping, Bubble):
-                    for elem in grouping.bubbled_elems:
-                        if elem.payload in coalesced_into:
-                            new_nt = coalesced_into[elem.payload]
-                            while new_nt in coalesced_into and not new_nt == coalesced_into[new_nt]:
-                                new_nt = coalesced_into[new_nt]
-                            elem.payload = new_nt
-                    while grouping.new_nt in coalesced_into and coalesced_into[grouping.new_nt] != grouping.new_nt:
-                        grouping.new_nt = coalesced_into[grouping.new_nt]
-                    # grouping.new_nt = allocate_tid()
-                
+                    new_trees = apply(grouping, best_trees)
+                    new_score, new_trees, coalesced_into = score(new_trees, grouping)
+                    grouping_str = f"Successful grouping (single): {grouping.bubbled_elems}\n    (aka {[e.derived_string() for e in grouping.bubbled_elems]}"
+                    # grouping_str += f"\n     [score of {the_score}]"
                 else:
-                    for bubble in grouping:
-                        for elem in bubble.bubbled_elems:
+                    bubble_one = grouping[0]
+                    bubble_two = grouping[1]
+                    new_trees = apply(bubble_one, best_trees)
+                    new_trees = apply(bubble_two, new_trees)
+                    new_score, new_trees, coalesced_into = score(new_trees, grouping)
+                    grouping_str = f"Successful grouping (double): {bubble_one.bubbled_elems}, {bubble_two.bubbled_elems}"
+                    grouping_str += f"\n     (aka {[e.derived_string() for e in bubble_one.bubbled_elems]}, {[e.derived_string() for e in bubble_two.bubbled_elems]}))"
+                    # grouping_str += f"\n     [score of {the_score}]"
+                ### Score
+                if new_score > 0:
+                    
+                    best_trees = new_trees    
+                    if i == last:
+                        global REAPPLY
+                        REAPPLY += 1
+                        print(f"Reapply: {REAPPLY}")
+                    last = i
+                    print()
+                    print(('Bubbling api call %d (%d/%d)...' % (count, i + 1, nlg)).ljust(50))
+                    print(grouping_str)
+                    print("coalesced into: ", coalesced_into)
+
+                    # pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
+                    for tree in best_trees:
+                        print(tree.to_newick())
+                        pt(tree)
+
+                    if isinstance(grouping, Bubble):
+                        for elem in grouping.bubbled_elems:
                             if elem.payload in coalesced_into:
                                 new_nt = coalesced_into[elem.payload]
                                 while new_nt in coalesced_into and not new_nt == coalesced_into[new_nt]:
                                     new_nt = coalesced_into[new_nt]
                                 elem.payload = new_nt
-                        while bubble.new_nt in coalesced_into and coalesced_into[bubble.new_nt] != bubble.new_nt:
-                            bubble.new_nt = coalesced_into[bubble.new_nt]
-                        # bubble.new_nt = allocate_tid()
-                        
-                updated = True
-                threshold = 5
+                        while grouping.new_nt in coalesced_into and coalesced_into[grouping.new_nt] != grouping.new_nt:
+                            grouping.new_nt = coalesced_into[grouping.new_nt]
+                        # grouping.new_nt = allocate_tid()
+                    
+                    else:
+                        for bubble in grouping:
+                            for elem in bubble.bubbled_elems:
+                                if elem.payload in coalesced_into:
+                                    new_nt = coalesced_into[elem.payload]
+                                    while new_nt in coalesced_into and not new_nt == coalesced_into[new_nt]:
+                                        new_nt = coalesced_into[new_nt]
+                                    elem.payload = new_nt
+                            while bubble.new_nt in coalesced_into and coalesced_into[bubble.new_nt] != bubble.new_nt:
+                                bubble.new_nt = coalesced_into[bubble.new_nt]
+                            # bubble.new_nt = allocate_tid()
+                            
+                    updated = True
+                    threshold = 3
+                else:
+                    reapply = False
+                    print("DECREMENT")
+            if isinstance(grouping, Bubble):
+                siblings = ''.join([x.payload for x in grouping.bubbled_elems])
             else:
-                reapply = False
-                print("DECREMENT")
-                threshold -= 1
-        # if updated:
-        #     break
+                siblings = ''.join([x.payload for x in grouping[0].bubbled_elems]) + " and " + ''.join([x.payload for x in grouping[1].bubbled_elems])
+            if updated:
+                prompt += f"Good job! '{siblings}' added structure to the trees.\n"
+                # break
+            else:
+                prompt += f"'{siblings}' does not add structure to the trees.\n"
+        if not updated:
+            prompt += "None were valid groups. Try again with different siblings.\n"
         count = count + 1
+        threshold -= 1
 
-        # if group_size > max_example_size or threshold == 0:
-        #     print(f"BREAK, group size {group_size}, threshold {threshold}")
-        #     break
+        if threshold < 0:
+            print(f"BREAK, threshold {threshold}")
+            
 
     BUILD_TIME += time.time() - s
     return best_trees, {}
+
 
 
 def coalesce_partial(oracle, trees: List[ParseNode], grammar: Grammar,
@@ -908,6 +927,8 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
     nonterminals = [x[0] for x in nonterminals]
     nonterminals.remove("start")
     # nonterminals = list(nonterminals)
+    # append numbers to break ties in node labeling
+    label_count = defaultdict(int)
     uf = UnionFind(nonterminals)
 
     # Get all unique pairs of nonterminals
@@ -954,11 +975,35 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
             if first == START or second == START:
                 class_nt = START
             else:
-                class_nt = allocate_tid()
+                # class_nt = allocate_tid()
+
+                if first in coalesced_into.values():
+                    class_nt = first
+                elif second in coalesced_into.values():
+                    class_nt = second
+
+                # while class_nt in coalesced_into:
+                #     class_nt = coalesced_into[class_nt]
+
+                else:
+                    # ask llm for label suggestion, expand to terminals from the nonterminal nodes
+                    s1 = grammar.generate_positive_example(0, first)
+                    s2 = grammar.generate_positive_example(0, second)
+                    class_nt = generate_label_api((s1, s2))
+
+                    # if the label already exists, append a number to it
+                    if class_nt in nonterminals or class_nt in coalesced_into.values():
+                        label_count[class_nt] += 1
+                        class_nt = f"{class_nt}_{label_count[class_nt]}"
+                    
             classes = {class_nt: [first, second]}
             get_class = {first: class_nt, second: class_nt}
-            coalesced_into[first] = class_nt
-            coalesced_into[second] = class_nt
+            
+            if first != class_nt:
+                coalesced_into[first] = class_nt
+            if second != class_nt:
+                coalesced_into[second] = class_nt
+                
             grammar = get_updated_grammar(classes, get_class, grammar)
             new_inner_trees = get_updated_trees(get_class, tree_list.inner_list)
             tree_list = ParseTreeList(new_inner_trees, grammar)

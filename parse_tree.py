@@ -5,7 +5,7 @@ from typing import List, Iterable
 
 from grammar import Rule, Grammar
 from input import clean_terminal
-START = 't0'
+START = 'stmt'
 
 @functools.lru_cache(maxsize=None)
 def fixup_terminal(payload):
@@ -269,8 +269,8 @@ class ParseNode():
         if self.is_terminal:
             return self.payload
         else:
-            childre_str = ','.join([c.to_newick() for c in self.children])
-            return f'({childre_str}){self.payload}'
+            childre_str = ','.join([c.to_newick() for c in self.children if not c.is_terminal])
+            return f'({childre_str}){self.payload}' if childre_str else self.payload
         
     def copy(self):
         """
