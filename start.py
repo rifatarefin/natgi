@@ -266,12 +266,11 @@ def apply(grouping: Bubble, trees: List[ParseNode]):
             new_tree.children[index] = apply_single(old_node)
 
         # Prevent single nonterminal from bubbling up
-        # if len(group_lst) == len(new_tree.children):
-        #     return new_tree
+        
         ind = matches(group_lst, new_tree.children)
         while ind != -1:
             # Prevent bubbling up the same nonterminal
-            if not new_tree.payload == id:
+            if not new_tree.payload == id and not len(new_tree.children) == ng:
                 parent = ParseNode(id, False, new_tree.children[ind: ind + ng])
                 new_tree.children[ind: ind + ng] = [parent]
                 ind = matches(group_lst, new_tree.children)
@@ -401,16 +400,6 @@ def build_trees(oracle, leaves):
         bubble_list = json.loads(bubble_list)['siblings']
         bubble_list = sorted(bubble_list, key=lambda x: len(x))
         prompt = ""
-        # remove duplicates
-        # bubble_set = {}
-        # for l in bubble_list:
-        #     st = ''.join([x for x in l])
-        #     if not st in bubble_set:
-        #         single_bubble = to_bubble(best_trees, l)
-        #         if single_bubble is not None:
-        #             bubble_set[st] = single_bubble
-        #         else:
-        #             prompt += f"Invalid sibling or grouped already: {l}\n"
 
         # bubbles = list(bubble_set.values())
         # # all_groupings = list(bubbles)
@@ -420,6 +409,8 @@ def build_trees(oracle, leaves):
 
         TIME_GROUPING += time.time() - group_start
         updated, nlg = False, len(bubble_list)
+
+        # bubble_list.extend(bubble_list) # double the list. will change this later
         for i, candidate in enumerate(bubble_list):
 
             grouping = to_bubble(best_trees, candidate)
@@ -449,6 +440,12 @@ def build_trees(oracle, leaves):
                 if new_score > 0:
                     
                     best_trees = new_trees    
+
+                    # pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
+                    for tree in best_trees:
+                        print(tree.to_newick())
+                        pt(tree)
+
                     if i == last:
                         global REAPPLY
                         REAPPLY += 1
@@ -459,10 +456,6 @@ def build_trees(oracle, leaves):
                     print(grouping_str)
                     print("coalesced into: ", coalesced_into)
 
-                    # pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
-                    for tree in best_trees:
-                        print(tree.to_newick())
-                        pt(tree)
 
                     if isinstance(grouping, Bubble):
                         for elem in grouping.bubbled_elems:
@@ -471,9 +464,9 @@ def build_trees(oracle, leaves):
                                 while new_nt in coalesced_into and not new_nt == coalesced_into[new_nt]:
                                     new_nt = coalesced_into[new_nt]
                                 elem.payload = new_nt
-                        while grouping.new_nt in coalesced_into and coalesced_into[grouping.new_nt] != grouping.new_nt:
-                            grouping.new_nt = coalesced_into[grouping.new_nt]
-                        # grouping.new_nt = allocate_tid()
+                        # while grouping.new_nt in coalesced_into and coalesced_into[grouping.new_nt] != grouping.new_nt:
+                        #     grouping.new_nt = coalesced_into[grouping.new_nt]
+                        grouping.new_nt = allocate_tid()
                     
                     else:
                         for bubble in grouping:
@@ -483,9 +476,9 @@ def build_trees(oracle, leaves):
                                     while new_nt in coalesced_into and not new_nt == coalesced_into[new_nt]:
                                         new_nt = coalesced_into[new_nt]
                                     elem.payload = new_nt
-                            while bubble.new_nt in coalesced_into and coalesced_into[bubble.new_nt] != bubble.new_nt:
-                                bubble.new_nt = coalesced_into[bubble.new_nt]
-                            # bubble.new_nt = allocate_tid()
+                            # while bubble.new_nt in coalesced_into and coalesced_into[bubble.new_nt] != bubble.new_nt:
+                            #     bubble.new_nt = coalesced_into[bubble.new_nt]
+                            bubble.new_nt = allocate_tid()
                             
                     updated = True
                     threshold = 3
@@ -992,7 +985,8 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
                     class_nt = generate_label_api((s1, s2))
 
                     # if the label already exists, append a number to it
-                    if class_nt in nonterminals or class_nt in coalesced_into.values():
+                    if (first != class_nt and second != class_nt) and \
+                        (class_nt in nonterminals or class_nt in coalesced_into.values()):
                         label_count[class_nt] += 1
                         class_nt = f"{class_nt}_{label_count[class_nt]}"
                     
