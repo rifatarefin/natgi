@@ -22,8 +22,8 @@ while i < len(system_prompt):
     messages.append({'role': 'system', 'name': 'example_trees', 'content': system_prompt[i]})
     messages.append({'role': 'system', 'name': 'example_sibling_group', 'content': system_prompt[i+1]})
     i += 2
-messages.append({'role': 'system', 'content': 'Given some flat parse tree levels, you will group sibling nodes that will add hierarchies to the parse trees. \
-                 Show maximum 10 unique groups, maximum 10 siblings per group. The shorter the group the better, never more than 10 siblings in a group. \
+messages.append({'role': 'system', 'content': 'Show maximum 10 unique groups, maximum 10 siblings per group. \
+                 Always look for very short groups, never more than 10 siblings in a group. \
                  Only show list of siblings as json output. The format should be json[siblings]:[[node1, node2, ...],...group10]'})
 chat_log = []
 def bubble_api(trees):

@@ -286,28 +286,27 @@ def apply(grouping: Bubble, trees: List[ParseNode]):
 Given a list of tokens, return the bubble that corresponds to the tokens
 """
 def to_bubble(best_trees, tokens):
-    # tokens = user_one.split(",")
-    for tree in best_trees:
+    
+    """
+    Use BFS top-down to find the bubble
+    """
+    node_list = [tree for tree in best_trees]
+    bubble_one = None
+    while len(node_list) > 0:
+        node = node_list.pop(0)
+        n = len(node.children)
+        m = len(tokens)
         """
-        Use BFS top-down to find the bubble
-        """
-        node_list = [tree]
-        bubble_one = None
-        while len(node_list) > 0:
-            node = node_list.pop(0)
-            n = len(node.children)
-            m = len(tokens)
+            Skip if the number of children is less than the bubble size, instead add all children to the queue
             """
-                Skip if the number of children is less than the bubble size, instead add all children to the queue
-                """
-            if n <= m:
-                node_list.extend([i for i in node.children if not i.is_terminal])
-                continue
-            for i in range(n-m+1):
-                if [node.children[j].payload for j in range(i, i+m)] == tokens:
-                    bubble_one = Bubble(allocate_tid(), [node.children[j] for j in range(i, i+m)])
-                    return bubble_one
+        if n <= m:
             node_list.extend([i for i in node.children if not i.is_terminal])
+            continue
+        for i in range(n-m+1):
+            if [node.children[j].payload for j in range(i, i+m)] == tokens:
+                bubble_one = Bubble(allocate_tid(), [node.children[j] for j in range(i, i+m)])
+                return bubble_one
+        node_list.extend([i for i in node.children if not i.is_terminal])
     return bubble_one
 
 """
@@ -509,7 +508,7 @@ def build_trees(oracle, leaves):
         # for tree in best_trees:
         #     prompt += f"[{tree.to_newick()}]"
         layer = get_longest_layer(best_trees, [])
-        prompt += 'Consider these tree levels\n' + str(layer)
+        prompt += 'Make short sibling groups for these tree levels\n' + str(layer)
         bubble_list = bubble_api(prompt)       # llm call here
         bubble_list = json.loads(bubble_list)['siblings']
         bubble_list = sorted(bubble_list, key=lambda x: len(x))
@@ -1016,6 +1015,7 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
                     s1 = grammar.generate_positive_example(0, first)
                     s2 = grammar.generate_positive_example(0, second)
                     class_nt = generate_label_api((s1, s2))
+                    print(f"LLM suggested label: {class_nt} for {s1} and {s2}")
 
                     # if the label already exists, append a number to it
                     if (first != class_nt and second != class_nt) and \

@@ -18,7 +18,7 @@ while i < len(system_prompt):
     messages.append({'role': 'system', 'name': 'example_substrings', 'content': system_prompt[i]})
     messages.append({'role': 'system', 'name': 'example_non-terminal', 'content': system_prompt[i+1]})
     i += 2
-messages.append({'role': 'system', 'content': 'Now suggest a non-terminal symbol that can derive the given substrings. Only one label in output is enough.'})
+messages.append({'role': 'system', 'content': 'Now suggest a non-terminal symbol that can derive the given substrings. The output must be a single label, never any explanation.'})
 
 def generate_label_api(str_pair):
 
@@ -28,10 +28,11 @@ def generate_label_api(str_pair):
         model="gpt-4o",
         messages=messages,
         seed=12345,
+        max_tokens=5,
         # response_format={"type": "json_object"},
         temperature=0
     )
-    return response.choices[0].message.content
+    return response.choices[0].message.content.split()[0]
 
 if __name__ == '__main__':
     print("Welcome to the interactive GPT chat. Type 'quit' to exit.")
