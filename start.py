@@ -17,7 +17,8 @@ from PrettyPrint import PrettyPrintTree
 from label_llm import generate_label_api
 from bubble_llm import bubble_api
 import json
-
+import random
+random.seed(0)
 """
 Bulk of the Arvada algorithm.
 """
@@ -324,7 +325,13 @@ def get_longest_layer(best_trees, layers):
     
     for tree in best_trees:
         longest_single(tree)
-    return sorted(layers, key=lambda x: len(x), reverse=True)[:3]
+    all_layers = sorted(layers, key=lambda x: len(x), reverse=True)
+    all_layers2 = [x for x in all_layers if len(x) >= 50]
+    # for layer in all_layers[:3]:
+    #     print(''.join(layer))
+
+    # return random.sample(all_layers2, 3) if len(all_layers2) >=3 else all_layers[:3]
+    return all_layers[:3]
 
 def build_trees(oracle, leaves):
     """
@@ -388,9 +395,11 @@ def build_trees(oracle, leaves):
             if isinstance(candidate, Bubble):
                 grouping = candidate
             else:
-                grouping = to_bubble(best_trees, candidate)
+                cand_str = ''.join(candidate)
+                grouping = accepted_bubbles.get(cand_str, to_bubble(best_trees, candidate))
+                # grouping = to_bubble(best_trees, candidate)
             if grouping is None:
-                prompt += f"Invalid sibling or grouped already: {candidate}\n"
+                # prompt += f"Either group doesn't exist, or group will add redundant hierarchy: {candidate}\n"
                 continue
             reapply = True
             last = -1
@@ -416,10 +425,10 @@ def build_trees(oracle, leaves):
                 if new_score > 0:
                     best_trees = new_trees    
                     
-                    pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
-                    for tree in best_trees:
-                        print(tree.to_newick())
-                        pt(tree)
+                    # pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
+                    # for tree in best_trees:
+                    #     print(tree.to_newick())
+                    #     pt(tree)
 
                     if i == last:
                         global REAPPLY
@@ -468,8 +477,8 @@ def build_trees(oracle, leaves):
                 prompt += f"Good job! '{siblings}' added structure to the trees.\n"
                 accepted_bubbles[siblings] = grouping
                     # break
-            else:
-                prompt += f"'{siblings}' does not add structure to the trees.\n"
+            # else:
+                # prompt += f"'{siblings}' does not add structure to the trees.\n"
         if not updated:
             prompt += "None were valid groups. Try again with different siblings.\n"
         return best_trees, prompt, updated
@@ -508,7 +517,7 @@ def build_trees(oracle, leaves):
         # for tree in best_trees:
         #     prompt += f"[{tree.to_newick()}]"
         layer = get_longest_layer(best_trees, [])
-        prompt += 'Make short sibling groups for these tree levels\n' + str(layer)
+        prompt += 'Suggest similar groups (from previous successful steps) for these flat tree levels\n' + str(layer)
         bubble_list = bubble_api(prompt)       # llm call here
         bubble_list = json.loads(bubble_list)['siblings']
         bubble_list = sorted(bubble_list, key=lambda x: len(x))
@@ -524,11 +533,13 @@ def build_trees(oracle, leaves):
         count = count + 1
         if not updated:
             threshold -= 1
+        else:
+            threshold = 3
 
         if threshold <= 0:
             while True:
                 recheck_bubbles = sorted(accepted_bubbles.values(), key=lambda x: len(x.bubbled_elems))
-                best_trees, prompt, updated = bubble_loop(best_trees, count, recheck_bubbles, accepted_bubbles)
+                best_trees, _, updated = bubble_loop(best_trees, count, recheck_bubbles, accepted_bubbles)
                 count = count + 1
                 if not updated:
                     break
@@ -777,6 +788,8 @@ def coalesce_partial(oracle, trees: List[ParseNode], grammar: Grammar,
     trees = trees.inner_list
     return grammar, trees, replacement_happened
 
+# global coalesce into
+global_coalesce = {}
 
 def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
              coalesce_target: Bubble = None):
@@ -1002,9 +1015,9 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
             else:
                 # class_nt = allocate_tid()
 
-                if first in coalesced_into.values():
+                if first in global_coalesce.values():
                     class_nt = first
-                elif second in coalesced_into.values():
+                elif second in global_coalesce.values():
                     class_nt = second
 
                 # while class_nt in coalesced_into:
@@ -1019,7 +1032,7 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
 
                     # if the label already exists, append a number to it
                     if (first != class_nt and second != class_nt) and \
-                        (class_nt in nonterminals or class_nt in coalesced_into.values()):
+                        (class_nt in nonterminals or class_nt in global_coalesce.values()):
                         label_count[class_nt] += 1
                         class_nt = f"{class_nt}_{label_count[class_nt]}"
                     
@@ -1030,7 +1043,8 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
                 coalesced_into[first] = class_nt
             if second != class_nt:
                 coalesced_into[second] = class_nt
-                
+
+            global_coalesce.update(coalesced_into) 
             grammar = get_updated_grammar(classes, get_class, grammar)
             new_inner_trees = get_updated_trees(get_class, tree_list.inner_list)
             tree_list = ParseTreeList(new_inner_trees, grammar)

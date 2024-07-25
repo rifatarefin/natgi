@@ -3,27 +3,26 @@ client = OpenAI()
 
 
 
-system_prompt = ["You are an AI assistant. You will find structure from some programming language examples. Initially there are partial structures\
-    in the examples in the form of parse trees, the trees would be in newick format. Remember all nodes in the trees are labeled, whitespace and braces also appear as node labels.\
-    The root has label 'stmt'. The individual trees will be separated by square brackets. Your job is to find the remaining hierarchies by grouping short contiguous sequence of sibling nodes. \
-    Grouping these siblings will add hierarchy to the parse tree, comparable to a production rule in a context-free grammar. Look at the steps for 'while' language examples below.",
-    "[(while, ,boolexpr, ,&, ,boolexpr, ,do, ,L, ,=, ,((,numexpr,+,numexpr,))numexpr)stmt],\
-    [(if, ,~,boolexpr, ,then, ,L, ,=, ,numexpr, ,else, ,L, ,=, ,((,numexpr,+,numexpr,))numexpr)stmt]",
-    "'L = numexpr' can be grouped as parse tree node stmt, so the siblings are: {L}, { }, {=}, { }, {numexpr}",
-    "[(while, ,boolexpr, ,&, ,boolexpr, ,do, ,(L, ,=, ,((,numexpr,+,numexpr,))numexpr)stmt)stmt],\
-    [(if, ,~,boolexpr, ,then, ,(L, ,=, ,numexpr)stmt, ,else, ,(L, ,=, ,((,numexpr,+,numexpr,))numexpr)stmt)stmt]",
-    "'boolexpr & boolexpr' can be grouped as parse tree node boolexpr, so the siblings are: {boolexpr}, { }, {&}, { }, {boolexpr}. '~boolexpr' can also be grouped as boolexpr, the outputcould be: {~}, {boolexpr}",
-    "[((L, ,=, ,L)stmt, ,;, ,if, ,(numexpr, ,=,=, ,numexpr)boolexpr, ,then, ,stmt, ,else, ,(L, ,=, ,((,numexpr,+,numexpr,))numexpr)stmt)stmt]",
-    "'if boolexpr then stmt else stmt' can be grouped as parse tree node stmt, so the siblings are: {if}, { }, {boolexpr}, { }, {then}, { }, {stmt}, { }, {else}, { }, {stmt}",]
+system_prompt = ["You are an AI assistant. You will help to complete some partially complete parse trees. You will be given some flat tree levels.\
+    The tree levels will be separated by square brackets. Each node represents a terminal or non-terminal (might be whitespace as well). Your job is to find out which smaller node groups can add structure to those tree levels. \
+    Grouping these small groups will add hierarchy to the parse tree. The goal is to form the final parse tree resembling the language's grammar. \
+    Look for shorter groups first rather than longer groups. Because the short groups will incrementally build the parse trees. \Look at the steps for 'while' language examples below.",
+    "[while boolexpr & boolexpr do L = numexpr],\
+    [if ~boolexpr then L = numexpr else L = numexpr]",
+    "'~boolexpr' can be grouped as boolexpr, the output could be: {~}, {boolexpr}. \
+    'boolexpr & boolexpr' can be grouped as boolexpr, the output could be: {boolexpr}, { }, {&}, {}, {boolexpr} \
+    'L = numexpr' can be grouped as parse tree node stmt, so the siblings are: {L}, { }, {=}, { }, {numexpr}",
+    "[L = L ; if boolexpr then stmt else stmt]",
+    "'L = L' can be grouped as parse tree node stmt, so the siblings are: {L}, { }, {=}, { }, {L} \
+    'if boolexpr then stmt else stmt' can be grouped as parse tree node stmt, so the siblings are: {if}, { }, {boolexpr}, { }, {then}, { }, {stmt}, { }, {else}, { }, {stmt}"]
 
 messages = [{'role': 'system', 'content': system_prompt[0]}]
 i =1
 while i < len(system_prompt):
-    messages.append({'role': 'system', 'name': 'example_trees', 'content': system_prompt[i]})
+    messages.append({'role': 'system', 'name': 'example_tree_levels', 'content': system_prompt[i]})
     messages.append({'role': 'system', 'name': 'example_sibling_group', 'content': system_prompt[i+1]})
     i += 2
-messages.append({'role': 'system', 'content': 'Show maximum 10 unique groups, maximum 10 siblings per group. \
-                 Always look for very short groups, never more than 10 siblings in a group. \
+messages.append({'role': 'system', 'content': 'Show maximum 10 unique groups. \
                  Only show list of siblings as json output. The format should be json[siblings]:[[node1, node2, ...],...group10]'})
 chat_log = []
 def bubble_api(trees):
