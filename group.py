@@ -117,7 +117,7 @@ def group(trees, max_group_size, last_applied_bubble = None) -> List[Bubble]:
     for bubble_str in full_bubbles:
         if bubbles[bubble_str].occ_count == full_bubbles[bubble_str]:
             bubbles.pop(bubble_str)
-    print("Number of bubbles: ", len(bubbles))
+    print(f"Size {max_group_size}: number of bubbles: {len(bubbles)}")
 
     bubbles = score_and_sort_bubbles(bubbles)
 
@@ -190,7 +190,7 @@ def score_and_sort_bubbles(bubbles: Dict[str, Bubble]) -> List[Union[Bubble, Tup
                 bubbles[pair[0]] = score
         else:
             bubbles[pair] = score
-    bubbles = list(bubbles.items())
+    bubbles = list(bubbles.keys())
     if len(bubbles) > 100:
         bubbles = bubbles[:100]
     # random.shuffle(bubbles)

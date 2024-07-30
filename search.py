@@ -17,7 +17,7 @@ See __main__ dispatch at the bottom for usage.
 USE_PRETOKENIZATION = True
 
 GROUP_PUNCTUATION = False
-SPLIT_UPPER_AND_LOWER = True
+SPLIT_UPPER_AND_LOWER = False
 quote = []
 def approx_tokenize(guide_raw:str):
     def get_category(c, idx):
