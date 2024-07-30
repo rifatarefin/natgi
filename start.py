@@ -491,6 +491,9 @@ def build_trees(oracle, leaves):
     grammar, best_trees, _, _ = coalesce(oracle, best_trees, grammar)
     # grammar, best_trees, _ = coalesce_partial(oracle, best_trees, grammar)
 
+    # epsilon rule: try removing each nonterminal
+    grammar, best_trees = check_epsilon(oracle, best_trees, grammar)
+
     pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
     for tree in best_trees:
         print(tree.to_newick())
@@ -788,6 +791,65 @@ def coalesce_partial(oracle, trees: List[ParseNode], grammar: Grammar,
     trees = trees.inner_list
     return grammar, trees, replacement_happened
 
+def check_epsilon(oracle, trees: List[ParseNode], grammar: Grammar):
+    """
+    Checks if any nonterminal can be removed from the grammar. If so, removes it.
+    """
+    nonterminals = sorted(grammar.rules.items(), key=lambda x: x[1].depth)
+    nonterminals = [x[0] for x in nonterminals]
+    nonterminals.remove("start")
+    nonterminals.remove("epsilon")
+
+    for nonterminal in nonterminals:
+        ep_valid, strs = replacement_valid(oracle, [""], nonterminal, trees)
+        if ep_valid:
+            for nt in grammar.rules:
+                for body in grammar.rules[nt].bodies:
+                    if nonterminal in body:
+                        print(f"rules: {nt} -> {body}")
+
+    return grammar, trees
+
+    
+
+
+def replacement_valid(oracle, replacer_derivable_strings, replacee, trees : ParseTreeList) -> Tuple[bool, List[str]]:
+    """
+    Returns true if every string derivable from `replacee` in `trees` can be replaced
+    by every string in `replacer_derivable_strings`
+    **Replacing set() as it doesn't preserve the order. We want to get rid of all non-determinism.
+    """
+
+    # Get the set of positive examples with strings derivable from replacer
+    # replaced with strings derivable from replacee
+    replaced_strings = []
+    for tree in trees:
+        replaced_strings.extend(get_strings_with_replacement(tree, replacee, replacer_derivable_strings))
+
+    if len(replaced_strings) == 0:
+        # TODO: See the failing doctest in bubble.py. Pickle below for a "real" example
+        #import pickle
+        #pickle.dump(coalesce_target, open('overlap-bug.pkl', "wb"))
+        #print(f"Oopsie with {coalesce_target}.\nPretty sure this is an overlap bug that I know of.... so let's just skip it")
+        return False, []
+    #assert (replaced_strings)
+
+    replaced_strings = list(dict.fromkeys(replaced_strings))
+    # replaced_strings = sorted(replaced_strings)
+    if len(replaced_strings) > MAX_SAMPLES_PER_COALESCE:
+        replaced_strings = random.sample(replaced_strings, MAX_SAMPLES_PER_COALESCE)
+        # replaced_strings = replaced_strings[:MAX_SAMPLES_PER_COALESCE]
+    else:
+        random.shuffle(replaced_strings)
+
+    # Return True if all the replaced_strings are valid
+    for s in replaced_strings:
+        try:
+            oracle.parse(s)
+        except:
+            return False, []
+    return True, replaced_strings
+
 # global coalesce into
 global_coalesce = {}
 
@@ -812,42 +874,6 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
     (found equivalent).
     """
 
-    def replacement_valid(replacer_derivable_strings, replacee, trees : ParseTreeList) -> Tuple[bool, List[str]]:
-        """
-        Returns true if every string derivable from `replacee` in `trees` can be replaced
-        by every string in `replacer_derivable_strings`
-        **Replacing set() as it doesn't preserve the order. We want to get rid of all non-determinism.
-        """
-
-        # Get the set of positive examples with strings derivable from replacer
-        # replaced with strings derivable from replacee
-        replaced_strings = []
-        for tree in trees:
-            replaced_strings.extend(get_strings_with_replacement(tree, replacee, replacer_derivable_strings))
-
-        if len(replaced_strings) == 0:
-            # TODO: See the failing doctest in bubble.py. Pickle below for a "real" example
-            #import pickle
-            #pickle.dump(coalesce_target, open('overlap-bug.pkl', "wb"))
-            #print(f"Oopsie with {coalesce_target}.\nPretty sure this is an overlap bug that I know of.... so let's just skip it")
-            return False, []
-        #assert (replaced_strings)
-
-        replaced_strings = list(dict.fromkeys(replaced_strings))
-        # replaced_strings = sorted(replaced_strings)
-        if len(replaced_strings) > MAX_SAMPLES_PER_COALESCE:
-            replaced_strings = random.sample(replaced_strings, MAX_SAMPLES_PER_COALESCE)
-            # replaced_strings = replaced_strings[:MAX_SAMPLES_PER_COALESCE]
-        else:
-            random.shuffle(replaced_strings)
-
-        # Return True if all the replaced_strings are valid
-        for s in replaced_strings:
-            try:
-                oracle.parse(s)
-            except:
-                return False, []
-        return True, replaced_strings
 
     def replacement_valid_and_expanding(nt1, nt2, trees: ParseTreeList):
         """
@@ -873,10 +899,10 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
             return False
         nt1_derivable_strings = list(dict.fromkeys(nt1_derivable_strings))
         nt2_derivable_strings = list(dict.fromkeys(nt2_derivable_strings))
-        nt1_valid, nt1_check_strings = replacement_valid(nt1_derivable_strings, nt2, trees)
+        nt1_valid, nt1_check_strings = replacement_valid(oracle, nt1_derivable_strings, nt2, trees)
         if not nt1_valid:
             return False
-        nt2_valid, nt2_check_strings = replacement_valid(nt2_derivable_strings, nt1, trees)
+        nt2_valid, nt2_check_strings = replacement_valid(oracle, nt2_derivable_strings, nt1, trees)
         if not nt2_valid:
             return False
 
@@ -964,6 +990,7 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
     nonterminals = sorted(grammar.rules.items(), key=lambda x: x[1].depth)
     nonterminals = [x[0] for x in nonterminals]
     nonterminals.remove("start")
+    nonterminals.remove("epsilon")
     # nonterminals = list(nonterminals)
     # append numbers to break ties in node labeling
     label_count = defaultdict(int)

@@ -345,6 +345,14 @@ def build_grammar(trees):
     GrammarNode that is the disjunction of the parse trees, and returns it.
     """
 
+    def epsilon_rule():
+        """
+        Returns a rule that produces the empty string.
+        """
+        rule = Rule('epsilon')
+        rule.add_body([""])
+        return rule
+
     def build_rules(grammar_node, parse_node, rule_map, depth):
         """
         Adds the rules defined in PARSE_NODE and all of its subtrees to the
@@ -382,4 +390,5 @@ def build_grammar(trees):
     grammar, rule_map = Grammar(START), {}
     for tree in trees:
         build_rules(grammar, tree, rule_map, 0)
+    grammar.add_rule(epsilon_rule())
     return grammar
