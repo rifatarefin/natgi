@@ -448,9 +448,9 @@ def build_trees(oracle, leaves):
                                 while new_nt in coalesced_into and not new_nt == coalesced_into[new_nt]:
                                     new_nt = coalesced_into[new_nt]
                                 elem.payload = new_nt
-                            # while grouping.new_nt in coalesced_into and coalesced_into[grouping.new_nt] != grouping.new_nt:
-                            #     grouping.new_nt = coalesced_into[grouping.new_nt]
-                        grouping.new_nt = allocate_tid()
+                            while grouping.new_nt in coalesced_into and coalesced_into[grouping.new_nt] != grouping.new_nt:
+                                grouping.new_nt = coalesced_into[grouping.new_nt]
+                        # grouping.new_nt = allocate_tid()
                         
                     else:
                         for bubble in grouping:
@@ -460,9 +460,9 @@ def build_trees(oracle, leaves):
                                     while new_nt in coalesced_into and not new_nt == coalesced_into[new_nt]:
                                         new_nt = coalesced_into[new_nt]
                                     elem.payload = new_nt
-                                # while bubble.new_nt in coalesced_into and coalesced_into[bubble.new_nt] != bubble.new_nt:
-                                #     bubble.new_nt = coalesced_into[bubble.new_nt]
-                            bubble.new_nt = allocate_tid()
+                                while bubble.new_nt in coalesced_into and coalesced_into[bubble.new_nt] != bubble.new_nt:
+                                    bubble.new_nt = coalesced_into[bubble.new_nt]
+                            # bubble.new_nt = allocate_tid()
                                 
                     updated, valid_bubble = True, True
                     # threshold = 3
@@ -542,7 +542,7 @@ def build_trees(oracle, leaves):
             threshold -= 1
             grp_size += 1
         else:
-            threshold = 3
+            threshold = 5
 
         if threshold <= 0:
             while True:
@@ -798,6 +798,8 @@ def coalesce_partial(oracle, trees: List[ParseNode], grammar: Grammar,
 
 # global coalesce into
 global_coalesce = {}
+# append numbers to break ties in node labeling
+label_count = defaultdict(int)
 
 def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
              coalesce_target: Bubble = None):
@@ -973,8 +975,7 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
     nonterminals = [x[0] for x in nonterminals]
     nonterminals.remove("start")
     # nonterminals = list(nonterminals)
-    # append numbers to break ties in node labeling
-    label_count = defaultdict(int)
+
     uf = UnionFind(nonterminals)
 
     # Get all unique pairs of nonterminals
@@ -1033,14 +1034,16 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
 
                 else:
                     # ask llm for label suggestion, expand to terminals from the nonterminal nodes
-                    s1 = grammar.generate_positive_example(0, first)
-                    s2 = grammar.generate_positive_example(0, second)
+                    
+                    s1 = min(tree_list.derivable_in_trees(first))
+                    s2 = min(tree_list.derivable_in_trees(second))
                     class_nt = generate_label_api((s1, s2))
                     print(f"LLM suggested label: {class_nt} for {s1} and {s2}")
 
                     # if the label already exists, append a number to it
                     if (first != class_nt and second != class_nt) and \
                         (class_nt in nonterminals or class_nt in global_coalesce.values()):
+                        global label_count
                         label_count[class_nt] += 1
                         class_nt = f"{class_nt}_{label_count[class_nt]}"
                     

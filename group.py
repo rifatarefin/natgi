@@ -70,6 +70,9 @@ def group(trees, max_group_size, last_applied_bubble = None) -> List[Bubble]:
                 # if j - i == 2:
                 #     continue
                 tree_sublist = children_lst[i:j]
+                # discard a bubble if it's a single terminal
+                if len(tree_sublist) == 1 and tree_sublist[0].is_terminal:
+                    continue
 
                 # discard a bubble if it's not bracket balanced
                 stream = ''.join([child.derived_string() for child in tree_sublist])
