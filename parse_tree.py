@@ -47,7 +47,7 @@ class ParseTreeList:
         self.inner_list.append(value)
 
     def represented_strings(self):
-        return self.derivable_in_trees('t0')
+        return self.derivable_in_trees('stmt')
 
     def derivable_in_trees(self, nt):
         if self.derivable_cache_hash != hash(tuple(self.inner_list)):

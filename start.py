@@ -448,8 +448,8 @@ def build_trees(oracle, leaves):
                                 while new_nt in coalesced_into and not new_nt == coalesced_into[new_nt]:
                                     new_nt = coalesced_into[new_nt]
                                 elem.payload = new_nt
-                            # while grouping.new_nt in coalesced_into and coalesced_into[grouping.new_nt] != grouping.new_nt:
-                            #     grouping.new_nt = coalesced_into[grouping.new_nt]
+                            while grouping.new_nt in coalesced_into and coalesced_into[grouping.new_nt] != grouping.new_nt:
+                                grouping.new_nt = coalesced_into[grouping.new_nt]
                         grouping.new_nt = allocate_tid()
                         
                     else:
@@ -460,8 +460,8 @@ def build_trees(oracle, leaves):
                                     while new_nt in coalesced_into and not new_nt == coalesced_into[new_nt]:
                                         new_nt = coalesced_into[new_nt]
                                     elem.payload = new_nt
-                                # while bubble.new_nt in coalesced_into and coalesced_into[bubble.new_nt] != bubble.new_nt:
-                                #     bubble.new_nt = coalesced_into[bubble.new_nt]
+                                while bubble.new_nt in coalesced_into and coalesced_into[bubble.new_nt] != bubble.new_nt:
+                                    bubble.new_nt = coalesced_into[bubble.new_nt]
                             bubble.new_nt = allocate_tid()
                                 
                     updated, valid_bubble = True, True
@@ -469,14 +469,19 @@ def build_trees(oracle, leaves):
                 else:
                     reapply = False
                     print("DECREMENT")
-            if isinstance(grouping, Bubble):
-                siblings = ''.join([x.payload for x in grouping.bubbled_elems])
-            else:
-                siblings = ''.join([x.payload for x in grouping[0].bubbled_elems]) + " and " + ''.join([x.payload for x in grouping[1].bubbled_elems])
+
             if valid_bubble:
+                
+                if isinstance(grouping, Bubble):
+                    siblings = ''.join([x.payload for x in grouping.bubbled_elems])
+                    accepted_bubbles[siblings] = grouping
+                else:
+                    siblings = (''.join([x.payload for x in grouping[0].bubbled_elems]), \
+                                ''.join([x.payload for x in grouping[1].bubbled_elems]))
+                    accepted_bubbles[siblings[0]] = grouping[0]
+                    accepted_bubbles[siblings[1]] = grouping[1]
                 prompt += f"Good job! '{siblings}' added structure to the trees.\n"
-                accepted_bubbles[siblings] = grouping
-                    # break
+                # break
             # else:
                 # prompt += f"'{siblings}' does not add structure to the trees.\n"
         if not updated:
@@ -520,7 +525,7 @@ def build_trees(oracle, leaves):
         # for tree in best_trees:
         #     prompt += f"[{tree.to_newick()}]"
         layer = get_longest_layer(best_trees, [])
-        prompt += 'Suggest similar groups (from previous successful steps) for these flat tree levels\n' + str(layer)
+        prompt += 'Suggest short groups (similar to previous successful steps) for these flat tree levels\n' + str(layer)
         bubble_list = bubble_api(prompt)       # llm call here
         bubble_list = json.loads(bubble_list)['siblings']
         bubble_list = sorted(bubble_list, key=lambda x: len(x))
@@ -852,6 +857,8 @@ def replacement_valid(oracle, replacer_derivable_strings, replacee, trees : Pars
 
 # global coalesce into
 global_coalesce = {}
+# append numbers to break ties in node labeling
+label_count = defaultdict(int)
 
 def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
              coalesce_target: Bubble = None):
@@ -993,7 +1000,6 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
     nonterminals.remove("epsilon")
     # nonterminals = list(nonterminals)
     # append numbers to break ties in node labeling
-    label_count = defaultdict(int)
     uf = UnionFind(nonterminals)
 
     # Get all unique pairs of nonterminals
@@ -1052,14 +1058,15 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
 
                 else:
                     # ask llm for label suggestion, expand to terminals from the nonterminal nodes
-                    s1 = grammar.generate_positive_example(0, first)
-                    s2 = grammar.generate_positive_example(0, second)
+                    s1 = min(tree_list.derivable_in_trees(first))
+                    s2 = min(tree_list.derivable_in_trees(second))
                     class_nt = generate_label_api((s1, s2))
                     print(f"LLM suggested label: {class_nt} for {s1} and {s2}")
 
                     # if the label already exists, append a number to it
                     if (first != class_nt and second != class_nt) and \
                         (class_nt in nonterminals or class_nt in global_coalesce.values()):
+                        global label_count
                         label_count[class_nt] += 1
                         class_nt = f"{class_nt}_{label_count[class_nt]}"
                     
