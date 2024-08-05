@@ -1,5 +1,4 @@
-from openai import OpenAI
-client = OpenAI()
+import ollama
 
 
 system_prompt = ["You are an AI assistant. You will label the internal nodes in the parse tree of any arbitrary program. The root node of the parse tree\
@@ -24,15 +23,16 @@ def generate_label_api(str_pair):
 
     messages.append({'role': 'user', 'content': f"'{str_pair[0]}','{str_pair[1]}'"})
     
-    response = client.chat.completions.create(
-        model="gpt-4o",
+    response = ollama.chat(
+        model="llama3.1",
         messages=messages,
-        seed=12345,
-        max_tokens=5,
-        # response_format={"type": "json_object"},
-        temperature=0
+        options={"temperature": 0, "seed": 101}
+        # seed=12345,
+        # max_tokens=5,
+        # # response_format={"type": "json_object"},
+        # temperature=0
     )
-    return response.choices[0].message.content.split()[0]
+    return response['message']['content'].split()[0]
 
 if __name__ == '__main__':
     print("Welcome to the interactive GPT chat. Type 'quit' to exit.")

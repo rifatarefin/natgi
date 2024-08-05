@@ -1,5 +1,4 @@
-from openai import OpenAI
-client = OpenAI()
+import ollama
 
 
 
@@ -23,23 +22,24 @@ while i < len(system_prompt):
     messages.append({'role': 'system', 'name': 'example_sibling_group', 'content': system_prompt[i+1]})
     i += 2
 messages.append({'role': 'system', 'content': 'Show maximum 10 unique groups. \
-                 Only show list of siblings as json output. The format should be json[siblings]:[[node1, node2, ...],...group10]'})
+                 Only show list of siblings as json output. The format should be json: {"siblings":[["node1", "node2", ...],...group10]}'})
 chat_log = []
 def bubble_api(trees):
 
     chat_log.append({'role': 'user', 'content': f'{trees}'})
     prompt = messages + chat_log
-    gpt = client.chat.completions.create(
-        model="gpt-4o",
+    gpt = ollama.chat(
+        model="llama3.1",
         messages=prompt,
-        seed = 12345,
-        response_format={"type": "json_object"},
-        temperature=0
+        options={"temperature": 0, "seed": 101},
+        format='json'
+        # seed = 12345,
+        # temperature=0
     )
-    response = gpt.choices[0].message.content
+    response = gpt['message']['content']
     print(response)
     chat_log.append({'role': 'assistant', 'content': response})
-    if len(chat_log) > 10:
+    if len(chat_log) > 50:
         chat_log.pop(0)
         chat_log.pop(0)
     return response
