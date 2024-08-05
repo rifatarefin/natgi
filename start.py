@@ -448,8 +448,8 @@ def build_trees(oracle, leaves):
                                 while new_nt in coalesced_into and not new_nt == coalesced_into[new_nt]:
                                     new_nt = coalesced_into[new_nt]
                                 elem.payload = new_nt
-                            while grouping.new_nt in coalesced_into and coalesced_into[grouping.new_nt] != grouping.new_nt:
-                                grouping.new_nt = coalesced_into[grouping.new_nt]
+                            # while grouping.new_nt in coalesced_into and coalesced_into[grouping.new_nt] != grouping.new_nt:
+                            #     grouping.new_nt = coalesced_into[grouping.new_nt]
                         # grouping.new_nt = allocate_tid()
                         
                     else:
@@ -460,8 +460,8 @@ def build_trees(oracle, leaves):
                                     while new_nt in coalesced_into and not new_nt == coalesced_into[new_nt]:
                                         new_nt = coalesced_into[new_nt]
                                     elem.payload = new_nt
-                                while bubble.new_nt in coalesced_into and coalesced_into[bubble.new_nt] != bubble.new_nt:
-                                    bubble.new_nt = coalesced_into[bubble.new_nt]
+                                # while bubble.new_nt in coalesced_into and coalesced_into[bubble.new_nt] != bubble.new_nt:
+                                #     bubble.new_nt = coalesced_into[bubble.new_nt]
                             # bubble.new_nt = allocate_tid()
                                 
                     updated, valid_bubble = True, True
@@ -542,7 +542,7 @@ def build_trees(oracle, leaves):
             threshold -= 1
             grp_size += 1
         else:
-            threshold = 5
+            threshold = 3
 
         if threshold <= 0:
             while True:
