@@ -390,5 +390,5 @@ def build_grammar(trees):
     grammar, rule_map = Grammar(START), {}
     for tree in trees:
         build_rules(grammar, tree, rule_map, 0)
-    grammar.add_rule(epsilon_rule())
+    # grammar.add_rule(epsilon_rule())
     return grammar

@@ -496,10 +496,15 @@ def build_trees(oracle, leaves):
     grammar, best_trees, _, _ = coalesce(oracle, best_trees, grammar)
     # grammar, best_trees, _ = coalesce_partial(oracle, best_trees, grammar)
 
+    pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
+    for tree in best_trees:
+        print(tree.to_newick())
+        pt(tree)
+
     # epsilon rule: try removing each nonterminal
     grammar, best_trees = check_epsilon(oracle, best_trees, grammar)
 
-    pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
+    # pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
     for tree in best_trees:
         print(tree.to_newick())
         pt(tree)
@@ -529,6 +534,8 @@ def build_trees(oracle, leaves):
         bubble_list = bubble_api(prompt)       # llm call here
         bubble_list = json.loads(bubble_list)['siblings']
         bubble_list = sorted(bubble_list, key=lambda x: len(x))
+        # remove duplicates
+        bubble_dedup = [bubble_list[i] for i in range(len(bubble_list)) if i == 0 or not bubble_list[i] == bubble_list[i-1]]
         TIME_GROUPING += time.time() - group_start
 
         # bubbles = list(bubble_set.values())
@@ -537,15 +544,19 @@ def build_trees(oracle, leaves):
         #                        for j in range(i+1, len(bubbles)) if not bubbles[i] == bubbles[j]])
         
 
-        best_trees, prompt, updated = bubble_loop(best_trees, count, bubble_list, accepted_bubbles)
+        best_trees, prompt, updated = bubble_loop(best_trees, count, bubble_dedup, accepted_bubbles)
         count = count + 1
         if not updated:
             threshold -= 1
+            print(f"RECHECKING ACCEPTED BUBBLES")
+            recheck_bubbles = sorted(accepted_bubbles.values(), key=lambda x: len(x.bubbled_elems))
+            best_trees, _, updated = bubble_loop(best_trees, count, recheck_bubbles, accepted_bubbles)
         else:
-            threshold = 3
+            threshold = 4
 
         if threshold <= 0:
             while True:
+                print(f"RECHECKING ACCEPTED BUBBLES")
                 recheck_bubbles = sorted(accepted_bubbles.values(), key=lambda x: len(x.bubbled_elems))
                 best_trees, _, updated = bubble_loop(best_trees, count, recheck_bubbles, accepted_bubbles)
                 count = count + 1
@@ -800,19 +811,31 @@ def check_epsilon(oracle, trees: List[ParseNode], grammar: Grammar):
     """
     Checks if any nonterminal can be removed from the grammar. If so, removes it.
     """
+
+    def remove_nt(tree, nt):
+        
+        if not tree.is_terminal:
+            tree.children = [c for c in tree.children if c.payload != nt]
+            for c in tree.children:
+                if not c.is_terminal:
+                    remove_nt(c, nt)
+
     nonterminals = sorted(grammar.rules.items(), key=lambda x: x[1].depth)
     nonterminals = [x[0] for x in nonterminals]
     nonterminals.remove("start")
-    nonterminals.remove("epsilon")
-
+    # nonterminals.remove("epsilon")
     for nonterminal in nonterminals:
         ep_valid, strs = replacement_valid(oracle, [""], nonterminal, trees)
         if ep_valid:
-            for nt in grammar.rules:
-                for body in grammar.rules[nt].bodies:
-                    if nonterminal in body:
-                        print(f"rules: {nt} -> {body}")
+            for tree in trees:
+                remove_nt(tree, nonterminal)
+                tree.update_cache_info()
+            # for nt in grammar.rules:
+            #     for body in grammar.rules[nt].bodies:
+            #         if nonterminal in body:
+            #             print(f"rules: {nt} -> {body}")
 
+    grammar = build_grammar(trees)
     return grammar, trees
 
     
@@ -997,7 +1020,7 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
     nonterminals = sorted(grammar.rules.items(), key=lambda x: x[1].depth)
     nonterminals = [x[0] for x in nonterminals]
     nonterminals.remove("start")
-    nonterminals.remove("epsilon")
+    # nonterminals.remove("epsilon")
     # nonterminals = list(nonterminals)
     # append numbers to break ties in node labeling
     uf = UnionFind(nonterminals)

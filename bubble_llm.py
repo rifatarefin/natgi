@@ -4,8 +4,8 @@ client = OpenAI()
 
 
 system_prompt = ["You are an AI assistant. You will help to complete some partially complete parse trees. You will be given some flat tree levels.\
-    The tree levels will be separated by square brackets. Each node represents a terminal or non-terminal (might be whitespace as well). Your job is to find out which smaller node groups can add structure to those tree levels. \
-    Grouping these small groups will add hierarchy to the parse tree. The goal is to form the final parse tree resembling the language's grammar. \
+    The tree levels will be separated by square brackets. Each node represents a terminal or non-terminal (might be whitespace as well). Your job is to add structures to those tree levels. \
+    The groups could be an expressions or any nesting concepts, which will add hierarchy to the parse tree. The goal is to form the final parse tree resembling the language's grammar. \
     Look for shorter groups first rather than longer groups. Because the short groups will incrementally build the parse trees. \Look at the steps for 'while' language examples below.",
     "[while boolexpr & boolexpr do L = numexpr],\
     [if ~boolexpr then L = numexpr else L = numexpr]",
@@ -39,7 +39,7 @@ def bubble_api(trees):
     response = gpt.choices[0].message.content
     print(response)
     chat_log.append({'role': 'assistant', 'content': response})
-    if len(chat_log) > 10:
+    if len(chat_log) > 20:
         chat_log.pop(0)
         chat_log.pop(0)
     return response
