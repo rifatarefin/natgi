@@ -61,6 +61,7 @@ def main(oracle_cmd, log_file_name, test_examples_folder ):
             learned_grammar.add_rule(rule)
 
         try:
+            print("Loading grammar")
             learned_grammar.parser()
             print('\n\nInitial grammar loaded:\n%s' % str(learned_grammar), file=f)
         except Exception as e:

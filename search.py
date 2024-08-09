@@ -19,7 +19,7 @@ USE_PRETOKENIZATION = True
 GROUP_PUNCTUATION = False
 SPLIT_UPPER_AND_LOWER = True
 quote = []
-def approx_tokenize(guide_raw:str):
+def approx_tokenize(oracle, guide_raw:str):
     def get_category(c, idx):
         # everything surrounded by quote is grouped
         if len(quote)==1:
@@ -51,18 +51,45 @@ def approx_tokenize(guide_raw:str):
     cur_token = ""
     start = True
     tokens = []
+    str_builder = ""
+    try:
+        trim = " ".join(guide_raw.split())
+        oracle.parse(trim)
+        guide_raw = trim
+    except:
+        pass
     for i, c in enumerate(guide_raw):
         cur_category = get_category(c, i)
         if cur_category is not None and cur_category == prev_category:
             cur_token += c
         else:
             if not start:
-                tokens.append(ParseNode(cur_token, True, []))
+                # # check whitespace
+                if prev_category == "WHITESPACE":
+                    new_str = str_builder + guide_raw[i:]
+                    try:
+                        oracle.parse(new_str)
+                    except:
+                        str_builder += cur_token
+                        tokens.append(ParseNode(cur_token, True, []))
+                else:
+                    str_builder += cur_token
+                    tokens.append(ParseNode(cur_token, True, []))
             cur_token = c
         prev_category = cur_category
         start = False
     if cur_token != "":
-        tokens.append(ParseNode(cur_token, True, []))
+        # check whitespace
+        if cur_category == "WHITESPACE":
+            new_str = str_builder
+            try:
+                oracle.parse(new_str)
+            except:
+                str_builder += cur_token
+                tokens.append(ParseNode(cur_token, True, []))
+        else:
+            str_builder += cur_token
+            tokens.append(ParseNode(cur_token, True, []))
     return tokens
 
 
@@ -112,7 +139,7 @@ def main(oracle_cmd, guide_examples_folder,  log_file_name):
             print(guide_raw)
             exit(1)
         if USE_PRETOKENIZATION:
-            guide = approx_tokenize(guide_raw)
+            guide = approx_tokenize(oracle, guide_raw)
         else:
             guide = [ParseNode(c, True, []) for c in guide_raw]
         guide_examples.append(guide)

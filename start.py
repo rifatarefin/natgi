@@ -496,15 +496,10 @@ def build_trees(oracle, leaves):
     grammar, best_trees, _, _ = coalesce(oracle, best_trees, grammar)
     # grammar, best_trees, _ = coalesce_partial(oracle, best_trees, grammar)
 
-    pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
-    for tree in best_trees:
-        print(tree.to_newick())
-        pt(tree)
-
     # epsilon rule: try removing each nonterminal
     grammar, best_trees = check_epsilon(oracle, best_trees, grammar)
 
-    # pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
+    pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
     for tree in best_trees:
         print(tree.to_newick())
         pt(tree)
@@ -827,6 +822,7 @@ def check_epsilon(oracle, trees: List[ParseNode], grammar: Grammar):
     for nonterminal in nonterminals:
         ep_valid, strs = replacement_valid(oracle, [""], nonterminal, trees)
         if ep_valid:
+            print(f"epsilon valid: {nonterminal}")
             for tree in trees:
                 remove_nt(tree, nonterminal)
                 tree.update_cache_info()

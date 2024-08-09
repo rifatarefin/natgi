@@ -163,6 +163,7 @@ class Grammar():
             return self.cached_str
 
         self.cached_str = '\n'.join([str(rule) for rule in self.rules.values()])
+        self.cached_str += '\n %import common.WS\n %ignore WS'
         self.str_cache_hash = self._rule_hash()
         return self.cached_str
 
@@ -222,6 +223,7 @@ class Rule():
         self.cached_str = '%s: %s' % (self.start, self._body_str(self.bodies[0]))
         for i in range(1, len(self.bodies)):
             self.cached_str += '\n    | %s' % (self._body_str(self.bodies[i]))
+        # self.cached_str += '\n ignore WS'
 
         self.cache_hash = self._body_hash()
         return self.cached_str
