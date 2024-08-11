@@ -5,7 +5,7 @@ client = OpenAI()
 
 system_prompt = ["You are an AI assistant. You will help to complete some partially complete parse trees. You will be given some flat tree levels.\
     The tree levels will be separated by square brackets. Each node represents a terminal or non-terminal (might be whitespace as well). Your job is to add structures to those tree levels. \
-    The groups could be an expressions or any nesting concepts, which will add hierarchy to the parse tree. The goal is to form the final parse tree resembling the language's grammar. \
+    The groups could be an expressions, nesting concepts, or any smaller segments that can eventually add hierarchy to the parse tree. The goal is to form the final parse tree resembling the language's grammar. \
     Look for shorter groups first rather than longer groups. Because the short groups will incrementally build the parse trees. \Look at the steps for 'while' language examples below.",
     "[while boolexpr & boolexpr do L = numexpr],\
     [if ~boolexpr then L = numexpr else L = numexpr]",

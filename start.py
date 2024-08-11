@@ -54,6 +54,8 @@ TIME_GENERATING_EXAMPLES = 0
 TIME_GROUPING = 0
 REAPPLY = 0
 
+# global coalesce into
+global_coalesce = {}
 def get_times():
     from replacement_utils import TIME_GENERATING_EXAMPLES_INTERNAL
     return {'FIRST_COALESCE' : ORIGINAL_COALESCE_TIME, 'BUILD': BUILD_TIME,
@@ -387,6 +389,25 @@ def build_trees(oracle, leaves):
         else:
             return 0, trees, {}
         
+
+    def get_updated_bubble(bubble, coalesced_into):
+        if isinstance(bubble, Bubble):
+            for elem in bubble.bubbled_elems:
+                if elem.payload in coalesced_into:
+                    new_nt = coalesced_into[elem.payload]
+                    while new_nt in coalesced_into and not new_nt == coalesced_into[new_nt]:
+                        new_nt = coalesced_into[new_nt]
+                    elem.payload = new_nt
+        else:
+            for bubble in bubble:
+                for elem in bubble.bubbled_elems:
+                    if elem.payload in coalesced_into:
+                        new_nt = coalesced_into[elem.payload]
+                        while new_nt in coalesced_into and not new_nt == coalesced_into[new_nt]:
+                            new_nt = coalesced_into[new_nt]
+                        elem.payload = new_nt
+        return bubble
+    
     def bubble_loop(best_trees, count, bubble_list, accepted_bubbles):
         updated, nlg = False, len(bubble_list)
         prompt = ""
@@ -441,28 +462,7 @@ def build_trees(oracle, leaves):
                     print("coalesced into: ", coalesced_into)
 
 
-                    if isinstance(grouping, Bubble):
-                        for elem in grouping.bubbled_elems:
-                            if elem.payload in coalesced_into:
-                                new_nt = coalesced_into[elem.payload]
-                                while new_nt in coalesced_into and not new_nt == coalesced_into[new_nt]:
-                                    new_nt = coalesced_into[new_nt]
-                                elem.payload = new_nt
-                        #     while grouping.new_nt in coalesced_into and coalesced_into[grouping.new_nt] != grouping.new_nt:
-                        #         grouping.new_nt = coalesced_into[grouping.new_nt]
-                        # grouping.new_nt = allocate_tid()
-                        
-                    else:
-                        for bubble in grouping:
-                            for elem in bubble.bubbled_elems:
-                                if elem.payload in coalesced_into:
-                                    new_nt = coalesced_into[elem.payload]
-                                    while new_nt in coalesced_into and not new_nt == coalesced_into[new_nt]:
-                                        new_nt = coalesced_into[new_nt]
-                                    elem.payload = new_nt
-                            #     while bubble.new_nt in coalesced_into and coalesced_into[bubble.new_nt] != bubble.new_nt:
-                            #         bubble.new_nt = coalesced_into[bubble.new_nt]
-                            # bubble.new_nt = allocate_tid()
+                    grouping = get_updated_bubble(grouping, coalesced_into)
                                 
                     updated, valid_bubble = True, True
                     # threshold = 3
@@ -486,6 +486,14 @@ def build_trees(oracle, leaves):
                 # prompt += f"'{siblings}' does not add structure to the trees.\n"
         if not updated:
             prompt += "None were valid groups. Try again with different siblings.\n"
+        
+        # update all accepted bubbles
+        # for k in list(accepted_bubbles.keys()):
+        #     new_bubble = get_updated_bubble(accepted_bubbles[k], global_coalesce)
+        #     sibling = (''.join([x.payload for x in new_bubble.bubbled_elems]))
+        #     if k!=sibling:
+        #         del accepted_bubbles[k]
+        #         accepted_bubbles[sibling] = new_bubble
         return best_trees, prompt, updated
 
 
@@ -497,7 +505,7 @@ def build_trees(oracle, leaves):
     # grammar, best_trees, _ = coalesce_partial(oracle, best_trees, grammar)
 
     # epsilon rule: try removing each nonterminal
-    grammar, best_trees = check_epsilon(oracle, best_trees, grammar)
+    # grammar, best_trees = check_epsilon(oracle, best_trees, grammar)
 
     pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
     for tree in best_trees:
@@ -525,12 +533,16 @@ def build_trees(oracle, leaves):
         # for tree in best_trees:
         #     prompt += f"[{tree.to_newick()}]"
         layer = get_longest_layer(best_trees, [])
-        prompt += 'Suggest short groups (similar to previous successful steps) for these flat tree levels\n' + str(layer)
+        prompt += 'Suggest unique groups (similar to previous successful steps) for these flat tree levels\n' + str(layer)
         bubble_list = bubble_api(prompt)       # llm call here
         bubble_list = json.loads(bubble_list)['siblings']
         bubble_list = sorted(bubble_list, key=lambda x: len(x))
         # remove duplicates
         bubble_dedup = [bubble_list[i] for i in range(len(bubble_list)) if i == 0 or not bubble_list[i] == bubble_list[i-1]]
+
+        # get bubbles from string
+        for b in bubble_dedup:
+            cand = ''.join(b)
         TIME_GROUPING += time.time() - group_start
 
         # bubbles = list(bubble_set.values())
@@ -540,12 +552,15 @@ def build_trees(oracle, leaves):
         
 
         best_trees, prompt, updated = bubble_loop(best_trees, count, bubble_dedup, accepted_bubbles)
+        print(f"RECHECKING ACCEPTED BUBBLES")
+        recheck_bubbles = sorted(accepted_bubbles.values(), key=lambda x: len(x.bubbled_elems))
+        best_trees, _, updated = bubble_loop(best_trees, count, recheck_bubbles, accepted_bubbles)
         count = count + 1
         if not updated:
             threshold -= 1
-            print(f"RECHECKING ACCEPTED BUBBLES")
-            recheck_bubbles = sorted(accepted_bubbles.values(), key=lambda x: len(x.bubbled_elems))
-            best_trees, _, updated = bubble_loop(best_trees, count, recheck_bubbles, accepted_bubbles)
+            # print(f"RECHECKING ACCEPTED BUBBLES")
+            # recheck_bubbles = sorted(accepted_bubbles.values(), key=lambda x: len(x.bubbled_elems))
+            # best_trees, _, updated = bubble_loop(best_trees, count, recheck_bubbles, accepted_bubbles)
         else:
             threshold = 4
 
@@ -819,18 +834,22 @@ def check_epsilon(oracle, trees: List[ParseNode], grammar: Grammar):
     nonterminals = [x[0] for x in nonterminals]
     nonterminals.remove("start")
     # nonterminals.remove("epsilon")
+    new_trees = []
     for nonterminal in nonterminals:
         ep_valid, strs = replacement_valid(oracle, [""], nonterminal, trees)
         if ep_valid:
             print(f"epsilon valid: {nonterminal}")
             for tree in trees:
-                remove_nt(tree, nonterminal)
-                tree.update_cache_info()
+                if nonterminal in tree.cached_nts:
+                    new_tree = tree.copy()
+                    remove_nt(new_tree, nonterminal)
+                    new_tree.update_cache_info()
+                    new_trees.append(new_tree)
             # for nt in grammar.rules:
             #     for body in grammar.rules[nt].bodies:
             #         if nonterminal in body:
             #             print(f"rules: {nt} -> {body}")
-
+    trees += new_trees
     grammar = build_grammar(trees)
     return grammar, trees
 
@@ -874,8 +893,7 @@ def replacement_valid(oracle, replacer_derivable_strings, replacee, trees : Pars
             return False, []
     return True, replaced_strings
 
-# global coalesce into
-global_coalesce = {}
+
 # append numbers to break ties in node labeling
 label_count = defaultdict(int)
 
