@@ -333,7 +333,8 @@ def get_longest_layer(best_trees, layers):
     #     print(''.join(layer))
 
     # return random.sample(all_layers2, 3) if len(all_layers2) >=3 else all_layers[:3]
-    return all_layers[:3]
+    # print("Longest layer: ", all_layers[:5])
+    return all_layers[:6:2]
 
 def build_trees(oracle, leaves):
     """
@@ -398,19 +399,21 @@ def build_trees(oracle, leaves):
                     while new_nt in coalesced_into and not new_nt == coalesced_into[new_nt]:
                         new_nt = coalesced_into[new_nt]
                     elem.payload = new_nt
+            bubble.new_nt = allocate_tid()
         else:
-            for bubble in bubble:
-                for elem in bubble.bubbled_elems:
+            for bubble_single in bubble:
+                for elem in bubble_single.bubbled_elems:
                     if elem.payload in coalesced_into:
                         new_nt = coalesced_into[elem.payload]
                         while new_nt in coalesced_into and not new_nt == coalesced_into[new_nt]:
                             new_nt = coalesced_into[new_nt]
                         elem.payload = new_nt
+                bubble_single.new_nt = allocate_tid()
         return bubble
     
     def bubble_loop(best_trees, count, bubble_list, accepted_bubbles):
         updated, nlg = False, len(bubble_list)
-        prompt = ""
+        prompt = "Grouping feedback at this step:\n"
         # bubble_list.extend(bubble_list) # double the list. will change this later
         for i, candidate in enumerate(bubble_list):
             if isinstance(candidate, Bubble):
@@ -470,30 +473,34 @@ def build_trees(oracle, leaves):
                     reapply = False
                     print("DECREMENT")
 
+            if isinstance(grouping, Bubble):
+                siblings = ''.join([x.payload for x in grouping.bubbled_elems])
+            else:
+                siblings = (''.join([x.payload for x in grouping[0].bubbled_elems]), \
+                            ''.join([x.payload for x in grouping[1].bubbled_elems]))
             if valid_bubble:
                 
                 if isinstance(grouping, Bubble):
-                    siblings = ''.join([x.payload for x in grouping.bubbled_elems])
                     accepted_bubbles[siblings] = grouping
                 else:
-                    siblings = (''.join([x.payload for x in grouping[0].bubbled_elems]), \
-                                ''.join([x.payload for x in grouping[1].bubbled_elems]))
                     accepted_bubbles[siblings[0]] = grouping[0]
                     accepted_bubbles[siblings[1]] = grouping[1]
-                prompt += f"Good job! '{siblings}' added structure to the trees.\n"
+                prompt += f"correct: [{siblings}], "
                 # break
-            # else:
-                # prompt += f"'{siblings}' does not add structure to the trees.\n"
+            else:
+                prompt += f"incorrect: [{siblings}], "
+            # update all accepted bubbles
+            for k in list(accepted_bubbles.keys()):
+                new_bubble = get_updated_bubble(accepted_bubbles[k], global_coalesce)
+                sibling = (''.join([x.payload for x in new_bubble.bubbled_elems]))
+                if k!=sibling:
+                    del accepted_bubbles[k]
+                    accepted_bubbles[sibling] = new_bubble
+
         if not updated:
             prompt += "None were valid groups. Try again with different siblings.\n"
         
-        # update all accepted bubbles
-        # for k in list(accepted_bubbles.keys()):
-        #     new_bubble = get_updated_bubble(accepted_bubbles[k], global_coalesce)
-        #     sibling = (''.join([x.payload for x in new_bubble.bubbled_elems]))
-        #     if k!=sibling:
-        #         del accepted_bubbles[k]
-        #         accepted_bubbles[sibling] = new_bubble
+        
         return best_trees, prompt, updated
 
 
@@ -525,16 +532,19 @@ def build_trees(oracle, leaves):
 
     threshold = 3
     count = 1
-    prompt = ""
-    accepted_bubbles = {}
+    prompt, response = "", ""
     # have to keep a list of accepted bubbles
+    accepted_bubbles = {}
+    iter_accepted = {}
     while threshold > 0:
         group_start = time.time()
         # for tree in best_trees:
         #     prompt += f"[{tree.to_newick()}]"
         layer = get_longest_layer(best_trees, [])
-        prompt += 'Suggest unique groups (similar to previous successful steps) for these flat tree levels\n' + str(layer)
-        bubble_list = bubble_api(prompt)       # llm call here
+        # if accepted_bubbles:
+        #     prompt = '\nGroups already found at previous steps: ' + f"{[b.bubble_str for b in accepted_bubbles.values()]}"
+        prompt += '\nThe following flat tree levels are given\n' + str(layer)
+        bubble_list = bubble_api(prompt, iter_accepted)       # llm call here
         bubble_list = json.loads(bubble_list)['siblings']
         bubble_list = sorted(bubble_list, key=lambda x: len(x))
         # remove duplicates
@@ -550,9 +560,10 @@ def build_trees(oracle, leaves):
         # bubbles.extend([(bubbles[i], bubbles[j]) for i in range(len(bubbles))\
         #                        for j in range(i+1, len(bubbles)) if not bubbles[i] == bubbles[j]])
         
-
-        best_trees, prompt, updated = bubble_loop(best_trees, count, bubble_dedup, accepted_bubbles)
+        iter_accepted.clear()
+        best_trees, response, updated = bubble_loop(best_trees, count, bubble_dedup, iter_accepted)
         print(f"RECHECKING ACCEPTED BUBBLES")
+        accepted_bubbles.update(iter_accepted)
         recheck_bubbles = sorted(accepted_bubbles.values(), key=lambda x: len(x.bubbled_elems))
         best_trees, _, updated = bubble_loop(best_trees, count, recheck_bubbles, accepted_bubbles)
         count = count + 1

@@ -6,7 +6,7 @@ client = OpenAI()
 system_prompt = ["You are an AI assistant. You will help to complete some partially complete parse trees. You will be given some flat tree levels.\
     The tree levels will be separated by square brackets. Each node represents a terminal or non-terminal (might be whitespace as well). Your job is to add structures to those tree levels. \
     The groups could be an expressions, nesting concepts, or any smaller segments that can eventually add hierarchy to the parse tree. The goal is to form the final parse tree resembling the language's grammar. \
-    Look for shorter groups first rather than longer groups. Because the short groups will incrementally build the parse trees. \Look at the steps for 'while' language examples below.",
+    Prioritize short segments in the tree level. Grouping short segments incrementally will build the final parse trees. \Look at the steps for 'while' language examples below.",
     "[while boolexpr & boolexpr do L = numexpr],\
     [if ~boolexpr then L = numexpr else L = numexpr]",
     "'~boolexpr' can be grouped as boolexpr, the output could be: {~}, {boolexpr}. \
@@ -22,11 +22,15 @@ while i < len(system_prompt):
     messages.append({'role': 'system', 'name': 'example_tree_levels', 'content': system_prompt[i]})
     messages.append({'role': 'system', 'name': 'example_sibling_group', 'content': system_prompt[i+1]})
     i += 2
-messages.append({'role': 'system', 'content': 'Show maximum 10 unique groups. \
-                 Only show list of siblings as json output. The format should be json[siblings]:[[node1, node2, ...],...group10]'})
+messages.append({'role': 'system', 'content': 'Show short unique groups to structure the parse trees. Discard long groups from output. Refine your suggestions based on the feedback after each iteration. \
+                 Only show list of siblings as json output. The format should be json[siblings]:[[node1, node2, ...],...]'})
 chat_log = []
-def bubble_api(trees):
+def bubble_api(trees, feedback):
 
+    if feedback:
+        chat_log.append({'role': 'system', 'name': 'groups_discovered', 'content': f"{[f.bubbled_elems for f in feedback.values()]}. Find groups with similar structural representation."})
+    elif chat_log:
+        chat_log.append({'role': 'system', 'content': f"None of the groups at last step is valid. Please suggest new groups."})
     chat_log.append({'role': 'user', 'content': f'{trees}'})
     prompt = messages + chat_log
     gpt = client.chat.completions.create(
@@ -39,7 +43,7 @@ def bubble_api(trees):
     response = gpt.choices[0].message.content
     print(response)
     chat_log.append({'role': 'assistant', 'content': response})
-    if len(chat_log) > 20:
+    if len(chat_log) > 10:
         chat_log.pop(0)
         chat_log.pop(0)
     return response

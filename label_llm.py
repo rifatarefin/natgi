@@ -32,6 +32,7 @@ def generate_label_api(str_pair):
         # response_format={"type": "json_object"},
         temperature=0
     )
+    messages.pop()
     return response.choices[0].message.content.split()[0]
 
 if __name__ == '__main__':
