@@ -6,7 +6,8 @@ client = OpenAI()
 system_prompt = ["You are an AI assistant. You will help to complete some partially complete parse trees. You will be given some flat tree levels.\
     The tree levels will be separated by square brackets. Each node represents a terminal or non-terminal (might be whitespace as well). Your job is to add structures to those tree levels. \
     The groups could be an expressions, nesting concepts, or any smaller segments that can eventually add hierarchy to the parse tree. The goal is to form the final parse tree resembling the language's grammar. \
-    Prioritize short segments in the tree level. Grouping short segments incrementally will build the final parse trees. \Look at the steps for 'while' language examples below.",
+    Prioritize short segments in the tree level. Grouping short segments incrementally will build the final parse trees. \
+    Look at the steps for 'while' language examples below.",
     "[while boolexpr & boolexpr do L = numexpr],\
     [if ~boolexpr then L = numexpr else L = numexpr]",
     "'~boolexpr' can be grouped as boolexpr, the output could be: {~}, {boolexpr}. \
@@ -22,7 +23,7 @@ while i < len(system_prompt):
     messages.append({'role': 'system', 'name': 'example_tree_levels', 'content': system_prompt[i]})
     messages.append({'role': 'system', 'name': 'example_sibling_group', 'content': system_prompt[i+1]})
     i += 2
-messages.append({'role': 'system', 'content': 'Show short unique groups to structure the parse trees. Discard long groups from output. Refine your suggestions based on the feedback after each iteration. \
+messages.append({'role': 'system', 'content': 'Show unique groups to structure the parse trees. Discard long groups (len>10) from output, do not show too many groups. Refine your suggestions based on the feedback after each iteration. \
                  Only show list of siblings as json output. The format should be json[siblings]:[[node1, node2, ...],...]'})
 chat_log = []
 def bubble_api(trees, feedback):

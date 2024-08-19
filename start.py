@@ -301,7 +301,9 @@ def to_bubble(best_trees, tokens):
         m = len(tokens)
         """
             Skip if the number of children is less than the bubble size, instead add all children to the queue
-            """
+        """
+        if m <= 1:
+            return None
         if n <= m:
             node_list.extend([i for i in node.children if not i.is_terminal])
             continue
@@ -543,7 +545,7 @@ def build_trees(oracle, leaves):
         layer = get_longest_layer(best_trees, [])
         # if accepted_bubbles:
         #     prompt = '\nGroups already found at previous steps: ' + f"{[b.bubble_str for b in accepted_bubbles.values()]}"
-        prompt += '\nThe following flat tree levels are given\n' + str(layer)
+        prompt += '\nGroup structures from these following flat tree levels\n' + str(layer)
         bubble_list = bubble_api(prompt, iter_accepted)       # llm call here
         bubble_list = json.loads(bubble_list)['siblings']
         bubble_list = sorted(bubble_list, key=lambda x: len(x))
