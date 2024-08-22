@@ -330,13 +330,13 @@ def get_longest_layer(best_trees, layers):
     for tree in best_trees:
         longest_single(tree)
     all_layers = sorted(layers, key=lambda x: len(x), reverse=True)
-    all_layers2 = [x for x in all_layers if len(x) >= 50]
+    all_layers2 = [x for x in all_layers if len(x) > 10]
     # for layer in all_layers[:3]:
     #     print(''.join(layer))
 
     # return random.sample(all_layers2, 3) if len(all_layers2) >=3 else all_layers[:3]
-    # print("Longest layer: ", all_layers[:5])
-    return all_layers[:6:2]
+    # print("Longest layer: ", all_layers[:6:2])
+    return all_layers2 if all_layers2 else all_layers[:3]
 
 def build_trees(oracle, leaves):
     """
@@ -534,7 +534,6 @@ def build_trees(oracle, leaves):
 
     threshold = 3
     count = 1
-    prompt, response = "", ""
     # have to keep a list of accepted bubbles
     accepted_bubbles = {}
     iter_accepted = {}
@@ -545,7 +544,8 @@ def build_trees(oracle, leaves):
         layer = get_longest_layer(best_trees, [])
         # if accepted_bubbles:
         #     prompt = '\nGroups already found at previous steps: ' + f"{[b.bubble_str for b in accepted_bubbles.values()]}"
-        prompt += '\nGroup structures from these following flat tree levels\n' + str(layer)
+        print('\n'.join([str(i) for i in layer]))
+        prompt = 'Group unique segments from these following flat tree levels' + '\n'.join([str(i) for i in layer])
         bubble_list = bubble_api(prompt, iter_accepted)       # llm call here
         bubble_list = json.loads(bubble_list)['siblings']
         bubble_list = sorted(bubble_list, key=lambda x: len(x))
@@ -567,7 +567,7 @@ def build_trees(oracle, leaves):
         print(f"RECHECKING ACCEPTED BUBBLES")
         accepted_bubbles.update(iter_accepted)
         recheck_bubbles = sorted(accepted_bubbles.values(), key=lambda x: len(x.bubbled_elems))
-        best_trees, _, updated = bubble_loop(best_trees, count, recheck_bubbles, accepted_bubbles)
+        best_trees, _, _ = bubble_loop(best_trees, count, recheck_bubbles, accepted_bubbles)
         count = count + 1
         if not updated:
             threshold -= 1
