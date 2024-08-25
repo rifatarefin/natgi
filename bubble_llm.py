@@ -5,10 +5,12 @@ client = OpenAI()
 
 system_prompt = ["You are an AI assistant. You will help to build parse trees from flat tree levels.\
     The tree levels will be separated by square brackets. Each node represents a terminal or non-terminal (might be whitespace as well). \
-    Your job is to add structures to these tree levels by grouping smaller segments. The group should add structure to the tree in line with the language's grammar. \
-    Repeatedly adding structures to the initial flat level will build the complete parse trees. So suggest segments capturing expressions, sub-expressions, any nesting concepts, etc. \
-    Ideally these segments will have minimum 2 to maximum 10 tokens. Show list of unique groups as json, the format should be json[siblings]:[[node1, node2, ...],...group_20]. \
-    Discard groups with more than 10 tokens, also keep the group list small to ensure valid json output. Refine your suggestions based on the system feedback."]
+    Your job is to add structures to these tree levels by grouping smaller segments. The segments should introduce a new level in the tree according \
+    to the language's grammar. The process should continue iteratively and eventually build the complete parse trees. \
+    So suggest segments capturing expressions, sub-expressions, any nesting concepts, etc. that can structure a tree level. \
+    Ideally these segments will be short, comprising minimum 2 to maximum 15 tokens, so start from the shortest segments. \
+    Show list of unique groups as json, the format should be json[siblings]:[[node1, node2, ...],...group_n]. \
+    Discard groups with more than 10 tokens, also limit the group list to 25 suggestions. Refine your suggestions based on the system feedback."]
     # Look at the steps for 'while' language examples below.",
     # "[while boolexpr & boolexpr do L = numexpr],\
     # [if ~boolexpr then L = numexpr else L = numexpr]",
@@ -29,26 +31,25 @@ while i < len(system_prompt):
 #                  Only show list of siblings as json output. The format should be json[siblings]:[[node1, node2, ...],...]'})
 chat_log = []
 def bubble_api(trees, feedback):
-
+    global chat_log
     if feedback:
         chat_log.append({'role': 'system', 'name': 'feedback', 'content': f"Correct groups for the last user query: {[f.bubbled_elems for f in feedback.values()]}."})
     elif chat_log:
-        chat_log.append({'role': 'system', 'name': 'feedback', 'content': f"None of the groups suggested by the assistant is valid. Don't repeat those, suggest new groups of 2-10 tokens"})
+        chat_log.append({'role': 'system', 'name': 'feedback', 'content': f"None of the suggested group at last turn is valid. Don't repeat those, focus on diverse structure patterns of 2-15 tokens"})
     chat_log.append({'role': 'user', 'content': f'{trees}'})
     prompt = messages + chat_log
     gpt = client.chat.completions.create(
         model="gpt-4o",
         messages=prompt,
-        seed = 12345,
+        seed = 101,
         response_format={"type": "json_object"},
         temperature=0
     )
     response = gpt.choices[0].message.content
     print(response)
     chat_log.append({'role': 'assistant', 'content': response})
-    if len(chat_log) > 10:
-        chat_log.pop(0)
-        chat_log.pop(0)
+    if len(chat_log) > 12:
+        chat_log = chat_log[3:]
     return response
 
 if __name__ == '__main__':
