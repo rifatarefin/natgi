@@ -8,6 +8,7 @@ system_prompt = ["You are an AI assistant. You will help to build parse trees fr
     Your job is to add structures to these tree levels by grouping smaller segments. The segments should introduce a new level in the tree according \
     to the language's grammar. The process should continue iteratively and eventually build the complete parse trees. \
     So suggest segments capturing expressions, sub-expressions, any nesting concepts, etc. that can structure a tree level. \
+    Look for diverse structure patterns, each pattern should match a rule of the language's grammar.\
     Ideally these segments will be short, comprising minimum 2 to maximum 15 tokens, so start from the shortest segments. \
     Show list of unique groups as json, the format should be json[siblings]:[[node1, node2, ...],...group_n]. \
     Discard groups with more than 10 tokens, also limit the group list to 25 suggestions. Refine your suggestions based on the system feedback."]
@@ -33,9 +34,10 @@ chat_log = []
 def bubble_api(trees, feedback):
     global chat_log
     if feedback:
-        chat_log.append({'role': 'system', 'name': 'feedback', 'content': f"Correct groups for the last user query: {[f.bubbled_elems for f in feedback.values()]}."})
+        chat_log.append({'role': 'system', 'name': 'feedback', 'content': f"Correct groups for the last user query: {','.join(str([i.payload for i in f.bubbled_elems]) for f in feedback)}."})
     elif chat_log:
-        chat_log.append({'role': 'system', 'name': 'feedback', 'content': f"None of the suggested group at last turn is valid. Don't repeat those, focus on diverse structure patterns of 2-15 tokens"})
+        chat_log.append({'role': 'system', 'name': 'feedback', 'content': f"None of the suggested group at last turn is valid. Don't repeat those, focus on diverse structure patterns. \
+                         Consider patterns capturing a complete language concept. Look for diverse tokens and lengths"})
     chat_log.append({'role': 'user', 'content': f'{trees}'})
     prompt = messages + chat_log
     gpt = client.chat.completions.create(

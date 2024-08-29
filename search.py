@@ -143,6 +143,8 @@ def main(oracle_cmd, guide_examples_folder,  log_file_name):
         else:
             guide = [ParseNode(c, True, []) for c in guide_raw]
         guide_examples.append(guide)
+    # print('\n'.join([f"[{i}]" for i in raw_examples]))
+    # exit(1)
     has_bracket = sum([1 for g in raw_examples if "(" in g or ")" in g
                        or "[" in g or "]" in g 
                        or "{" in g or "}" in g])
