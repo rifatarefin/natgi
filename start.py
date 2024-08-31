@@ -402,6 +402,8 @@ def build_trees(oracle, leaves):
                         new_nt = coalesced_into[new_nt]
                     elem.payload = new_nt
                     # elem.update_cache_info()
+            # while bubble.new_nt in coalesced_into and coalesced_into[bubble.new_nt] != bubble.new_nt:
+            #     bubble.new_nt = coalesced_into[bubble.new_nt]
             bubble.new_nt = allocate_tid()
         else:
             for bubble_single in bubble:
@@ -412,6 +414,8 @@ def build_trees(oracle, leaves):
                             new_nt = coalesced_into[new_nt]
                         elem.payload = new_nt
                         # elem.update_cache_info()
+                # while bubble_single.new_nt in coalesced_into and coalesced_into[bubble_single.new_nt] != bubble_single.new_nt:
+                #     bubble_single.new_nt = coalesced_into[bubble_single.new_nt]
                 bubble_single.new_nt = allocate_tid()
         return bubble
     
@@ -528,7 +532,7 @@ def build_trees(oracle, leaves):
     # break the group_size loop if no valid merge after increasing group size by threshold
     # for group_size in range(MIN_GROUP_LEN, MAX_GROUP_LEN):
 
-    threshold = 3
+    threshold = 0
     count = 1
     # have to keep a list of accepted bubbles
     accepted_bubbles = {}
@@ -594,8 +598,8 @@ def build_trees(oracle, leaves):
         while updated or threshold:
             bubble_list = group(best_trees, grp_size)
             best_trees, _, updated = bubble_loop(best_trees, count, bubble_list, accepted_bubbles, True)
-            recheck_bubbles = sorted(accepted_bubbles.values(), key=lambda x: len(x.bubbled_elems))
-            best_trees, _, updated = bubble_loop(best_trees, count, recheck_bubbles, accepted_bubbles)
+            # recheck_bubbles = sorted(accepted_bubbles.values(), key=lambda x: len(x.bubbled_elems))
+            # best_trees, _, _ = bubble_loop(best_trees, count, recheck_bubbles, accepted_bubbles)
             count+=1
             if not updated:
                 grp_size += 1
