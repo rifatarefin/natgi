@@ -25,7 +25,7 @@ def generate_label_api(str_pair):
     messages.append({'role': 'user', 'content': f"'{str_pair[0]}','{str_pair[1]}'"})
     
     response = client.chat.completions.create(
-        model="gpt-4o",
+        model="gpt-4o-mini",
         messages=messages,
         seed=12345,
         max_tokens=5,
