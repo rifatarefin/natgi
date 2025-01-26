@@ -12,7 +12,7 @@ docker run --rm -it marefin/treevada:v2
 
 Requires at least python 3.6. Install the following two packages via pip to make sure everything runs:
 ```
-$ pip3 install lark-parser tqdm
+$ pip3 install lark-parser tqdm PrettyPrintTree openai
 ```
 
 ## Running TreeVada
