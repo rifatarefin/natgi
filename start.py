@@ -116,7 +116,7 @@ def build_naive_parse_trees(leaves: List[List[ParseNode]], bracket_items: List, 
     nonterminal.
     """
     terminals = list(dict.fromkeys([leaf.payload for leaf_lst in leaves for leaf in leaf_lst]))
-    get_class = {t: t for t in terminals}
+    get_class = {t: allocate_tid() for t in terminals}
 
     def braces_tree(leaves: List[ParseNode], index: int, root: bool = False):
         """ 
@@ -402,9 +402,9 @@ def build_trees(oracle, leaves):
                         new_nt = coalesced_into[new_nt]
                     elem.payload = new_nt
                     # elem.update_cache_info()
-            # while bubble.new_nt in coalesced_into and coalesced_into[bubble.new_nt] != bubble.new_nt:
-            #     bubble.new_nt = coalesced_into[bubble.new_nt]
-            bubble.new_nt = allocate_tid()
+            while bubble.new_nt in coalesced_into and coalesced_into[bubble.new_nt] != bubble.new_nt:
+                bubble.new_nt = coalesced_into[bubble.new_nt]
+            # bubble.new_nt = allocate_tid()
         else:
             for bubble_single in bubble:
                 for elem in bubble_single.bubbled_elems:
@@ -414,12 +414,12 @@ def build_trees(oracle, leaves):
                             new_nt = coalesced_into[new_nt]
                         elem.payload = new_nt
                         # elem.update_cache_info()
-                # while bubble_single.new_nt in coalesced_into and coalesced_into[bubble_single.new_nt] != bubble_single.new_nt:
-                #     bubble_single.new_nt = coalesced_into[bubble_single.new_nt]
-                bubble_single.new_nt = allocate_tid()
+                while bubble_single.new_nt in coalesced_into and coalesced_into[bubble_single.new_nt] != bubble_single.new_nt:
+                    bubble_single.new_nt = coalesced_into[bubble_single.new_nt]
+                # bubble_single.new_nt = allocate_tid()
         return bubble
     
-    def bubble_loop(best_trees, count, bubble_list, accepted_bubbles, no_llm = False):
+    def bubble_loop(best_trees, count, bubble_list, accepted_bubbles, no_llm = False, grp_size = 3):    # delete grp_size later
         updated, nlg = False, len(bubble_list)
         prompt = "Grouping feedback at this step:\n"
         for i, grouping in enumerate(bubble_list):
@@ -459,7 +459,7 @@ def build_trees(oracle, leaves):
                         print(f"Reapply: {REAPPLY}")
                     last = i
                     print()
-                    print(('Bubbling api call %d (%d/%d)...' % (count, i + 1, nlg)).ljust(50))
+                    print(('[Group len %d] Bubbling iteration %d (%d/%d)...' % (grp_size, count, i + 1, nlg)).ljust(50))
                     print(grouping_str)
                     print("coalesced into: ", coalesced_into)
 
@@ -470,7 +470,6 @@ def build_trees(oracle, leaves):
                     # threshold = 3
                 else:
                     reapply = False
-                    print("DECREMENT")
 
             if isinstance(grouping, Bubble):
                 siblings = ''.join([x.payload for x in grouping.bubbled_elems])
@@ -479,19 +478,19 @@ def build_trees(oracle, leaves):
                             ''.join([x.payload for x in grouping[1].bubbled_elems]))
             if valid_bubble:
                 
-                if isinstance(grouping, Bubble):
-                    accepted_bubbles[siblings] = grouping
-                else:
-                    accepted_bubbles[siblings[0]] = grouping[0]
-                    accepted_bubbles[siblings[1]] = grouping[1]
-                prompt += f"correct: [{siblings}], "
+                # if isinstance(grouping, Bubble):
+                #     accepted_bubbles[siblings] = grouping
+                # else:
+                #     accepted_bubbles[siblings[0]] = grouping[0]
+                #     accepted_bubbles[siblings[1]] = grouping[1]
+                # prompt += f"correct: [{siblings}], "
                 
-                for k in list(accepted_bubbles.keys()):
-                    new_bubble = get_updated_bubble(accepted_bubbles[k], global_coalesce)
-                    sibling = ''.join([x.payload for x in new_bubble.bubbled_elems])
-                    if k!=sibling:
-                        del accepted_bubbles[k]
-                        accepted_bubbles[sibling] = new_bubble
+                # for k in list(accepted_bubbles.keys()):
+                #     new_bubble = get_updated_bubble(accepted_bubbles[k], global_coalesce)
+                #     sibling = ''.join([x.payload for x in new_bubble.bubbled_elems])
+                #     if k!=sibling:
+                #         del accepted_bubbles[k]
+                #         accepted_bubbles[sibling] = new_bubble
                 if no_llm:
                     break
             else:
@@ -597,7 +596,7 @@ def build_trees(oracle, leaves):
         grp_size = 3
         while updated or threshold:
             bubble_list = group(best_trees, grp_size)
-            best_trees, _, updated = bubble_loop(best_trees, count, bubble_list, accepted_bubbles, True)
+            best_trees, _, updated = bubble_loop(best_trees, count, bubble_list, accepted_bubbles, True, grp_size)
             # recheck_bubbles = sorted(accepted_bubbles.values(), key=lambda x: len(x.bubbled_elems))
             # best_trees, _, _ = bubble_loop(best_trees, count, recheck_bubbles, accepted_bubbles)
             count+=1
@@ -1116,39 +1115,11 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
             if first == START or second == START:
                 class_nt = START
             else:
-                # class_nt = allocate_tid()
-
-                if first in global_coalesce.values():
-                    class_nt = first
-                elif second in global_coalesce.values():
-                    class_nt = second
-
-                # while class_nt in coalesced_into:
-                #     class_nt = coalesced_into[class_nt]
-
-                else:
-                    # ask llm for label suggestion, expand to terminals from the nonterminal nodes
-                    s1 = min(tree_list.derivable_in_trees(first))
-                    s2 = min(tree_list.derivable_in_trees(second))
-                    class_nt = generate_label_api((s1, s2))
-                    print(f"LLM suggested label: {class_nt} for {s1} and {s2}")
-
-                    # if the label already exists, append a number to it
-                    if (first != class_nt and second != class_nt) and \
-                        (class_nt in nonterminals or class_nt in global_coalesce.values()):
-                        global label_count
-                        label_count[class_nt] += 1
-                        class_nt = f"{class_nt}_{label_count[class_nt]}"
-                    
+                class_nt = allocate_tid()
             classes = {class_nt: [first, second]}
             get_class = {first: class_nt, second: class_nt}
-            
-            if first != class_nt:
-                coalesced_into[first] = class_nt
-            if second != class_nt:
-                coalesced_into[second] = class_nt
-
-            global_coalesce.update(coalesced_into) 
+            coalesced_into[first] = class_nt
+            coalesced_into[second] = class_nt
             grammar = get_updated_grammar(classes, get_class, grammar)
             new_inner_trees = get_updated_trees(get_class, tree_list.inner_list)
             tree_list = ParseTreeList(new_inner_trees, grammar)
