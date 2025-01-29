@@ -17,8 +17,7 @@ from PrettyPrint import PrettyPrintTree
 from label_llm import generate_label_api
 from bubble_llm import bubble_api
 import json
-import random
-random.seed(0)
+
 """
 Bulk of the Arvada algorithm.
 """
@@ -273,7 +272,7 @@ def apply(grouping: Bubble, trees: List[ParseNode]):
         ind = matches(group_lst, new_tree.children)
         while ind != -1:
             # Prevent bubbling up the same nonterminal
-            if not new_tree.payload == id and not len(new_tree.children) == ng:
+            if not new_tree.payload == id:
                 parent = ParseNode(id, False, new_tree.children[ind: ind + ng])
                 new_tree.children[ind: ind + ng] = [parent]
                 ind = matches(group_lst, new_tree.children)
