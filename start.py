@@ -268,13 +268,16 @@ def apply(grouping: Bubble, trees: List[ParseNode]):
             new_tree.children[index] = apply_single(old_node)
 
         # Prevent single nonterminal from bubbling up
-        
-        ind = matches(group_lst, new_tree.children)
+        ind = matches(group_lst, new_tree.children) if ng < len(new_tree.children) else -1
         while ind != -1:
             # Prevent bubbling up the same nonterminal
             if not new_tree.payload == id:
+                # if ng == len(new_tree.children):
+                #     pass
                 parent = ParseNode(id, False, new_tree.children[ind: ind + ng])
                 new_tree.children[ind: ind + ng] = [parent]
+                if ng>= len(new_tree.children):
+                    break
                 ind = matches(group_lst, new_tree.children)
             else:
                 ind = -1
@@ -403,7 +406,7 @@ def build_trees(oracle, leaves):
                     # elem.update_cache_info()
             while bubble.new_nt in coalesced_into and coalesced_into[bubble.new_nt] != bubble.new_nt:
                 bubble.new_nt = coalesced_into[bubble.new_nt]
-            # bubble.new_nt = allocate_tid()
+            bubble.new_nt = allocate_tid()
         else:
             for bubble_single in bubble:
                 for elem in bubble_single.bubbled_elems:
@@ -415,7 +418,7 @@ def build_trees(oracle, leaves):
                         # elem.update_cache_info()
                 while bubble_single.new_nt in coalesced_into and coalesced_into[bubble_single.new_nt] != bubble_single.new_nt:
                     bubble_single.new_nt = coalesced_into[bubble_single.new_nt]
-                # bubble_single.new_nt = allocate_tid()
+                bubble_single.new_nt = allocate_tid()
         return bubble
     
     def bubble_loop(best_trees, count, bubble_list, accepted_bubbles, no_llm = False, grp_size = 3):    # delete grp_size later
@@ -506,6 +509,12 @@ def build_trees(oracle, leaves):
 
     best_trees = build_naive_parse_trees(leaves, [], oracle)
     grammar = build_grammar(best_trees)
+
+    pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
+    for tree in best_trees:
+        print(tree.to_newick())
+        pt(tree)
+
     s = time.time()
     print("Beginning coalescing...".ljust(50))
     grammar, best_trees, _, _ = coalesce(oracle, best_trees, grammar)
@@ -514,7 +523,6 @@ def build_trees(oracle, leaves):
     # epsilon rule: try removing each nonterminal
     # grammar, best_trees = check_epsilon(oracle, best_trees, grammar)
 
-    pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
     for tree in best_trees:
         print(tree.to_newick())
         pt(tree)
@@ -1108,9 +1116,12 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
             continue
         else:
             checked.add((first, second))
+            checked.add((second, first))
 
         # If the nonterminals can replace each other in every context, they are replaceable
         if replacement_valid_and_expanding(first, second, tree_list):
+            # if (second, first) in checked:
+            #     pass
             if first == START or second == START:
                 class_nt = START
             else:
