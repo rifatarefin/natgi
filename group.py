@@ -70,6 +70,9 @@ def group(trees, max_group_size, last_applied_bubble = None) -> List[Bubble]:
                 # if j - i == 2:
                 #     continue
                 tree_sublist = children_lst[i:j]
+                # break if any terminal is in the sublist
+                if any([child.is_terminal for child in tree_sublist]):
+                    break
 
                 # discard a bubble if it's not bracket balanced
                 stream = ''.join([child.derived_string() for child in tree_sublist])
@@ -91,6 +94,7 @@ def group(trees, max_group_size, last_applied_bubble = None) -> List[Bubble]:
                     bubble.add_context(lhs_context, rhs_context)
                     bubbles[tree_substr] = bubble
                     bubble.add_source(tree_idx, child_idxs, (i, j-1))
+                    bubble.set_depth(depth)
                 else:
                     bubble: Bubble = bubbles[tree_substr]
                     bubble.add_occurrence()
@@ -178,6 +182,8 @@ def score_and_sort_bubbles(bubbles: Dict[str, Bubble]) -> List[Union[Bubble, Tup
                 bubble_pairs.append(((similarity, bubble_depth, commonness, bubble_len), (first_bubble, second_bubble)))
 
     bubbles = {}
+    # debug
+    dbg_bubble_pairs = sorted(bubble_pairs, key=lambda x: x[0], reverse=True)
     # Sort primarily by similarity, secondarily by commonness
     for score, pair in list(sorted(bubble_pairs, key=lambda x: x[0], reverse=True)):
         # Turn bubbles that are paired w/ a nonterm into single bubbles
