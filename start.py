@@ -115,7 +115,7 @@ def build_naive_parse_trees(leaves: List[List[ParseNode]], bracket_items: List, 
     nonterminal.
     """
     terminals = list(dict.fromkeys([leaf.payload for leaf_lst in leaves for leaf in leaf_lst]))
-    get_class = {t: allocate_tid() for t in terminals}
+    get_class = {t: t for t in terminals}
 
     def braces_tree(leaves: List[ParseNode], index: int, root: bool = False):
         """ 
