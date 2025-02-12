@@ -1,0 +1,15 @@
+<program> ::= <stmt> | <stmt> <program>
+<stmt> ::= <while_stmt> | <if_stmt> | <do_while_stmt> | <assign_stmt> | <compound_stmt> | <empty_stmt>
+<while_stmt> ::= "while" "(" <expr> ")" <stmt>
+<if_stmt> ::= "if" "(" <expr> ")" <stmt> <else_clause>
+<else_clause> ::= "else" <stmt> | ""
+<do_while_stmt> ::= "do" <stmt> "while" "(" <expr> ")" ";"
+<compound_stmt> ::= "{" <stmt_list> "}"
+<stmt_list> ::= <stmt> | <stmt> <stmt_list>
+<assign_stmt> ::= <id> "=" <assign_expr> ";"
+<empty_stmt> ::= ";"
+<assign_expr> ::= <expr> | <id> "=" <assign_expr>
+<expr> ::= <expr> <op> <expr> | "(" <expr> ")" | <id> | <number>
+<op> ::= "+" | "-" | "<"
+<id> ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
+<number> ::= "0" | "6" | "9" | "69" | "92"
