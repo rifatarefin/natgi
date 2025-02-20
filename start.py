@@ -53,8 +53,7 @@ TIME_GENERATING_EXAMPLES = 0
 TIME_GROUPING = 0
 REAPPLY = 0
 
-# global coalesce into
-global_coalesce = {}
+
 def get_times():
     from replacement_utils import TIME_GENERATING_EXAMPLES_INTERNAL
     return {'FIRST_COALESCE' : ORIGINAL_COALESCE_TIME, 'BUILD': BUILD_TIME,
@@ -400,24 +399,28 @@ def build_trees(oracle, leaves):
             for elem in bubble.bubbled_elems:
                 if elem.payload in coalesced_into:
                     new_nt = coalesced_into[elem.payload]
+                    # delete coalesced nt
+                    # coalesced_into.pop(elem.payload)
                     while new_nt in coalesced_into and not new_nt == coalesced_into[new_nt]:
+                        # old_nt = new_nt
                         new_nt = coalesced_into[new_nt]
+                        # coalesced_into.pop(old_nt)
                     elem.payload = new_nt
                     # elem.update_cache_info()
-            while bubble.new_nt in coalesced_into and coalesced_into[bubble.new_nt] != bubble.new_nt:
-                bubble.new_nt = coalesced_into[bubble.new_nt]
             bubble.new_nt = allocate_tid()
         else:
             for bubble_single in bubble:
                 for elem in bubble_single.bubbled_elems:
                     if elem.payload in coalesced_into:
                         new_nt = coalesced_into[elem.payload]
+                        # delete coalesced nt
+                        # coalesced_into.pop(elem.payload)
                         while new_nt in coalesced_into and not new_nt == coalesced_into[new_nt]:
+                            # old_nt = new_nt
                             new_nt = coalesced_into[new_nt]
+                            # coalesced_into.pop(old_nt)
                         elem.payload = new_nt
                         # elem.update_cache_info()
-                while bubble_single.new_nt in coalesced_into and coalesced_into[bubble_single.new_nt] != bubble_single.new_nt:
-                    bubble_single.new_nt = coalesced_into[bubble_single.new_nt]
                 bubble_single.new_nt = allocate_tid()
         return bubble
     
@@ -480,19 +483,20 @@ def build_trees(oracle, leaves):
                             ''.join([x.payload for x in grouping[1].bubbled_elems]))
             if valid_bubble:
                 
-                # if isinstance(grouping, Bubble):
-                #     accepted_bubbles[siblings] = grouping
-                # else:
-                #     accepted_bubbles[siblings[0]] = grouping[0]
-                #     accepted_bubbles[siblings[1]] = grouping[1]
-                # prompt += f"correct: [{siblings}], "
+                if isinstance(grouping, Bubble):
+                    accepted_bubbles[siblings] = grouping
+                else:
+                    accepted_bubbles[siblings[0]] = grouping[0]
+                    accepted_bubbles[siblings[1]] = grouping[1]
+                prompt += f"correct: [{siblings}], "
                 
-                # for k in list(accepted_bubbles.keys()):
-                #     new_bubble = get_updated_bubble(accepted_bubbles[k], global_coalesce)
-                #     sibling = ''.join([x.payload for x in new_bubble.bubbled_elems])
-                #     if k!=sibling:
-                #         del accepted_bubbles[k]
-                #         accepted_bubbles[sibling] = new_bubble
+                for k in list(accepted_bubbles.keys()):
+                    new_bubble = get_updated_bubble(accepted_bubbles[k], coalesced_into)
+                    sibling = ''.join([x.payload for x in new_bubble.bubbled_elems])
+                    # update if any element in the bubble has been coalesced
+                    if k!=sibling:
+                        del accepted_bubbles[k]
+                        accepted_bubbles[sibling] = new_bubble
                 if no_llm:
                     break
             else:
@@ -932,7 +936,8 @@ def replacement_valid(oracle, replacer_derivable_strings, replacee, trees : Pars
             return False, []
     return True, replaced_strings
 
-
+# set of llm-generated labels
+label_set = set()
 # append numbers to break ties in node labeling
 label_count = defaultdict(int)
 
@@ -1055,10 +1060,9 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
         # Add the alternation rules for each class into the grammar
         for class_nt, nts in classes.items():
             rule = Rule(class_nt)
-            max_depth = 0
+            max_depth = max([new_grammar.rules[nt].depth for nt in nts])
             for nt in nts:
                 old_rule = new_grammar.rules.pop(nt)
-                max_depth = max(max_depth, old_rule.depth)
                 for body in old_rule.bodies:
                     # Remove infinite recursions
                     if body == [class_nt]:
@@ -1067,6 +1071,24 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
             new_grammar.add_rule(rule, max_depth)
         return new_grammar
 
+    def update_checked(checked, coalesced_into):
+        """
+        Updates the checked set to reflect the new coalesced_into mapping
+        """
+        new_checked = checked.copy()
+        for pair in checked:
+            first, second = pair
+            while first in coalesced_into and first != coalesced_into[first]:
+                first = coalesced_into[first]
+            while second in coalesced_into and second != coalesced_into[second]:
+                second = coalesced_into[second]
+            if first == second:
+                continue
+            if pair != (first, second):
+                new_checked.add((first, second))
+                new_checked.add((second, first))
+        return new_checked
+    
     # Define helpful data structures
     # nonterminals = list(dict.fromkeys(grammar.rules.keys()))
     # store non-terminals depth-wise across all trees
@@ -1105,9 +1127,9 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
         # update the pair for the new grammar, because the pair was created before
         # we performed any merges. If one of the labels was merged, replace it with
         # its new label.
-        while first in coalesced_into and first != START:
+        while first in coalesced_into and first != coalesced_into[first]:
             first = coalesced_into[first]
-        while second in coalesced_into and second != START:
+        while second in coalesced_into and second != coalesced_into[second]:
             second = coalesced_into[second]
         # and check that it's still valid
         if first == second:
@@ -1120,18 +1142,38 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
 
         # If the nonterminals can replace each other in every context, they are replaceable
         if replacement_valid_and_expanding(first, second, tree_list):
-            # if (second, first) in checked:
-            #     pass
             if first == START or second == START:
                 class_nt = START
             else:
-                class_nt = allocate_tid()
+                if first in label_set:
+                    class_nt = first
+                elif second in label_set:
+                    class_nt = second
+                else:
+                    # ask llm for label suggestion, expand to terminals from the nonterminal nodes
+                    s1 = min(tree_list.derivable_in_trees(first))
+                    s2 = min(tree_list.derivable_in_trees(second))
+                    class_nt = generate_label_api((s1, s2))
+                    print(f"LLM suggested label: {class_nt} for {s1} and {s2}")
+
+                    # if the label already exists, append a number to it
+                    if (class_nt != first and class_nt != second) and \
+                        (class_nt in grammar.rules.keys()):
+                        global label_count
+                        label_count[class_nt] += 1
+                        class_nt = f"{class_nt}_{label_count[class_nt]}"
+                        class_nt = allocate_tid()
+                # temporary way-around
+                # if re.search(r'[^a-zA-Z0-9]', class_nt) or re.match(r'^\d+$', class_nt):
+                #     class_nt = allocate_tid()
+            label_set.add(class_nt)
             classes = {class_nt: [first, second]}
             get_class = {first: class_nt, second: class_nt}
             coalesced_into[first] = class_nt
             coalesced_into[second] = class_nt
             grammar = get_updated_grammar(classes, get_class, grammar)
             new_inner_trees = get_updated_trees(get_class, tree_list.inner_list)
+            checked = update_checked(checked, coalesced_into)
             tree_list = ParseTreeList(new_inner_trees, grammar)
             coalesce_caused = True
             merges += 1

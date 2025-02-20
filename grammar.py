@@ -163,7 +163,7 @@ class Grammar():
             return self.cached_str
 
         self.cached_str = '\n'.join([str(rule) for rule in self.rules.values()])
-        # self.cached_str += '\n %import common.WS\n %ignore WS'
+        self.cached_str += '\n %import common.WS\n %ignore WS'
         self.str_cache_hash = self._rule_hash()
         return self.cached_str
 
