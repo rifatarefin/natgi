@@ -51,13 +51,13 @@ def approx_tokenize(oracle, guide_raw:str):
     cur_token = ""
     start = True
     tokens = []
-    str_builder = ""
-    try:
-        trim = " ".join(guide_raw.split())
-        oracle.parse(trim)
-        guide_raw = trim
-    except:
-        pass
+    # str_builder = ""
+    # try:
+    #     trim = " ".join(guide_raw.split())
+    #     oracle.parse(trim)
+    #     guide_raw = trim
+    # except:
+    #     pass
     for i, c in enumerate(guide_raw):
         cur_category = get_category(c, i)
         if cur_category is not None and cur_category == prev_category:
@@ -65,31 +65,31 @@ def approx_tokenize(oracle, guide_raw:str):
         else:
             if not start:
                 # # check whitespace
-                if prev_category == "WHITESPACE":
-                    new_str = str_builder + guide_raw[i:]
-                    try:
-                        oracle.parse(new_str)
-                    except:
-                        str_builder += cur_token
-                        tokens.append(ParseNode(cur_token, True, []))
-                else:
-                    str_builder += cur_token
-                    tokens.append(ParseNode(cur_token, True, []))
+                # if prev_category == "WHITESPACE":
+                #     new_str = str_builder + guide_raw[i:]
+                #     try:
+                #         oracle.parse(new_str)
+                #     except:
+                #         str_builder += cur_token
+                #         tokens.append(ParseNode(cur_token, True, []))
+                # else:
+                #     str_builder += cur_token
+                tokens.append(ParseNode(cur_token, True, []))
             cur_token = c
         prev_category = cur_category
         start = False
     if cur_token != "":
         # check whitespace
-        if cur_category == "WHITESPACE":
-            new_str = str_builder
-            try:
-                oracle.parse(new_str)
-            except:
-                str_builder += cur_token
-                tokens.append(ParseNode(cur_token, True, []))
-        else:
-            str_builder += cur_token
-            tokens.append(ParseNode(cur_token, True, []))
+        # if cur_category == "WHITESPACE":
+        #     new_str = str_builder
+        #     try:
+        #         oracle.parse(new_str)
+        #     except:
+        #         str_builder += cur_token
+        #         tokens.append(ParseNode(cur_token, True, []))
+        # else:
+        #     str_builder += cur_token
+        tokens.append(ParseNode(cur_token, True, []))
     return tokens
 
 
