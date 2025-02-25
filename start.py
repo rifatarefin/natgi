@@ -424,7 +424,7 @@ def build_trees(oracle, leaves):
                 bubble_single.new_nt = allocate_tid()
         return bubble
     
-    def bubble_loop(best_trees, count, bubble_list, accepted_bubbles, no_llm = False, grp_size = 3):    # delete grp_size later
+    def bubble_loop(best_trees, count, bubble_list, accepted_bubbles, no_llm = False, grp_size = -1):    # delete grp_size later
         updated, nlg = False, len(bubble_list)
         prompt = "Grouping feedback at this step:\n"
         for i, grouping in enumerate(bubble_list):
@@ -542,7 +542,7 @@ def build_trees(oracle, leaves):
     # break the group_size loop if no valid merge after increasing group size by threshold
     # for group_size in range(MIN_GROUP_LEN, MAX_GROUP_LEN):
 
-    threshold = 0
+    threshold = 3
     count = 1
     # have to keep a list of accepted bubbles
     accepted_bubbles = {}
@@ -591,20 +591,20 @@ def build_trees(oracle, leaves):
             threshold = 3
 
         if threshold <= 0:
-            while True:
+            updated = True
+            while updated:
                 print(f"LAST BUBBLES")
                 recheck_bubbles = sorted(accepted_bubbles.values(), key=lambda x: len(x.bubbled_elems))
                 best_trees, _, updated = bubble_loop(best_trees, count, recheck_bubbles, accepted_bubbles)
                 count = count + 1
-                if not updated:
-                    break
+                
             print(f"BREAK, threshold {threshold}")
 
     layer = get_longest_layer(best_trees, [])
-    if len(layer[0]) > 7:
+    if len(layer[0]) > 3:
         updated = True
         threshold = 5
-        grp_size = 3
+        grp_size = MIN_GROUP_LEN
         while updated or threshold:
             bubble_list = group(best_trees, grp_size)
             best_trees, _, updated = bubble_loop(best_trees, count, bubble_list, accepted_bubbles, True, grp_size)
@@ -1162,7 +1162,7 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
                         global label_count
                         label_count[class_nt] += 1
                         class_nt = f"{class_nt}_{label_count[class_nt]}"
-                        class_nt = allocate_tid()
+                    # class_nt = allocate_tid()
                 # temporary way-around
                 # if re.search(r'[^a-zA-Z0-9]', class_nt) or re.match(r'^\d+$', class_nt):
                 #     class_nt = allocate_tid()
