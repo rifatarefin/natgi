@@ -48,7 +48,8 @@ def gpt_grammar_generation(seed_dir, seed_name):
     Ensure that:
     1. The grammar **always** follows the same structure.
     2. The **Production Rules** must be enclosed within `<production-rules>` and `</production-rules>` tags.
-    3. Do **not** add any extra explanations—only return the production rules inside the tags.
+    3. **Whitespaces** should be included as terminal tokens in the grammar rules.
+    4. Do **not** add any extra explanations—only return the production rules inside the tags.
     """
     # Combine all program contents into one string
     user_prompt = "Example programs:\n" + "".join(programs)

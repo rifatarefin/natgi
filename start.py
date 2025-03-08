@@ -52,7 +52,7 @@ MINIMIZE_TIME = 0
 TIME_GENERATING_EXAMPLES = 0
 TIME_GROUPING = 0
 REAPPLY = 0
-
+USE_LLM = True
 
 def get_times():
     from replacement_utils import TIME_GENERATING_EXAMPLES_INTERNAL
@@ -331,13 +331,16 @@ def get_longest_layer(best_trees, layers):
     for tree in best_trees:
         longest_single(tree)
     all_layers = sorted(layers, key=lambda x: len(x), reverse=True)
-    all_layers2 = [x for x in all_layers if len(x) > 15]
-    # for layer in all_layers[:3]:
-    #     print(''.join(layer))
-
-    # return random.sample(all_layers2, 3) if len(all_layers2) >=3 else all_layers[:3]
-    # print("Longest layer: ", all_layers[:6:2])
-    return all_layers[:25]
+    all_layers2 = [x for x in all_layers if len(x) > 5]
+    # return layers that sums up 1k characters
+    top_layers = []
+    sum_len = 0
+    for layer in all_layers2:
+        top_layers.append(layer)
+        sum_len += len(layer)
+        if sum_len > 1000:
+            break
+    return top_layers
 
 def build_trees(oracle, leaves):
     """
@@ -542,7 +545,7 @@ def build_trees(oracle, leaves):
     # break the group_size loop if no valid merge after increasing group size by threshold
     # for group_size in range(MIN_GROUP_LEN, MAX_GROUP_LEN):
 
-    threshold = 3
+    threshold = 3 if USE_LLM else 0
     count = 1
     # have to keep a list of accepted bubbles
     accepted_bubbles = {}
@@ -554,7 +557,6 @@ def build_trees(oracle, leaves):
         layer = get_longest_layer(best_trees, [])
         # if accepted_bubbles:
         #     prompt = '\nGroups already found at previous steps: ' + f"{[b.bubble_str for b in accepted_bubbles.values()]}"
-        print('\n'.join([str(i) for i in layer]))
         prompt = 'Group unique segments from these following flat tree levels' + '\n'.join([str(i) for i in layer])
         bubble_list = bubble_api(prompt, iter_accepted.values())       # llm call here
         bubble_list = json.loads(bubble_list)['siblings']
