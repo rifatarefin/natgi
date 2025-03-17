@@ -43,7 +43,8 @@ class ExternalOracle:
         f.flush()
         try:
             # With check = True, throws a CalledProcessError if the exit code is non-zero
-            subprocess.run(["python3", self.command, f_name], stdout=FNULL, stderr=FNULL, check=True)#, timeout=10)
+            # ["python3", self.command, f_name] for .py oracle
+            subprocess.run([self.command, f_name], stdout=FNULL, stderr=FNULL, check=True)#, timeout=10)
             f.close()
             FNULL.close()
             return True
@@ -55,13 +56,7 @@ class ExternalOracle:
             print(f"Caused timeout: {string}")
             f.close()
             FNULL.close()
-            exit(1)
             return True
-        except Exception as e:
-            print(f"Caused exception: {e}")
-            f.close()
-            FNULL.close()
-            return False
 
     def parse(self, string, timeout=3):
         """
