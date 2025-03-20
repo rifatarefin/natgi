@@ -6,15 +6,20 @@ client = OpenAI()
 system_prompt = ["""You are an AI assistant. You will help to build parse trees from flat tree levels.
     You will combine adjacent nodes from a tree level. Those nodes will be placed under a new parent node at that position.
     You will suggest node groups in a way that will build the complete parse tree iteratively.
-    Input: A list of tree levels separated by square brackets.
+    Input: A list of tree levels separated by square brackets, the nodes in a level are separated by commas.
     Output: A list of unique groups as json, the format should be json[siblings]:[[node1, node2, ...],...group_n].
-    Ensure that:
-    1. The groups should reflect the language's parse tree structure (grammar).
-    2. Consider each group as the RHS of a production rule in the language's grammar.
-    2. Look for common language concepts for nesting, within a **concise** length of 2-10 tokens. Tokens are within double quotes. Discard **long** groups (more than 10 tokens).
-    3. Each group should be a valid subset of a tree level, **don't** suggest an entire level from the input.
-    4. Look for the distinguishing part between two similar tree levels, those groups are more promising.
-    5. Limit the group list to best 25 suggestions."""]
+    The workflow should be:
+    - Break an input level into smaller independent units, remember there will be recursive structure.
+    - Think what smallest units represent a language construct, free of recursion.
+    - The group will create a new level at that position in the tree.
+    - The group should represent a grammar rule of the language.
+    - Remember recursive expansion makes the tree level long, don't suggest long groups. 
+    - A group can be as small as two tokens only.
+    - Limit the group list to best 25 suggestions."""]
+
+    # - Look for the diverse parts among similar inputs. E.g. for two similar inputs (ab cd ef, ab cd gh), possible group could be (ef, gh).
+    # - **Never** suggest long groups (>10 tokens), those are less likely to align with any grammar production rule.#     - The smaller a group is, better chances for it to be correct. Since a short unit might represent common language constructs (e.g. expressions, sub-expressions).
+#     4. A correct group could be as short as only **2 tokens**. **Prioritize** shorter groups. Discard long (>10 tokens) complex groups, those are less likely to align with any grammar production rule.
     # The tree levels will be separated by square brackets. Each node represents a terminal or non-terminal (might be whitespace as well). \
     # Your job is to add structures to these tree levels by grouping smaller segments. The segments should introduce a new level in the tree according \
     # to the language's grammar. The process should continue iteratively and eventually build the complete parse tree. \
@@ -46,7 +51,8 @@ chat_log = []
 def bubble_api(trees, feedback):
     global chat_log
     if feedback:
-        chat_log.append({'role': 'system', 'name': 'feedback', 'content': f"These suggestions were wrong:\n{feedback}"})
+        chat_log.append({'role': 'system', 'name': 'feedback', 'content': f"Following suggestions were applied to the trees. Get hint from these groups to find similar patterns. Trim long inputs and focus on complete recursion-free language constructs\n{feedback}"})
+        # chat_log.append({'role': 'system', 'name': 'instruction', 'content': "Rethink the suggestions. You might be missing shorter constructs those are hidden within the incorrect suggestions."})
     # elif chat_log:
     #     chat_log.append({'role': 'system', 'name': 'feedback', 'content': f"None of the suggested group at last turn is valid. Don't repeat those. \
     #                      Look for common language concepts, considering diverse lengths within 2-10 tokens, don't output an entire level from input."})

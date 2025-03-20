@@ -33,7 +33,7 @@ def generate_label_api(str_pair):
         temperature=0
     )
     messages.pop()
-    return response.choices[0].message.content.split()[0]
+    return response.choices[0].message.content.split()[0].replace('whitespace', ' ')
 
 if __name__ == '__main__':
     print("Welcome to the interactive GPT chat. Type 'quit' to exit.")

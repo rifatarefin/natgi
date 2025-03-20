@@ -289,7 +289,7 @@ def apply(grouping: Bubble, trees: List[ParseNode]):
 """
 Given a list of tokens, return the bubble that corresponds to the tokens
 """
-def to_bubble(best_trees, tokens):
+def to_bubble(best_trees: List[ParseNode], tokens: List[str]):
     
     """
     Use BFS top-down to find the bubble
@@ -355,7 +355,12 @@ def get_longest_layer(best_trees, layers):
     def longest_single(tree):
         if tree.is_terminal:
             return
-        layers.append([child.payload for child in tree.children])
+        new_layer = [child.payload for child in tree.children]
+        # remove brackets as these represent a complete level
+        if new_layer[0] in ['(', '[', '{'] and new_layer[-1] in [')', ']', '}']: 
+            layers.append(new_layer[1:-1])
+        else:
+            layers.append(new_layer)
         for child in tree.children:
             if not child.is_terminal:
                 longest_single(child)
@@ -375,7 +380,6 @@ def get_longest_layer(best_trees, layers):
         sum_len += len(layer)
         if sum_len > 2000:
             break
-    top_layers.reverse()
     return top_layers
 
 def build_trees(oracle, leaves):
@@ -434,6 +438,9 @@ def build_trees(oracle, leaves):
         
 
     def get_updated_bubble(bubble, coalesced_into):
+        """
+        After a successful node merge, update the bubble elements to reflect the new nonterminal
+        """
         if isinstance(bubble, Bubble):
             for elem in bubble.bubbled_elems:
                 if elem.payload in coalesced_into:
@@ -508,8 +515,7 @@ def build_trees(oracle, leaves):
                     print("coalesced into: ", coalesced_into)
 
 
-                    grouping = get_updated_bubble(grouping, coalesced_into)
-                                
+                    grouping = get_updated_bubble(grouping, coalesced_into)          
                     updated, valid_bubble = True, True
                     # threshold = 3
                 else:
@@ -524,11 +530,14 @@ def build_trees(oracle, leaves):
                 
                 if isinstance(grouping, Bubble):
                     accepted_bubbles[siblings] = grouping
+                    prompt += str([f"{x.payload}" for x in grouping.bubbled_elems])
                 else:
                     accepted_bubbles[siblings[0]] = grouping[0]
                     accepted_bubbles[siblings[1]] = grouping[1]
-                # prompt += f"correct: [{siblings}], "
-                
+
+                    prompt += str([f"{x.payload}" for x in grouping[0].bubbled_elems])
+                    prompt += str([f"{x.payload}" for x in grouping[1].bubbled_elems])
+
                 for k in list(accepted_bubbles.keys()):
                     new_bubble = get_updated_bubble(accepted_bubbles[k], coalesced_into)
                     sibling = ''.join([x.payload for x in new_bubble.bubbled_elems])
@@ -538,8 +547,8 @@ def build_trees(oracle, leaves):
                         accepted_bubbles[sibling] = new_bubble
                 if no_llm:
                     break
-            else:
-                prompt += str([f"{x.payload}" for x in grouping.bubbled_elems]) if isinstance(grouping, Bubble) else ""
+            # else:
+            #     prompt += str([f"{x.payload}" for x in grouping.bubbled_elems]) if isinstance(grouping, Bubble) else ""
             # update all accepted bubbles
             # old accepted bubbles might have been relabeled by now
 
@@ -612,25 +621,34 @@ def build_trees(oracle, leaves):
                 all_bubbles[cand] = grp
 
         one_bubbles = list(all_bubbles.values())
-        two_bubbles = [(one_bubbles[i], one_bubbles[j]) for i in range(len(one_bubbles))\
-                            for j in range(i+1, len(one_bubbles)) if not one_bubbles[i] == one_bubbles[j]]
         TIME_GROUPING += time.time() - group_start
 
-        iter_accepted.clear()
-        best_trees, response, updated = bubble_loop(best_trees, count, one_bubbles + two_bubbles, iter_accepted)
-        print(f"RECHECKING ACCEPTED BUBBLES")
-        accepted_bubbles.update(iter_accepted)
-        recheck_one_bubbles = sorted(accepted_bubbles.values(), key=lambda x: len(x.bubbled_elems))
-        recheck_two_bubbles = [(recheck_one_bubbles[i], recheck_one_bubbles[j]) for i in range(len(recheck_one_bubbles))\
-                            for j in range(i+1, len(recheck_one_bubbles)) if not recheck_one_bubbles[i] == recheck_one_bubbles[j]]
+        threshold_dec = True
+        best_trees, response, updated = bubble_loop(best_trees, count, one_bubbles, accepted_bubbles)
+        while updated:
+            print(f"RECHECKING 1-BUBBLES")
+            threshold_dec = False
+            # recheck_one_bubbles = sorted(accepted_bubbles.values(), key=lambda x: len(x.bubbled_elems))
+            best_trees, _, updated = bubble_loop(best_trees, count, one_bubbles, accepted_bubbles)
+
+        two_bubbles = [(one_bubbles[i], one_bubbles[j]) for i in range(len(one_bubbles))\
+                            for j in range(i+1, len(one_bubbles)) if not one_bubbles[i] == one_bubbles[j]]
+        print("2-BUBBLES")
+        best_trees, _, updated = bubble_loop(best_trees, count, two_bubbles, accepted_bubbles)
+        while updated:
+            print(f"RECHECKING 2-BUBBLES")
+            threshold_dec = False
+            # recheck_one_bubbles = sorted(accepted_bubbles.values(), key=lambda x: len(x.bubbled_elems))
+            # recheck_two_bubbles = [(recheck_one_bubbles[i], recheck_one_bubbles[j]) for i in range(len(recheck_one_bubbles))\
+            #                     for j in range(i+1, len(recheck_one_bubbles)) if not recheck_one_bubbles[i] == recheck_one_bubbles[j]]
+            best_trees, _, updated = bubble_loop(best_trees, count, two_bubbles, accepted_bubbles)
         
-        best_trees, _, _ = bubble_loop(best_trees, count, recheck_one_bubbles + recheck_two_bubbles, accepted_bubbles)
         count = count + 1
-        if not updated:
+        if threshold_dec:
             threshold -= 1
             
         else:
-            all_bubbles.clear()
+            # all_bubbles.clear()
             threshold = 3
 
         # if threshold <= 0:
@@ -644,7 +662,7 @@ def build_trees(oracle, leaves):
         #     print(f"BREAK, threshold {threshold}")
 
     layer = get_longest_layer(best_trees, [])
-    if len(layer[0]) > 3:
+    if not USE_LLM and len(layer[0]) > 3:
         updated = True
         threshold = 5
         grp_size = MIN_GROUP_LEN
