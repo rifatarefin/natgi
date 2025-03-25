@@ -6,7 +6,7 @@ import sys
 
 client = OpenAI()
 
-def  read_programs(seed_dir):
+def read_programs(seed_dir):
     # Read all files from the directory and store their content with a newline at the end
     programs = []
     for file_path in sorted(glob.glob(os.path.join(seed_dir, "*.ex*"))):  
@@ -23,7 +23,7 @@ def  read_programs(seed_dir):
 def save_output_grammar(output_text, seed_name):
     os.makedirs("results", exist_ok=True)
     # Save to a text file
-    output_file = "results/grammar_output_for_"+seed_name+".txt"
+    output_file = "results/gpt_grammar_"+seed_name+".txt"
     #with open(output_file, "w", encoding="utf-8") as file:
     #        file.write(output_text)
     # Extract only the "Production Rules" section
@@ -44,18 +44,24 @@ def save_output_grammar(output_text, seed_name):
 
 def gpt_grammar_generation(seed_dir, seed_name):
     programs = read_programs(seed_dir)
-    system_prompt = """You will generate a context-free grammar (CFG) in Backus-Naur Form (BNF) from the given example programs. 
+    system_prompt = """You will derive a context-free grammar (CFG) in Backus-Naur Form (BNF) for the given example programs. 
     Ensure that:
     1. The grammar **always** follows the same structure.
     2. The **Production Rules** must be enclosed within `<production-rules>` and `</production-rules>` tags.
+    3. The altenative rules should be separated by a vertical bar `|` in the **same line**.
     3. **Whitespaces** should be included as terminal tokens in the grammar rules.
-    4. Do **not** add any extra explanations—only return the production rules inside the tags.
+    4. Include all terminals within double quotes, don't use dots (...) to represent multiple terminals.
+    5. Do **not** add any extra explanations—only return the production rules inside the tags.
+    6. The start rule should be <stmt>.
+    7. Don't use any special characters for non-terminals.
     """
     # Combine all program contents into one string
     user_prompt = "Example programs:\n" + "".join(programs)
     
     completion = client.chat.completions.create(
       model="gpt-4o",
+      seed=101,
+      temperature=0,
       messages=[
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": user_prompt}
@@ -68,6 +74,6 @@ def gpt_grammar_generation(seed_dir, seed_name):
     save_output_grammar(output_text, seed_name)
 
 if __name__ == "__main__":
-    seed_dir = sys.argv[1] #"Seed_Programs/tinyc/tinyc-train-r1"
+    seed_dir = sys.argv[1] #"Seed_Programs/tinyc/tinyc-train-r1 tinyc-r1"
     seed_name = sys.argv[2]
     gpt_grammar_generation(seed_dir, seed_name)

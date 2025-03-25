@@ -18,7 +18,8 @@ while i < len(system_prompt):
     messages.append({'role': 'system', 'name': 'example_substrings', 'content': system_prompt[i]})
     messages.append({'role': 'system', 'name': 'example_non-terminal', 'content': system_prompt[i+1]})
     i += 2
-messages.append({'role': 'system', 'content': 'Now suggest a non-terminal symbol that can derive the given substrings. The output must be a single label, never any explanation.'})
+messages.append({'role': 'system', 'content': 'Now suggest a non-terminal symbol (do not use special character) that can derive the given substrings. \
+                 The output must be a single label, never any explanation.'})
 
 def generate_label_api(str_pair):
 

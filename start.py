@@ -303,8 +303,8 @@ def to_bubble(best_trees: List[ParseNode], tokens: List[str]):
         """
             Skip if the number of children is less than the bubble size, instead add all children to the queue
         """
-        # if m <= 1:
-        #     return None
+        if m <= 1:
+            return None
         if n <= m:
             node_list.extend([i for i in node.children if not i.is_terminal])
             continue
@@ -326,8 +326,10 @@ def to_bubble(best_trees: List[ParseNode], tokens: List[str]):
                         start += 1
                     while siblings[end-1].payload == ' ':
                         end -= 1
-                    bubble_one = Bubble(allocate_tid(), siblings[start:end])
-                    return bubble_one
+                    # discard single item bubble
+                    if end - start > 1:
+                        bubble_one = Bubble(allocate_tid(), siblings[start:end])
+                        return bubble_one
                 if len(sub_str) > m:
                     break
         node_list.extend([i for i in node.children if not i.is_terminal])
@@ -372,13 +374,15 @@ def get_longest_layer(best_trees, layers):
 
     # delete duplicates
     all_layers_dedup = remove_dup(all_layers)
+    # shuffle
+    random.shuffle(all_layers_dedup)
     # return layers that sums up 1k characters
     top_layers = []
     sum_len = 0
     for layer in all_layers_dedup:
         top_layers.append(layer)
         sum_len += len(layer)
-        if sum_len > 2000:
+        if sum_len > 400:
             break
     return top_layers
 
@@ -515,7 +519,8 @@ def build_trees(oracle, leaves):
                     print("coalesced into: ", coalesced_into)
 
 
-                    grouping = get_updated_bubble(grouping, coalesced_into)          
+                    grouping = get_updated_bubble(grouping, coalesced_into)
+                           
                     updated, valid_bubble = True, True
                     # threshold = 3
                 else:
@@ -611,6 +616,12 @@ def build_trees(oracle, leaves):
         # remove duplicates
         bubble_dedup = remove_dup(bubble_list)
         
+        # check if old bubbles are still valid
+        for st,bub in list(all_bubbles.items()):
+            token_list = [b.payload for b in bub.bubbled_elems]
+            if not to_bubble(best_trees, token_list):
+                all_bubbles.pop(st)
+
         # get bubbles from string
         for b in bubble_dedup:
             cand = ''.join(b)
@@ -619,6 +630,7 @@ def build_trees(oracle, leaves):
             grp = all_bubbles.get(cand, to_bubble(best_trees, b))
             if grp:
                 all_bubbles[cand] = grp
+
 
         one_bubbles = list(all_bubbles.values())
         TIME_GROUPING += time.time() - group_start

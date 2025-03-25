@@ -12,7 +12,7 @@ def elem_fixup(elem: str):
     >>> elem_fixup('"="="')
     '"=\"="'
     """
-    if len(elem) >= 3 and elem.startswith('"') and elem.endswith('"'):
+    if len(elem) >= 3 and elem.startswith('"') and elem.endswith('"') and '"' not in elem[1:-1]:
         for i in reversed(range(1, len(elem) - 1)):
             term_char = elem[i]
             if term_char == '"':
@@ -21,6 +21,8 @@ def elem_fixup(elem: str):
                 elem = elem[:i] + '\\\\' + elem[i + 1:]
             elif term_char == '\n':
                 elem = elem[:i] + '\\n' + elem[i + 1:]
+    if elem == ' ':
+        return 'ws'
     return elem
 
 class Grammar():
@@ -220,10 +222,9 @@ class Rule():
         if self._cache_valid():
             return self.cached_str
 
-        self.cached_str = '%s: %s' % (self.start, self._body_str(self.bodies[0]))
+        self.cached_str = '%s: %s' % ("ws" if self.start == ' ' else self.start, self._body_str(self.bodies[0]))
         for i in range(1, len(self.bodies)):
             self.cached_str += '\n    | %s' % (self._body_str(self.bodies[i]))
-        # self.cached_str += '\n ignore WS'
 
         self.cache_hash = self._body_hash()
         return self.cached_str

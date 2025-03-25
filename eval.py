@@ -58,6 +58,7 @@ def main(oracle_cmd, log_file_name, test_examples_folder ):
         learned_grammar = Grammar(START)
         grammar_dict : Dict[str, Rule] = pickle.load(open(log_file_name + ".gramdict", "rb"))
         for key, rule in grammar_dict.items():
+            print(key, rule)
             learned_grammar.add_rule(rule)
 
         try:
@@ -101,12 +102,11 @@ def main(oracle_cmd, log_file_name, test_examples_folder ):
                 except Exception as e:
                     print("   ", example, " <----- FAILURE", file=f)
                     continue
-
-            print(
-                f'Recall: {num_recall_parsed / len(real_recall_set)}, Precision: {num_precision_parsed / len(precision_set)}',
-                file=f)
-            print(
-                f'Recall: {num_recall_parsed / len(real_recall_set)}, Precision: {num_precision_parsed / len(precision_set)}')
+            recall = num_recall_parsed / len(real_recall_set)
+            precision = num_precision_parsed / len(precision_set)
+            f1 = 2 * (recall * precision) / (recall + precision)
+            print(f'Recall: {recall}, Precision: {precision}, F1: {f1}', file=f)
+            print(f'Recall: {recall}, Precision: {precision}, F1: {f1}')
         else:
             print(
                 f'Recall: [no test set provided], Precision: {num_precision_parsed / len(precision_set)}',
