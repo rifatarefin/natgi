@@ -1,5 +1,6 @@
 import argparse
 import random, sys, os, time
+from typing import List
 from input import parse_input
 from parse_tree import ParseTree, ParseNode
 from grammar import Grammar, Rule
@@ -50,7 +51,7 @@ def approx_tokenize(oracle, guide_raw:str):
     prev_category = None
     cur_token = ""
     start = True
-    tokens = []
+    tokens: List[ParseNode] = []
     # str_builder = ""
     # try:
     #     trim = " ".join(guide_raw.split())
@@ -120,7 +121,7 @@ def main(oracle_cmd, guide_examples_folder,  log_file_name):
     if USE_PRETOKENIZATION:
        print("Using approximate pre-tokenization stage")
 
-    guide_examples = []
+    guide_examples: List[ParseNode] = []
     raw_examples = []
     for filename in sorted(os.listdir(guide_examples_folder)):
         full_filename = os.path.join(guide_examples_folder, filename)

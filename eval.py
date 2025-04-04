@@ -1,6 +1,6 @@
 import argparse
 import random, sys, os, time
-from typing import Dict
+from typing import Dict, List
 
 from tqdm import tqdm
 
@@ -9,8 +9,7 @@ from grammar import Grammar, Rule
 from start import get_times, START
 from lark import Lark
 from oracle import CachingOracle, ExternalOracle
-import string
-
+from token_expansion import expand_tokens
 """
 High-level command line to launch Arvada evaluation.
  
@@ -58,7 +57,7 @@ def main(oracle_cmd, log_file_name, test_examples_folder ):
         learned_grammar = Grammar(START)
         grammar_dict : Dict[str, Rule] = pickle.load(open(log_file_name + ".gramdict", "rb"))
         for key, rule in grammar_dict.items():
-            print(key, rule)
+            print(rule)
             learned_grammar.add_rule(rule)
 
         try:
@@ -68,8 +67,9 @@ def main(oracle_cmd, log_file_name, test_examples_folder ):
         except Exception as e:
             print('\n\nLoaded grammar does not compile! %s' % str(e), file=f)
             print(learned_grammar, file=f)
+            print(e)
             exit()
-
+        
         parser: Lark = learned_grammar.parser()
         precision_set = learned_grammar.sample_positives(PRECISION_SIZE, 5)
 
@@ -105,8 +105,8 @@ def main(oracle_cmd, log_file_name, test_examples_folder ):
             recall = num_recall_parsed / len(real_recall_set)
             precision = num_precision_parsed / len(precision_set)
             f1 = 2 * (recall * precision) / (recall + precision)
-            print(f'Recall: {recall}, Precision: {precision}, F1: {f1}', file=f)
-            print(f'Recall: {recall}, Precision: {precision}, F1: {f1}')
+            print(f'Recall: {recall}, Precision: {precision}, F-1: {f1}', file=f)
+            print(f'Recall: {recall}, Precision: {precision}, F-1: {f1}')
         else:
             print(
                 f'Recall: [no test set provided], Precision: {num_precision_parsed / len(precision_set)}',

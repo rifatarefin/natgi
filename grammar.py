@@ -12,7 +12,7 @@ def elem_fixup(elem: str):
     >>> elem_fixup('"="="')
     '"=\"="'
     """
-    if len(elem) >= 3 and elem.startswith('"') and elem.endswith('"') and '"' not in elem[1:-1]:
+    if len(elem) >= 3 and elem.startswith('"') and elem.endswith('"'):# and '"' not in elem[1:-1]:
         for i in reversed(range(1, len(elem) - 1)):
             term_char = elem[i]
             if term_char == '"':
@@ -133,33 +133,57 @@ class Grammar():
                 continue
         return samples
 
+    # Helper function: gets all the nonterminals for a body
+    def body_nonterminals(self, grammar, body):
+        nonterminals = []
+        for item in body:
+            if item in grammar.rules:
+                nonterminals.append(item)
+        return nonterminals
+    
     def generate_positive_example(self, max_depth, start_nonterminal='start', cur_depth=0):
         """
         Samples a random positive example from the grammar, with max_depth as much as possible.
         """
-        # Helper function: gets all the nonterminals for a body
-        def body_nonterminals(grammar, body):
-            nonterminals = []
-            for item in body:
-                if item in grammar.rules:
-                    nonterminals.append(item)
-            return nonterminals
+        
         bodies = self.rules[start_nonterminal].bodies
         # If we've reached the max depth, try to choose a non-recursive rule.
         if cur_depth >= max_depth:
-            terminal_bodies = [body for body in bodies if len(body_nonterminals(self, body)) == 0]
+            terminal_bodies = [body for body in bodies if len(self.body_nonterminals(self, body)) == 0]
             if len(terminal_bodies) > 0:
                 terminal_body = terminal_bodies[random.randint(0, len(terminal_bodies)-1)]
                 return "".join([elem.replace('"', '') for elem in terminal_body])
             # Otherwise... guess we'll have to try to stop later.
         body_to_expand = bodies[random.randint(0, len(bodies) -1)]
-        nonterminals_to_expand = body_nonterminals(self, body_to_expand)
+        nonterminals_to_expand = self.body_nonterminals(self, body_to_expand)
         expanded_body = [self.generate_positive_example(max_depth, elem, cur_depth + 1)
                                 if elem in nonterminals_to_expand
                                 else elem[1:-1]   # really just wanna non-clean up the terminals
                                 for elem in body_to_expand]
         return "".join(expanded_body)
 
+    def generate_positive_trees(self, max_depth, start_nonterminal='start', cur_depth=0):
+        """
+        Samples a dummy parse tree from the grammar
+        """
+        from parse_tree import ParseNode
+
+        bodies = self.rules[start_nonterminal].bodies
+        # If we've reached the max depth, try to choose a non-recursive rule.
+        if cur_depth >= max_depth:
+            terminal_bodies = [body for body in bodies if len(self.body_nonterminals(self, body)) == 0]
+            if len(terminal_bodies) > 0:
+                terminal_body = terminal_bodies[random.randint(0, len(terminal_bodies)-1)]
+                return ParseNode(terminal_body, True, [])
+            # Otherwise... guess we'll have to try to stop later.
+        body_to_expand = bodies[random.randint(0, len(bodies) -1)]
+        nonterminals_to_expand = self.body_nonterminals(self, body_to_expand)
+        children = [self.generate_positive_trees(max_depth, elem, cur_depth + 1)
+                        if elem in nonterminals_to_expand
+                        else ParseNode(elem, True, [])
+                        for elem in body_to_expand]
+        return ParseNode(start_nonterminal, False, children)
+    
     def __str__(self):
         if self.str_cache_valid():
             return self.cached_str
