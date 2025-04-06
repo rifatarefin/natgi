@@ -90,6 +90,10 @@ def rules_to_add(rule_start):
         r.add_body(['tletter'])
         r.add_body((['tletter', 'tletters']))
         return [r] + rules_to_add('tletter')
+    if rule_start == "tCapital":
+        r = Rule(rule_start)
+        r.add_body(['tupper', 'tlowers'])
+        return [r] + rules_to_add('tupper') + rules_to_add('tlowers')
     if rule_start == "talphanums":
         r = Rule(rule_start)
         r.add_body(['talphanum'])
@@ -248,9 +252,14 @@ def generalize_letters_in_rule(oracle: ExternalOracle, grammar: Grammar, trees: 
         single_candidates = []
 
     multi_candidates = [''.join(random.sample(expansion_set, random.randint(2, 10))) for _ in range(MAX_SAMPLES)]
-
+    capital_candidates = [random.choice(string.ascii_uppercase) + 
+                                  ''.join(random.sample(string.ascii_lowercase, random.randint(1, 10)))
+                                    for _ in range(MAX_SAMPLES)]
+    
+    # will try to expand to single character, multi character, and capitalized multi character
     expand_1_ok = True if single_candidates else False
     expand_multi_ok = True
+    expand_Capital_ok = True if expansion_type == letter_type else False
 
     for tree in [tree for tree in trees if nt_in_tree(tree, rule_start)]:
         if expand_1_ok:
@@ -264,7 +273,12 @@ def generalize_letters_in_rule(oracle: ExternalOracle, grammar: Grammar, trees: 
             candidates = get_strings_with_replacement(tree, rule_start, multi_candidates)
             if not try_strings(oracle, candidates):
                 expand_multi_ok = False
-                if not expand_1_ok: break
+                if not (expand_1_ok or expand_Capital_ok): break    #no need to check capitalized if we can't expand to multi
+        if expand_Capital_ok:
+            candidates = get_strings_with_replacement(tree, rule_start, capital_candidates)
+            if not try_strings(oracle, candidates):
+                expand_Capital_ok = False
+                if not (expand_1_ok or expand_multi_ok): break
 
     if expand_multi_ok:
         if expansion_type == lowercase_type:
@@ -273,6 +287,10 @@ def generalize_letters_in_rule(oracle: ExternalOracle, grammar: Grammar, trees: 
             return body_idxs, 'tuppers'
         else:
             return body_idxs, 'tletters'
+
+    elif expand_Capital_ok:
+        return body_idxs, 'tCapital'
+    
     elif expand_1_ok:
         if expansion_type == lowercase_type:
             return body_idxs, 'tlower'
@@ -349,7 +367,7 @@ def expand_tokens(oracle : ExternalOracle, grammar : Grammar, trees: List[ParseN
             # Nothing <t>o expand here, folks
             continue
         idxs_by_type = classify_terminals_by_type(bodies, terminal_body_idxs)
-
+        # digit_type = 0, uppercase_type = 1, lowercase_type = 2, letter_type = 3, whitespace_type = 4
         # Digit expansion...
         if idxs_by_type[digit_type]:
             digit_bodies_to_replace, replace_str = generalize_digits_in_rule(oracle, grammar, trees, rule_start, idxs_by_type[digit_type])

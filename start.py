@@ -52,7 +52,7 @@ MINIMIZE_TIME = 0
 TIME_GENERATING_EXAMPLES = 0
 TIME_GROUPING = 0
 REAPPLY = 0
-USE_LLM = True
+USE_LLM = False
 
 def get_times():
     from replacement_utils import TIME_GENERATING_EXAMPLES_INTERNAL
