@@ -90,7 +90,7 @@ def rules_to_add(rule_start):
         r.add_body(['tletter'])
         r.add_body((['tletter', 'tletters']))
         return [r] + rules_to_add('tletter')
-    if rule_start == "tCapital":
+    if rule_start == "tcapital":
         r = Rule(rule_start)
         r.add_body(['tupper', 'tlowers'])
         return [r] + rules_to_add('tupper') + rules_to_add('tlowers')
@@ -268,6 +268,7 @@ def generalize_letters_in_rule(oracle: ExternalOracle, grammar: Grammar, trees: 
             if not try_strings(oracle, candidates):
                 expand_1_ok = False
                 expand_multi_ok = False
+                expand_Capital_ok = False
                 break
         if expand_multi_ok:
             candidates = get_strings_with_replacement(tree, rule_start, multi_candidates)
@@ -289,7 +290,7 @@ def generalize_letters_in_rule(oracle: ExternalOracle, grammar: Grammar, trees: 
             return body_idxs, 'tletters'
 
     elif expand_Capital_ok:
-        return body_idxs, 'tCapital'
+        return body_idxs, 'tcapital'
     
     elif expand_1_ok:
         if expansion_type == lowercase_type:
@@ -320,7 +321,7 @@ def generalize_to_alphanum(oracle: ExternalOracle, grammar: Grammar, trees: List
     multi_candidates = [''.join(random.sample(expansion_set, random.randint(2, 10))) for _ in range(MAX_SAMPLES)]
     # JIC we're missing a number or lower case or upper case... :)
     multi_candidates.append("a1Te3t")
-
+    # more options: starts with letter then alphanum, starts with letters then digits
 
     expand_1_ok = True if single_candidates else False
     expand_multi_ok = True
