@@ -99,6 +99,14 @@ def rules_to_add(rule_start):
         r.add_body(['talphanum'])
         r.add_body((['talphanum', 'talphanums']))
         return [r] + rules_to_add('talphanum')
+    if rule_start == "tletter_alphanums":
+        r = Rule(rule_start)
+        r.add_body(['tletter', 'talphanums'])
+        return [r] + rules_to_add('tletter') + rules_to_add('talphanums')
+    if rule_start == "tletter_digits":
+        r = Rule(rule_start)
+        r.add_body(['tletter', 'tdigits'])
+        return [r] + rules_to_add('tletter') + rules_to_add('tdigits')
     if rule_start.startswith("twhitespaces"):
         idx = int(rule_start[12:])
         single = f"twhitespace{idx}"
@@ -314,6 +322,7 @@ def generalize_to_alphanum(oracle: ExternalOracle, grammar: Grammar, trees: List
         single_candidates = [s for s in expansion_set if s not in existing_bodies]
         if len(single_candidates) > MAX_SAMPLES:
             single_candidates = random.sample(single_candidates, MAX_SAMPLES - 1)
+        single_candidates.extend(["a", "1"])
     else:
         single_candidates = []
 
@@ -322,9 +331,18 @@ def generalize_to_alphanum(oracle: ExternalOracle, grammar: Grammar, trees: List
     # JIC we're missing a number or lower case or upper case... :)
     multi_candidates.append("a1Te3t")
     # more options: starts with letter then alphanum, starts with letters then digits
+    letter_alphanum_candidates = [random.choice(string.ascii_letters) +
+                                  ''.join(random.sample(expansion_set, random.randint(1, 10)))
+                                      for _ in range(MAX_SAMPLES)]
+    letter_alphanum_candidates.append("a1Te3t")
+    letter_digits_candidates = [random.choice(string.ascii_letters) +
+                                  ''.join(random.sample(string.digits, random.randint(1, 10)))
+                                      for _ in range(MAX_SAMPLES)]
 
     expand_1_ok = True if single_candidates else False
     expand_multi_ok = True
+    expand_letter_alphanum_ok = True
+    expand_letter_digits_ok = True
 
     for tree in [tree for tree in trees if nt_in_tree(tree, rule_start)]:
         if expand_1_ok:
@@ -333,15 +351,32 @@ def generalize_to_alphanum(oracle: ExternalOracle, grammar: Grammar, trees: List
             if not try_strings(oracle, candidates):
                 expand_1_ok = False
                 expand_multi_ok = False
+                expand_letter_alphanum_ok = False
+                expand_letter_digits_ok = False
                 break
         if expand_multi_ok:
             candidates = get_strings_with_replacement(tree, rule_start, multi_candidates)
             if not try_strings(oracle, candidates):
                 expand_multi_ok = False
-                if not expand_1_ok: break
+                if not (expand_1_ok or expand_letter_alphanum_ok
+                         or expand_letter_digits_ok): break
+        if expand_letter_alphanum_ok:
+            candidates = get_strings_with_replacement(tree, rule_start, letter_alphanum_candidates)
+            if not try_strings(oracle, candidates):
+                expand_letter_alphanum_ok = False
+                if not (expand_1_ok or expand_multi_ok or expand_letter_digits_ok): break
+        if expand_letter_digits_ok:
+            candidates = get_strings_with_replacement(tree, rule_start, letter_digits_candidates)
+            if not try_strings(oracle, candidates):
+                expand_letter_digits_ok = False
+                if not (expand_1_ok or expand_multi_ok or expand_letter_alphanum_ok): break
 
     if expand_multi_ok:
         return body_idxs, 'talphanums'
+    elif expand_letter_alphanum_ok:
+        return body_idxs, 'tletter_alphanums'
+    elif expand_letter_digits_ok:
+        return body_idxs, 'tletter_digits'
     elif expand_1_ok:
         return body_idxs, 'talphanum'
     else:

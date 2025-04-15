@@ -80,6 +80,9 @@ def group(trees, max_group_size, last_applied_bubble = None) -> List[Bubble]:
                     global imbalance
                     imbalance += 1
                     continue
+                # discard if a bubble starts or ends with whitespace
+                # if stream[0] == " " or stream[-1] == " ":
+                #     continue
 
                 tree_substr = ''.join([t.payload for t in tree_sublist])
                 if i == 0 and j == len(children_lst):

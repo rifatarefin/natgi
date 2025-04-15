@@ -52,12 +52,14 @@ def approx_tokenize(oracle, guide_raw:str):
     cur_token = ""
     start = True
     tokens: List[ParseNode] = []
+    # trim whitespaces... later remove whitespaces during LLM queries
     # str_builder = ""
     # try:
     #     trim = " ".join(guide_raw.split())
     #     oracle.parse(trim)
     #     guide_raw = trim
     # except:
+    #     print(f"Invalid: {guide_raw}")
     #     pass
     for i, c in enumerate(guide_raw):
         cur_category = get_category(c, i)

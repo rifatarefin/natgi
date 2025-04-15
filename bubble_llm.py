@@ -48,7 +48,7 @@ system_message = [{'role': 'system', 'content': system_prompt[0]}]
 # messages.append({'role': 'system', 'content': 'Given some flat tree levels, suggest unique groups to build the parse trees. Discard long groups (len>10) from output, do not show too many groups (limit output within 10 groups). Refine your suggestions based on the feedback after each iteration. \
 #                  Only show list of siblings as json output. The format should be json[siblings]:[[node1, node2, ...],...]'})
 chat_log = []
-def bubble_api(trees, feedback):
+def bubble_api(trees):
     # global chat_log
     # if feedback:
     #     chat_log.append({'role': 'system', 'name': 'feedback', 'content': f"Following suggestions were applied to the trees. Get hint from these groups to find similar patterns. \
