@@ -36,6 +36,26 @@ def generate_label_api(str_pair):
     messages.pop()
     return response.choices[0].message.content.split()[0].replace('whitespace', ' ')
 
+def regenerate_label(str_pair, old_labels):
+    messages.append({'role': 'system', 'name': 'feedback', 'content': f"These labels '{old_labels}' are already in use. Suggest a different label \
+                     for the following substrings. You should: \
+                     - Use variations from the substrings to generate the label. \
+                     - Don't suggest a label that is already in use. \
+                     - If you can't find a unique label, append a number to the label."})
+    messages.append({'role': 'user', 'content': f"'{str_pair[0]}','{str_pair[1]}'"})
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=messages,
+        seed=12345,
+        max_tokens=5,
+        temperature=0
+    )
+    # pop last 2 messages
+    messages.pop()
+    messages.pop()
+
+    return response.choices[0].message.content.split()[0].replace('whitespace', ' ')
+
 if __name__ == '__main__':
     print("Welcome to the interactive GPT chat. Type 'quit' to exit.")
         

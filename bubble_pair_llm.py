@@ -8,6 +8,7 @@ system_prompt = ["""You are an AI assistant. You will be given a list of tree le
                  Input: A list of tree levels separated by square brackets, the nodes in a level are separated by commas.
                  Output: A list of pairs as json, the format should be json[siblings]:[[pair1], [pair2],...[pair_n]]. Each pair should be two list of sibling nodes.
                  - Think which level pairs represent same language construct (e.g. similar expressions). Suggest those pairs.
+                 - Don't suggest same list of nodes in a pair.
                  - Limit the list to best 20 suggestions."""]
 
     

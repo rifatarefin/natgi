@@ -14,7 +14,7 @@ from replacement_utils import get_strings_with_replacement, get_strings_with_rep
 
 from next_tid import allocate_tid
 from PrettyPrint import PrettyPrintTree
-from label_llm import generate_label_api
+from label_llm import generate_label_api, regenerate_label
 from bubble_llm import bubble_api
 from bubble_pair_llm import bubble_pair_api
 import json
@@ -309,6 +309,7 @@ def to_bubble(best_trees: List[ParseNode], tokens: List[str]):
             continue
         """
             ignore spaces for bubble search in the trees
+            n = number of nodes in the target layer, tokens = bubble string we're looking for
         """
         no_space = [token for token in tokens if token != ' ']
         m = len(no_space)
@@ -374,7 +375,7 @@ def get_longest_layer(best_trees, layers):
     # delete duplicates
     all_layers_dedup = remove_dup(all_layers)
     # shuffle
-    random.shuffle(all_layers_dedup)
+    # random.shuffle(all_layers_dedup)
     # return layers that sums up 400 characters
     top_layers = []
     sum_len = 0
@@ -628,18 +629,22 @@ def build_trees(oracle, leaves):
         # remove duplicates
         bubble_dedup = remove_dup(bubble_list)
         # sort by length
-        # bubble_dedup = sorted(bubble_dedup, key=lambda x: len(x), reverse=True)
+        bubble_dedup = sorted(bubble_dedup, key=lambda x: len(x), reverse=True)
         # get bubbles from string
         for b in bubble_dedup:
             cand = ''.join(b)
             if not is_balanced(cand):
                 continue
-            grp = all_bubbles.get(cand, to_bubble(best_trees, b))
+            # pop if already in the list
+            if cand in all_bubbles:
+                all_bubbles.pop(cand)
+            
+            grp = to_bubble(best_trees, b)
             if grp:
                 all_bubbles[cand] = grp
 
         # one_bubbles = sorted(all_bubbles.values(), key=lambda x: len(x.bubbled_elems))
-        one_bubbles = list(reversed(all_bubbles.values()))
+        one_bubbles = list(reversed(all_bubbles.values()))[:100]
         TIME_GROUPING += time.time() - group_start
 
         threshold_dec = True
@@ -1142,7 +1147,7 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
         # its class nonterminal
         new_grammar = grammar.copy()
         for nonterm in new_grammar.rules:
-            if nonterm == "start":
+            if nonterm == START:
                 continue
             for body in new_grammar.rules[nonterm].bodies:
                 for i in range(len(body)):
@@ -1249,11 +1254,15 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
                     print(f"LLM suggested label: {class_nt} for {s1} and {s2}")
 
                     # if the label already exists, append a number to it
-                    if (class_nt != first and class_nt != second) and \
+                    old_labels = set()
+                    while (class_nt != first and class_nt != second) and \
                         (class_nt in grammar.rules.keys()):
-                        global label_count
-                        label_count[class_nt] += 1
-                        class_nt = f"{class_nt}_{label_count[class_nt]}"
+                        # global label_count
+                        # label_count[class_nt] += 1
+                        # class_nt = f"{class_nt}_{label_count[class_nt]}"
+                        old_labels.add(class_nt)
+                        class_nt = regenerate_label((s1, s2), old_labels)
+                        print(f" Next suggestion: {class_nt}")
                     # class_nt = allocate_tid()
                 # temporary way-around
                 # if re.search(r'[^a-zA-Z0-9]', class_nt) or re.match(r'^\d+$', class_nt):
