@@ -40,6 +40,23 @@ $ python3 eval.py external [-n PRECISION_SET_SIZE] ORACLE_CMD TRAIN_DIR LOG_FILE
 ```
 The Recall should be 1.0 in this case.
 
+
+## LLM generated grammar
+
+```
+python3 gpt.py SEED_DIR SEED_NAME   #python3 gpt.py Seed_Programs/tinyc/tinyc-train tinyc-r1
+```
+Saves the grammar in a text file in results directory
+
+```
+python3 grammar_from_csv.py SEED_NAME ORACLE_CMD        #python3 grammar_from_csv.py tinyc-r1 Seed_Programs/tinyc/parse_tinyc
+```
+Reads the grammar from text file and creates binary format
+
+```
+python3 eval.py external ORACLE_CMD TEST_DIR LOG_FILE   #python3 eval.py external Seed_Programs/tinyc/parse_tinyc Seed_Programs/tinyc/tinyc-test tinyc-r1
+```
+Calculates Precision, Recall and F-1 score
 ## Acknowledgements
 
 TreeVada is built upon its predecessor tool [Arvada](https://github.com/neil-kulkarni/arvada). Arvada is licensed under MIT license, please see the [Arvada License](https://github.com/neil-kulkarni/arvada/blob/master/LICENSE) for details. We thank the  developers [@carolemieux](https://github.com/carolemieux) and [@neil-kulkarni](https://github.com/neil-kulkarni) for their pioneering work.

@@ -23,7 +23,7 @@ messages.append({'role': 'system', 'content': 'Now suggest a non-terminal symbol
 
 def generate_label_api(str_pair):
 
-    messages.append({'role': 'user', 'content': f"'{str_pair[0]}','{str_pair[1]}'"})
+    messages.append({'role': 'user', 'content': f"'{str_pair[0]}'\n'{str_pair[1]}'"})
     
     response = client.chat.completions.create(
         model="gpt-4o-mini",
@@ -41,8 +41,8 @@ def regenerate_label(str_pair, old_labels):
                      for the following substrings. You should: \
                      - Use variations from the substrings to generate the label. \
                      - Don't suggest a label that is already in use. \
-                     - If you can't find a unique label, append a number to the label."})
-    messages.append({'role': 'user', 'content': f"'{str_pair[0]}','{str_pair[1]}'"})
+                     - If more than 5 labels are already in use, try incrementing the number to the last used label."})
+    messages.append({'role': 'user', 'content': f"'{str_pair[0]}'\n'{str_pair[1]}'"})
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=messages,

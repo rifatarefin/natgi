@@ -53,8 +53,8 @@ MINIMIZE_TIME = 0
 TIME_GENERATING_EXAMPLES = 0
 TIME_GROUPING = 0
 REAPPLY = 0
-USE_LLM = True
-TREEVADA = False
+USE_LLM = False
+TREEVADA = True
 
 def get_times():
     from replacement_utils import TIME_GENERATING_EXAMPLES_INTERNAL
@@ -478,7 +478,8 @@ def build_trees(oracle, leaves):
         updated, nlg = False, len(bubble_list)
         prompt = ""
         for i, grouping in enumerate(bubble_list):
-            
+            if count == 30: 
+                pass
             reapply = True
             last = -1
             valid_bubble = False
@@ -628,7 +629,7 @@ def build_trees(oracle, leaves):
         bubble_list = get_llm_bubble(best_trees)
         # remove duplicates
         bubble_dedup = remove_dup(bubble_list)
-        # sort by length
+        # sort by length, shorter bubbles should be applied first
         bubble_dedup = sorted(bubble_dedup, key=lambda x: len(x), reverse=True)
         # get bubbles from string
         for b in bubble_dedup:
@@ -644,7 +645,9 @@ def build_trees(oracle, leaves):
                 all_bubbles[cand] = grp
 
         # one_bubbles = sorted(all_bubbles.values(), key=lambda x: len(x.bubbled_elems))
-        one_bubbles = list(reversed(all_bubbles.values()))[:100]
+        # keep last added 100 bubbles
+        all_bubbles = dict(list(all_bubbles.items())[-100:])
+        one_bubbles = list(reversed(all_bubbles.values()))
         TIME_GROUPING += time.time() - group_start
 
         threshold_dec = True
@@ -704,7 +707,7 @@ def build_trees(oracle, leaves):
         grp_size = MIN_GROUP_LEN
         while updated or threshold:
             bubble_list = group(best_trees, grp_size)
-            best_trees, _, updated = bubble_loop(best_trees, count, bubble_list, accepted_bubbles, True, grp_size)
+            best_trees, updated = bubble_loop(best_trees, count, bubble_list, accepted_bubbles, True, grp_size)
             # recheck_one_bubbles = sorted(accepted_bubbles.values(), key=lambda x: len(x.bubbled_elems))
             # best_trees, _, _ = bubble_loop(best_trees, count, recheck_one_bubbles, accepted_bubbles)
             count+=1
@@ -712,7 +715,7 @@ def build_trees(oracle, leaves):
                 grp_size += 1
                 threshold -= 1
             else:
-                threshold = 3
+                threshold = 5
                 
             
     BUILD_TIME += time.time() - s
@@ -1253,15 +1256,20 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
                     class_nt = generate_label_api((s1, s2))
                     print(f"LLM suggested label: {class_nt} for {s1} and {s2}")
 
-                    # if the label already exists, append a number to it
-                    old_labels = set()
+                    # keep old labels in order to avoid them
+                    old_labels = {class_nt: 1}
+                    attempts = 0
                     while (class_nt != first and class_nt != second) and \
                         (class_nt in grammar.rules.keys()):
-                        # global label_count
-                        # label_count[class_nt] += 1
-                        # class_nt = f"{class_nt}_{label_count[class_nt]}"
-                        old_labels.add(class_nt)
-                        class_nt = regenerate_label((s1, s2), old_labels)
+
+                        class_nt = regenerate_label((s1, s2), list(old_labels.keys()))
+                        old_labels[class_nt] = 1
+                        attempts += 1
+                        if attempts > 5 and class_nt[-1].isdigit():
+                            # global label_count
+                            # label_count[class_nt] += 1
+                            class_nt = class_nt[:-1] + str(int(class_nt[-1]) + 1)   #increment the last digit
+                            old_labels[class_nt] = 1
                         print(f" Next suggestion: {class_nt}")
                     # class_nt = allocate_tid()
                 # temporary way-around
