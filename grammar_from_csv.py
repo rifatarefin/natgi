@@ -29,7 +29,7 @@ def read_grammar_from_csv(file_path):
 
 if __name__ == '__main__':
 
-    file_path = '/home/mxa7262xx/Downloads/treevada-gpt/results/grammar_output_for_' + sys.argv[1] + '.txt'     #argv[1] = while-r1
+    file_path = '/home/mxa7262xx/Downloads/treevada-gpt/results/gpt_grammar_' + sys.argv[1] + '.txt'     #argv[1] = while-r1
     csv_dict = read_grammar_from_csv(file_path)
     oracle = ExternalOracle(sys.argv[2])    #argv[2] = lang/parse_lang
     gpt_grammar = Grammar(START)
@@ -40,7 +40,7 @@ if __name__ == '__main__':
         gpt_grammar.add_rule(rule)
 
     # create few dummy trees for token expansion
-    trees: List[ParseNode] = [gpt_grammar.generate_positive_trees(5) for _ in range(10)]
+    trees: List[ParseNode] = gpt_grammar.sample_trees(10, 5)
     gpt_grammar = expand_tokens(oracle, gpt_grammar, trees)
 
     pickle.dump(gpt_grammar.rules, open("results/gpt_grammar_" + sys.argv[1] + ".gramdict", "wb"))

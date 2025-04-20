@@ -162,6 +162,19 @@ class Grammar():
                                 for elem in body_to_expand]
         return "".join(expanded_body)
 
+    def sample_trees(self, n, max_depth):
+        attempts = 0
+        trees = []
+        while len(trees) < n and attempts < 40*n:
+            attempts += 1
+            try:
+                tree = self.generate_positive_trees(max_depth)
+                trees.append(tree)
+            except RecursionError:
+                continue
+        return trees
+    
+    
     def generate_positive_trees(self, max_depth, start_nonterminal='start', cur_depth=0):
         """
         Samples a dummy parse tree from the grammar
