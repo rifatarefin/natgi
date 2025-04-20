@@ -117,6 +117,7 @@ def build_naive_parse_trees(leaves: List[List[ParseNode]], bracket_items: List, 
     """
     terminals = list(dict.fromkeys([leaf.payload for leaf_lst in leaves for leaf in leaf_lst]))
     get_class = {t: t for t in terminals}
+    quotes = ["\"", "\'"]
 
     def braces_tree(leaves: List[ParseNode], index: int, root: bool = False):
         """ 
@@ -141,17 +142,29 @@ def build_naive_parse_trees(leaves: List[List[ParseNode]], bracket_items: List, 
         while index<len(leaves):
             node = leaves[index]
             token = node.payload
-            if token == "{" or token == "[" or token == "(":
+            
+            
+            # special case: single bracket surrounded by quotes e.g. "{"
+            if len(token) == 1 and index-1>=0 and index+1<len(leaves) and \
+                leaves[index-1].payload in quotes and leaves[index+1].payload == leaves[index-1].payload:
+
+                children.append(ParseNode(get_class[token], False, [node]))
+
+            # make a recursive call to add a new level. The index points to the position where the bracket is closed
+            elif token == "{" or token == "[" or token == "(":
 
                 child, index = braces_tree(leaves, index)
                 children.append(child)
+
             elif token == "}" or token == "]" or token == ")":
                 children.append(ParseNode(get_class[token], False, [node]))
                 bracket_items.append(len(children))
                 return ParseNode(allocate_tid(), False, children), index
+            
             else:
                 children.append(ParseNode(get_class[token], False, [node]))
             index += 1
+
         bracket_items.append(len(children))
         return ParseNode(START, False, children), bracket_items.copy()
 
