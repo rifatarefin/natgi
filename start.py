@@ -491,7 +491,7 @@ def build_trees(oracle, leaves):
         updated, nlg = False, len(bubble_list)
         prompt = ""
         for i, grouping in enumerate(bubble_list):
-            if count == 30: 
+            if count == 31: 
                 pass
             reapply = True
             last = -1
