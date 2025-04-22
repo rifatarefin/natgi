@@ -27,6 +27,10 @@ def read_grammar_from_csv(file_path):
     
     return grammar_dict
 
+def split_whitespace(s: str) -> List[str]:
+    pattern = re.findall(r'"[^"]*"|\S+', s)
+    return pattern
+
 if __name__ == '__main__':
 
     file_path = '/home/mxa7262xx/Downloads/treevada-gpt/results/gpt_grammar_' + sys.argv[1] + '.txt'     #argv[1] = while-r1
@@ -36,7 +40,7 @@ if __name__ == '__main__':
     for key, value in csv_dict.items():
         rule = Rule(key)
         for alt in value:
-            rule.add_body(alt.split())
+            rule.add_body(split_whitespace(alt))
         gpt_grammar.add_rule(rule)
 
     # create few dummy trees for token expansion

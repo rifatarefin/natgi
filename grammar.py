@@ -187,8 +187,10 @@ class Grammar():
             terminal_bodies = [body for body in bodies if len(self.body_nonterminals(self, body)) == 0]
             if len(terminal_bodies) > 0:
                 terminal_body = terminal_bodies[random.randint(0, len(terminal_bodies)-1)]
-                return ParseNode(terminal_body, True, []) if len(terminal_body) > 0 else ParseNode('\u03B5', True, [])
-            # Otherwise... guess we'll have to try to stop later.
+                terminal_token = "".join([elem for elem in terminal_body])
+                return ParseNode(terminal_token, True, [])
+            
+
         body_to_expand = bodies[random.randint(0, len(bodies) -1)]
         nonterminals_to_expand = self.body_nonterminals(self, body_to_expand)
         children = [self.generate_positive_trees(max_depth, elem, cur_depth + 1)
