@@ -10,7 +10,7 @@ import re
 import sys
 
 def format_nt(tag: str) -> str:
-    pattern = re.compile(r'<([^>]+)>')
+    pattern = re.compile(r'<([^<>]+)>')
     return pattern.sub(r'\1', tag)
 
 def read_grammar_from_csv(file_path):
