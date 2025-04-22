@@ -49,7 +49,7 @@ def gpt_grammar_generation(seed_dir, seed_name):
     1. The grammar **always** follows the same structure.
     2. The **Production Rules** must be enclosed within `<production-rules>` and `</production-rules>` tags.
     3. The altenative rules should be separated by a vertical bar `|` in the **same line**.
-    3. **Whitespaces** should be included as terminal tokens in the grammar rules.
+    3. **Whitespaces** should be included as terminal tokens in the grammar rules. Use the toknon-terminal 'ws' to represent whitespace.
     4. Include all terminals within double quotes, don't use dots (...) to represent multiple terminals.
     5. Do **not** add any extra explanations—only return the production rules inside the tags.
     6. The start rule should be <stmt>.
