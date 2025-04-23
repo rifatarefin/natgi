@@ -41,7 +41,7 @@ elif [[ $1 == microbench-xml-r1-* ]]; then # will run later #for i in {1..50}; d
     python3 eval.py external Seed_Programs/micro-benchmarks/xml/parse_xml Seed_Programs/micro-benchmarks/xml/test_set results/gpt_grammar_${1}
 
 elif [[ $1 == microbench-c-500-r1-* ]]; then # will run later #for i in {1..50}; do bash runAll_for_gpt.sh  microbench-c-500-r1-$i; done |& tee log
-    python3 gpt.py Seed_Programs/micro-benchmarks/c-500/guides-r1/ $1
-    python3 grammar_from_csv.py $1 Seed_Programs/micro-benchmarks/c-500/parse_c-500
-    python3 eval.py external Seed_Programs/micro-benchmarks/c-500/parse_c-500 Seed_Programs/micro-benchmarks/c-500/test_set results/gpt_grammar_${1}
+    python3 gpt.py Seed_Programs/tinyc/tinyc-train-r5/ $1
+    python3 grammar_from_csv.py $1 Seed_Programs/tinyc/parse_tinyc
+    python3 eval.py external Seed_Programs/tinyc/parse_tinyc Seed_Programs/tinyc/tinyc-test results/gpt_grammar_${1}
 fi

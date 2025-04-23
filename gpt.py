@@ -53,7 +53,7 @@ def gpt_grammar_generation(seed_dir, seed_name):
     4. Include all terminals within double quotes, don't use dots (...) to represent multiple terminals.
     5. Do **not** add any extra explanations—only return the production rules inside the tags.
     6. The start rule should be <stmt>.
-    7. Don't use any special characters for non-terminals (e.g. '-', '_' are not allowed). Only use letters and numbers.
+    7. You must not use any special characters for non-terminals (e.g. '-', '_' are not allowed). Only use letters and numbers.
     """
     # Combine all program contents into one string
     user_prompt = "Example programs:\n" + "".join(programs)
