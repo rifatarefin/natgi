@@ -17,13 +17,21 @@ def read_grammar_from_csv(file_path):
     grammar_dict: Dict[str, List[str]] = {}
     
     with open(file_path, mode='r') as file:
-        reader = csv.reader(file)
-        for row in reader:
+        
+        for row in file:
+            row = row.strip()
             if row:
-                non_terminal, productions = row[0].split('::=')
-                non_terminal = format_nt(non_terminal.strip())
-                production_rules = [format_nt(prod.strip().replace('""','')) for prod in productions.split('|')]
-                grammar_dict[non_terminal] = production_rules
+                
+                if "::=" in row:    
+                    non_terminal, productions = row.split('::=')
+                    non_terminal = format_nt(non_terminal.strip())
+                    production_rules = [format_nt(prod.strip().replace('""','')) for prod in productions.split('|')]
+                    grammar_dict[non_terminal] = production_rules
+                else:
+                    productions = ''.join([i for i in row.split('|')[1:]])
+                    alt_rule = [format_nt(prod.strip().replace('""','')) for prod in productions.split('|')]
+                    production_rules.extend(alt_rule)
+                    grammar_dict[non_terminal] = production_rules
     
     return grammar_dict
 
