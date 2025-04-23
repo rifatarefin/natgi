@@ -10,8 +10,16 @@ import re
 import sys
 
 def format_nt(tag: str) -> str:
+    """ remove surrounding <> tags"""
     pattern = re.compile(r'<([^<>]+)>')
     return pattern.sub(r'\1', tag)
+
+def remove_empty_quotes(s: str) -> str:
+    """ remove empty double quotes except when escaped 
+    e.g. don't remove \"" but remove ""
+    """
+    pattern = re.compile(r'(?<!\\)""')
+    return pattern.sub('', s)
 
 def read_grammar_from_csv(file_path):
     grammar_dict: Dict[str, List[str]] = {}
@@ -21,22 +29,26 @@ def read_grammar_from_csv(file_path):
         for row in file:
             row = row.strip()
             if row:
-                
                 if "::=" in row:    
                     non_terminal, productions = row.split('::=')
                     non_terminal = format_nt(non_terminal.strip())
-                    production_rules = [format_nt(prod.strip().replace('""','')) for prod in productions.split('|')]
+                    production_rules = [format_nt(remove_empty_quotes(prod.strip())) for prod in productions.split('|')]
                     grammar_dict[non_terminal] = production_rules
                 else:
                     productions = ''.join([i for i in row.split('|')[1:]])
-                    alt_rule = [format_nt(prod.strip().replace('""','')) for prod in productions.split('|')]
+                    alt_rule = [format_nt(remove_empty_quotes(prod.strip())) for prod in productions.split('|')]
                     production_rules.extend(alt_rule)
                     grammar_dict[non_terminal] = production_rules
-    
     return grammar_dict
 
 def split_whitespace(s: str) -> List[str]:
-    pattern = re.findall(r'"[^"]*"|\S+', s)
+    """
+    split string by whitespace 
+    ignore whitespace inside double quotes
+    e.g. "a b" c d => ["a b", "c", "d"]
+    Ignore escaped double quotes
+    """
+    pattern = re.findall(r'"(?:[^"\\]|\\.)*"|\S+', s)
     return pattern
 
 if __name__ == '__main__':
@@ -57,4 +69,4 @@ if __name__ == '__main__':
 
     pickle.dump(gpt_grammar.rules, open("results/gpt_grammar_" + sys.argv[1] + ".gramdict", "wb"))
     for _, value in gpt_grammar.rules.items():
-        print(str(value))
+        print(value)
