@@ -105,7 +105,7 @@ def main(oracle_cmd, log_file_name, test_examples_folder ):
                     continue
             recall = num_recall_parsed / len(real_recall_set)
             precision = num_precision_parsed / len(precision_set)
-            f1 = 2 * (recall * precision) / (recall + precision)
+            f1 = 2 * (recall * precision) / (recall + precision) if (recall + precision) > 0 else 0
             print(f'Recall: {recall}, Precision: {precision}, F-1: {f1}', file=f)
             print(f'Recall: {recall}, Precision: {precision}, F-1: {f1}')
         else:
