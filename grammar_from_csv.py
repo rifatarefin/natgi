@@ -16,9 +16,11 @@ def format_nt(tag: str) -> str:
 
 def remove_empty_quotes(s: str) -> str:
     """ remove empty double quotes except when escaped 
+    ignore if preceding backslash or quote
+    ignore if followed by quote
     e.g. don't remove \"" but remove ""
     """
-    pattern = re.compile(r'(?<!\\)""')
+    pattern = re.compile(r'(?<!\\)(?<!")""(?!")')
     return pattern.sub('', s)
 
 def read_grammar_from_csv(file_path):
@@ -46,9 +48,9 @@ def split_whitespace(s: str) -> List[str]:
     split string by whitespace 
     ignore whitespace inside double quotes
     e.g. "a b" c d => ["a b", "c", "d"]
-    Ignore escaped double quotes
+    Ignore escaped double quotes, triple quotes
     """
-    pattern = re.findall(r'"(?:[^"\\]|\\.)*"|\S+', s)
+    pattern = re.findall(r'"(?:[^"\\]|\\.)*"+|\S+', s)
     return pattern
 
 if __name__ == '__main__':
