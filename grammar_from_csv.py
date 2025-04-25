@@ -51,7 +51,9 @@ def split_whitespace(s: str) -> List[str]:
     Ignore escaped double quotes, triple quotes
     """
     pattern = re.findall(r'"(?:[^"\\]|\\.)*"+|\S+', s)
-    return pattern
+    # replace single quotes with double quotes
+    result = [item.replace("'", '"') if item.startswith("'") and item.endswith("'") else item for item in pattern]
+    return result
 
 if __name__ == '__main__':
 
