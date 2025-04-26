@@ -9,7 +9,7 @@ client = OpenAI()
 def read_programs(seed_dir):
     # Read all files from the directory and store their content with a newline at the end
     programs = []
-    for file_path in sorted(glob.glob(os.path.join(seed_dir, "*.ex*"))):  
+    for file_path in sorted(glob.glob(os.path.join(seed_dir, "**"))):  
         if os.path.isfile(file_path):  # Ensure it's a file
             try:
                 with open(file_path, "r", encoding="utf-8") as file:

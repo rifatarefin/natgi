@@ -10,8 +10,11 @@ import re
 import sys
 
 def format_nt(tag: str) -> str:
-    """ remove surrounding <> tags"""
-    pattern = re.compile(r'<([^<>]+)>')
+    """ remove surrounding <> tags
+    ignore if within quotes
+    e.g. <a> => a
+    """
+    pattern = re.compile(r'(?<!")<([^<>]+)>(?!")')
     return pattern.sub(r'\1', tag)
 
 def remove_empty_quotes(s: str) -> str:
@@ -34,11 +37,12 @@ def read_grammar_from_csv(file_path):
                 if "::=" in row:    
                     non_terminal, productions = row.split('::=')
                     non_terminal = format_nt(non_terminal.strip())
-                    production_rules = [format_nt(remove_empty_quotes(prod.strip())) for prod in productions.split('|')]
+                    # ignore '|' without double quotes
+                    production_rules = [format_nt(remove_empty_quotes(prod.strip())) for prod in re.split(r'\|(?![^"]*")', productions)]
                     grammar_dict[non_terminal] = production_rules
                 else:
-                    productions = ''.join([i for i in row.split('|')[1:]])
-                    alt_rule = [format_nt(remove_empty_quotes(prod.strip())) for prod in productions.split('|')]
+                    productions = row.split('|', 1)[1] if '|' in row else ''
+                    alt_rule = [format_nt(remove_empty_quotes(prod.strip())) for prod in re.split(r'\|(?![^"]*")', productions)]
                     production_rules.extend(alt_rule)
                     grammar_dict[non_terminal] = production_rules
     return grammar_dict
@@ -74,3 +78,9 @@ if __name__ == '__main__':
     pickle.dump(gpt_grammar.rules, open("results/gpt_grammar_" + sys.argv[1] + ".gramdict", "wb"))
     for _, value in gpt_grammar.rules.items():
         print(value)
+    try:
+        gpt_grammar.parser()
+    
+    except Exception as e:
+        print('\n\nLoaded grammar does not compile! %s' % str(e))
+  
