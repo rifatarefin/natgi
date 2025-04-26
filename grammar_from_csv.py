@@ -38,7 +38,7 @@ def read_grammar_from_csv(file_path):
                     non_terminal, productions = row.split('::=')
                     non_terminal = format_nt(non_terminal.strip())
                     # ignore '|' without double quotes
-                    production_rules = [format_nt(remove_empty_quotes(prod.strip())) for prod in re.split(r'\|(?![^"]*")', productions)]
+                    production_rules = [format_nt(remove_empty_quotes(prod.strip())) for prod in re.split(r'(?<!")\|(?!")', productions)]
                     grammar_dict[non_terminal] = production_rules
                 else:
                     productions = row.split('|', 1)[1] if '|' in row else ''

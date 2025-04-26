@@ -182,13 +182,12 @@ class Grammar():
         from parse_tree import ParseNode
 
         bodies = self.rules[start_nonterminal].bodies
+        terminal_bodies = [body for body in bodies if len(self.body_nonterminals(self, body)) == 0]
         # If we've reached the max depth, try to choose a non-recursive rule.
-        if cur_depth >= max_depth:
-            terminal_bodies = [body for body in bodies if len(self.body_nonterminals(self, body)) == 0]
-            if len(terminal_bodies) > 0:
-                terminal_body = terminal_bodies[random.randint(0, len(terminal_bodies)-1)]
-                terminal_token = "".join([elem for elem in terminal_body])
-                return ParseNode(terminal_token, True, [])
+        if cur_depth >= max_depth and len(terminal_bodies) > 0:
+            terminal_body = terminal_bodies[random.randint(0, len(terminal_bodies)-1)]
+            terminal_token = "".join([elem for elem in terminal_body])
+            return ParseNode(terminal_token, True, [])
             
 
         body_to_expand = bodies[random.randint(0, len(bodies) -1)]
