@@ -9,4 +9,7 @@
 #for i in {1..50}; do bash runAll_for_gpt.sh  minic-r1-$i; done |& tee log-minc
 #
 #
-for i in {1..50}; do bash runAll_for_gpt.sh  glade2-lua-$i; done |& tee log-glade2-lua
+#for i in {1..50}; do bash runAll_for_gpt.sh  glade2-lua-$i; done |& tee log-glade2-lua
+for i in {1..50}; do bash runAll_for_gpt.sh  glade2-mysql-$i; done |& tee log-glade2-mysql
+for i in {1..50}; do bash runAll_for_gpt.sh  glade2-c-$i; done |& tee log-glade2-c
+for i in {1..50}; do bash runAll_for_gpt.sh  glade2-tiny-$i; done |& tee log-glade2-tiny
