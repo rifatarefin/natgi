@@ -99,6 +99,13 @@ class Bubble:
         # to the range that was bubbled
         self.sources = defaultdict(list)
 
+    def copy(self):
+        new_bubble = Bubble(self.new_nt, self.bubbled_elems, self.depth)
+        new_bubble.occ_count = self.occ_count
+        new_bubble.contexts = self.contexts.copy()
+        new_bubble.sources = self.sources.copy()
+        return new_bubble
+
     def add_source(self, tree_idx: int, child_idxs: List[int], seq_range: Tuple[int,int]):
         self.sources[(tree_idx, tuple(child_idxs))].append(seq_range)
 

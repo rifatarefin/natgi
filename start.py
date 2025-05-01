@@ -491,14 +491,15 @@ def build_trees(oracle, leaves):
         updated, nlg = False, len(bubble_list)
         prompt = ""
         for i, grouping in enumerate(bubble_list):
-            if count == 31: 
-                pass
+            
             reapply = True
             last = -1
             valid_bubble = False
+            # Use a new flag for reapply 2-bubbles one by one
+            next_grouping = None
+            
             while reapply:
-                    # print(('[Group len %d] Bubbling iteration %d (%d/%d)...' % (group_size, count, i + 1, nlg)).ljust(50))
-                    ### Perform the bubble
+                    
                 if isinstance(grouping, Bubble):
                     new_trees = apply(grouping, best_trees)
                     new_score, new_trees, coalesced_into = score(new_trees, grouping)
@@ -532,13 +533,29 @@ def build_trees(oracle, leaves):
                     print(grouping_str)
                     print("coalesced into: ", coalesced_into)
 
+                    # We need try if the merged 2-bubbles can coalesce with any existing node
+                    # if isinstance(grouping, tuple):
+                    #     merged = grouping[0].copy()
+                    #     while merged.new_nt in coalesced_into and not merged.new_nt == coalesced_into[merged.new_nt]:
+                    #         merged.new_nt = coalesced_into[merged.new_nt]
+                    #     new_score, new_trees, coalesced_two = score(best_trees, merged)
+                    #     if new_score > 0:
+                    #         best_trees = new_trees
+                    #         coalesced_into.update(coalesced_two)
 
                     grouping = get_updated_bubble(grouping, coalesced_into)
+                    
+                    if isinstance(grouping, tuple):
+                        grouping, next_grouping = grouping[0], grouping[1]
                            
                     updated, valid_bubble = True, True
-                    # threshold = 3
+                    
                 else:
-                    reapply = False
+                    if next_grouping:
+                        grouping = next_grouping
+                        next_grouping = None
+                    else:
+                        reapply = False
 
             if isinstance(grouping, Bubble):
                 siblings = ''.join([x.payload for x in grouping.bubbled_elems])
@@ -557,22 +574,10 @@ def build_trees(oracle, leaves):
                     prompt += str([f"{x.payload}" for x in grouping[0].bubbled_elems])
                     prompt += str([f"{x.payload}" for x in grouping[1].bubbled_elems])
 
-                # for k in list(accepted_bubbles.keys()):
-                #     new_bubble = get_updated_bubble(accepted_bubbles[k], coalesced_into)
-                #     sibling = ''.join([x.payload for x in new_bubble.bubbled_elems])
-                #     # update if any element in the bubble has been coalesced
-                #     if k!=sibling:
-                #         del accepted_bubbles[k]
-                #         accepted_bubbles[sibling] = new_bubble
+
                 if no_llm:
                     break
-            # else:
-            #     prompt += str([f"{x.payload}" for x in grouping.bubbled_elems]) if isinstance(grouping, Bubble) else ""
-            # update all accepted bubbles
-            # old accepted bubbles might have been relabeled by now
 
-        # if not updated:
-        #     prompt += "None were valid groups. Try again with different siblings.\n"
         
         
         return best_trees, updated
@@ -1163,8 +1168,8 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
         # its class nonterminal
         new_grammar = grammar.copy()
         for nonterm in new_grammar.rules:
-            if nonterm == START:
-                continue
+            # if nonterm == START:
+            #     continue
             for body in new_grammar.rules[nonterm].bodies:
                 for i in range(len(body)):
                     # The keys of the rules determine the set of nonterminals
