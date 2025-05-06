@@ -21,6 +21,7 @@ GROUP_PUNCTUATION = False
 SPLIT_UPPER_AND_LOWER = False
 quote = []
 def approx_tokenize(oracle, guide_raw:str):
+
     def get_category(c, idx):
         # everything surrounded by quote is grouped
         if len(quote)==1:
@@ -48,6 +49,8 @@ def approx_tokenize(oracle, guide_raw:str):
             return "WHITESPACE"
         else:
             return None
+        
+
     prev_category = None
     cur_token = ""
     start = True

@@ -205,6 +205,81 @@ def build_naive_parse_trees(leaves: List[List[ParseNode]], bracket_items: List, 
 
     return trees
 
+def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dict[str, ParseNode]):
+    """
+    Hierarchical delta debugging to break down seed inputs into smaller valid inputs.
+    """
+
+    def ddmin(node: ParseNode):
+        n = len(node.children)
+        granularity = 2
+
+        while granularity <= n:
+            chunk_size = n // granularity
+            
+            for i in range(granularity):
+                start = i * chunk_size
+                end = (i + 1) * chunk_size if i != granularity - 1 else n
+                trial_node = node.copy()
+                trial_node.children = trial_node.children[:start] + trial_node.children[end:]
+                trial_node.update_cache_info()
+                try:
+                    seed = trial_node.derived_string()
+                    oracle.parse(seed)
+                    # if trial_node.payload != START:
+                    seed = seed.replace(" ", "")
+                    if seed not in new_trees:
+                        if trial_node.payload != START:
+                            trial_node.payload = START
+                            trial_node.update_cache_info()
+                        new_trees[seed] = trial_node
+                    return ddmin(trial_node)
+                except:
+                    pass
+            for i in range(granularity):
+                start = i * chunk_size
+                end = (i + 1) * chunk_size if i != granularity - 1 else n
+                trial_node = node.copy()
+                trial_node.children = node.children[start:end]
+                trial_node.update_cache_info()
+                try:
+                    seed = trial_node.derived_string()
+                    oracle.parse(seed)
+                    # if trial_node.payload != START:
+                    seed = seed.replace(" ", "")
+                    if seed not in new_trees:
+                        if trial_node.payload != START:
+                            trial_node.payload = START
+                            trial_node.update_cache_info()
+                        new_trees[seed] = trial_node
+                    return ddmin(trial_node)
+                except:
+                    pass
+
+            granularity *= 2
+                 
+
+        return node
+                    
+                
+    
+    def hdd(node: ParseNode):
+        if node.is_terminal:
+            return node
+        
+        
+        node = ddmin(node)
+
+        for index in range(len(node.children)):
+            node.children[index] = hdd(node.children[index])
+
+        return node
+    
+    for tree in trees:
+        _ = hdd(tree.copy())
+        # for key in new_trees.keys():
+        #     print(key)
+    return list(new_trees.values())
 
 def build_naive_parse_trees_2(leaves: List[List[ParseNode]]):
     """
@@ -609,6 +684,8 @@ def build_trees(oracle, leaves):
     s = time.time()
     print("Beginning coalescing...".ljust(50))
     grammar, best_trees, _, _ = coalesce(oracle, best_trees, grammar)
+    augmented = {t.derived_string().replace(" ",""): t for t in best_trees}
+    best_trees = hdd_decompose(best_trees, oracle, augmented)
     # grammar, best_trees, _ = coalesce_partial(oracle, best_trees, grammar)
 
     # epsilon rule: try removing each nonterminal
