@@ -70,31 +70,13 @@ def approx_tokenize(oracle, guide_raw:str):
             cur_token += c
         else:
             if not start:
-                # # check whitespace
-                # if prev_category == "WHITESPACE":
-                #     new_str = str_builder + guide_raw[i:]
-                #     try:
-                #         oracle.parse(new_str)
-                #     except:
-                #         str_builder += cur_token
-                #         tokens.append(ParseNode(cur_token, True, []))
-                # else:
-                #     str_builder += cur_token
+                
                 tokens.append(ParseNode(cur_token, True, []))
             cur_token = c
         prev_category = cur_category
         start = False
     if cur_token != "":
-        # check whitespace
-        # if cur_category == "WHITESPACE":
-        #     new_str = str_builder
-        #     try:
-        #         oracle.parse(new_str)
-        #     except:
-        #         str_builder += cur_token
-        #         tokens.append(ParseNode(cur_token, True, []))
-        # else:
-        #     str_builder += cur_token
+        
         tokens.append(ParseNode(cur_token, True, []))
     return tokens
 
@@ -139,10 +121,11 @@ def main(oracle_cmd, guide_examples_folder,  log_file_name):
             
             oracle.parse(guide_raw)
 
-        except:
+        except Exception as e:
             print("\n xxxInvalid seed input")
             print(full_filename)
             print(guide_raw)
+            print(e)
             exit(1)
         if USE_PRETOKENIZATION:
             guide = approx_tokenize(oracle, guide_raw)

@@ -53,7 +53,7 @@ MINIMIZE_TIME = 0
 TIME_GENERATING_EXAMPLES = 0
 TIME_GROUPING = 0
 REAPPLY = 0
-USE_LLM = False
+USE_LLM = True
 TREEVADA = True
 
 def get_times():
@@ -275,11 +275,18 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
 
         return node
     
+    size = len(trees)
     for tree in trees:
         _ = hdd(tree.copy())
         # for key in new_trees.keys():
         #     print(key)
-    return list(new_trees.values())
+    # Pick newly added 50 trees
+    decomposed = list(new_trees.items())[size:]
+    # sorted_trees = sorted(decomposed, key=lambda x: len(x[0]))
+    # tree_values = [x[1] for x in sorted_trees]
+    tree_values = [x[1] for x in decomposed]
+    # return tree_values[:50]
+    return tree_values
 
 def build_naive_parse_trees_2(leaves: List[List[ParseNode]]):
     """
@@ -674,25 +681,27 @@ def build_trees(oracle, leaves):
         return bubble_list
 
     best_trees = build_naive_parse_trees(leaves, [], oracle)
+    augmented = {t.derived_string().replace(" ",""): t for t in best_trees}
+    best_trees += hdd_decompose(best_trees, oracle, augmented)
+    best_trees = best_trees[:100]
     grammar = build_grammar(best_trees)
 
     pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
     for tree in best_trees:
-        print(tree.to_newick())
+        print(tree.derived_string())
         pt(tree)
 
     s = time.time()
     print("Beginning coalescing...".ljust(50))
     grammar, best_trees, _, _ = coalesce(oracle, best_trees, grammar)
-    augmented = {t.derived_string().replace(" ",""): t for t in best_trees}
-    best_trees = hdd_decompose(best_trees, oracle, augmented)
+    
     # grammar, best_trees, _ = coalesce_partial(oracle, best_trees, grammar)
 
     # epsilon rule: try removing each nonterminal
     # grammar, best_trees = check_epsilon(oracle, best_trees, grammar)
 
     for tree in best_trees:
-        print(tree.to_newick())
+        print(tree.derived_string())
         pt(tree)
         
     ORIGINAL_COALESCE_TIME += time.time() - s
