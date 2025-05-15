@@ -62,6 +62,18 @@ class Grammar():
 
     def parser_cache_valid(self):
         return self.parser_cache_hash == self._rule_hash()
+    
+    def merge(self, other_grammar):
+        """
+        Merges the rules of another grammar into this one.
+        """
+        for start, rule in other_grammar.rules.items():
+            if start in self.rules:
+                saved_rule = self.rules[start]
+                for body in rule.bodies:
+                    saved_rule.add_body(body)
+            else:
+                self.rules[start] = rule
 
     def add_rule(self, rule, depth=None):
         if rule.start in self.rules:

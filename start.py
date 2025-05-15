@@ -53,7 +53,7 @@ MINIMIZE_TIME = 0
 TIME_GENERATING_EXAMPLES = 0
 TIME_GROUPING = 0
 REAPPLY = 0
-USE_LLM = True
+USE_LLM = False
 TREEVADA = True
 
 def get_times():
@@ -99,6 +99,14 @@ def build_start_grammar(oracle, leaves, bbl_bounds = (3,10)):
     grammar, new_trees, coalesce_caused, _ = coalesce(oracle, trees, grammar)
     # grammar, new_trees, partial_coalesces = coalesce_partial(oracle, new_trees, grammar)
     LAST_COALESCE_TIME += time.time() - s
+    augmented = {t.derived_string().replace(" ",""): t for t in new_trees}
+    reduced_trees = hdd_decompose(new_trees, oracle, augmented)
+    grammar_reduced = build_grammar(reduced_trees)
+    new_trees += reduced_trees
+    print(str(grammar))
+    print("New Grammar")
+    print(str(grammar_reduced))
+    grammar.merge(grammar_reduced)
     s = time.time()
     grammar = expand_tokens(oracle, grammar, new_trees)
     EXPAND_TIME += time.time() - s
@@ -209,7 +217,8 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
     """
     Hierarchical delta debugging to break down seed inputs into smaller valid inputs.
     """
-
+    pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
+    
     def ddmin(node: ParseNode):
         n = len(node.children)
         granularity = 2
@@ -222,6 +231,9 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
                 end = (i + 1) * chunk_size if i != granularity - 1 else n
                 trial_node = node.copy()
                 trial_node.children = trial_node.children[:start] + trial_node.children[end:]
+                # remove single indirection nodes (tx -> tx)
+                if len(trial_node.children) == 1 and trial_node.payload == trial_node.children[0].payload:
+                    trial_node = trial_node.children[0]
                 trial_node.update_cache_info()
                 try:
                     seed = trial_node.derived_string()
@@ -231,9 +243,10 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
                     if seed not in new_trees:
                         if trial_node.payload != START:
                             trial_node.payload = START
-                            trial_node.update_cache_info()
+                            # trial_node.update_cache_info()
                         new_trees[seed] = trial_node
-                    return ddmin(trial_node)
+                        pt(trial_node)
+                    return ddmin(trial_node.copy())
                 except:
                     pass
             for i in range(granularity):
@@ -241,6 +254,8 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
                 end = (i + 1) * chunk_size if i != granularity - 1 else n
                 trial_node = node.copy()
                 trial_node.children = node.children[start:end]
+                if len(trial_node.children) == 1 and trial_node.payload == trial_node.children[0].payload:
+                    trial_node = trial_node.children[0]
                 trial_node.update_cache_info()
                 try:
                     seed = trial_node.derived_string()
@@ -250,9 +265,9 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
                     if seed not in new_trees:
                         if trial_node.payload != START:
                             trial_node.payload = START
-                            trial_node.update_cache_info()
+                            # trial_node.update_cache_info()
                         new_trees[seed] = trial_node
-                    return ddmin(trial_node)
+                    return ddmin(trial_node.copy())
                 except:
                     pass
 
@@ -267,25 +282,34 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
         if node.is_terminal:
             return node
         
-        
         node = ddmin(node)
-
         for index in range(len(node.children)):
             node.children[index] = hdd(node.children[index])
+        node.update_cache_info()
+        try:
+            seed = node.derived_string()
+            oracle.parse(seed)
+            # if trial_node.payload != START:
+            seed = seed.replace(" ", "")
+            if seed not in new_trees:
+                if node.payload != START:
+                    node.payload = START
+                    node.update_cache_info()
+                new_trees[seed] = node
+        except:
+            pass
 
         return node
     
-    size = len(trees)
+    size = len(trees)   # initial size
     for tree in trees:
-        _ = hdd(tree.copy())
-        # for key in new_trees.keys():
-        #     print(key)
-    # Pick newly added 50 trees
+        copy = tree.copy()
+        copy.update_cache_info()
+        _ = hdd(copy)
+        
+    # Pick newly added stmt
     decomposed = list(new_trees.items())[size:]
-    # sorted_trees = sorted(decomposed, key=lambda x: len(x[0]))
-    # tree_values = [x[1] for x in sorted_trees]
     tree_values = [x[1] for x in decomposed]
-    # return tree_values[:50]
     return tree_values
 
 def build_naive_parse_trees_2(leaves: List[List[ParseNode]]):
@@ -681,9 +705,9 @@ def build_trees(oracle, leaves):
         return bubble_list
 
     best_trees = build_naive_parse_trees(leaves, [], oracle)
-    augmented = {t.derived_string().replace(" ",""): t for t in best_trees}
-    best_trees += hdd_decompose(best_trees, oracle, augmented)
-    best_trees = best_trees[:100]
+    # augmented = {t.derived_string().replace(" ",""): t for t in best_trees}
+    # best_trees += hdd_decompose(best_trees, oracle, augmented)
+    # best_trees = best_trees[:100]
     grammar = build_grammar(best_trees)
 
     pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
