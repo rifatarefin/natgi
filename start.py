@@ -53,8 +53,8 @@ MINIMIZE_TIME = 0
 TIME_GENERATING_EXAMPLES = 0
 TIME_GROUPING = 0
 REAPPLY = 0
-USE_LLM = False
-TREEVADA = True
+USE_LLM = True
+TREEVADA = False
 
 def get_times():
     from replacement_utils import TIME_GENERATING_EXAMPLES_INTERNAL
@@ -104,7 +104,7 @@ def build_start_grammar(oracle, leaves, bbl_bounds = (3,10)):
     grammar_reduced = build_grammar(reduced_trees)
     new_trees += reduced_trees
     print(str(grammar))
-    print("New Grammar")
+    print("Reduced Grammar")
     print(str(grammar_reduced))
     grammar.merge(grammar_reduced)
     s = time.time()
@@ -219,6 +219,24 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
     """
     pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
     
+    def try_parse(node: ParseNode):
+        """
+        Try to parse the node and remove single start->start indirections
+        """
+        try:
+            seed = node.derived_string()
+            oracle.parse(seed)
+            seed = seed.replace(" ", "")
+            if seed not in new_trees:
+                if node.payload != START:
+                    node.payload = START
+                while len(node.children) == 1 and node.payload == node.children[0].payload:
+                    node = node.children[0]
+                new_trees[seed] = node
+                return True
+        except:
+            return False
+    
     def ddmin(node: ParseNode):
         n = len(node.children)
         granularity = 2
@@ -231,47 +249,21 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
                 end = (i + 1) * chunk_size if i != granularity - 1 else n
                 trial_node = node.copy()
                 trial_node.children = trial_node.children[:start] + trial_node.children[end:]
-                # remove single indirection nodes (tx -> tx)
-                if len(trial_node.children) == 1 and trial_node.payload == trial_node.children[0].payload:
-                    trial_node = trial_node.children[0]
                 trial_node.update_cache_info()
-                try:
-                    seed = trial_node.derived_string()
-                    oracle.parse(seed)
-                    # if trial_node.payload != START:
-                    seed = seed.replace(" ", "")
-                    if seed not in new_trees:
-                        if trial_node.payload != START:
-                            trial_node.payload = START
-                            # trial_node.update_cache_info()
-                        new_trees[seed] = trial_node
-                        pt(trial_node)
+
+                if try_parse(trial_node):
                     return ddmin(trial_node.copy())
-                except:
-                    pass
+                
             for i in range(granularity):
                 start = i * chunk_size
                 end = (i + 1) * chunk_size if i != granularity - 1 else n
                 trial_node = node.copy()
                 trial_node.children = node.children[start:end]
-                if len(trial_node.children) == 1 and trial_node.payload == trial_node.children[0].payload:
-                    trial_node = trial_node.children[0]
                 trial_node.update_cache_info()
-                try:
-                    seed = trial_node.derived_string()
-                    oracle.parse(seed)
-                    # if trial_node.payload != START:
-                    seed = seed.replace(" ", "")
-                    if seed not in new_trees:
-                        if trial_node.payload != START:
-                            trial_node.payload = START
-                            # trial_node.update_cache_info()
-                        new_trees[seed] = trial_node
+                if try_parse(trial_node):
                     return ddmin(trial_node.copy())
-                except:
-                    pass
 
-            granularity *= 2
+            granularity += 1
                  
 
         return node
@@ -286,18 +278,7 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
         for index in range(len(node.children)):
             node.children[index] = hdd(node.children[index])
         node.update_cache_info()
-        try:
-            seed = node.derived_string()
-            oracle.parse(seed)
-            # if trial_node.payload != START:
-            seed = seed.replace(" ", "")
-            if seed not in new_trees:
-                if node.payload != START:
-                    node.payload = START
-                    node.update_cache_info()
-                new_trees[seed] = node
-        except:
-            pass
+        try_parse(node)
 
         return node
     
