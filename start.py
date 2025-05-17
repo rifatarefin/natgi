@@ -53,6 +53,7 @@ MINIMIZE_TIME = 0
 TIME_GENERATING_EXAMPLES = 0
 TIME_GROUPING = 0
 REAPPLY = 0
+LLM_CALLS = 0
 USE_LLM = True
 TREEVADA = False
 
@@ -217,7 +218,7 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
     """
     Hierarchical delta debugging to break down seed inputs into smaller valid inputs.
     """
-    pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
+    # pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
     
     def try_parse(node: ParseNode):
         """
@@ -673,6 +674,8 @@ def build_trees(oracle, leaves):
         """
         Get list of bubbles from LLM
         """
+        global LLM_CALLS
+        LLM_CALLS += 1
         layer = get_longest_layer(best_trees, [])
         prompt = '\n'.join([str(i) for i in layer])
         bubble_list = bubble_api(prompt) if one_bubble else bubble_pair_api(prompt)       # llm call here
@@ -683,7 +686,7 @@ def build_trees(oracle, leaves):
             print("LLM failed to generate bubbles")
             return get_llm_bubble(best_trees, one_bubble)
 
-        return bubble_list
+        return bubble_list[:25]
 
     best_trees = build_naive_parse_trees(leaves, [], oracle)
     # augmented = {t.derived_string().replace(" ",""): t for t in best_trees}
@@ -691,10 +694,10 @@ def build_trees(oracle, leaves):
     # best_trees = best_trees[:100]
     grammar = build_grammar(best_trees)
 
-    pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
-    for tree in best_trees:
-        print(tree.derived_string())
-        pt(tree)
+    # pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
+    # for tree in best_trees:
+    #     print(tree.derived_string())
+    #     pt(tree)
 
     s = time.time()
     print("Beginning coalescing...".ljust(50))
@@ -705,9 +708,9 @@ def build_trees(oracle, leaves):
     # epsilon rule: try removing each nonterminal
     # grammar, best_trees = check_epsilon(oracle, best_trees, grammar)
 
-    for tree in best_trees:
-        print(tree.derived_string())
-        pt(tree)
+    # for tree in best_trees:
+    #     print(tree.derived_string())
+    #     pt(tree)
         
     ORIGINAL_COALESCE_TIME += time.time() - s
 

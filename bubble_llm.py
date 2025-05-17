@@ -15,7 +15,7 @@ system_prompt = ["""You are an AI assistant. You will help to build parse trees 
     - The group should represent a grammar rule of the language.
     - Remember recursive expansion makes the tree level long, don't suggest long groups. 
     - A group can be as small as two tokens only.
-    - Limit the group list to best 20 suggestions."""]
+    - Limit the group list to best **20** suggestions. Never more than that."""]
 
     # - Look for the diverse parts among similar inputs. E.g. for two similar inputs (ab cd ef, ab cd gh), possible group could be (ef, gh).
     # - **Never** suggest long groups (>10 tokens), those are less likely to align with any grammar production rule.#     - The smaller a group is, better chances for it to be correct. Since a short unit might represent common language constructs (e.g. expressions, sub-expressions).

@@ -178,6 +178,9 @@ def main(oracle_cmd, guide_examples_folder,  log_file_name):
         print(f'Time breakdown: {get_times()}')
         print(f'Parse calls: {oracle_parse_calls}, {oracle_real_calls}')
         print(f'Parse calls: {oracle_parse_calls}, {oracle_real_calls}', file=f)
+        from start import LLM_CALLS
+        print(f'LLM calls for bubble finding: {LLM_CALLS}')
+        print(f'LLM calls for bubble finding: {LLM_CALLS}', file=f)
 
 
 if __name__ == '__main__':
