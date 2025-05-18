@@ -8,6 +8,7 @@ from start import build_start_grammar, get_times
 from lark import Lark
 from oracle import CachingOracle, ExternalOracle
 import string
+from datetime import datetime
 
 """
 High-level command line to launch Arvada search.
@@ -168,7 +169,8 @@ def main(oracle_cmd, guide_examples_folder,  log_file_name):
         import pickle
         pickle.dump(start_grammar.rules, open(log_file_name + ".gramdict", "wb"))
 
-
+        print(f'Date: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}', file=f)
+        print(f'Date: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
         print(f'Time spent in oracle calls: {oracle_time_spent}', file=f)
         print(f'Time spent in oracle calls: {oracle_time_spent}')
         print(f'Time spent building grammar: {build_time}s', file=f)
@@ -181,6 +183,7 @@ def main(oracle_cmd, guide_examples_folder,  log_file_name):
         from start import LLM_CALLS
         print(f'LLM calls for bubble finding: {LLM_CALLS}')
         print(f'LLM calls for bubble finding: {LLM_CALLS}', file=f)
+
 
 
 if __name__ == '__main__':
