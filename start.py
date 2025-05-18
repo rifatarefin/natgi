@@ -18,7 +18,7 @@ from label_llm import generate_label_api, regenerate_label
 from bubble_llm import bubble_api
 from bubble_pair_llm import bubble_pair_api
 import json
-
+import string
 """
 Bulk of the Arvada algorithm.
 """
@@ -55,7 +55,7 @@ TIME_GROUPING = 0
 REAPPLY = 0
 LLM_CALLS = 0
 USE_LLM = True
-TREEVADA = False
+TREEVADA = True
 
 def get_times():
     from replacement_utils import TIME_GENERATING_EXAMPLES_INTERNAL
@@ -1409,6 +1409,33 @@ def minimize(grammar):
     unnecessary layers of indirection..
     """
 
+    def remove_inf_recursion(grammar: Grammar):
+        """
+        Removes all infinite recursions from the grammar.
+        """
+        for rule in grammar.rules.values():
+            bodies = rule.bodies
+            for body in bodies[:]:
+                if body == [rule.start]:
+                    bodies.remove(body)
+
+    def handle_special_nonterminals(grammar: Grammar, old_nt, new_nt):
+        """
+        Lark doesn't allow special characters as nonterminal labels.
+        This function replaces all occurances of OLD_NT with NEW_NT
+        """
+        for rule in grammar.rules.values():
+            for body in rule.bodies:
+                for i in range(len(body)):
+                    if body[i] == old_nt:
+                        body[i] = new_nt
+        # Remove the old rule
+        rule = grammar.rules.pop(old_nt)
+        rule.start = new_nt
+        # Add the new rule
+        grammar.add_rule(rule)
+
+
     def remove_repeated_rules(grammar: Grammar):
         """
         Mutative method that removes all repeated rule bodies in GRAMMAR.
@@ -1492,5 +1519,11 @@ def minimize(grammar):
     grammar = update(grammar, Y)
 
     remove_repeated_rules(grammar)
+    # check for special characters in the nonterminal names
+    for rule in grammar.rules.values():
+        if any(c in rule.start for c in string.punctuation) or (len(rule.start)>0 and rule.start[0].isdigit()):
+            handle_special_nonterminals(grammar, rule.start, allocate_tid())
+
+    remove_inf_recursion(grammar)
 
     return grammar
