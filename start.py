@@ -55,7 +55,8 @@ TIME_GROUPING = 0
 REAPPLY = 0
 LLM_CALLS = 0
 USE_LLM = True
-TREEVADA = True
+TREEVADA = False
+HDD = True
 
 def get_times():
     from replacement_utils import TIME_GENERATING_EXAMPLES_INTERNAL
@@ -100,14 +101,13 @@ def build_start_grammar(oracle, leaves, bbl_bounds = (3,10)):
     grammar, new_trees, coalesce_caused, _ = coalesce(oracle, trees, grammar)
     # grammar, new_trees, partial_coalesces = coalesce_partial(oracle, new_trees, grammar)
     LAST_COALESCE_TIME += time.time() - s
-    augmented = {t.derived_string().replace(" ",""): t for t in new_trees}
-    reduced_trees = hdd_decompose(new_trees, oracle, augmented)
-    grammar_reduced = build_grammar(reduced_trees)
-    new_trees += reduced_trees
-    print(str(grammar))
-    print("Reduced Grammar")
-    print(str(grammar_reduced))
-    grammar.merge(grammar_reduced)
+    if HDD:
+        augmented = {t.derived_string().replace(" ",""): t for t in new_trees}
+        reduced_trees = hdd_decompose(new_trees, oracle, augmented)
+        grammar_reduced = build_grammar(reduced_trees)
+        new_trees += reduced_trees
+        grammar.merge(grammar_reduced)
+        
     s = time.time()
     grammar = expand_tokens(oracle, grammar, new_trees)
     EXPAND_TIME += time.time() - s
