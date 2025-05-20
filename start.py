@@ -1377,10 +1377,11 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
                         class_nt = regenerate_label((s1, s2), list(old_labels.keys()))
                         old_labels[class_nt] = 1
                         attempts += 1
-                        if attempts > 5 and class_nt[-1].isdigit():
-                            # global label_count
-                            # label_count[class_nt] += 1
-                            class_nt = class_nt[:-1] + str(int(class_nt[-1]) + 1)   #increment the last digit
+                        if attempts > 5:
+                            if class_nt and class_nt[-1].isdigit():
+                                class_nt = class_nt[:-1] + str(int(class_nt[-1]) + 1)   #increment the last digit
+                            else:
+                                class_nt += "1"
                             old_labels[class_nt] = 1
                         print(f" Next suggestion: {class_nt}")
                     # class_nt = allocate_tid()
