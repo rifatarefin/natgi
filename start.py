@@ -783,6 +783,9 @@ def build_trees(oracle, leaves):
             two_bubbles = []
             bubble_list = get_llm_bubble(best_trees, False)
 
+            # doesn't contain any 2-bubbles
+            if bubble_list and not isinstance(bubble_list[0], tuple):
+                break
             for first, second in bubble_list:
                 cand1 = ''.join(first)
                 cand2 = ''.join(second)
@@ -1522,7 +1525,7 @@ def minimize(grammar):
     remove_repeated_rules(grammar)
     # check for special characters in the nonterminal names
     for rule in list(grammar.rules.values()):
-        if any(c in rule.start for c in string.punctuation) or (len(rule.start)>0 and rule.start[0].isdigit()):
+        if any(c in rule.start for c in string.punctuation) or (rule.start and rule.start[0].isdigit()):
             handle_special_nonterminals(grammar, rule.start, allocate_tid())
 
     remove_inf_recursion(grammar)
