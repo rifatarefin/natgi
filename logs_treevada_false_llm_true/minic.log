@@ -1,0 +1,20 @@
+python3 search.py external Seed_Programs/minic/parse_minic Seed_Programs/minic/minic-train-r0 Seed_Programs/minic-r1-tv.log
+Using approximate pre-tokenization stage
+**** Running eval.py ****
+**** Running search.py ****
+python3 search.py external Seed_Programs/minic/parse_minic Seed_Programs/minic/minic-train-r0 Seed_Programs/minic-r1-tv.log
+Using approximate pre-tokenization stage
+**** Running eval.py ****
+**** Running search.py ****
+python3 search.py external Seed_Programs/minic/parse_minic Seed_Programs/minic/minic-train-r0 Seed_Programs/minic-r1-tv.log
+Using approximate pre-tokenization stage
+**** Running eval.py ****
+**** Running search.py ****
+python3 search.py external Seed_Programs/minic/parse_minic Seed_Programs/minic/minic-train-r0 Seed_Programs/minic-r1-tv.log
+Using approximate pre-tokenization stage
+**** Running eval.py ****
+**** Running search.py ****
+python3 search.py external Seed_Programs/minic/parse_minic Seed_Programs/minic/minic-train-r0 Seed_Programs/minic-r1-tv.log
+Using approximate pre-tokenization stage
+**** Running eval.py ****
+**** Running search.py ****

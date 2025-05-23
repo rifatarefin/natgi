@@ -1,0 +1,2701 @@
+**** Running search.py ****
+python3 search.py external Seed_Programs/micro-benchmarks/json/parse_json Seed_Programs/micro-benchmarks/json/guides-r1 Seed_Programs/json-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 11.733333333333333, max guide length: 90
+Average token length: 8.2, max token length: 72
+Guides with brackets: 10, quotes: 20
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 1.7333333333333334
+Average lengths of brackets(not normalized): 3.767460317460317
+Average n: 8.2
+Beginning coalescing...                           
+LLM suggested label: num for 1 and 34
+LLM suggested label: letter for O and rN
+max example size 72, node size: 29
+1-BUBBLES
+{
+  "siblings": [
+    ["\"", "letter", "\""],
+    ["\"", "num", "\""],
+    ["\"", "letter", "\"", ":", "stmt"],
+    ["\"", "num", "\"", ":", "stmt"],
+    ["\"", "letter", "\"", ":", "num"],
+    ["\"", "letter", "\"", ":", "-", "num"],
+    ["-", "num", ".", "num"],
+    ["stmt", ",", "stmt"],
+    ["stmt", ",", "stmt", ",", "stmt"],
+    ["num", ",", "stmt"],
+    ["num", ",", "stmt", ",", "stmt"],
+    ["stmt", ",", "num"],
+    ["stmt", ",", "num", ",", "stmt"],
+    ["\"", "letter", "\"", ":", "\"", "num", "\""],
+    ["\"", "num", "\"", ":", "\"", "num", "\""],
+    ["\"", "letter", "\"", ":", "\"", "letter", "\""],
+    ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+    ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+    ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+    ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "letter", "\"", ":", "\"", "letter", "\""]
+  ]
+}
+
+[Group len -1] Bubbling iteration 1 (6/20)...     
+Successful grouping (single): [-, 8, ., 9]
+    (aka ['-', '8', '.', '9']
+coalesced into:  {'t37': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["\"", "letter", "\""],
+        ["\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "stmt"],
+        ["\"", "num", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "num"],
+        ["\"", "letter", "\"", ":", "\"", "num", "\""],
+        ["\"", "num", "\"", ":", "\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "-", "num"],
+        ["stmt", ",", "stmt"],
+        ["stmt", ",", "num"],
+        ["num", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "num"],
+        ["num", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "num"],
+        ["num", ",", "stmt", ",", "stmt", ",", "stmt"],
+        ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+        ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "letter", "\"", ":", "\"", "letter", "\""],
+        ["\"", "letter", "\"", ":", "\"", "letter", "\"", ",", "\"", "letter", "\"", ":", "stmt"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "letter", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "letter", "\"", ":", "\"", "letter", "\"", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "letter", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ]
+  ]
+}
+1-BUBBLES
+{
+  "siblings": [
+    ["\"", "letter", "\""],
+    ["\"", "num", "\""],
+    ["\"", "letter", "\"", ":", "stmt"],
+    ["\"", "num", "\"", ":", "stmt"],
+    ["\"", "letter", "\"", ":", "num"],
+    ["\"", "letter", "\"", ":", "\"", "num", "\""],
+    ["\"", "letter", "\"", ":", "-", "num"],
+    ["stmt", ",", "stmt"],
+    ["stmt", ",", "num"],
+    ["num", ",", "stmt"],
+    ["stmt", ",", "stmt", ",", "stmt"],
+    ["stmt", ",", "stmt", ",", "num"],
+    ["num", ",", "stmt", ",", "stmt"],
+    ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+    ["\"", "num", "\"", ":", "\"", "num", "\""],
+    ["\"", "letter", "\"", ":", "\"", "letter", "\""],
+    ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+    ["\"", "num", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+    ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+    ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "\"", "num", "\""],
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "\"", "num", "\""],
+      ["\"", "num", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "\"", "num", "\""],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "\"", "num", "\""],
+      ["\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "\"", "num", "\""],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "\"", "num", "\""],
+      ["\"", "letter", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""],
+      ["\"", "num", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""],
+      ["\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""],
+      ["\"", "letter", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "\"", "num", "\""],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "\"", "num", "\""],
+      ["\"", "letter", "\"", ":", "stmt"]
+    ]
+  ]
+}
+1-BUBBLES
+{
+    "siblings": [
+        ["\"", "letter", "\""],
+        ["\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "stmt"],
+        ["\"", "num", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "num"],
+        ["\"", "letter", "\"", ":", "\"", "num", "\""],
+        ["\"", "num", "\"", ":", "\"", "num", "\""],
+        ["stmt", ",", "stmt"],
+        ["stmt", ",", "num"],
+        ["num", ",", "stmt"],
+        ["\"", "letter", "\"", ":", "-", "num"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "letter", "\"", ":", "\"", "letter", "\"", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"],
+      ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ]
+  ]
+}
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-22 22:59:15
+Time spent in oracle calls: 9.12232494354248
+Time spent building grammar: 45.82858729362488s
+Time breakdown: {'FIRST_COALESCE': 3.5221779346466064, 'BUILD': 37.751511335372925, 'LAST_COALESCE': 0.2338273525238037, 'EXPAND': 3.8876373767852783, 'MINIMIZE': 0.0005156993865966797, 'OVERALL_EXAMPLE_GEN': 0.887782096862793, 'OVERALL_GROUPING': 11.55253291130066, 'REAPPLY_COUNT': 0}
+Parse calls: 10637, 7142
+LLM calls for bubble finding: 7
+**** Running eval.py ****
+start: stmt
+stmt: num "." num
+    | "\"" letter "\""
+    | "\"" num "\""
+    | "{" "\"" letter "\"" ":" stmt "}"
+    | "true"
+    | "[" "-" num "," stmt "]"
+    | "-" num
+    | "-" num "." num
+    | "{" "\"" letter "\"" ":" num "}"
+    | "{" "\"" num "\"" ":" stmt "}"
+    | "null"
+    | t95 "." num
+    | "{" "\"" letter "\"" ":" "\"" num "\"" "}"
+    | "{" "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "}"
+    | "[" "]"
+    | "{" "\"" letter "\"" ":" "-" num "}"
+    | "{" "\"" num "\"" ":" "\"" num "\"" "," "\"" letter "\"" ":" "\"" letter "\"" "," "\"" letter "\"" ":" stmt "," "\"" num "\"" ":" stmt "}"
+    | "false"
+    | "{" "}"
+    | "[" stmt "," stmt "]"
+    | "[" num "," stmt "," stmt "," stmt "]"
+    | "{" "\"" num "\"" ":" stmt "," "\"" letter "\"" ":" stmt "}"
+    | "[" stmt "," stmt "," stmt "," num "," stmt "," num "," stmt "]"
+    | "{" "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "}"
+    | num
+    | "[" num "," stmt "]"
+    | t95
+    | "{" "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "}"
+    | "{" "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "}"
+    | num num
+    | tinteger
+num: tinteger
+letter: "GE34F5kC5"
+    | "4n"
+    | "4AlX24"
+    | "90b"
+    | "vR0"
+    | "U4Z"
+    | "r5"
+    | "hZ5"
+    | talphanums
+    | tletters
+tinteger: tdigit
+    | tnzdigit tdigits
+tnzdigit: "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tletters: tletter
+    | tletter tletters
+tletter: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+t95: tinteger
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.848, Precision: 0.945, F-1: 0.8938761851645287
+**** Running search.py ****
+**** Running search.py ****
+python3 search.py external Seed_Programs/micro-benchmarks/json/parse_json Seed_Programs/micro-benchmarks/json/guides-r1 Seed_Programs/json-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 11.733333333333333, max guide length: 90
+Average token length: 8.2, max token length: 72
+Guides with brackets: 10, quotes: 20
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 1.7333333333333334
+Average lengths of brackets(not normalized): 3.767460317460317
+Average n: 8.2
+Beginning coalescing...                           
+LLM suggested label: num for 1 and 34
+LLM suggested label: letter for O and rN
+max example size 72, node size: 29
+1-BUBBLES
+{
+    "siblings": [
+        ["\"", "letter", "\""],
+        ["\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "stmt"],
+        ["\"", "num", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "num"],
+        ["\"", "letter", "\"", ":", "-", "num"],
+        ["-", "num", ".", "num"],
+        ["stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt"],
+        ["num", ",", "stmt"],
+        ["num", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "num"],
+        ["stmt", ",", "num", ",", "stmt"],
+        ["\"", "letter", "\"", ":", "\"", "num", "\""],
+        ["\"", "num", "\"", ":", "\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "\"", "letter", "\""],
+        ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+        ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "letter", "\"", ":", "\"", "letter", "\""],
+        ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 1 (6/20)...     
+Successful grouping (single): [-, 8, ., 9]
+    (aka ['-', '8', '.', '9']
+coalesced into:  {'t37': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["\"", "letter", "\""],
+        ["\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "stmt"],
+        ["\"", "num", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "num"],
+        ["\"", "letter", "\"", ":", "\"", "num", "\""],
+        ["\"", "num", "\"", ":", "\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "\"", "letter", "\""],
+        ["\"", "letter", "\"", ":", "-", "num"],
+        ["stmt", ",", "stmt"],
+        ["stmt", ",", "num"],
+        ["num", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "num"],
+        ["num", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "num"],
+        ["stmt", ",", "num", ",", "stmt"],
+        ["stmt", ",", "num", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "letter", "\"", ":", "\"", "letter", "\"", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"],
+      ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "letter", "\"", ":", "\"", "letter", "\"", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt"]
+    ]
+  ]
+}
+1-BUBBLES
+{
+    "siblings": [
+        ["\"", "letter", "\""],
+        ["\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "stmt"],
+        ["\"", "num", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "num"],
+        ["\"", "letter", "\"", ":", "\"", "num", "\""],
+        ["\"", "num", "\"", ":", "\"", "num", "\""],
+        ["stmt", ",", "stmt"],
+        ["stmt", ",", "num"],
+        ["num", ",", "stmt"],
+        ["\"", "letter", "\"", ":", "-", "num"],
+        ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+        ["\"", "num", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "num"],
+        ["num", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "num"],
+        ["stmt", ",", "num", ",", "stmt"],
+        ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "letter", "\"", ":", "\"", "letter", "\"", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"],
+      ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ]
+  ]
+}
+1-BUBBLES
+{
+  "siblings": [
+    ["\"", "letter", "\""],
+    ["\"", "num", "\""],
+    ["\"", "letter", "\"", ":", "stmt"],
+    ["\"", "num", "\"", ":", "stmt"],
+    ["\"", "letter", "\"", ":", "num"],
+    ["\"", "letter", "\"", ":", "\"", "num", "\""],
+    ["\"", "letter", "\"", ":", "-", "num"],
+    ["stmt", ",", "stmt"],
+    ["stmt", ",", "num"],
+    ["num", ",", "stmt"],
+    ["stmt", ",", "stmt", ",", "stmt"],
+    ["stmt", ",", "stmt", ",", "num"],
+    ["num", ",", "stmt", ",", "stmt"],
+    ["stmt", ",", "stmt", ",", "stmt", ",", "stmt"],
+    ["stmt", ",", "stmt", ",", "stmt", ",", "num"],
+    ["stmt", ",", "stmt", ",", "num", ",", "stmt"],
+    ["stmt", ",", "num", ",", "stmt", ",", "stmt"],
+    ["stmt", ",", "stmt", ",", "stmt", ",", "stmt", ",", "stmt"],
+    ["stmt", ",", "stmt", ",", "stmt", ",", "stmt", ",", "num"],
+    ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "letter", "\"", ":", "\"", "letter", "\"", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"],
+      ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "num"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ]
+  ]
+}
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-22 23:00:04
+Time spent in oracle calls: 9.09211015701294
+Time spent building grammar: 43.68204951286316s
+Time breakdown: {'FIRST_COALESCE': 3.627495765686035, 'BUILD': 35.50417351722717, 'LAST_COALESCE': 0.23736190795898438, 'EXPAND': 3.8974921703338623, 'MINIMIZE': 0.0005245208740234375, 'OVERALL_EXAMPLE_GEN': 0.8673913478851318, 'OVERALL_GROUPING': 13.390502452850342, 'REAPPLY_COUNT': 0}
+Parse calls: 10581, 7082
+LLM calls for bubble finding: 7
+**** Running eval.py ****
+start: stmt
+stmt: num "." num
+    | "\"" letter "\""
+    | "\"" num "\""
+    | "{" "\"" letter "\"" ":" stmt "}"
+    | "true"
+    | "[" "-" num "," stmt "]"
+    | "-" num
+    | "-" num "." num
+    | "{" "\"" letter "\"" ":" num "}"
+    | "{" "\"" num "\"" ":" stmt "}"
+    | "null"
+    | t97 "." num
+    | "{" "\"" letter "\"" ":" "\"" num "\"" "}"
+    | "{" "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "}"
+    | "[" "]"
+    | "{" "\"" letter "\"" ":" "-" num "}"
+    | "{" "\"" num "\"" ":" "\"" num "\"" "," "\"" letter "\"" ":" "\"" letter "\"" "," "\"" letter "\"" ":" stmt "," "\"" num "\"" ":" stmt "}"
+    | "false"
+    | "{" "}"
+    | "[" stmt "," stmt "]"
+    | "[" num "," stmt "," stmt "," stmt "]"
+    | "{" "\"" num "\"" ":" stmt "," "\"" letter "\"" ":" stmt "}"
+    | "[" stmt "," stmt "," stmt "," num "," stmt "," num "," stmt "]"
+    | "{" "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "}"
+    | num
+    | "[" num "," stmt "]"
+    | t97
+    | "{" "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "}"
+    | "{" "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "}"
+    | num num
+    | tinteger
+num: tinteger
+letter: "GE34F5kC5"
+    | "4n"
+    | "4AlX24"
+    | "90b"
+    | "vR0"
+    | "U4Z"
+    | "r5"
+    | "hZ5"
+    | talphanums
+    | tletters
+tinteger: tdigit
+    | tnzdigit tdigits
+tnzdigit: "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tletters: tletter
+    | tletter tletters
+tletter: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+t97: tinteger
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.848, Precision: 0.945, F-1: 0.8938761851645287
+**** Running search.py ****
+**** Running search.py ****
+python3 search.py external Seed_Programs/micro-benchmarks/json/parse_json Seed_Programs/micro-benchmarks/json/guides-r1 Seed_Programs/json-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 11.733333333333333, max guide length: 90
+Average token length: 8.2, max token length: 72
+Guides with brackets: 10, quotes: 20
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 1.7333333333333334
+Average lengths of brackets(not normalized): 3.767460317460317
+Average n: 8.2
+Beginning coalescing...                           
+LLM suggested label: num for 1 and 34
+LLM suggested label: letter for O and rN
+max example size 72, node size: 29
+1-BUBBLES
+{
+    "siblings": [
+        ["\"", "letter", "\""],
+        ["\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "stmt"],
+        ["\"", "num", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "num"],
+        ["\"", "letter", "\"", ":", "-", "num"],
+        ["-", "num", ".", "num"],
+        ["stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt"],
+        ["num", ",", "stmt"],
+        ["num", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "num"],
+        ["stmt", ",", "num", ",", "stmt"],
+        ["\"", "letter", "\"", ":", "\"", "num", "\""],
+        ["\"", "num", "\"", ":", "\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "\"", "letter", "\""],
+        ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "-", "num", ".", "num"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 1 (6/20)...     
+Successful grouping (single): [-, 8, ., 9]
+    (aka ['-', '8', '.', '9']
+coalesced into:  {'t37': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["\"", "letter", "\""],
+        ["\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "stmt"],
+        ["\"", "num", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "num"],
+        ["\"", "letter", "\"", ":", "\"", "num", "\""],
+        ["\"", "num", "\"", ":", "\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "-", "num"],
+        ["stmt", ",", "stmt"],
+        ["stmt", ",", "num"],
+        ["num", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "num"],
+        ["num", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "num"],
+        ["num", ",", "stmt", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "stmt", ",", "num"],
+        ["num", ",", "stmt", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "letter", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "letter", "\"", ":", "\"", "letter", "\"", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "letter", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ]
+  ]
+}
+1-BUBBLES
+{
+    "siblings": [
+        ["\"", "letter", "\""],
+        ["\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "stmt"],
+        ["\"", "num", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "num"],
+        ["\"", "letter", "\"", ":", "\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "-", "num"],
+        ["stmt", ",", "stmt"],
+        ["stmt", ",", "num"],
+        ["num", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "num"],
+        ["num", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "num"],
+        ["num", ",", "stmt", ",", "stmt", ",", "stmt"],
+        ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"],
+        ["\"", "num", "\"", ":", "\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "\"", "letter", "\""]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "letter", "\"", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "letter", "\"", ":", "\"", "letter", "\"", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ]
+  ]
+}
+1-BUBBLES
+{
+    "siblings": [
+        ["\"", "letter", "\""],
+        ["\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "stmt"],
+        ["\"", "num", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "num"],
+        ["\"", "letter", "\"", ":", "\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "-", "num"],
+        ["stmt", ",", "stmt"],
+        ["stmt", ",", "num"],
+        ["num", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "num"],
+        ["num", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "num"],
+        ["stmt", ",", "stmt", ",", "num", ",", "stmt"],
+        ["stmt", ",", "num", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "stmt", ",", "num"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "letter", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "letter", "\"", ":", "\"", "letter", "\"", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "letter", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ]
+  ]
+}
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-22 23:01:04
+Time spent in oracle calls: 10.251168727874756
+Time spent building grammar: 54.60303544998169s
+Time breakdown: {'FIRST_COALESCE': 5.139495134353638, 'BUILD': 44.96129250526428, 'LAST_COALESCE': 0.22582006454467773, 'EXPAND': 3.900446891784668, 'MINIMIZE': 0.0005784034729003906, 'OVERALL_EXAMPLE_GEN': 0.9412136077880859, 'OVERALL_GROUPING': 14.651357650756836, 'REAPPLY_COUNT': 0}
+Parse calls: 10529, 7038
+LLM calls for bubble finding: 7
+**** Running eval.py ****
+start: stmt
+stmt: num "." num
+    | "\"" letter "\""
+    | "\"" num "\""
+    | "{" "\"" letter "\"" ":" stmt "}"
+    | "true"
+    | "[" "-" num "," stmt "]"
+    | "-" num
+    | "-" num "." num
+    | "{" "\"" letter "\"" ":" num "}"
+    | "{" "\"" num "\"" ":" stmt "}"
+    | "null"
+    | t95 "." num
+    | "{" "\"" letter "\"" ":" "\"" num "\"" "}"
+    | "{" "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "}"
+    | "[" "]"
+    | "{" "\"" letter "\"" ":" "-" num "}"
+    | "{" "\"" num "\"" ":" "\"" num "\"" "," "\"" letter "\"" ":" "\"" letter "\"" "," "\"" letter "\"" ":" stmt "," "\"" num "\"" ":" stmt "}"
+    | "false"
+    | "{" "}"
+    | "[" stmt "," stmt "]"
+    | "[" num "," stmt "," stmt "," stmt "]"
+    | "{" "\"" num "\"" ":" stmt "," "\"" letter "\"" ":" stmt "}"
+    | "[" stmt "," stmt "," stmt "," num "," stmt "," num "," stmt "]"
+    | "{" "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "}"
+    | num
+    | "[" num "," stmt "]"
+    | t95
+    | "{" "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "}"
+    | "{" "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "}"
+    | num num
+    | tinteger
+num: tinteger
+letter: "GE34F5kC5"
+    | "4n"
+    | "4AlX24"
+    | "90b"
+    | "vR0"
+    | "U4Z"
+    | "r5"
+    | "hZ5"
+    | talphanums
+    | tletters
+tinteger: tdigit
+    | tnzdigit tdigits
+tnzdigit: "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tletters: tletter
+    | tletter tletters
+tletter: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+t95: tinteger
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.848, Precision: 0.945, F-1: 0.8938761851645287
+**** Running search.py ****
+**** Running search.py ****
+python3 search.py external Seed_Programs/micro-benchmarks/json/parse_json Seed_Programs/micro-benchmarks/json/guides-r1 Seed_Programs/json-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 11.733333333333333, max guide length: 90
+Average token length: 8.2, max token length: 72
+Guides with brackets: 10, quotes: 20
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 1.7333333333333334
+Average lengths of brackets(not normalized): 3.767460317460317
+Average n: 8.2
+Beginning coalescing...                           
+LLM suggested label: num for 1 and 34
+LLM suggested label: identifier for O and rN
+max example size 72, node size: 29
+1-BUBBLES
+{
+  "siblings": [
+    ["\"", "identifier", "\""],
+    ["\"", "num", "\""],
+    ["\"", "identifier", "\"", ":", "stmt"],
+    ["\"", "identifier", "\"", ":", "num"],
+    ["\"", "num", "\"", ":", "stmt"],
+    ["\"", "identifier", "\"", ":", "\"", "num", "\""],
+    ["\"", "identifier", "\"", ":", "-", "num"],
+    ["-", "num", ".", "num"],
+    ["stmt", ",", "stmt"],
+    ["stmt", ",", "num"],
+    ["num", ",", "stmt"],
+    ["stmt", ",", "stmt", ",", "stmt"],
+    ["stmt", ",", "stmt", ",", "num"],
+    ["num", ",", "stmt", ",", "stmt"],
+    ["stmt", ",", "stmt", ",", "stmt", ",", "stmt"],
+    ["stmt", ",", "stmt", ",", "stmt", ",", "num"],
+    ["num", ",", "stmt", ",", "stmt", ",", "stmt"],
+    ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+    ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+    ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "identifier", "\"", ":", "\"", "identifier", "\""]
+  ]
+}
+
+[Group len -1] Bubbling iteration 1 (6/19)...     
+Successful grouping (single): [-, 8, ., 9]
+    (aka ['-', '8', '.', '9']
+coalesced into:  {'t36': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["\"", "identifier", "\""],
+    ["\"", "num", "\""],
+    ["\"", "identifier", "\"", ":", "stmt"],
+    ["\"", "identifier", "\"", ":", "num"],
+    ["\"", "num", "\"", ":", "stmt"],
+    ["identifier", ":", "stmt"],
+    ["identifier", ":", "num"],
+    ["num", ",", "stmt"],
+    ["stmt", ",", "stmt"],
+    ["stmt", ",", "num"],
+    ["\"", "identifier", "\"", ":", "\"", "num", "\""],
+    ["\"", "identifier", "\"", ":", "\"", "identifier", "\""],
+    ["\"", "num", "\"", ":", "\"", "num", "\""],
+    ["\"", "identifier", "\"", ":", "-", "num"],
+    ["stmt", ",", "stmt", ",", "stmt"],
+    ["stmt", ",", "num", ",", "stmt"],
+    ["num", ",", "stmt", ",", "stmt"],
+    ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+    ["\"", "num", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+    ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "identifier", "\"", ":", "\"", "identifier", "\"", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"]
+    ],
+    [
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"],
+      ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "num"],
+      ["\"", "identifier", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "-", "num"]
+    ]
+  ]
+}
+1-BUBBLES
+{
+  "siblings": [
+    ["\"", "identifier", "\""],
+    ["\"", "num", "\""],
+    ["\"", "identifier", "\"", ":", "stmt"],
+    ["\"", "identifier", "\"", ":", "num"],
+    ["\"", "num", "\"", ":", "stmt"],
+    ["\"", "identifier", "\"", ":", "\"", "num", "\""],
+    ["\"", "identifier", "\"", ":", "\"", "identifier", "\""],
+    ["\"", "num", "\"", ":", "\"", "num", "\""],
+    ["stmt", ",", "stmt"],
+    ["num", ",", "stmt"],
+    ["stmt", ",", "num"],
+    ["stmt", ",", "stmt", ",", "stmt"],
+    ["num", ",", "stmt", ",", "stmt"],
+    ["stmt", ",", "stmt", ",", "num"],
+    ["\"", "identifier", "\"", ":", "-", "num"],
+    ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+    ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+    ["\"", "num", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+    ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+    ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "identifier", "\"", ":", "\"", "identifier", "\""]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"],
+      ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "\"", "identifier", "\""]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "\"", "identifier", "\""]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "\"", "identifier", "\""]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "\"", "identifier", "\""]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "\"", "identifier", "\""]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "\"", "identifier", "\""]
+    ]
+  ]
+}
+1-BUBBLES
+{
+  "siblings": [
+    ["\"", "identifier", "\""],
+    ["\"", "num", "\""],
+    ["\"", "identifier", "\"", ":", "stmt"],
+    ["\"", "identifier", "\"", ":", "num"],
+    ["\"", "num", "\"", ":", "stmt"],
+    ["identifier", ":", "stmt"],
+    ["identifier", ":", "num"],
+    ["\"", "identifier", "\"", ":", "\"", "num", "\""],
+    ["\"", "identifier", "\"", ":", "\"", "identifier", "\""],
+    ["\"", "num", "\"", ":", "\"", "num", "\""],
+    ["stmt", ",", "stmt"],
+    ["stmt", ",", "num"],
+    ["num", ",", "stmt"],
+    ["\"", "identifier", "\"", ":", "-", "num"],
+    ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+    ["\"", "num", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+    ["stmt", ",", "stmt", ",", "stmt"],
+    ["stmt", ",", "num", ",", "stmt"],
+    ["num", ",", "stmt", ",", "stmt"],
+    ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "identifier", "\"", ":", "\"", "identifier", "\"", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+      ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ],
+    [
+      ["\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "identifier", "\"", ":", "\"", "identifier", "\"", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "identifier", "\"", ":", "\"", "identifier", "\"", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "identifier", "\"", ":", "\"", "identifier", "\"", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "identifier", "\"", ":", "\"", "identifier", "\"", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "identifier", "\"", ":", "\"", "identifier", "\"", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"],
+      ["\"", "identifier", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "identifier", "\"", ":", "\"", "identifier", "\"", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"],
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "identifier", "\"", ":", "\"", "identifier", "\"", ",", "\"", "identifier", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"],
+      ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ],
+    [
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"],
+      ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ],
+    [
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"],
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "identifier", "\"", ":", "stmt"]
+    ],
+    [
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"],
+      ["\"", "identifier", "\"", ":", "\"", "num", "\""]
+    ]
+  ]
+}
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-22 23:02:06
+Time spent in oracle calls: 9.00006365776062
+Time spent building grammar: 56.43495178222656s
+Time breakdown: {'FIRST_COALESCE': 3.5459024906158447, 'BUILD': 48.379451274871826, 'LAST_COALESCE': 0.21333670616149902, 'EXPAND': 3.927306652069092, 'MINIMIZE': 0.0005190372467041016, 'OVERALL_EXAMPLE_GEN': 0.8670263290405273, 'OVERALL_GROUPING': 14.450133323669434, 'REAPPLY_COUNT': 0}
+Parse calls: 10575, 7085
+LLM calls for bubble finding: 7
+**** Running eval.py ****
+start: stmt
+stmt: num "." num
+    | "\"" identifier "\""
+    | "\"" num "\""
+    | "{" "\"" identifier "\"" ":" stmt "}"
+    | "true"
+    | "[" "-" num "," stmt "]"
+    | "-" num
+    | "-" num "." num
+    | "{" "\"" identifier "\"" ":" num "}"
+    | "{" "\"" num "\"" ":" stmt "}"
+    | "null"
+    | t99 "." num
+    | "{" "\"" identifier "\"" ":" "\"" num "\"" "}"
+    | "{" "\"" identifier "\"" ":" stmt "," "\"" identifier "\"" ":" stmt "," "\"" identifier "\"" ":" stmt "," "\"" identifier "\"" ":" stmt "," "\"" identifier "\"" ":" stmt "}"
+    | "[" "]"
+    | "{" "\"" identifier "\"" ":" "-" num "}"
+    | "{" "\"" num "\"" ":" "\"" num "\"" "," "\"" identifier "\"" ":" "\"" identifier "\"" "," "\"" identifier "\"" ":" stmt "," "\"" num "\"" ":" stmt "}"
+    | "false"
+    | "{" "}"
+    | "[" stmt "," stmt "]"
+    | "[" num "," stmt "," stmt "," stmt "]"
+    | "{" "\"" num "\"" ":" stmt "," "\"" identifier "\"" ":" stmt "}"
+    | "[" stmt "," stmt "," stmt "," num "," stmt "," num "," stmt "]"
+    | "{" "\"" identifier "\"" ":" stmt "," "\"" identifier "\"" ":" stmt "," "\"" identifier "\"" ":" stmt "}"
+    | num
+    | "[" num "," stmt "]"
+    | t99
+    | "{" "\"" identifier "\"" ":" stmt "," "\"" identifier "\"" ":" stmt "," "\"" identifier "\"" ":" stmt "," "\"" identifier "\"" ":" stmt "}"
+    | "{" "\"" identifier "\"" ":" stmt "," "\"" identifier "\"" ":" stmt "}"
+    | num num
+    | tinteger
+num: tinteger
+identifier: "GE34F5kC5"
+    | "4n"
+    | "4AlX24"
+    | "90b"
+    | "vR0"
+    | "U4Z"
+    | "r5"
+    | "hZ5"
+    | talphanums
+    | tletters
+tinteger: tdigit
+    | tnzdigit tdigits
+tnzdigit: "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tletters: tletter
+    | tletter tletters
+tletter: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+t99: tinteger
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.848, Precision: 0.945, F-1: 0.8938761851645287
+**** Running search.py ****
+**** Running search.py ****
+python3 search.py external Seed_Programs/micro-benchmarks/json/parse_json Seed_Programs/micro-benchmarks/json/guides-r1 Seed_Programs/json-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 11.733333333333333, max guide length: 90
+Average token length: 8.2, max token length: 72
+Guides with brackets: 10, quotes: 20
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 1.7333333333333334
+Average lengths of brackets(not normalized): 3.767460317460317
+Average n: 8.2
+Beginning coalescing...                           
+LLM suggested label: num for 1 and 34
+LLM suggested label: letter for O and rN
+max example size 72, node size: 29
+1-BUBBLES
+{
+    "siblings": [
+        ["\"", "letter", "\""],
+        ["\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "stmt"],
+        ["\"", "num", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "num"],
+        ["\"", "letter", "\"", ":", "-", "num"],
+        ["-", "num", ".", "num"],
+        ["stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt"],
+        ["num", ",", "stmt"],
+        ["num", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "num"],
+        ["stmt", ",", "num", ",", "stmt"],
+        ["\"", "letter", "\"", ":", "\"", "num", "\""],
+        ["\"", "num", "\"", ":", "\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "\"", "letter", "\""],
+        ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+        ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "letter", "\"", ":", "\"", "letter", "\""],
+        ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "letter", "\"", ":", "\"", "letter", "\"", ",", "\"", "letter", "\"", ":", "stmt"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 1 (6/20)...     
+Successful grouping (single): [-, 8, ., 9]
+    (aka ['-', '8', '.', '9']
+coalesced into:  {'t37': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["\"", "letter", "\""],
+        ["\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "stmt"],
+        ["\"", "num", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "num"],
+        ["\"", "letter", "\"", ":", "\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "-", "num"],
+        ["stmt", ",", "stmt"],
+        ["stmt", ",", "num"],
+        ["num", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "num"],
+        ["num", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "num"],
+        ["stmt", ",", "stmt", ",", "num", ",", "stmt"],
+        ["stmt", ",", "num", ",", "stmt", ",", "stmt"],
+        ["num", ",", "stmt", ",", "stmt", ",", "stmt"],
+        ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+        ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "letter", "\"", ":", "\"", "letter", "\""]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "num", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "\"", "num", "\""],
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "\"", "num", "\""],
+      ["\"", "letter", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "\"", "num", "\""],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "\"", "num", "\""],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""],
+      ["\"", "letter", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "\"", "letter", "\""],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "num"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "num"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "-", "num"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"],
+      ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "letter", "\"", ":", "\"", "letter", "\"", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "letter", "\"", ":", "\"", "letter", "\"", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ]
+  ]
+}
+1-BUBBLES
+{
+    "siblings": [
+        ["\"", "letter", "\""],
+        ["\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "stmt"],
+        ["\"", "num", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "num"],
+        ["\"", "letter", "\"", ":", "\"", "num", "\""],
+        ["\"", "num", "\"", ":", "\"", "num", "\""],
+        ["stmt", ",", "stmt"],
+        ["stmt", ",", "num"],
+        ["num", ",", "stmt"],
+        ["\"", "letter", "\"", ":", "-", "num"],
+        ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+        ["\"", "num", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+        ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "letter", "\"", ":", "\"", "letter", "\""],
+        ["\"", "letter", "\"", ":", "\"", "letter", "\"", ",", "\"", "letter", "\"", ":", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "num", ",", "stmt"],
+        ["num", ",", "stmt", ",", "stmt"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "letter", "\"", ":", "\"", "letter", "\"", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"],
+      ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "num"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ]
+  ]
+}
+1-BUBBLES
+{
+    "siblings": [
+        ["\"", "letter", "\""],
+        ["\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "stmt"],
+        ["\"", "num", "\"", ":", "stmt"],
+        ["\"", "letter", "\"", ":", "num"],
+        ["\"", "letter", "\"", ":", "\"", "num", "\""],
+        ["\"", "letter", "\"", ":", "-", "num"],
+        ["stmt", ",", "stmt"],
+        ["stmt", ",", "num"],
+        ["num", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "num"],
+        ["num", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "num"],
+        ["stmt", ",", "stmt", ",", "num", ",", "stmt"],
+        ["stmt", ",", "num", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "stmt", ",", "stmt"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "stmt", ",", "num"],
+        ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "\"", "num", "\"", ",", "\"", "letter", "\"", ":", "\"", "letter", "\"", ",", "\"", "letter", "\"", ":", "stmt", ",", "\"", "num", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt", ",", "\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["stmt", ",", "stmt", ",", "stmt", ",", "num", ",", "stmt", ",", "num", ",", "stmt"],
+      ["num", ",", "stmt", ",", "stmt", ",", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "num", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "letter", "\"", ":", "num"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "stmt"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "num"]
+    ],
+    [
+      ["\"", "num", "\"", ":", "stmt"],
+      ["\"", "letter", "\"", ":", "-", "num"]
+    ]
+  ]
+}
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-22 23:03:08
+Time spent in oracle calls: 9.288182020187378
+Time spent building grammar: 56.24976682662964s
+Time breakdown: {'FIRST_COALESCE': 3.8854360580444336, 'BUILD': 47.78900098800659, 'LAST_COALESCE': 0.2468414306640625, 'EXPAND': 3.9298148155212402, 'MINIMIZE': 0.0005488395690917969, 'OVERALL_EXAMPLE_GEN': 0.9867372512817383, 'OVERALL_GROUPING': 19.86519193649292, 'REAPPLY_COUNT': 0}
+Parse calls: 10672, 7153
+LLM calls for bubble finding: 7
+**** Running eval.py ****
+start: stmt
+stmt: num "." num
+    | "\"" letter "\""
+    | "\"" num "\""
+    | "{" "\"" letter "\"" ":" stmt "}"
+    | "true"
+    | "[" "-" num "," stmt "]"
+    | "-" num
+    | "-" num "." num
+    | "{" "\"" letter "\"" ":" num "}"
+    | "{" "\"" num "\"" ":" stmt "}"
+    | "null"
+    | t98 "." num
+    | "{" "\"" letter "\"" ":" "\"" num "\"" "}"
+    | "{" "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "}"
+    | "[" "]"
+    | "{" "\"" letter "\"" ":" "-" num "}"
+    | "{" "\"" num "\"" ":" "\"" num "\"" "," "\"" letter "\"" ":" "\"" letter "\"" "," "\"" letter "\"" ":" stmt "," "\"" num "\"" ":" stmt "}"
+    | "false"
+    | "{" "}"
+    | "[" stmt "," stmt "]"
+    | "[" num "," stmt "," stmt "," stmt "]"
+    | "{" "\"" num "\"" ":" stmt "," "\"" letter "\"" ":" stmt "}"
+    | "[" stmt "," stmt "," stmt "," num "," stmt "," num "," stmt "]"
+    | "{" "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "}"
+    | num
+    | "[" num "," stmt "]"
+    | t98
+    | "{" "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "}"
+    | "{" "\"" letter "\"" ":" stmt "," "\"" letter "\"" ":" stmt "}"
+    | num num
+    | tinteger
+num: tinteger
+letter: "GE34F5kC5"
+    | "4n"
+    | "4AlX24"
+    | "90b"
+    | "vR0"
+    | "U4Z"
+    | "r5"
+    | "hZ5"
+    | talphanums
+    | tletters
+tinteger: tdigit
+    | tnzdigit tdigits
+tnzdigit: "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tletters: tletter
+    | tletter tletters
+tletter: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+t98: tinteger
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.848, Precision: 0.945, F-1: 0.8938761851645287
+**** Running search.py ****

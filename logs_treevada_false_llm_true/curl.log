@@ -1,0 +1,3970 @@
+python3 search.py external Seed_Programs/curl/parse_curl Seed_Programs/curl/curl-train-r1 Seed_Programs/curl-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 22.08, max guide length: 39
+Average token length: 14.8, max token length: 25
+Guides with brackets: 1, quotes: 1
+Building the starting grammar...                  Building the starting trees...                    Flat tree
+Average number of brackets(not normalized): 1.0
+Average lengths of brackets(not normalized): 14.8
+Average n: 14.8
+Beginning coalescing...                           
+LLM suggested label: assignexpr for = and j
+LLM suggested label: protocol for ftp and gopher
+LLM suggested label: num for 2 and 8
+max example size 25, node size: 1
+1-BUBBLES
+{
+    "siblings": [
+        ["protocol", ":"],
+        [":", "/"],
+        ["/", "/"],
+        [":", "@"],
+        ["@", "num"],
+        ["num", "assignexpr"],
+        ["assignexpr", "assignexpr"],
+        [":", "num"],
+        ["/", "@"],
+        ["/", ":"],
+        [":", "/"],
+        ["/", ":"],
+        [":", "assignexpr"],
+        ["assignexpr", "?"],
+        ["?", "assignexpr"],
+        ["@", "assignexpr"],
+        ["assignexpr", ":"],
+        [":", "assignexpr"],
+        ["assignexpr", "/"],
+        ["/", "?"]
+    ]
+}
+LLM suggested label: url for /? and localhost
+
+[Group len -1] Bubbling iteration 1 (1/17)...     
+Successful grouping (single): [/, ?]
+    (aka ['/', '?']
+coalesced into:  {'t17': 'url', 'localhost': 'url'}
+LLM suggested label: expr for 10/ and ?
+
+[Group len -1] Bubbling iteration 1 (2/17)...     
+Successful grouping (single): [671, /]
+    (aka ['671', '/']
+coalesced into:  {'t16': 'expr', '?': 'expr'}
+LLM suggested label: identifier for @07 and @
+
+[Group len -1] Bubbling iteration 1 (4/17)...     
+Successful grouping (single): [@, 301041]
+    (aka ['@', '301041']
+coalesced into:  {'t14': 'identifier', '@': 'identifier'}
+Reapply: 1
+
+[Group len -1] Bubbling iteration 1 (4/17)...     
+Successful grouping (single): [@, 301041]
+    (aka ['@', '301041']
+coalesced into:  {'t20': 'identifier', 'identifier': 'identifier'}
+Reapply: 2
+
+[Group len -1] Bubbling iteration 1 (4/17)...     
+Successful grouping (single): [@, 301041]
+    (aka ['@', '301041']
+coalesced into:  {'t21': 'identifier', 'identifier': 'identifier'}
+Reapply: 3
+
+[Group len -1] Bubbling iteration 1 (4/17)...     
+Successful grouping (single): [@, 301041]
+    (aka ['@', '301041']
+coalesced into:  {'t22': 'identifier', 'identifier': 'identifier'}
+Reapply: 4
+
+[Group len -1] Bubbling iteration 1 (4/17)...     
+Successful grouping (single): [@, 301041]
+    (aka ['@', '301041']
+coalesced into:  {'t23': 'identifier', 'identifier': 'identifier'}
+Reapply: 5
+
+[Group len -1] Bubbling iteration 1 (4/17)...     
+Successful grouping (single): [@, 301041]
+    (aka ['@', '301041']
+coalesced into:  {'t24': 'identifier', 'identifier': 'identifier'}
+
+[Group len -1] Bubbling iteration 1 (11/17)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t7': 'assignexpr', 'assignexpr': 'assignexpr'}
+Reapply: 6
+
+[Group len -1] Bubbling iteration 1 (11/17)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t26': 'assignexpr', 'assignexpr': 'assignexpr'}
+Reapply: 7
+
+[Group len -1] Bubbling iteration 1 (11/17)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t27': 'assignexpr', 'assignexpr': 'assignexpr'}
+Reapply: 8
+
+[Group len -1] Bubbling iteration 1 (11/17)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t28': 'assignexpr', 'assignexpr': 'assignexpr'}
+
+[Group len -1] Bubbling iteration 1 (12/17)...    
+Successful grouping (single): [2, .]
+    (aka ['2', '.']
+coalesced into:  {'t6': 'assignexpr', 'assignexpr': 'assignexpr'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 1 (11/17)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t29': 'assignexpr', 'assignexpr': 'assignexpr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        [":", "/"],
+        ["/", "/"],
+        [":", "identifier"],
+        ["identifier", "assignexpr"],
+        ["assignexpr", ":"],
+        [":", "num"],
+        ["num", "/"],
+        ["/", "identifier"],
+        ["identifier", "/"],
+        ["/", ":"],
+        [":", "assignexpr"],
+        ["assignexpr", "expr"],
+        ["expr", "assignexpr"],
+        ["assignexpr", "url"],
+        ["url", "assignexpr"],
+        ["file", ":"],
+        [":", "/", "/"],
+        ["/", "/", "assignexpr"],
+        ["assignexpr", "expr", "identifier"],
+        ["identifier", "assignexpr", ":"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 2 (2/31)...     
+Successful grouping (single): [url, assignexpr]
+    (aka ['/?', '%ce']
+coalesced into:  {'t50': 'url', 'url': 'url'}
+
+[Group len -1] Bubbling iteration 2 (3/31)...     
+Successful grouping (single): [=, url]
+    (aka ['=', '/?']
+coalesced into:  {'t49': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 2 (4/31)...     
+Successful grouping (single): [expr, (]
+    (aka ['671/', '(']
+coalesced into:  {'t48': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 2 (14/31)...    
+Successful grouping (single): [:, @]
+    (aka [':', '@']
+coalesced into:  {'t38': 'identifier', 'identifier': 'identifier'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    [":", "/"],
+    ["/", "/"],
+    ["protocol", ":"],
+    ["identifier", "assignexpr"],
+    ["assignexpr", ":"],
+    ["num", "/"],
+    ["/", ":"],
+    [":", "assignexpr"],
+    ["assignexpr", "expr"],
+    ["expr", "identifier"],
+    ["identifier", "/"],
+    ["assignexpr", "num"],
+    ["file", ":"],
+    ["url", "/"],
+    ["expr", ":"],
+    ["/", "assignexpr"],
+    ["expr", "expr"],
+    ["assignexpr", "url"],
+    ["identifier", "expr"],
+    ["assignexpr", "expr"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 3 (1/37)...     
+Successful grouping (single): [identifier, expr]
+    (aka ['@631.54.77.', '188/']
+coalesced into:  {'t73': 'assignexpr', 'assignexpr': 'assignexpr'}
+
+[Group len -1] Bubbling iteration 3 (2/37)...     
+Successful grouping (single): [expr, expr]
+    (aka ['A/;', '=/']
+coalesced into:  {'t72': 'expr', 'expr': 'expr'}
+Reapply: 9
+
+[Group len -1] Bubbling iteration 3 (2/37)...     
+Successful grouping (single): [expr, expr]
+    (aka ['A/;', '=/']
+coalesced into:  {'t75': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 3 (4/37)...     
+Successful grouping (single): [expr, :]
+    (aka ['=/?', ':']
+coalesced into:  {'t70': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 3 (7/37)...     
+Successful grouping (single): [assignexpr, 5]
+    (aka ['%e', '5']
+coalesced into:  {'t67': 'assignexpr', 'assignexpr': 'assignexpr'}
+
+[Group len -1] Bubbling iteration 3 (9/37)...     
+Successful grouping (single): [expr, @]
+    (aka ['Mj/', '@']
+coalesced into:  {'t65': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 3 (20/37)...    
+Successful grouping (single): [expr, (]
+    (aka ['671/', '(']
+coalesced into:  {'t54': 'expr', 'expr': 'expr'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 3 (2/37)...     
+Successful grouping (single): [expr, expr]
+    (aka ['A/;', '=/']
+coalesced into:  {'t76': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 3 (4/37)...     
+Successful grouping (single): [expr, :]
+    (aka ['=/?', ':']
+coalesced into:  {'t77': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 3 (10/37)...    
+Successful grouping (single): [=, ?]
+    (aka ['=', '?']
+coalesced into:  {'t64': 'assignexpr', 'assignexpr': 'assignexpr'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 3 (34/37)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t31': 'assignexpr', 'assignexpr': 'assignexpr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["protocol", ":"],
+    [":", "/"],
+    ["/", "/"],
+    ["identifier", "assignexpr"],
+    ["assignexpr", ":"],
+    [":", "num"],
+    ["num", "/"],
+    ["/", "identifier"],
+    ["identifier", "/"],
+    ["/", ":"],
+    [":", "/"],
+    ["/", ":"],
+    [":", "assignexpr"],
+    ["file", ":"],
+    ["/", "assignexpr"],
+    ["assignexpr", "expr"],
+    ["expr", "/"],
+    ["/", "url"],
+    ["url", "/"],
+    ["/", "expr"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 4 (3/40)...     
+Successful grouping (single): [/, localhost]
+    (aka ['/', 'localhost']
+coalesced into:  {'t100': 'expr', 'expr': 'expr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    [":", "/"],
+    ["/", "/"],
+    ["protocol", ":"],
+    ["identifier", "assignexpr"],
+    ["assignexpr", ":"],
+    ["num", "/"],
+    ["/", "identifier"],
+    [":", "assignexpr"],
+    ["file", ":"],
+    ["/", "expr"],
+    ["expr", "/"],
+    ["assignexpr", "expr"],
+    ["assignexpr", "url"],
+    ["/", "assignexpr"],
+    [":", "num"],
+    ["/", "/"],
+    ["/", "assignexpr"],
+    ["identifier", "identifier"],
+    ["/", "url"],
+    ["assignexpr", ":"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 5 (1/41)...     
+Successful grouping (single): [@, @]
+    (aka ['@', '@']
+coalesced into:  {'t119': 'identifier', 'identifier': 'identifier'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        [":", "/"],
+        ["/", "/"],
+        ["protocol", ":"],
+        ["assignexpr", ":"],
+        ["num", "/"],
+        ["identifier", "assignexpr"],
+        ["assignexpr", "expr"],
+        ["assignexpr", "url"],
+        ["file", ":"],
+        ["/", "expr"],
+        ["/", "assignexpr"],
+        [":", "num"],
+        [":", "assignexpr"],
+        ["/", "identifier"],
+        ["/", ":"],
+        [":", "/"],
+        ["/", "url"],
+        ["/", "/"],
+        ["/", "expr"],
+        ["/", "assignexpr"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 6 (9/41)...     
+Successful grouping (single): [assignexpr, expr]
+    (aka ['&?%D5=:@45z.mA9:', '588440/']
+coalesced into:  {'t127': 'assignexpr', 'assignexpr': 'assignexpr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    [":", "/"],
+    ["/", "/"],
+    ["protocol", ":"],
+    ["assignexpr", ":"],
+    [":", "num"],
+    ["num", "/"],
+    ["/", "identifier"],
+    ["identifier", "assignexpr"],
+    ["assignexpr", "/"],
+    ["/", ":"],
+    [":", "assignexpr"],
+    ["file", ":"],
+    [":", "/"],
+    ["/", "expr"],
+    ["expr", "/"],
+    ["/", "assignexpr"],
+    ["assignexpr", "url"],
+    ["url", "/"],
+    ["/", "/"],
+    ["/", "assignexpr"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "identifier", "/", ":", "/", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "identifier", "/", ":", "/", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "identifier", "/", ":", "/", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", "/", ":", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "identifier", "/", ":", "/", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", "/", ":", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", "/", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", "/", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", "/", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", "/", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ]
+  ]
+}
+1-BUBBLES
+{
+  "siblings": [
+    [":", "/"],
+    ["/", "/"],
+    ["protocol", ":"],
+    ["assignexpr", ":"],
+    ["num", "/"],
+    [":", "num"],
+    ["identifier", "assignexpr"],
+    ["assignexpr", "url"],
+    ["file", ":"],
+    ["/", "expr"],
+    ["/", "assignexpr"],
+    ["/", "identifier"],
+    ["/", "url"],
+    ["expr", "/"],
+    ["expr", "assignexpr"],
+    ["assignexpr", "/"],
+    ["assignexpr", "expr"],
+    ["assignexpr", "identifier"],
+    ["assignexpr", "num"],
+    ["assignexpr", "assignexpr"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 7 (1/37)...     
+Successful grouping (single): [assignexpr, identifier]
+    (aka ['=;', '@s3.3.A']
+coalesced into:  {'t167': 'identifier', 'identifier': 'identifier'}
+
+[Group len -1] Bubbling iteration 7 (25/37)...    
+Successful grouping (single): [:, @]
+    (aka [':', '@']
+coalesced into:  {'t55': 'identifier', 'identifier': 'identifier'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 7 (17/37)...    
+Successful grouping (single): [/, :]
+    (aka ['/', ':']
+coalesced into:  {'t146': 'url', 'url': 'url'}
+
+[Group len -1] Bubbling iteration 7 (24/37)...    
+Successful grouping (single): [url, assignexpr]
+    (aka ['/?', '%ce']
+coalesced into:  {'t52': 'url', 'url': 'url'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        [":", "/"],
+        ["/", "/"],
+        ["protocol", ":"],
+        ["identifier", "assignexpr"],
+        ["assignexpr", ":"],
+        [":", "num"],
+        ["num", "/"],
+        ["/", "identifier"],
+        ["url", "url"],
+        ["assignexpr", "url"],
+        ["file", ":"],
+        [":", "expr"],
+        ["expr", "/"],
+        ["/", "assignexpr"],
+        ["assignexpr", ":"],
+        [":", "assignexpr"],
+        ["assignexpr", "expr"],
+        ["expr", "assignexpr"],
+        ["/", "expr"],
+        ["assignexpr", "num"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 8 (4/38)...     
+Successful grouping (single): [expr, /]
+    (aka ['/localhost', '/']
+coalesced into:  {'t183': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 8 (7/38)...     
+Successful grouping (single): [url, url]
+    (aka ['/:', '/:==&=']
+coalesced into:  {'t180': 'url', 'url': 'url'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    [":", "/"],
+    ["/", "/"],
+    [":", "num"],
+    [":", "assignexpr"],
+    ["/", "assignexpr"],
+    ["/", "identifier"],
+    ["/", "expr"],
+    ["/", "url"],
+    ["identifier", "assignexpr"],
+    ["assignexpr", "url"],
+    ["assignexpr", "expr"],
+    ["assignexpr", "num"],
+    ["file", ":"],
+    ["protocol", ":"],
+    [":", "identifier"],
+    [":", "expr"],
+    [":", "url"],
+    ["expr", "assignexpr"],
+    ["assignexpr", "assignexpr"],
+    ["identifier", "url"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 9 (2/39)...     
+Successful grouping (single): [expr, assignexpr]
+    (aka ['/localhost/', '=?']
+coalesced into:  {'t200': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 9 (19/39)...    
+Successful grouping (single): [assignexpr, /]
+    (aka ['8.Mj/@', '/']
+coalesced into:  {'t166': 'assignexpr', 'assignexpr': 'assignexpr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    [":", "/"],
+    ["/", "/"],
+    [":", "assignexpr"],
+    ["assignexpr", ":"],
+    [":", "num"],
+    ["num", "/"],
+    ["/", "assignexpr"],
+    ["assignexpr", "/"],
+    ["/", "identifier"],
+    ["identifier", "assignexpr"],
+    ["assignexpr", "url"],
+    [":", "identifier"],
+    ["identifier", "url"],
+    ["/", "expr"],
+    ["expr", "assignexpr"],
+    ["assignexpr", "assignexpr"],
+    [":", "expr"],
+    ["file", ":"],
+    [":", "/"],
+    ["/", "file"]
+  ]
+}
+LLM suggested label: urlpath for //localhost/%EF and /
+
+[Group len -1] Bubbling iteration 10 (3/39)...    
+Successful grouping (single): [/, expr]
+    (aka ['/', '/localhost/=?']
+coalesced into:  {'t216': 'urlpath', '/': 'urlpath'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 10 (2/39)...    
+Successful grouping (single): [assignexpr, assignexpr]
+    (aka ['&?%D5=:@45z.mA9:588440//', ';type=i']
+coalesced into:  {'t217': 'assignexpr', 'assignexpr': 'assignexpr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["protocol", ":"],
+    ["file", ":"],
+    ["urlpath", "urlpath"],
+    ["urlpath", "assignexpr"],
+    ["assignexpr", ":"],
+    [":", "num"],
+    ["urlpath", "identifier"],
+    ["identifier", "assignexpr"],
+    ["assignexpr", "url"],
+    ["urlpath", "url"],
+    ["urlpath", "assignexpr", ":"],
+    ["urlpath", "urlpath", "assignexpr"],
+    ["urlpath", "urlpath", "identifier"],
+    ["urlpath", "urlpath", "urlpath"],
+    ["urlpath", "urlpath", "assignexpr", ":"],
+    ["urlpath", "urlpath", "assignexpr", "url"],
+    ["urlpath", "urlpath", "assignexpr", "urlpath"],
+    ["urlpath", "urlpath", "identifier", "assignexpr"],
+    ["urlpath", "urlpath", "identifier", "assignexpr", ":"],
+    ["urlpath", "urlpath", "identifier", "assignexpr", "url"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["protocol", ":", "urlpath", "urlpath", "assignexpr", ":", "num", "urlpath", "urlpath", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "urlpath", "urlpath", "identifier", "assignexpr", ":", "num", "urlpath", "identifier", "url"]
+    ],
+    [
+      ["protocol", ":", "urlpath", "urlpath", "identifier", "assignexpr", ":", "num", "urlpath", "assignexpr"],
+      ["protocol", ":", "urlpath", "urlpath", "assignexpr", ":", "num", "urlpath", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "urlpath", "urlpath", "assignexpr", ":", "num", "urlpath", "assignexpr"],
+      ["protocol", ":", "urlpath", "urlpath", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "urlpath", "urlpath", "identifier", "assignexpr", ":", "num"],
+      ["protocol", ":", "urlpath", "urlpath", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "urlpath", "urlpath", "identifier", "assignexpr", "url"],
+      ["protocol", ":", "urlpath", "urlpath", "assignexpr", "url"]
+    ],
+    [
+      ["protocol", ":", "urlpath", "urlpath", "assignexpr", "urlpath"],
+      ["protocol", ":", "urlpath", "urlpath", "assignexpr", "url"]
+    ],
+    [
+      ["protocol", ":", "urlpath", "urlpath", "assignexpr", "url"],
+      ["protocol", ":", "urlpath", "urlpath", "assignexpr"]
+    ],
+    [
+      ["file", ":", "urlpath", "urlpath", "urlpath", "urlpath", "urlpath", "identifier"],
+      ["file", ":", "urlpath", "urlpath", "urlpath"]
+    ]
+  ]
+}
+1-BUBBLES
+{
+    "siblings": [
+        ["protocol", ":"],
+        ["file", ":"],
+        ["urlpath", "urlpath"],
+        ["urlpath", "assignexpr"],
+        ["assignexpr", ":"],
+        ["urlpath", "identifier"],
+        ["identifier", "assignexpr"],
+        ["assignexpr", "url"],
+        ["urlpath", "url"],
+        ["urlpath", "num"],
+        ["urlpath", "assignexpr", ":"],
+        ["urlpath", "urlpath", "assignexpr"],
+        ["urlpath", "urlpath", "identifier"],
+        ["urlpath", "urlpath", "url"],
+        ["urlpath", "urlpath", "num"],
+        ["urlpath", "urlpath", "urlpath"],
+        ["urlpath", "urlpath", "urlpath", "urlpath"],
+        ["urlpath", "urlpath", "urlpath", "urlpath", "urlpath"],
+        ["urlpath", "urlpath", "urlpath", "urlpath", "urlpath", "identifier"],
+        ["urlpath", "urlpath", "urlpath", "urlpath", "urlpath", "urlpath"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["protocol", ":", "urlpath", "urlpath", "assignexpr", ":", "num", "urlpath", "urlpath", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "urlpath", "urlpath", "identifier", "assignexpr", ":", "num", "urlpath", "identifier", "url"]
+    ],
+    [
+      ["protocol", ":", "urlpath", "urlpath", "identifier", "assignexpr", ":", "num", "urlpath", "assignexpr"],
+      ["protocol", ":", "urlpath", "urlpath", "assignexpr", ":", "num", "urlpath", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "urlpath", "urlpath", "assignexpr", ":", "num", "urlpath", "assignexpr"],
+      ["protocol", ":", "urlpath", "urlpath", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "urlpath", "urlpath", "identifier", "assignexpr", ":", "num"],
+      ["protocol", ":", "urlpath", "urlpath", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "urlpath", "urlpath", "identifier", "assignexpr", "url"],
+      ["protocol", ":", "urlpath", "urlpath", "assignexpr", "url"]
+    ],
+    [
+      ["protocol", ":", "urlpath", "urlpath", "assignexpr", "urlpath"],
+      ["protocol", ":", "urlpath", "urlpath", "assignexpr", "url"]
+    ],
+    [
+      ["protocol", ":", "urlpath", "urlpath", "assignexpr", "url"],
+      ["protocol", ":", "urlpath", "urlpath", "assignexpr"]
+    ],
+    [
+      ["file", ":", "urlpath", "urlpath", "urlpath", "urlpath", "urlpath", "identifier"],
+      ["file", ":", "urlpath", "urlpath", "urlpath"]
+    ]
+  ]
+}
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-23 02:37:43
+Time spent in oracle calls: 148.1770007610321
+Time spent building grammar: 224.5860300064087s
+Time breakdown: {'FIRST_COALESCE': 30.787281036376953, 'BUILD': 149.21820211410522, 'LAST_COALESCE': 1.5128657817840576, 'EXPAND': 41.68970465660095, 'MINIMIZE': 0.0003306865692138672, 'OVERALL_EXAMPLE_GEN': 10.141085863113403, 'OVERALL_GROUPING': 30.177624225616455, 'REAPPLY_COUNT': 9}
+Parse calls: 58771, 38606
+LLM calls for bubble finding: 16
+**** Running eval.py ****
+start: stmt
+stmt: "file" ":" urlpath
+    | protocol ":" urlpath urlpath assignexpr
+    | "file" ":" urlpath urlpath urlpath urlpath urlpath identifier
+    | protocol ":" urlpath urlpath identifier assignexpr ":" num urlpath assignexpr
+    | protocol ":" urlpath urlpath identifier assignexpr url
+    | protocol ":" urlpath urlpath assignexpr urlpath
+    | "file" ":" urlpath urlpath urlpath
+    | protocol ":" urlpath urlpath identifier assignexpr ":" num urlpath identifier url
+    | protocol ":" urlpath urlpath identifier assignexpr
+    | protocol ":" urlpath urlpath assignexpr ":" num
+    | protocol ":" urlpath urlpath assignexpr url
+    | protocol ":" urlpath urlpath assignexpr ":" num urlpath assignexpr
+    | protocol ":" urlpath urlpath identifier assignexpr ":" num
+    | protocol ":" urlpath urlpath assignexpr ":" num urlpath urlpath assignexpr ":" assignexpr
+    | protocol ":" urlpath assignexpr
+    | "file" ":" urlpath urlpath urlpath identifier
+    | protocol ":" urlpath urlpath identifier
+    | protocol ":" urlpath identifier
+    | protocol ":" urlpath identifier assignexpr url
+    | protocol ":" urlpath assignexpr urlpath
+    | protocol ":" urlpath urlpath
+    | protocol ":" urlpath
+    | protocol ":" urlpath identifier assignexpr
+    | protocol ":" urlpath assignexpr ":" num
+    | protocol ":" urlpath assignexpr url
+    | protocol ":" urlpath num urlpath assignexpr
+    | protocol ":" urlpath urlpath assignexpr ":"
+    | protocol ":" urlpath assignexpr ":"
+urlpath: urlpath expr
+    | "/"
+expr: expr assignexpr
+    | expr urlpath
+    | urlpath url
+    | "?"
+    | assignexpr urlpath
+    | expr identifier
+    | expr expr
+    | expr ":"
+    | assignexpr url
+url: "localhost"
+    | url assignexpr
+    | urlpath ":"
+    | urlpath expr
+    | url url
+assignexpr: assignexpr expr
+    | "="
+    | assignexpr assignexpr
+    | "."
+    | num assignexpr
+    | "("
+    | ";"
+    | "-"
+    | assignexpr num
+    | "%"
+    | assignexpr urlpath
+    | "&"
+    | identifier expr
+    | "'"
+    | talphanums
+    | tletters
+protocol: "ftp"
+    | "gopher"
+    | "http"
+    | "telnet"
+num: "2"
+    | "8"
+    | "5"
+    | "75"
+    | "0191"
+identifier: identifier identifier
+    | "@"
+    | identifier assignexpr
+    | ":" identifier
+    | assignexpr identifier
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tletters: tletter
+    | tletter tletters
+tletter: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.594, Precision: 0.525, F-1: 0.557372654155496
+**** Running search.py ****
+python3 search.py external Seed_Programs/curl/parse_curl Seed_Programs/curl/curl-train-r1 Seed_Programs/curl-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 22.08, max guide length: 39
+Average token length: 14.8, max token length: 25
+Guides with brackets: 1, quotes: 1
+Building the starting grammar...                  Building the starting trees...                    Flat tree
+Average number of brackets(not normalized): 1.0
+Average lengths of brackets(not normalized): 14.8
+Average n: 14.8
+Beginning coalescing...                           
+LLM suggested label: assignexpr for = and j
+LLM suggested label: protocol for ftp and gopher
+LLM suggested label: num for 2 and 8
+max example size 25, node size: 1
+1-BUBBLES
+{
+  "siblings": [
+    ["protocol", ":"],
+    [":", "/"],
+    ["/", "/"],
+    [":", "@"],
+    ["@", "num"],
+    ["num", "assignexpr"],
+    ["assignexpr", "assignexpr"],
+    ["assignexpr", ":"],
+    [":", "num"],
+    ["num", "/"],
+    ["/", "@"],
+    ["@", "/"],
+    ["/", ":"],
+    [":", "/"],
+    ["/", "assignexpr"],
+    ["assignexpr", "?"],
+    ["?", "assignexpr"],
+    ["assignexpr", ":"],
+    [":", "assignexpr"],
+    ["assignexpr", "/"]
+  ]
+}
+LLM suggested label: expr for 10/ and ?
+
+[Group len -1] Bubbling iteration 1 (1/18)...     
+Successful grouping (single): [671, /]
+    (aka ['671', '/']
+coalesced into:  {'t18': 'expr', '?': 'expr'}
+LLM suggested label: hostspec for /: and localhost
+
+[Group len -1] Bubbling iteration 1 (6/18)...     
+Successful grouping (single): [/, :]
+    (aka ['/', ':']
+coalesced into:  {'t13': 'hostspec', 'localhost': 'hostspec'}
+
+[Group len -1] Bubbling iteration 1 (12/18)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t7': 'assignexpr', 'assignexpr': 'assignexpr'}
+Reapply: 1
+
+[Group len -1] Bubbling iteration 1 (12/18)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t21': 'assignexpr', 'assignexpr': 'assignexpr'}
+Reapply: 2
+
+[Group len -1] Bubbling iteration 1 (12/18)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t22': 'assignexpr', 'assignexpr': 'assignexpr'}
+Reapply: 3
+
+[Group len -1] Bubbling iteration 1 (12/18)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t23': 'assignexpr', 'assignexpr': 'assignexpr'}
+
+[Group len -1] Bubbling iteration 1 (13/18)...    
+Successful grouping (single): [2, .]
+    (aka ['2', '.']
+coalesced into:  {'t6': 'assignexpr', 'assignexpr': 'assignexpr'}
+LLM suggested label: identifier for :@ and @
+
+[Group len -1] Bubbling iteration 1 (15/18)...    
+Successful grouping (single): [:, @]
+    (aka [':', '@']
+coalesced into:  {'t4': 'identifier', '@': 'identifier'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 1 (12/18)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t24': 'assignexpr', 'assignexpr': 'assignexpr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["protocol", ":"],
+    [":", "/"],
+    ["/", "hostspec"],
+    ["hostspec", "identifier"],
+    ["identifier", "assignexpr"],
+    ["assignexpr", ":"],
+    [":", "num"],
+    ["num", "/"],
+    ["/", "identifier"],
+    ["identifier", "hostspec"],
+    ["hostspec", "assignexpr"],
+    ["assignexpr", "expr"],
+    ["expr", "assignexpr"],
+    ["assignexpr", "identifier"],
+    ["identifier", "assignexpr"],
+    ["assignexpr", "expr"],
+    ["expr", "expr"],
+    ["expr", ":"],
+    [":", "assignexpr"],
+    ["assignexpr", "num"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 2 (1/30)...     
+Successful grouping (single): [assignexpr, 5]
+    (aka ['%e', '5']
+coalesced into:  {'t45': 'assignexpr', 'assignexpr': 'assignexpr'}
+
+[Group len -1] Bubbling iteration 2 (3/30)...     
+Successful grouping (single): [?, :]
+    (aka ['?', ':']
+coalesced into:  {'t43': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 2 (4/30)...     
+Successful grouping (single): [expr, ?]
+    (aka ['=/', '?']
+coalesced into:  {'t42': 'assignexpr', 'assignexpr': 'assignexpr'}
+
+[Group len -1] Bubbling iteration 2 (5/30)...     
+Successful grouping (single): [assignexpr, identifier]
+    (aka ['%D5=', ':@']
+coalesced into:  {'t41': 'identifier', 'identifier': 'identifier'}
+
+[Group len -1] Bubbling iteration 2 (6/30)...     
+Successful grouping (single): [expr, (]
+    (aka ['671/', '(']
+coalesced into:  {'t40': 'expr', 'expr': 'expr'}
+Reapply: 4
+
+[Group len -1] Bubbling iteration 2 (6/30)...     
+Successful grouping (single): [expr, (]
+    (aka ['671/', '(']
+coalesced into:  {'t50': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 2 (8/30)...     
+Successful grouping (single): [hostspec, assignexpr]
+    (aka ['/:', '%e']
+coalesced into:  {'t38': 'hostspec', 'hostspec': 'hostspec'}
+
+[Group len -1] Bubbling iteration 2 (26/30)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t27': 'expr', 'expr': 'expr'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 2 (4/30)...     
+Successful grouping (single): [expr, ?]
+    (aka ['=/', '?']
+coalesced into:  {'t48': 'expr', 'expr': 'expr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["protocol", ":"],
+    [":", "/"],
+    ["/", "hostspec"],
+    ["hostspec", "identifier"],
+    ["identifier", "assignexpr"],
+    ["assignexpr", ":"],
+    [":", "num"],
+    ["num", "/"],
+    ["/", "identifier"],
+    ["identifier", "hostspec"],
+    ["hostspec", "hostspec"],
+    ["assignexpr", "expr"],
+    ["expr", "identifier"],
+    ["identifier", "hostspec"],
+    ["assignexpr", "assignexpr"],
+    ["file", ":"],
+    [":", "/"],
+    ["/", "assignexpr"],
+    ["assignexpr", "expr"],
+    ["expr", "/"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 3 (1/33)...     
+Successful grouping (single): [expr, /]
+    (aka ['s/', '/']
+coalesced into:  {'t70': 'expr', 'expr': 'expr'}
+Reapply: 5
+
+[Group len -1] Bubbling iteration 3 (1/33)...     
+Successful grouping (single): [expr, /]
+    (aka ['s/', '/']
+coalesced into:  {'t71': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 3 (4/33)...     
+Successful grouping (single): [expr, @]
+    (aka ['Mj/', '@']
+coalesced into:  {'t67': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 3 (6/33)...     
+Successful grouping (single): [hostspec, hostspec]
+    (aka ['/:', '/:==&=']
+coalesced into:  {'t65': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 3 (20/33)...    
+Successful grouping (single): [expr, ?]
+    (aka ['=/', '?']
+coalesced into:  {'t54': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 3 (22/33)...    
+Successful grouping (single): [expr, (]
+    (aka ['671/', '(']
+coalesced into:  {'t51': 'expr', 'expr': 'expr'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 3 (19/33)...    
+Successful grouping (single): [?, :]
+    (aka ['?', ':']
+coalesced into:  {'t47': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 3 (20/33)...    
+Successful grouping (single): [expr, ?]
+    (aka ['=/', '?']
+coalesced into:  {'t75': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 3 (22/33)...    
+Successful grouping (single): [expr, (]
+    (aka ['671/', '(']
+coalesced into:  {'t76': 'expr', 'expr': 'expr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        [":", "/"],
+        ["/", "/"],
+        ["assignexpr", ":"],
+        [":", "num"],
+        ["num", "/"],
+        ["assignexpr", "expr"],
+        ["identifier", "assignexpr"],
+        ["hostspec", "identifier"],
+        ["file", ":"],
+        ["protocol", ":"],
+        ["/", "hostspec"],
+        ["hostspec", "/"],
+        ["identifier", "expr"],
+        ["/", "assignexpr"],
+        ["expr", "hostspec"],
+        ["/", "identifier"],
+        ["identifier", "identifier"],
+        ["/", "expr"],
+        ["/", "/"],
+        ["/", "/", "/"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 4 (2/39)...     
+Successful grouping (single): [@, @]
+    (aka ['@', '@']
+coalesced into:  {'t97': 'assignexpr', 'assignexpr': 'assignexpr'}
+
+[Group len -1] Bubbling iteration 4 (4/39)...     
+Successful grouping (single): [expr, hostspec]
+    (aka ['Mj/@', '/:%e5']
+coalesced into:  {'t95': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 4 (13/39)...    
+Successful grouping (single): [=, ?]
+    (aka ['=', '?']
+coalesced into:  {'t86': 'assignexpr', 'assignexpr': 'assignexpr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        [":", "/"],
+        ["/", "/"],
+        ["assignexpr", ":"],
+        [":", "num"],
+        ["num", "/"],
+        ["/", "assignexpr"],
+        ["protocol", ":"],
+        ["file", ":"],
+        ["/", "hostspec"],
+        ["hostspec", "identifier"],
+        ["identifier", "assignexpr"],
+        ["/", "identifier"],
+        ["identifier", "expr"],
+        ["/", "expr"],
+        ["/", "/", "/"],
+        ["/", "/", "/", "/"],
+        ["/", "/", "/", "/", "/"],
+        ["/", "/", "/", "/", "/", "/"],
+        ["/", "/", "/", "/", "/", "/", "/"],
+        ["/", "/", "/", "/", "/", "/", "/", "/"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "hostspec", "identifier", "assignexpr", ":", "num"],
+      ["protocol", ":", "/", "hostspec", "identifier", "assignexpr", ":", "num", "/", "identifier", "expr"]
+    ],
+    [
+      ["file", ":", "/", "/", "/", "/", "/", "assignexpr"],
+      ["file", ":", "/", "/", "/", "expr"]
+    ],
+    [
+      ["file", ":", "/", "/", "/", "/", "/", "assignexpr"],
+      ["file", ":", "/", "/", "hostspec", "/", "assignexpr"]
+    ],
+    [
+      ["file", ":", "/", "/", "/", "expr"],
+      ["file", ":", "/", "/", "hostspec", "/", "assignexpr"]
+    ]
+  ]
+}
+1-BUBBLES
+{
+  "siblings": [
+    [":", "/"],
+    ["/", "/"],
+    ["assignexpr", ":"],
+    [":", "num"],
+    ["num", "/"],
+    ["/", "assignexpr"],
+    ["protocol", ":"],
+    ["file", ":"],
+    ["hostspec", "identifier"],
+    ["identifier", "assignexpr"],
+    ["assignexpr", "expr"],
+    ["/", "hostspec"],
+    ["/", "identifier"],
+    ["/", "expr"],
+    ["/", "/", "/"],
+    ["/", "/", "/", "/"],
+    ["/", "/", "/", "/", "/"],
+    ["/", "/", "/", "/", "/", "/"],
+    ["/", "/", "/", "/", "/", "/", "/"],
+    ["/", "/", "/", "/", "/", "/", "/", "/"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "hostspec", "identifier", "assignexpr", ":", "num"],
+      ["protocol", ":", "/", "hostspec", "identifier", "assignexpr", ":", "num", "/", "identifier", "expr"]
+    ],
+    [
+      ["file", ":", "/", "/", "/", "/", "/", "assignexpr"],
+      ["file", ":", "/", "/", "hostspec", "/", "assignexpr"]
+    ],
+    [
+      ["file", ":", "/", "/", "/", "/", "/", "assignexpr"],
+      ["file", ":", "/", "/", "/", "expr"]
+    ],
+    [
+      ["file", ":", "/", "/", "hostspec", "/", "assignexpr"],
+      ["file", ":", "/", "/", "/", "expr"]
+   ]
+  ]
+}
+1-BUBBLES
+{
+  "siblings": [
+    [":", "/"],
+    ["/", "/"],
+    [":", "num"],
+    [":", "assignexpr"],
+    ["/", "assignexpr"],
+    ["/", "identifier"],
+    ["/", "hostspec"],
+    ["/", "expr"],
+    [":", "expr"],
+    ["protocol", ":"],
+    ["file", ":"],
+    ["hostspec", "identifier"],
+    ["identifier", "assignexpr"],
+    ["assignexpr", ":"],
+    ["assignexpr", "num"],
+    ["assignexpr", "expr"],
+    ["assignexpr", "assignexpr"],
+    ["num", "/"],
+    ["num", "assignexpr"],
+    ["expr", "assignexpr"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "hostspec", "identifier", "assignexpr", ":", "num"],
+      ["protocol", ":", "/", "hostspec", "identifier", "assignexpr", ":", "num", "/", "identifier", "expr"]
+    ],
+    [
+      ["file", ":", "/", "/", "/", "/", "/", "assignexpr"],
+      ["file", ":", "/", "/", "/", "expr"]
+    ],
+    [
+      ["file", ":", "/", "/", "/", "/", "/", "assignexpr"],
+      ["file", ":", "/", "/", "hostspec", "/", "assignexpr"]
+    ],
+    [
+      ["file", ":", "/", "/", "hostspec", "/", "assignexpr"],
+      ["file", ":", "/", "/", "/", "expr"]
+    ]
+  ]
+}
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-23 02:42:31
+Time spent in oracle calls: 115.14226841926575
+Time spent building grammar: 159.4481589794159s
+Time breakdown: {'FIRST_COALESCE': 30.72901153564453, 'BUILD': 79.72779488563538, 'LAST_COALESCE': 1.5688097476959229, 'EXPAND': 45.75603365898132, 'MINIMIZE': 0.0003478527069091797, 'OVERALL_EXAMPLE_GEN': 4.747243165969849, 'OVERALL_GROUPING': 14.215657711029053, 'REAPPLY_COUNT': 5}
+Parse calls: 38933, 29794
+LLM calls for bubble finding: 10
+**** Running eval.py ****
+start: stmt
+stmt: "file" ":" "/" "/" hostspec "/" assignexpr
+    | protocol ":" "/" "/" assignexpr
+    | "file" ":" "/" "/" "/" "/" "/" assignexpr
+    | protocol ":" "/" "/" identifier assignexpr ":" num "/" assignexpr
+    | protocol ":" "/" "/" identifier assignexpr
+    | "file" ":" "/" "/" "/" expr
+    | protocol ":" "/" hostspec identifier assignexpr ":" num "/" identifier expr
+    | protocol ":" "/" "/" assignexpr ":" num
+    | protocol ":" "/" "/" assignexpr ":" num "/" assignexpr
+    | protocol ":" "/" hostspec identifier assignexpr ":" num
+    | protocol ":" "/" "/" assignexpr ":" num "/" "/" assignexpr ":" assignexpr
+    | "file" ":" "/"
+    | protocol ":" "/" assignexpr
+    | "file" ":" "/" "/" "/" assignexpr
+    | "file" ":" "/" assignexpr
+    | protocol ":" "/" identifier assignexpr
+    | "file" ":" "/" expr
+    | "file" ":" "/" hostspec "/" assignexpr
+    | protocol ":" "/" hostspec identifier assignexpr
+    | protocol ":" hostspec identifier assignexpr
+    | protocol ":" "/" assignexpr ":" num
+    | protocol ":" "/" num "/" assignexpr
+    | protocol ":" "/" "/" assignexpr ":"
+    | protocol ":" "/" assignexpr ":"
+hostspec: "localhost"
+    | hostspec assignexpr
+    | "/" ":"
+assignexpr: assignexpr expr
+    | "="
+    | assignexpr assignexpr
+    | "."
+    | num assignexpr
+    | "("
+    | identifier identifier
+    | ";"
+    | "-"
+    | assignexpr num
+    | "%"
+    | "&"
+    | expr expr
+    | "'"
+    | talphanums
+    | tletters
+expr: "?"
+    | expr assignexpr
+    | assignexpr "/"
+    | expr hostspec
+    | expr identifier
+    | expr expr
+    | expr "/"
+    | assignexpr assignexpr
+    | expr ":"
+    | hostspec hostspec
+protocol: "ftp"
+    | "gopher"
+    | "http"
+    | "telnet"
+num: "2"
+    | "8"
+    | "5"
+    | "75"
+    | "0191"
+identifier: "@"
+    | assignexpr identifier
+    | ":" identifier
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tletters: tletter
+    | tletter tletters
+tletter: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.861, Precision: 0.833, F-1: 0.8467685950413223
+**** Running search.py ****
+python3 search.py external Seed_Programs/curl/parse_curl Seed_Programs/curl/curl-train-r1 Seed_Programs/curl-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 22.08, max guide length: 39
+Average token length: 14.8, max token length: 25
+Guides with brackets: 1, quotes: 1
+Building the starting grammar...                  Building the starting trees...                    Flat tree
+Average number of brackets(not normalized): 1.0
+Average lengths of brackets(not normalized): 14.8
+Average n: 14.8
+Beginning coalescing...                           
+LLM suggested label: assignexpr for = and j
+LLM suggested label: protocol for ftp and gopher
+LLM suggested label: num for 2 and 8
+max example size 25, node size: 1
+1-BUBBLES
+{
+  "siblings": [
+    ["protocol", ":"],
+    [":", "/"],
+    ["/", "/"],
+    [":", "@"],
+    ["@", "num"],
+    ["num", "assignexpr"],
+    ["assignexpr", "assignexpr"],
+    [":", "num"],
+    ["num", "/"],
+    ["/", "@"],
+    ["/", ":"],
+    [":", "/"],
+    ["/", ":"],
+    [":", "assignexpr"],
+    ["assignexpr", "/"],
+    ["/", "assignexpr"],
+    ["assignexpr", "?"],
+    ["?", "assignexpr"],
+    ["assignexpr", ":"],
+    [":", "@"]
+  ]
+}
+LLM suggested label: unknown for ?% and ?
+
+[Group len -1] Bubbling iteration 1 (2/17)...     
+Successful grouping (single): [?, %]
+    (aka ['?', '%']
+coalesced into:  {'t16': 'unknown', '?': 'unknown'}
+Reapply: 1
+
+[Group len -1] Bubbling iteration 1 (2/17)...     
+Successful grouping (single): [?, %]
+    (aka ['?', '%']
+coalesced into:  {'t18': 'unknown', 'unknown': 'unknown'}
+
+[Group len -1] Bubbling iteration 1 (5/17)...     
+Successful grouping (single): [671, /]
+    (aka ['671', '/']
+coalesced into:  {'t13': 'unknown', 'unknown': 'unknown'}
+LLM suggested label: url for /: and localhost
+
+[Group len -1] Bubbling iteration 1 (7/17)...     
+Successful grouping (single): [/, :]
+    (aka ['/', ':']
+coalesced into:  {'t11': 'url', 'localhost': 'url'}
+
+[Group len -1] Bubbling iteration 1 (11/17)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t7': 'assignexpr', 'assignexpr': 'assignexpr'}
+Reapply: 2
+
+[Group len -1] Bubbling iteration 1 (11/17)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t22': 'assignexpr', 'assignexpr': 'assignexpr'}
+Reapply: 3
+
+[Group len -1] Bubbling iteration 1 (11/17)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t23': 'assignexpr', 'assignexpr': 'assignexpr'}
+Reapply: 4
+
+[Group len -1] Bubbling iteration 1 (11/17)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t24': 'assignexpr', 'assignexpr': 'assignexpr'}
+
+[Group len -1] Bubbling iteration 1 (12/17)...    
+Successful grouping (single): [2, .]
+    (aka ['2', '.']
+coalesced into:  {'t6': 'assignexpr', 'assignexpr': 'assignexpr'}
+LLM suggested label: identifier for :@ and @
+
+[Group len -1] Bubbling iteration 1 (14/17)...    
+Successful grouping (single): [:, @]
+    (aka [':', '@']
+coalesced into:  {'t4': 'identifier', '@': 'identifier'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 1 (2/17)...     
+Successful grouping (single): [?, %]
+    (aka ['?', '%']
+coalesced into:  {'t19': 'unknown', 'unknown': 'unknown'}
+
+[Group len -1] Bubbling iteration 1 (11/17)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t25': 'assignexpr', 'assignexpr': 'assignexpr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["protocol", ":"],
+        [":", "/"],
+        ["/", "url"],
+        ["url", "identifier"],
+        ["identifier", "assignexpr"],
+        ["assignexpr", ":"],
+        [":", "num"],
+        ["num", "/"],
+        ["/", "identifier"],
+        ["identifier", "url"],
+        ["url", "assignexpr"],
+        ["file", ":"],
+        [":", "/"],
+        ["/", "unknown"],
+        ["unknown", "identifier"],
+        ["identifier", "url"],
+        ["url", "/"],
+        ["/", "assignexpr"],
+        ["assignexpr", "unknown"],
+        ["unknown", "num"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 2 (4/28)...     
+Successful grouping (single): [unknown, @]
+    (aka ['Mj/', '@']
+coalesced into:  {'t43': 'unknown', 'unknown': 'unknown'}
+
+[Group len -1] Bubbling iteration 2 (7/28)...     
+Successful grouping (single): [url, assignexpr]
+    (aka ['/:', '%e']
+coalesced into:  {'t40': 'url', 'url': 'url'}
+
+[Group len -1] Bubbling iteration 2 (18/28)...    
+Successful grouping (single): [?, %]
+    (aka ['?', '%']
+coalesced into:  {'t28': 'unknown', 'unknown': 'unknown'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["protocol", ":"],
+        [":", "/"],
+        ["/", "url"],
+        ["url", "identifier"],
+        ["identifier", "assignexpr"],
+        ["assignexpr", ":"],
+        [":", "num"],
+        ["num", "/"],
+        ["/", "identifier"],
+        ["identifier", "url"],
+        ["url", "url"],
+        ["file", ":"],
+        [":", "/"],
+        ["/", "unknown"],
+        ["unknown", "unknown"],
+        ["unknown", ":"],
+        [":", "assignexpr"],
+        ["assignexpr", "unknown"],
+        ["unknown", "/"],
+        ["/", "assignexpr"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 3 (2/32)...     
+Successful grouping (single): [unknown, /]
+    (aka ['s/', '/']
+coalesced into:  {'t67': 'unknown', 'unknown': 'unknown'}
+Reapply: 5
+
+[Group len -1] Bubbling iteration 3 (2/32)...     
+Successful grouping (single): [unknown, /]
+    (aka ['s/', '/']
+coalesced into:  {'t69': 'unknown', 'unknown': 'unknown'}
+
+[Group len -1] Bubbling iteration 3 (5/32)...     
+Successful grouping (single): [?, :]
+    (aka ['?', ':']
+coalesced into:  {'t64': 'unknown', 'unknown': 'unknown'}
+
+[Group len -1] Bubbling iteration 3 (6/32)...     
+Successful grouping (single): [unknown, ?]
+    (aka ['=/', '?']
+coalesced into:  {'t63': 'unknown', 'unknown': 'unknown'}
+Reapply: 6
+
+[Group len -1] Bubbling iteration 3 (6/32)...     
+Successful grouping (single): [unknown, ?]
+    (aka ['=/', '?']
+coalesced into:  {'t72': 'unknown', 'unknown': 'unknown'}
+
+[Group len -1] Bubbling iteration 3 (9/32)...     
+Successful grouping (single): [url, url]
+    (aka ['/:', '/:==&=']
+coalesced into:  {'t60': 'unknown', 'unknown': 'unknown'}
+
+[Group len -1] Bubbling iteration 3 (23/32)...    
+Successful grouping (single): [?, %]
+    (aka ['?', '%']
+coalesced into:  {'t49': 'unknown', 'unknown': 'unknown'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 3 (3/32)...     
+Successful grouping (single): [=, ?]
+    (aka ['=', '?']
+coalesced into:  {'t66': 'assignexpr', 'assignexpr': 'assignexpr'}
+
+[Group len -1] Bubbling iteration 3 (6/32)...     
+Successful grouping (single): [unknown, ?]
+    (aka ['=/', '?']
+coalesced into:  {'t73': 'unknown', 'unknown': 'unknown'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["protocol", ":"],
+    [":", "/"],
+    ["/", "/"],
+    ["assignexpr", ":"],
+    [":", "num"],
+    ["num", "/"],
+    ["/", "/"],
+    ["assignexpr", ":"],
+    [":", "assignexpr"],
+    ["protocol", ":"],
+    [":", "/"],
+    ["/", "url"],
+    ["url", "identifier"],
+    ["identifier", "assignexpr"],
+    ["assignexpr", ":"],
+    [":", "num"],
+    ["num", "/"],
+    ["/", "identifier"],
+    ["identifier", "unknown"],
+    ["protocol", ":"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"],
+      ["protocol", ":", "/", "/", "assignexpr", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", "num"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num", "/", "identifier", "unknown"],
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num", "/", "identifier", "unknown"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num", "/", "identifier", "unknown"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["file", ":", "/", "/", "/", "/", "/", "identifier", "identifier"],
+      ["file", ":", "/", "/", "url", "/", "assignexpr"]
+    ]
+  ]
+}
+1-BUBBLES
+{
+  "siblings": [
+    [":", "/"],
+    ["/", "/"],
+    ["assignexpr", ":"],
+    [":", "num"],
+    ["num", "/"],
+    ["/", "assignexpr"],
+    ["assignexpr", "num"],
+    ["protocol", ":"],
+    ["file", ":"],
+    ["url", "identifier"],
+    ["identifier", "assignexpr"],
+    ["assignexpr", "url"],
+    ["url", "/"],
+    ["/", "identifier"],
+    ["identifier", "unknown"],
+    ["/", "unknown"],
+    ["/", "url"],
+    ["/", "file"],
+    ["/", "protocol"],
+    ["/", "num"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 4 (11/35)...    
+Successful grouping (single): [assignexpr, 5]
+    (aka ['0.9.9.', '5']
+coalesced into:  {'t96': 'assignexpr', 'assignexpr': 'assignexpr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    [":", "/"],
+    ["/", "/"],
+    ["assignexpr", ":"],
+    [":", "num"],
+    ["num", "/"],
+    ["/", "assignexpr"],
+    ["protocol", ":"],
+    ["file", ":"],
+    ["url", "identifier"],
+    ["identifier", "assignexpr"],
+    ["assignexpr", "url"],
+    ["url", "/"],
+    ["/", "url"],
+    ["/", "identifier"],
+    ["identifier", "unknown"],
+    ["/", "unknown"],
+    ["/", "num"],
+    ["/", "assignexpr"],
+    ["assignexpr", ":"],
+    [":", "assignexpr"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num", "/", "identifier", "unknown"],
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num", "/", "identifier", "unknown"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num", "/", "identifier", "unknown"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num", "/", "identifier", "unknown"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num", "/", "identifier", "unknown"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ]
+  ]
+}
+1-BUBBLES
+{
+    "siblings": [
+        ["protocol", ":"],
+        [":", "/"],
+        ["/", "/"],
+        ["assignexpr", ":"],
+        [":", "num"],
+        ["num", "/"],
+        ["/", "assignexpr"],
+        ["protocol", ":", "/"],
+        ["/", "url"],
+        ["url", "identifier"],
+        ["identifier", "assignexpr"],
+        ["assignexpr", ":", "num"],
+        ["file", ":"],
+        [":", "/", "/"],
+        ["/", "/", "/"],
+        ["/", "identifier"],
+        ["identifier", "identifier"],
+        ["url", "/"],
+        ["/", "unknown"],
+        ["assignexpr", "url"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 5 (4/40)...     
+Successful grouping (single): [@, @]
+    (aka ['@', '@']
+coalesced into:  {'t141': 'assignexpr', 'assignexpr': 'assignexpr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    [":", "/"],
+    ["/", "/"],
+    [":", "assignexpr"],
+    ["assignexpr", ":"],
+    [":", "num"],
+    ["num", "/"],
+    ["/", "assignexpr"],
+    [":", "unknown"],
+    ["protocol", ":"],
+    ["file", ":"],
+    ["url", "identifier"],
+    ["identifier", "assignexpr"],
+    ["assignexpr", "url"],
+    ["url", "/"],
+    ["/", "url"],
+    ["/", "unknown"],
+    ["/", "identifier"],
+    ["identifier", "unknown"],
+    ["assignexpr", "num"],
+    ["assignexpr", "unknown"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num", "/", "identifier", "unknown"],
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"]
+    ],
+    [
+      ["file", ":", "/", "/", "/", "/", "/", "assignexpr"],
+      ["file", ":", "/", "/", "url", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["file", ":", "/", "/", "/", "unknown"],
+      ["file", ":", "/", "/", "url", "/", "assignexpr"]
+    ]
+  ]
+}
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-23 02:48:35
+Time spent in oracle calls: 118.23797059059143
+Time spent building grammar: 171.18175220489502s
+Time breakdown: {'FIRST_COALESCE': 30.719261646270752, 'BUILD': 91.05976438522339, 'LAST_COALESCE': 1.6971256732940674, 'EXPAND': 45.90616226196289, 'MINIMIZE': 0.000354766845703125, 'OVERALL_EXAMPLE_GEN': 4.839977264404297, 'OVERALL_GROUPING': 14.99251103401184, 'REAPPLY_COUNT': 6}
+Parse calls: 41579, 30859
+LLM calls for bubble finding: 11
+**** Running eval.py ****
+start: stmt
+stmt: "file" ":" "/" "/" url "/" assignexpr
+    | protocol ":" "/" "/" assignexpr
+    | "file" ":" "/" "/" "/" "/" "/" assignexpr
+    | protocol ":" "/" "/" identifier assignexpr ":" num "/" assignexpr
+    | protocol ":" "/" "/" identifier assignexpr url num
+    | "file" ":" "/" "/" "/" unknown
+    | protocol ":" "/" url identifier assignexpr ":" num "/" identifier unknown
+    | protocol ":" "/" "/" identifier assignexpr
+    | protocol ":" "/" "/" assignexpr ":" num
+    | protocol ":" "/" "/" assignexpr ":" num "/" assignexpr
+    | protocol ":" "/" url identifier assignexpr ":" num
+    | protocol ":" "/" "/" assignexpr ":" num "/" "/" assignexpr ":" assignexpr
+    | "file" ":" "/"
+    | protocol ":" "/" assignexpr
+    | "file" ":" "/" "/" "/" assignexpr
+    | "file" ":" "/" assignexpr
+    | protocol ":" "/" identifier assignexpr
+    | "file" ":" "/" unknown
+    | "file" ":" "/" url "/" assignexpr
+    | protocol ":" "/" url identifier assignexpr
+    | protocol ":" url identifier assignexpr
+    | protocol ":" "/" assignexpr ":" num
+    | protocol ":" "/" num "/" assignexpr
+    | protocol ":" "/" "/" assignexpr ":"
+    | protocol ":" "/" assignexpr ":"
+url: "localhost"
+    | url assignexpr
+    | "/" ":"
+assignexpr: assignexpr unknown
+    | "="
+    | assignexpr assignexpr
+    | "."
+    | num assignexpr
+    | "("
+    | identifier identifier
+    | ";"
+    | "-"
+    | "%"
+    | "&"
+    | assignexpr num
+    | "'"
+    | talphanums
+    | tletters
+unknown: "?"
+    | unknown assignexpr
+    | assignexpr "/"
+    | unknown identifier
+    | unknown unknown
+    | unknown "/"
+    | unknown ":"
+    | url url
+protocol: "ftp"
+    | "gopher"
+    | "http"
+    | "telnet"
+num: "2"
+    | "8"
+    | "5"
+    | "75"
+    | "0191"
+identifier: "@"
+    | ":" identifier
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tletters: tletter
+    | tletter tletters
+tletter: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.428, Precision: 0.899, F-1: 0.579912584777694
+**** Running search.py ****
+python3 search.py external Seed_Programs/curl/parse_curl Seed_Programs/curl/curl-train-r1 Seed_Programs/curl-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 22.08, max guide length: 39
+Average token length: 14.8, max token length: 25
+Guides with brackets: 1, quotes: 1
+Building the starting grammar...                  Building the starting trees...                    Flat tree
+Average number of brackets(not normalized): 1.0
+Average lengths of brackets(not normalized): 14.8
+Average n: 14.8
+Beginning coalescing...                           
+LLM suggested label: assignexpr for = and j
+LLM suggested label: protocol for ftp and gopher
+LLM suggested label: num for 2 and 8
+max example size 25, node size: 1
+1-BUBBLES
+{
+  "siblings": [
+    ["protocol", ":"],
+    [":", "/"],
+    ["/", "/"],
+    [":", "@"],
+    ["@", "num"],
+    ["num", "assignexpr"],
+    ["assignexpr", "assignexpr"],
+    [":", "num"],
+    ["/", "@"],
+    ["/", ":"],
+    [":", "/"],
+    ["/", ":"],
+    [":", "assignexpr"],
+    ["assignexpr", "?"],
+    ["?", "assignexpr"],
+    ["@", "assignexpr"],
+    ["assignexpr", ":"],
+    [":", "@"],
+    ["@", "assignexpr"],
+    ["assignexpr", "/"]
+  ]
+}
+LLM suggested label: expr for 10/ and ?
+
+[Group len -1] Bubbling iteration 1 (1/16)...     
+Successful grouping (single): [671, /]
+    (aka ['671', '/']
+coalesced into:  {'t16': 'expr', '?': 'expr'}
+LLM suggested label: identifier for @07 and @
+
+[Group len -1] Bubbling iteration 1 (3/16)...     
+Successful grouping (single): [@, 301041]
+    (aka ['@', '301041']
+coalesced into:  {'t14': 'identifier', '@': 'identifier'}
+Reapply: 1
+
+[Group len -1] Bubbling iteration 1 (3/16)...     
+Successful grouping (single): [@, 301041]
+    (aka ['@', '301041']
+coalesced into:  {'t18': 'identifier', 'identifier': 'identifier'}
+Reapply: 2
+
+[Group len -1] Bubbling iteration 1 (3/16)...     
+Successful grouping (single): [@, 301041]
+    (aka ['@', '301041']
+coalesced into:  {'t19': 'identifier', 'identifier': 'identifier'}
+Reapply: 3
+
+[Group len -1] Bubbling iteration 1 (3/16)...     
+Successful grouping (single): [@, 301041]
+    (aka ['@', '301041']
+coalesced into:  {'t20': 'identifier', 'identifier': 'identifier'}
+Reapply: 4
+
+[Group len -1] Bubbling iteration 1 (3/16)...     
+Successful grouping (single): [@, 301041]
+    (aka ['@', '301041']
+coalesced into:  {'t21': 'identifier', 'identifier': 'identifier'}
+Reapply: 5
+
+[Group len -1] Bubbling iteration 1 (3/16)...     
+Successful grouping (single): [@, 301041]
+    (aka ['@', '301041']
+coalesced into:  {'t22': 'identifier', 'identifier': 'identifier'}
+LLM suggested label: url for /: and localhost
+
+[Group len -1] Bubbling iteration 1 (7/16)...     
+Successful grouping (single): [/, :]
+    (aka ['/', ':']
+coalesced into:  {'t10': 'url', 'localhost': 'url'}
+
+[Group len -1] Bubbling iteration 1 (10/16)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t7': 'assignexpr', 'assignexpr': 'assignexpr'}
+Reapply: 6
+
+[Group len -1] Bubbling iteration 1 (10/16)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t25': 'assignexpr', 'assignexpr': 'assignexpr'}
+Reapply: 7
+
+[Group len -1] Bubbling iteration 1 (10/16)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t26': 'assignexpr', 'assignexpr': 'assignexpr'}
+Reapply: 8
+
+[Group len -1] Bubbling iteration 1 (10/16)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t27': 'assignexpr', 'assignexpr': 'assignexpr'}
+
+[Group len -1] Bubbling iteration 1 (11/16)...    
+Successful grouping (single): [2, .]
+    (aka ['2', '.']
+coalesced into:  {'t6': 'assignexpr', 'assignexpr': 'assignexpr'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 1 (10/16)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t28': 'assignexpr', 'assignexpr': 'assignexpr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["protocol", ":"],
+    [":", "/"],
+    ["/", "url"],
+    ["url", "identifier"],
+    ["identifier", "assignexpr"],
+    ["assignexpr", ":"],
+    [":", "num"],
+    ["num", "/"],
+    ["/", "identifier"],
+    ["identifier", "url"],
+    ["url", "assignexpr"],
+    ["assignexpr", "expr"],
+    ["expr", "assignexpr"],
+    ["file", ":"],
+    [":", "/", "/"],
+    ["/", "/", "expr"],
+    ["expr", ":"],
+    [":", "assignexpr"],
+    ["assignexpr", "expr"],
+    ["expr", "identifier"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 2 (1/30)...     
+Successful grouping (single): [expr, @]
+    (aka ['Mj/', '@']
+coalesced into:  {'t49': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 2 (3/30)...     
+Successful grouping (single): [?, :]
+    (aka ['?', ':']
+coalesced into:  {'t47': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 2 (5/30)...     
+Successful grouping (single): [expr, (]
+    (aka ['671/', '(']
+coalesced into:  {'t45': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 2 (7/30)...     
+Successful grouping (single): [url, assignexpr]
+    (aka ['/:', '%e']
+coalesced into:  {'t43': 'url', 'url': 'url'}
+
+[Group len -1] Bubbling iteration 2 (18/30)...    
+Successful grouping (single): [/, /, expr]
+    (aka ['/', '/', ';/']
+coalesced into:  {'t32': 'expr', 'expr': 'expr'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 2 (3/30)...     
+Successful grouping (single): [?, :]
+    (aka ['?', ':']
+coalesced into:  {'t51': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 2 (5/30)...     
+Successful grouping (single): [expr, (]
+    (aka ['671/', '(']
+coalesced into:  {'t52': 'expr', 'expr': 'expr'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 2 (1/30)...     
+Successful grouping (single): [expr, @]
+    (aka ['Mj/', '@']
+coalesced into:  {'t50': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 2 (3/30)...     
+Successful grouping (single): [?, :]
+    (aka ['?', ':']
+coalesced into:  {'t55': 'expr', 'expr': 'expr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["protocol", ":"],
+        [":", "/"],
+        ["/", "url"],
+        ["url", "identifier"],
+        ["identifier", "assignexpr"],
+        ["assignexpr", ":"],
+        [":", "num"],
+        ["num", "/"],
+        ["/", "identifier"],
+        ["identifier", "url"],
+        ["url", "url"],
+        ["file", ":"],
+        [":", "/"],
+        ["/", "/"],
+        ["/", "assignexpr"],
+        ["assignexpr", ":"],
+        [":", "num"],
+        ["num", "/"],
+        ["/", "assignexpr"],
+        ["assignexpr", "expr"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num", "/", "identifier", "url", "url"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", "expr", "url", "num"],
+      ["protocol", ":", "/", "/", "assignexpr", "expr", "expr", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", "expr", "expr", "expr", "expr"],
+      ["protocol", ":", "/", "/", "assignexpr", "expr", "expr"]
+    ],
+    [
+      ["file", ":", "/", "/", "url", "/", "assignexpr", "expr"],
+      ["file", ":", "/", "/", "url", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", "expr", "/", "expr"],
+      ["protocol", ":", "/", "/", "assignexpr", "expr"]
+    ],
+    [
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", "expr", "expr"],
+      ["protocol", ":", "/", "/", "assignexpr", "expr"]
+    ],
+    [
+      ["file", ":", "/", "expr", "expr", "expr"],
+      ["protocol", ":", "/", "/", "assignexpr", "expr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", "num"],
+      ["protocol", ":", "/", "/", "identifier", "expr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ]
+  ]
+}
+1-BUBBLES
+{
+    "siblings": [
+        ["protocol", ":"],
+        [":", "/"],
+        ["/", "url"],
+        ["url", "identifier"],
+        ["identifier", "assignexpr"],
+        ["assignexpr", ":"],
+        [":", "num"],
+        ["num", "/"],
+        ["/", "identifier"],
+        ["identifier", "url"],
+        ["url", "url"],
+        ["file", ":"],
+        [":", "/"],
+        ["/", "/"],
+        ["/", "assignexpr"],
+        ["assignexpr", ":"],
+        [":", "num"],
+        ["num", "/"],
+        ["/", "assignexpr"],
+        ["assignexpr", "expr"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num", "/", "identifier", "url", "url"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", "expr", "url", "num"],
+      ["protocol", ":", "/", "/", "assignexpr", "expr", "expr", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", "expr", "expr", "expr", "expr"],
+      ["protocol", ":", "/", "/", "assignexpr", "expr", "expr"]
+    ],
+    [
+      ["file", ":", "/", "/", "url", "/", "assignexpr", "expr"],
+      ["file", ":", "/", "/", "url", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", "expr", "/", "expr"],
+      ["protocol", ":", "/", "/", "assignexpr", "expr"]
+    ],
+    [
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", "expr", "expr"],
+      ["protocol", ":", "/", "/", "assignexpr", "expr"]
+    ],
+    [
+      ["file", ":", "/", "expr", "expr", "expr"],
+      ["protocol", ":", "/", "/", "assignexpr", "expr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", "num"],
+      ["protocol", ":", "/", "/", "identifier", "expr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ]
+  ]
+}
+1-BUBBLES
+{
+    "siblings": [
+        ["protocol", ":"],
+        [":", "/"],
+        ["/", "url"],
+        ["url", "identifier"],
+        ["identifier", "assignexpr"],
+        ["assignexpr", ":"],
+        [":", "num"],
+        ["num", "/"],
+        ["/", "identifier"],
+        ["identifier", "url"],
+        ["url", "url"],
+        ["file", ":"],
+        [":", "/"],
+        ["/", "assignexpr"],
+        ["assignexpr", "expr"],
+        ["expr", "url"],
+        ["url", "num"],
+        ["expr", "/"],
+        ["/", "assignexpr"],
+        ["assignexpr", ":"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 3 (1/35)...     
+Successful grouping (single): [expr, /]
+    (aka ['588440/', '/']
+coalesced into:  {'t105': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 3 (2/35)...     
+Successful grouping (single): [url, 5]
+    (aka ['/:%e', '5']
+coalesced into:  {'t104': 'url', 'url': 'url'}
+
+[Group len -1] Bubbling iteration 3 (3/35)...     
+Successful grouping (single): [expr, url]
+    (aka ['Mj/@', '/:%e']
+coalesced into:  {'t103': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 3 (4/35)...     
+Successful grouping (single): [=, ?]
+    (aka ['=', '?']
+coalesced into:  {'t102': 'assignexpr', 'assignexpr': 'assignexpr'}
+
+[Group len -1] Bubbling iteration 3 (22/35)...    
+Successful grouping (single): [expr, (]
+    (aka ['671/', '(']
+coalesced into:  {'t56': 'expr', 'expr': 'expr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["protocol", ":"],
+        [":", "/"],
+        ["/", "url"],
+        ["url", "identifier"],
+        ["identifier", "assignexpr"],
+        ["assignexpr", ":"],
+        [":", "num"],
+        ["num", "/"],
+        ["/", "identifier"],
+        ["identifier", "url"],
+        ["url", "url"],
+        ["file", ":"],
+        [":", "/"],
+        ["/", "assignexpr"],
+        ["assignexpr", ":"],
+        [":", "assignexpr"],
+        ["assignexpr", "expr"],
+        ["expr", "expr"],
+        ["expr", "expr"],
+        ["assignexpr", "num"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 4 (1/37)...     
+Successful grouping (single): [assignexpr, 5]
+    (aka ['0.9.9.', '5']
+coalesced into:  {'t127': 'assignexpr', 'assignexpr': 'assignexpr'}
+
+[Group len -1] Bubbling iteration 4 (2/37)...     
+Successful grouping (single): [expr, expr]
+    (aka ['//=/', '?:&']
+coalesced into:  {'t126': 'expr', 'expr': 'expr'}
+Reapply: 9
+
+[Group len -1] Bubbling iteration 4 (2/37)...     
+Successful grouping (single): [expr, expr]
+    (aka ['//=/', '?:&']
+coalesced into:  {'t129': 'expr', 'expr': 'expr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["protocol", ":"],
+        [":", "/"],
+        ["/", "url"],
+        ["url", "identifier"],
+        ["identifier", "assignexpr"],
+        ["assignexpr", ":"],
+        [":", "num"],
+        ["num", "/"],
+        ["/", "identifier"],
+        ["identifier", "url"],
+        ["url", "url"],
+        ["file", ":"],
+        [":", "/"],
+        ["/", "/"],
+        ["/", "assignexpr"],
+        ["assignexpr", ":"],
+        [":", "assignexpr"],
+        ["assignexpr", "expr"],
+        ["identifier", "expr"],
+        ["protocol", "file"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 5 (1/38)...     
+Successful grouping (single): [identifier, expr]
+    (aka ['@631.54.77.', '188/']
+coalesced into:  {'t147': 'assignexpr', 'assignexpr': 'assignexpr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["protocol", ":"],
+        [":", "/"],
+        ["/", "url"],
+        ["url", "identifier"],
+        ["identifier", "assignexpr"],
+        ["assignexpr", ":"],
+        [":", "num"],
+        ["num", "/"],
+        ["/", "identifier"],
+        ["identifier", "url"],
+        ["url", "url"],
+        ["file", ":"],
+        [":", "/"],
+        ["/", "/"],
+        ["/", "assignexpr"],
+        ["assignexpr", ":"],
+        [":", "assignexpr"],
+        ["assignexpr", "expr"],
+        ["expr", "/"],
+        ["/", "assignexpr"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 6 (1/37)...     
+Successful grouping (single): [assignexpr, expr]
+    (aka ['Y.TWFj6.82-i.s/', '//;/;&&']
+coalesced into:  {'t164': 'assignexpr', 'assignexpr': 'assignexpr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["protocol", ":"],
+    [":", "/"],
+    ["/", "url"],
+    ["url", "identifier"],
+    ["identifier", "assignexpr"],
+    ["assignexpr", ":"],
+    [":", "num"],
+    ["num", "/"],
+    ["/", "identifier"],
+    ["identifier", "url"],
+    ["url", "url"],
+    ["file", ":"],
+    [":", "/"],
+    ["/", "assignexpr"],
+    ["assignexpr", ":"],
+    [":", "assignexpr"],
+    ["assignexpr", ":"],
+    [":", "num"],
+    ["num", "/"],
+    ["/", "assignexpr"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num", "/", "identifier", "url", "url"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num", "/", "identifier", "url", "url"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num", "/", "identifier", "url", "url"],
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"]
+    ],
+    [
+      ["file", ":", "/", "/", "/", "/", "/", "identifier", "identifier"],
+      ["file", ":", "/", "/", "url", "/", "assignexpr"]
+    ],
+    [
+      ["file", ":", "/", "/", "/", "/", "/", "identifier", "identifier"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["file", ":", "/", "/", "/", "/", "/", "identifier", "identifier"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"]
+    ],
+    [
+      ["file", ":", "/", "/", "url", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["file", ":", "/", "/", "url", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ]
+  ]
+}
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-23 02:52:24
+Time spent in oracle calls: 127.55513072013855
+Time spent building grammar: 179.42894887924194s
+Time breakdown: {'FIRST_COALESCE': 33.673048973083496, 'BUILD': 102.7255744934082, 'LAST_COALESCE': 2.0818932056427, 'EXPAND': 38.82889652252197, 'MINIMIZE': 0.00037479400634765625, 'OVERALL_EXAMPLE_GEN': 6.588135480880737, 'OVERALL_GROUPING': 15.110405683517456, 'REAPPLY_COUNT': 9}
+Parse calls: 43102, 31538
+LLM calls for bubble finding: 12
+**** Running eval.py ****
+start: stmt
+stmt: "file" ":" "/" "/" url "/" assignexpr
+    | protocol ":" "/" "/" assignexpr
+    | "file" ":" "/" "/" "/" "/" "/" identifier identifier
+    | protocol ":" "/" "/" identifier assignexpr ":" num "/" assignexpr
+    | protocol ":" "/" "/" identifier assignexpr
+    | "file" ":" "/" expr
+    | protocol ":" "/" url identifier assignexpr ":" num "/" identifier url url
+    | protocol ":" "/" "/" assignexpr ":" num
+    | protocol ":" "/" "/" assignexpr ":" num "/" assignexpr
+    | protocol ":" "/" url identifier assignexpr ":" num
+    | protocol ":" "/" "/" assignexpr ":" num "/" "/" assignexpr ":" assignexpr
+    | "file" ":" "/"
+    | protocol ":" "/" assignexpr
+    | "file" ":" "/" "/" "/" "/"
+    | "file" ":" "/" "/" "/"
+    | protocol ":" "/" "/" identifier
+    | protocol ":" "/" identifier
+    | protocol ":" "/" identifier assignexpr
+    | "file" ":" "/" url "/" assignexpr
+    | "file" ":" "/" assignexpr
+    | protocol ":" "/" url identifier assignexpr
+    | protocol ":" url identifier assignexpr
+    | protocol ":" "/" assignexpr ":" num
+    | protocol ":" "/" num "/" assignexpr
+    | protocol ":" url identifier
+    | protocol ":" "/" "/" assignexpr ":"
+    | protocol ":" "/" assignexpr ":"
+url: "localhost"
+    | url num
+    | url assignexpr
+    | "/" ":"
+assignexpr: assignexpr expr
+    | "="
+    | assignexpr assignexpr
+    | "."
+    | num assignexpr
+    | "("
+    | ";"
+    | "-"
+    | "%"
+    | "&"
+    | assignexpr num
+    | identifier expr
+    | "'"
+    | talphanums
+    | tletters
+expr: "?"
+    | expr assignexpr
+    | assignexpr "/"
+    | expr url
+    | expr identifier
+    | "/" "/" expr
+    | expr expr
+    | expr ":"
+    | expr "/"
+protocol: "ftp"
+    | "gopher"
+    | "http"
+    | "telnet"
+num: "2"
+    | "8"
+    | "5"
+    | "75"
+    | "0191"
+identifier: "@"
+    | identifier assignexpr
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tletters: tletter
+    | tletter tletters
+tletter: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.451, Precision: 0.884, F-1: 0.5972794007490637
+**** Running search.py ****
+python3 search.py external Seed_Programs/curl/parse_curl Seed_Programs/curl/curl-train-r1 Seed_Programs/curl-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 22.08, max guide length: 39
+Average token length: 14.8, max token length: 25
+Guides with brackets: 1, quotes: 1
+Building the starting grammar...                  Building the starting trees...                    Flat tree
+Average number of brackets(not normalized): 1.0
+Average lengths of brackets(not normalized): 14.8
+Average n: 14.8
+Beginning coalescing...                           
+LLM suggested label: assignexpr for = and j
+LLM suggested label: protocol for ftp and gopher
+LLM suggested label: num for 2 and 8
+max example size 25, node size: 1
+1-BUBBLES
+{
+    "siblings": [
+        ["protocol", ":"],
+        [":", "/"],
+        ["/", "/"],
+        [":", "@"],
+        ["@", "num"],
+        ["num", "assignexpr"],
+        ["assignexpr", "assignexpr"],
+        [":", "num"],
+        ["num", "/"],
+        ["/", "@"],
+        ["/", ":"],
+        [":", "/"],
+        ["/", ":"],
+        [":", "assignexpr"],
+        ["assignexpr", "?"],
+        ["?", "assignexpr"],
+        ["assignexpr", ":"],
+        [":", "@"],
+        ["@", "assignexpr"],
+        ["assignexpr", "/"]
+    ]
+}
+LLM suggested label: expr for 10/ and ?
+
+[Group len -1] Bubbling iteration 1 (1/17)...     
+Successful grouping (single): [671, /]
+    (aka ['671', '/']
+coalesced into:  {'t17': 'expr', '?': 'expr'}
+LLM suggested label: identifier for @07 and @
+
+[Group len -1] Bubbling iteration 1 (2/17)...     
+Successful grouping (single): [@, 301041]
+    (aka ['@', '301041']
+coalesced into:  {'t16': 'identifier', '@': 'identifier'}
+Reapply: 1
+
+[Group len -1] Bubbling iteration 1 (2/17)...     
+Successful grouping (single): [@, 301041]
+    (aka ['@', '301041']
+coalesced into:  {'t19': 'identifier', 'identifier': 'identifier'}
+Reapply: 2
+
+[Group len -1] Bubbling iteration 1 (2/17)...     
+Successful grouping (single): [@, 301041]
+    (aka ['@', '301041']
+coalesced into:  {'t20': 'identifier', 'identifier': 'identifier'}
+Reapply: 3
+
+[Group len -1] Bubbling iteration 1 (2/17)...     
+Successful grouping (single): [@, 301041]
+    (aka ['@', '301041']
+coalesced into:  {'t21': 'identifier', 'identifier': 'identifier'}
+Reapply: 4
+
+[Group len -1] Bubbling iteration 1 (2/17)...     
+Successful grouping (single): [@, 301041]
+    (aka ['@', '301041']
+coalesced into:  {'t22': 'identifier', 'identifier': 'identifier'}
+Reapply: 5
+
+[Group len -1] Bubbling iteration 1 (2/17)...     
+Successful grouping (single): [@, 301041]
+    (aka ['@', '301041']
+coalesced into:  {'t23': 'identifier', 'identifier': 'identifier'}
+LLM suggested label: url for /: and localhost
+
+[Group len -1] Bubbling iteration 1 (7/17)...     
+Successful grouping (single): [/, :]
+    (aka ['/', ':']
+coalesced into:  {'t11': 'url', 'localhost': 'url'}
+
+[Group len -1] Bubbling iteration 1 (11/17)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t7': 'assignexpr', 'assignexpr': 'assignexpr'}
+Reapply: 6
+
+[Group len -1] Bubbling iteration 1 (11/17)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t26': 'assignexpr', 'assignexpr': 'assignexpr'}
+Reapply: 7
+
+[Group len -1] Bubbling iteration 1 (11/17)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t27': 'assignexpr', 'assignexpr': 'assignexpr'}
+Reapply: 8
+
+[Group len -1] Bubbling iteration 1 (11/17)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t28': 'assignexpr', 'assignexpr': 'assignexpr'}
+
+[Group len -1] Bubbling iteration 1 (12/17)...    
+Successful grouping (single): [2, .]
+    (aka ['2', '.']
+coalesced into:  {'t6': 'assignexpr', 'assignexpr': 'assignexpr'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 1 (11/17)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t29': 'assignexpr', 'assignexpr': 'assignexpr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["protocol", ":"],
+    [":", "/"],
+    ["/", "url"],
+    ["url", "identifier"],
+    ["identifier", "assignexpr"],
+    ["assignexpr", ":"],
+    [":", "num"],
+    ["num", "/"],
+    ["/", "identifier"],
+    ["identifier", "url"],
+    ["url", "assignexpr"],
+    ["assignexpr", "expr"],
+    ["expr", "assignexpr"],
+    ["assignexpr", "num"],
+    ["num", "expr"],
+    ["expr", ":"],
+    [":", "assignexpr"],
+    ["assignexpr", "identifier"],
+    ["identifier", "expr"],
+    ["expr", "/"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 2 (1/30)...     
+Successful grouping (single): [expr, /]
+    (aka ['s/', '/']
+coalesced into:  {'t50': 'expr', 'expr': 'expr'}
+Reapply: 9
+
+[Group len -1] Bubbling iteration 2 (1/30)...     
+Successful grouping (single): [expr, /]
+    (aka ['s/', '/']
+coalesced into:  {'t51': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 2 (2/30)...     
+Successful grouping (single): [identifier, expr]
+    (aka ['@631.54.77.', '188/']
+coalesced into:  {'t49': 'assignexpr', 'assignexpr': 'assignexpr'}
+
+[Group len -1] Bubbling iteration 2 (3/30)...     
+Successful grouping (single): [assignexpr, identifier]
+    (aka ['=;', '@s3.3.A']
+coalesced into:  {'t48': 'identifier', 'identifier': 'identifier'}
+
+[Group len -1] Bubbling iteration 2 (5/30)...     
+Successful grouping (single): [?, :]
+    (aka ['?', ':']
+coalesced into:  {'t46': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 2 (6/30)...     
+Successful grouping (single): [assignexpr, 5]
+    (aka ['%e', '5']
+coalesced into:  {'t45': 'assignexpr', 'assignexpr': 'assignexpr'}
+
+[Group len -1] Bubbling iteration 2 (7/30)...     
+Successful grouping (single): [expr, (]
+    (aka ['671/', '(']
+coalesced into:  {'t44': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 2 (9/30)...     
+Successful grouping (single): [url, assignexpr]
+    (aka ['/:', '%e']
+coalesced into:  {'t42': 'url', 'url': 'url'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 2 (5/30)...     
+Successful grouping (single): [?, :]
+    (aka ['?', ':']
+coalesced into:  {'t55': 'expr', 'expr': 'expr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["protocol", ":"],
+    [":", "/"],
+    ["/", "url"],
+    ["url", "identifier"],
+    ["identifier", "assignexpr"],
+    ["assignexpr", ":"],
+    [":", "num"],
+    ["num", "/"],
+    ["/", "identifier"],
+    ["identifier", "url"],
+    ["url", "url"],
+    ["file", ":"],
+    [":", "/"],
+    ["/", "assignexpr"],
+    ["assignexpr", "expr"],
+    ["expr", "identifier"],
+    ["identifier", ":"],
+    [":", "expr"],
+    ["expr", "expr"],
+    ["url", "/"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 3 (2/38)...     
+Successful grouping (single): [expr, expr]
+    (aka ['s///', ';/;&&']
+coalesced into:  {'t77': 'assignexpr', 'assignexpr': 'assignexpr'}
+
+[Group len -1] Bubbling iteration 3 (5/38)...     
+Successful grouping (single): [expr, @]
+    (aka ['Mj/', '@']
+coalesced into:  {'t74': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 3 (9/38)...     
+Successful grouping (single): [url, url]
+    (aka ['/:', '/:==&=']
+coalesced into:  {'t70': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 3 (24/38)...    
+Successful grouping (single): [?, :]
+    (aka ['?', ':']
+coalesced into:  {'t59': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 3 (26/38)...    
+Successful grouping (single): [expr, (]
+    (aka ['671/', '(']
+coalesced into:  {'t57': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 3 (34/38)...    
+Successful grouping (single): [25, .]
+    (aka ['25', '.']
+coalesced into:  {'t31': 'assignexpr', 'assignexpr': 'assignexpr'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 3 (2/38)...     
+Successful grouping (single): [expr, expr]
+    (aka ['s///', ';/;&&']
+coalesced into:  {'t79': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 3 (24/38)...    
+Successful grouping (single): [?, :]
+    (aka ['?', ':']
+coalesced into:  {'t82': 'expr', 'expr': 'expr'}
+
+[Group len -1] Bubbling iteration 3 (26/38)...    
+Successful grouping (single): [expr, (]
+    (aka ['671/', '(']
+coalesced into:  {'t83': 'expr', 'expr': 'expr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        [":", "/"],
+        ["/", "/"],
+        ["assignexpr", ":"],
+        [":", "num"],
+        ["num", "/"],
+        ["/", "assignexpr"],
+        ["assignexpr", "expr"],
+        ["identifier", "assignexpr"],
+        ["url", "identifier"],
+        ["file", ":"],
+        ["protocol", ":"],
+        [":", "assignexpr"],
+        ["url", "/"],
+        ["/", "identifier"],
+        ["identifier", "expr"],
+        ["expr", "url"],
+        ["/", "url"],
+        ["/", "expr"],
+        ["/", "assignexpr"],
+        ["/", "url"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 4 (2/39)...     
+Successful grouping (single): [expr, url]
+    (aka ['Mj/@', '/:%e5']
+coalesced into:  {'t103': 'expr', 'expr': 'expr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    [":", "/"],
+    ["/", "/"],
+    [":", "num"],
+    [":", "assignexpr"],
+    ["/", "assignexpr"],
+    ["/", "identifier"],
+    ["/", "url"],
+    ["assignexpr", ":"],
+    ["assignexpr", "expr"],
+    ["assignexpr", "assignexpr"],
+    ["identifier", "assignexpr"],
+    ["url", "identifier"],
+    ["file", ":"],
+    ["protocol", ":"],
+    [":", "expr"],
+    [":", "url"],
+    [":", "identifier"],
+    ["/", "expr"],
+    ["/", "url"],
+    ["/", "file"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num", "/", "identifier", "expr"],
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num"]
+    ],
+    [
+      ["file", ":", "/", "/", "url", "/", "assignexpr", "expr"],
+      ["file", ":", "/", "/", "url", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", "expr"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", "expr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", "expr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", "expr"],
+      ["protocol", ":", "/", "/", "assignexpr", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", "expr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["file", ":", "/", "/", "/", "/", "/", "identifier", "identifier"],
+      ["file", ":", "/", "/", "/", "assignexpr", "expr"]
+    ],
+    [
+      ["file", ":", "/", "/", "/", "/", "/", "identifier", "identifier"],
+      ["file", ":", "/", "/", "url", "/", "assignexpr"]
+    ],
+    [
+      ["file", ":", "/", "/", "/", "assignexpr", "expr"],
+      ["file", ":", "/", "/", "url", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", "expr"],
+      ["protocol", ":", "/", "/", "assignexpr", "expr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", "expr"],
+      ["protocol", ":", "/", "/", "assignexpr", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", "expr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ]
+  ]
+}
+1-BUBBLES
+{
+    "siblings": [
+        [":", "/"],
+        ["/", "/"],
+        ["assignexpr", ":"],
+        [":", "num"],
+        ["num", "/"],
+        ["/", "assignexpr"],
+        ["assignexpr", "expr"],
+        ["identifier", "assignexpr"],
+        ["url", "identifier"],
+        ["file", ":"],
+        [":", "assignexpr"],
+        ["protocol", ":"],
+        ["/", "url"],
+        ["url", "/"],
+        ["/", "identifier"],
+        ["identifier", "expr"],
+        ["assignexpr", "assignexpr"],
+        ["/", "file"],
+        ["file", "/"],
+        ["protocol", "/"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num", "/", "identifier", "expr"],
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num"]
+    ],
+    [
+      ["file", ":", "/", "/", "url", "/", "assignexpr", "expr"],
+      ["file", ":", "/", "/", "url", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", "expr"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", "expr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["file", ":", "/", "/", "/", "assignexpr", "expr"],
+      ["file", ":", "/", "/", "/", "/", "identifier", "identifier"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ]
+  ]
+}
+1-BUBBLES
+{
+    "siblings": [
+        [":", "/"],
+        ["/", "/"],
+        [":", "num"],
+        [":", "assignexpr"],
+        ["/", "assignexpr"],
+        ["/", "identifier"],
+        ["/", "url"],
+        ["assignexpr", "expr"],
+        ["assignexpr", "assignexpr"],
+        ["identifier", "assignexpr"],
+        ["url", "identifier"],
+        ["file", ":"],
+        ["protocol", ":"],
+        [":", "assignexpr"],
+        [":", "expr"],
+        [":", "url"],
+        [":", "identifier"],
+        ["/", "expr"],
+        ["/", "url"],
+        ["/", "num"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num", "/", "identifier", "expr"],
+      ["protocol", ":", "/", "url", "identifier", "assignexpr", ":", "num"]
+    ],
+    [
+      ["file", ":", "/", "/", "url", "/", "assignexpr", "expr"],
+      ["file", ":", "/", "/", "url", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "identifier", "assignexpr", "expr"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", "expr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"],
+      ["protocol", ":", "/", "/", "assignexpr", "expr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"],
+      ["protocol", ":", "/", "/", "assignexpr", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", "expr"],
+      ["protocol", ":", "/", "/", "assignexpr", "assignexpr"]
+    ],
+    [
+      ["file", ":", "/", "/", "/", "assignexpr", "expr"],
+      ["file", ":", "/", "/", "/", "/", "/", "identifier", "identifier"]
+    ],
+    [
+      ["file", ":", "/", "/", "/", "assignexpr", "expr"],
+      ["file", ":", "/", "/", "url", "/", "assignexpr", "expr"]
+    ],
+    [
+      ["file", ":", "/", "/", "/", "assignexpr", "expr"],
+      ["file", ":", "/", "/", "url", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", "expr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "/", "assignexpr", ":", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num", "/", "assignexpr"],
+      ["protocol", ":", "/", "/", "assignexpr"]
+    ],
+    [
+      ["protocol", ":", "/", "/", "assignexpr", ":", "num"],
+      ["protocol", ":", "/", "/", "identifier", "assignexpr"]
+    ]
+  ]
+}
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-23 02:56:26
+Time spent in oracle calls: 127.02334523200989
+Time spent building grammar: 186.4666883945465s
+Time breakdown: {'FIRST_COALESCE': 31.105521202087402, 'BUILD': 108.71051073074341, 'LAST_COALESCE': 2.0574166774749756, 'EXPAND': 42.567131996154785, 'MINIMIZE': 0.0004169940948486328, 'OVERALL_EXAMPLE_GEN': 5.456178903579712, 'OVERALL_GROUPING': 15.369482278823853, 'REAPPLY_COUNT': 9}
+Parse calls: 41744, 31902
+LLM calls for bubble finding: 10
+**** Running eval.py ****
+start: stmt
+stmt: "file" ":" "/" "/" url "/" assignexpr expr
+    | protocol ":" "/" "/" assignexpr
+    | protocol ":" "/" "/" assignexpr expr
+    | "file" ":" "/" "/" "/" "/" "/" identifier identifier
+    | protocol ":" "/" "/" identifier assignexpr ":" num "/" assignexpr
+    | protocol ":" "/" "/" identifier assignexpr expr
+    | "file" ":" "/" "/" "/" assignexpr expr
+    | "file" ":" "/" "/" url "/" assignexpr
+    | protocol ":" "/" url identifier assignexpr ":" num "/" identifier expr
+    | protocol ":" "/" "/" assignexpr assignexpr
+    | protocol ":" "/" "/" identifier assignexpr
+    | protocol ":" "/" "/" assignexpr ":" num
+    | protocol ":" "/" "/" assignexpr ":" num "/" assignexpr
+    | protocol ":" "/" url identifier assignexpr ":" num
+    | protocol ":" "/" "/" assignexpr ":" num "/" "/" assignexpr ":" assignexpr
+    | "file" ":" "/" "/" url "/"
+    | "file" ":" "/"
+    | protocol ":" "/" assignexpr
+    | protocol ":" "/" assignexpr expr
+    | protocol ":" "/" expr
+    | "file" ":" "/" "/" "/" "/"
+    | "file" ":" "/" "/" "/"
+    | protocol ":" "/" "/" identifier
+    | protocol ":" "/" identifier
+    | protocol ":" "/" identifier assignexpr expr
+    | "file" ":" "/" assignexpr expr
+    | "file" ":" "/" expr
+    | "file" ":" "/" url "/" assignexpr
+    | "file" ":" "/" assignexpr
+    | protocol ":" "/" url identifier assignexpr
+    | protocol ":" url identifier assignexpr
+    | protocol ":" "/" assignexpr assignexpr
+    | protocol ":" "/" identifier assignexpr
+    | protocol ":" "/" assignexpr ":" num
+    | protocol ":" "/" num "/" assignexpr
+    | protocol ":" url identifier
+    | protocol ":" "/" "/" assignexpr ":"
+    | protocol ":" "/" assignexpr ":"
+url: "localhost"
+    | url assignexpr
+    | "/" ":"
+assignexpr: "="
+    | assignexpr assignexpr
+    | "."
+    | num assignexpr
+    | "("
+    | ";"
+    | "-"
+    | assignexpr num
+    | "%"
+    | expr expr
+    | "&"
+    | identifier expr
+    | "'"
+    | talphanums
+    | tletters
+expr: "?"
+    | expr assignexpr
+    | assignexpr "/"
+    | expr url
+    | expr identifier
+    | expr "/"
+    | expr ":"
+    | url url
+    | expr expr
+protocol: "ftp"
+    | "gopher"
+    | "http"
+    | "telnet"
+num: "2"
+    | "8"
+    | "5"
+    | "75"
+    | "0191"
+identifier: "@"
+    | identifier assignexpr
+    | assignexpr identifier
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tletters: tletter
+    | tletter tletters
+tletter: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.452, Precision: 0.819, F-1: 0.5825145554681354
+**** Running search.py ****
