@@ -55,7 +55,7 @@ recall_sum=0
 precision_sum=0
 f1_sum=0
 count=0
-
+echo "$log_file"
 while IFS= read -r line; do
     recall=$(echo "$line" | grep -oP "Recall: \K[0-9.]+" )
     precision=$(echo "$line" | grep -oP "Precision: \K[0-9.]+" )
@@ -72,9 +72,13 @@ if [ "$count" -gt 0 ]; then
     avg_precision=$(echo "$precision_sum / $count" | bc -l)
     avg_f1=$(echo "$f1_sum / $count" | bc -l)
 
-    printf "Average Recall: %.3f\n" "$avg_recall"
-    printf "Average Precision: %.3f\n" "$avg_precision"
-    printf "Average F1: %.3f\n" "$avg_f1"
+    #printf "Average Recall: %.3f\n" "$avg_recall"
+    #printf "Average Precision: %.3f\n" "$avg_precision"
+    #printf "Average F1: %.3f\n" "$avg_f1"
+    #printf "Average Recall: %.3f\nAverage Precision: %.3f\nAverage F1: %.3f\n" "$avg_recall" "$avg_precision" "$avg_f1"
+    printf "%.3f,%.3f,%.3f\n" "$avg_recall" "$avg_precision" "$avg_f1"
+
+
 else
     echo "No valid lines found."
 fi
