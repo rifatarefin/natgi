@@ -1,0 +1,2240 @@
+<production-rules>
+<stmt> ::= <string> | <number> | <object> | <array>
+<string> ::= "\"" <char-seq> "\""
+<char-seq> ::= <char> <char-seq> | ""
+<char> ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" | "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<number> ::= <integer> | <float>
+<integer> ::= <digit-seq> | "-" <digit-seq>
+<digit-seq> ::= <digit> <digit-seq> | <digit>
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<float> ::= <integer> "." <digit-seq>
+<object> ::= "{" <members> "}" | "{}"
+<members> ::= <pair> | <pair> "," <members>
+<pair> ::= <string> ":" <value>
+<value> ::= <stmt> | "true" | "false" | "null"
+<array> ::= "[" <elements> "]" | "[]"
+<elements> ::= <value> | <value> "," <elements>
+</production-rules>
+<re.Match object; span=(0, 1021), match='<production-rules>\n<stmt> ::= <string> | <number>
+HI
+Production Rules saved to results/gpt_grammar_microbench-json-r1-1.txt
+start: stmt
+stmt: string
+    | number
+    | object
+    | array
+string: "\\\"" char-seq "\\\""
+char-seq: char char-seq
+    | 
+char: talphanums
+number: integer
+    | float
+integer: digit-seq
+    | "-" digit-seq
+digit-seq: digit digit-seq
+    | digit
+digit: talphanums
+float: integer "." digit-seq
+object: "{" members "}"
+    | "{}"
+members: pair
+    | pair "," members
+pair: string ":" value
+value: stmt
+    | "true"
+    | "false"
+    | "null"
+array: "[" elements "]"
+    | "[]"
+elements: value
+    | value "," elements
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+
+
+Loaded grammar does not compile! Unexpected input at line 6 column 20 in <string>: 
+
+string: "\\\"" char-seq "\\\""
+                   ^
+
+start: stmt
+stmt: string
+    | number
+    | object
+    | array
+string: "\\\"" char-seq "\\\""
+char-seq: char char-seq
+    | 
+char: talphanums
+number: integer
+    | float
+integer: digit-seq
+    | "-" digit-seq
+digit-seq: digit digit-seq
+    | digit
+digit: talphanums
+float: integer "." digit-seq
+object: "{" members "}"
+    | "{}"
+members: pair
+    | pair "," members
+pair: string ":" value
+value: stmt
+    | "true"
+    | "false"
+    | "null"
+array: "[" elements "]"
+    | "[]"
+elements: value
+    | value "," elements
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Unexpected input at line 6 column 20 in <string>: 
+
+string: "\\\"" char-seq "\\\""
+                   ^
+
+<production-rules>
+<stmt> ::= <string> | <number> | <object> | <array>
+<string> ::= "\"" <char-seq> "\""
+<char-seq> ::= <char> <char-seq> | ""
+<char> ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" | "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<number> ::= <integer> | <float>
+<integer> ::= <digit-seq> | "-" <digit-seq>
+<digit-seq> ::= <digit> <digit-seq> | <digit>
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<float> ::= <integer> "." <digit-seq>
+<object> ::= "{" <members> "}" | "{}"
+<members> ::= <pair> | <pair> "," <members>
+<pair> ::= <string> ":" <value>
+<value> ::= <stmt> | "true" | "false" | "null"
+<array> ::= "[" <elements> "]" | "[]"
+<elements> ::= <value> | <value> "," <elements>
+</production-rules>
+<re.Match object; span=(0, 1021), match='<production-rules>\n<stmt> ::= <string> | <number>
+HI
+Production Rules saved to results/gpt_grammar_microbench-json-r1-2.txt
+start: stmt
+stmt: string
+    | number
+    | object
+    | array
+string: "\\\"" char-seq "\\\""
+char-seq: char char-seq
+    | 
+char: talphanums
+number: integer
+    | float
+integer: digit-seq
+    | "-" digit-seq
+digit-seq: digit digit-seq
+    | digit
+digit: talphanums
+float: integer "." digit-seq
+object: "{" members "}"
+    | "{}"
+members: pair
+    | pair "," members
+pair: string ":" value
+value: stmt
+    | "true"
+    | "false"
+    | "null"
+array: "[" elements "]"
+    | "[]"
+elements: value
+    | value "," elements
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+
+
+Loaded grammar does not compile! Unexpected input at line 6 column 20 in <string>: 
+
+string: "\\\"" char-seq "\\\""
+                   ^
+
+start: stmt
+stmt: string
+    | number
+    | object
+    | array
+string: "\\\"" char-seq "\\\""
+char-seq: char char-seq
+    | 
+char: talphanums
+number: integer
+    | float
+integer: digit-seq
+    | "-" digit-seq
+digit-seq: digit digit-seq
+    | digit
+digit: talphanums
+float: integer "." digit-seq
+object: "{" members "}"
+    | "{}"
+members: pair
+    | pair "," members
+pair: string ":" value
+value: stmt
+    | "true"
+    | "false"
+    | "null"
+array: "[" elements "]"
+    | "[]"
+elements: value
+    | value "," elements
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Unexpected input at line 6 column 20 in <string>: 
+
+string: "\\\"" char-seq "\\\""
+                   ^
+
+<production-rules>
+<stmt> ::= <string> | <number> | <object> | <array>
+<string> ::= "\"" <char-seq> "\""
+<char-seq> ::= <char> <char-seq> | ""
+<char> ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" | "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<number> ::= <integer> | <float>
+<integer> ::= <digit-seq> | "-" <digit-seq>
+<digit-seq> ::= <digit> <digit-seq> | <digit>
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<float> ::= <integer> "." <digit-seq>
+<object> ::= "{" <members> "}" | "{}"
+<members> ::= <pair> | <pair> "," <members>
+<pair> ::= <string> ":" <value>
+<value> ::= <string> | <number> | <object> | <array> | "true" | "false" | "null"
+<array> ::= "[" <elements> "]" | "[]"
+<elements> ::= <value> | <value> "," <elements>
+</production-rules>
+<re.Match object; span=(0, 1055), match='<production-rules>\n<stmt> ::= <string> | <number>
+HI
+Production Rules saved to results/gpt_grammar_microbench-json-r1-3.txt
+start: stmt
+stmt: string
+    | number
+    | object
+    | array
+string: "\\\"" char-seq "\\\""
+char-seq: char char-seq
+    | 
+char: talphanums
+number: integer
+    | float
+integer: digit-seq
+    | "-" digit-seq
+digit-seq: digit digit-seq
+    | digit
+digit: talphanums
+float: integer "." digit-seq
+object: "{" members "}"
+    | "{}"
+members: pair
+    | pair "," members
+pair: string ":" value
+value: string
+    | number
+    | object
+    | array
+    | "true"
+    | "false"
+    | "null"
+array: "[" elements "]"
+    | "[]"
+elements: value
+    | value "," elements
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+
+
+Loaded grammar does not compile! Unexpected input at line 6 column 20 in <string>: 
+
+string: "\\\"" char-seq "\\\""
+                   ^
+
+start: stmt
+stmt: string
+    | number
+    | object
+    | array
+string: "\\\"" char-seq "\\\""
+char-seq: char char-seq
+    | 
+char: talphanums
+number: integer
+    | float
+integer: digit-seq
+    | "-" digit-seq
+digit-seq: digit digit-seq
+    | digit
+digit: talphanums
+float: integer "." digit-seq
+object: "{" members "}"
+    | "{}"
+members: pair
+    | pair "," members
+pair: string ":" value
+value: string
+    | number
+    | object
+    | array
+    | "true"
+    | "false"
+    | "null"
+array: "[" elements "]"
+    | "[]"
+elements: value
+    | value "," elements
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Unexpected input at line 6 column 20 in <string>: 
+
+string: "\\\"" char-seq "\\\""
+                   ^
+
+<production-rules>
+<stmt> ::= <string> | <number> | <object> | <array>
+<string> ::= "\"" <char-seq> "\""
+<char-seq> ::= <char> <char-seq> | ""
+<char> ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" | "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<number> ::= <integer> | <float>
+<integer> ::= <digit-seq> | "-" <digit-seq>
+<digit-seq> ::= <digit> <digit-seq> | <digit>
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<float> ::= <integer> "." <digit-seq>
+<object> ::= "{" <members> "}" | "{}"
+<members> ::= <pair> | <pair> "," <members>
+<pair> ::= <string> ":" <value>
+<value> ::= <stmt> | "true" | "false" | "null"
+<array> ::= "[" <elements> "]" | "[]"
+<elements> ::= <value> | <value> "," <elements>
+</production-rules>
+<re.Match object; span=(0, 1021), match='<production-rules>\n<stmt> ::= <string> | <number>
+HI
+Production Rules saved to results/gpt_grammar_microbench-json-r1-4.txt
+start: stmt
+stmt: string
+    | number
+    | object
+    | array
+string: "\\\"" char-seq "\\\""
+char-seq: char char-seq
+    | 
+char: talphanums
+number: integer
+    | float
+integer: digit-seq
+    | "-" digit-seq
+digit-seq: digit digit-seq
+    | digit
+digit: talphanums
+float: integer "." digit-seq
+object: "{" members "}"
+    | "{}"
+members: pair
+    | pair "," members
+pair: string ":" value
+value: stmt
+    | "true"
+    | "false"
+    | "null"
+array: "[" elements "]"
+    | "[]"
+elements: value
+    | value "," elements
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+
+
+Loaded grammar does not compile! Unexpected input at line 6 column 20 in <string>: 
+
+string: "\\\"" char-seq "\\\""
+                   ^
+
+start: stmt
+stmt: string
+    | number
+    | object
+    | array
+string: "\\\"" char-seq "\\\""
+char-seq: char char-seq
+    | 
+char: talphanums
+number: integer
+    | float
+integer: digit-seq
+    | "-" digit-seq
+digit-seq: digit digit-seq
+    | digit
+digit: talphanums
+float: integer "." digit-seq
+object: "{" members "}"
+    | "{}"
+members: pair
+    | pair "," members
+pair: string ":" value
+value: stmt
+    | "true"
+    | "false"
+    | "null"
+array: "[" elements "]"
+    | "[]"
+elements: value
+    | value "," elements
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Unexpected input at line 6 column 20 in <string>: 
+
+string: "\\\"" char-seq "\\\""
+                   ^
+
+<production-rules>
+<stmt> ::= <string> | <number> | <object> | <array>
+<string> ::= "\"" <char-seq> "\""
+<char-seq> ::= <char> <char-seq> | ""
+<char> ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" | "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<number> ::= <integer> | <float>
+<integer> ::= <digit-seq> | "-" <digit-seq>
+<digit-seq> ::= <digit> <digit-seq> | <digit>
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<float> ::= <integer> "." <digit-seq>
+<object> ::= "{" <members> "}" | "{}"
+<members> ::= <pair> | <pair> "," <members>
+<pair> ::= <string> ":" <value>
+<value> ::= <string> | <number> | <object> | <array> | "true" | "false" | "null"
+<array> ::= "[" <elements> "]" | "[]"
+<elements> ::= <value> | <value> "," <elements>
+</production-rules>
+<re.Match object; span=(0, 1055), match='<production-rules>\n<stmt> ::= <string> | <number>
+HI
+Production Rules saved to results/gpt_grammar_microbench-json-r1-5.txt
+start: stmt
+stmt: string
+    | number
+    | object
+    | array
+string: "\\\"" char-seq "\\\""
+char-seq: char char-seq
+    | 
+char: talphanums
+number: integer
+    | float
+integer: digit-seq
+    | "-" digit-seq
+digit-seq: digit digit-seq
+    | digit
+digit: talphanums
+float: integer "." digit-seq
+object: "{" members "}"
+    | "{}"
+members: pair
+    | pair "," members
+pair: string ":" value
+value: string
+    | number
+    | object
+    | array
+    | "true"
+    | "false"
+    | "null"
+array: "[" elements "]"
+    | "[]"
+elements: value
+    | value "," elements
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+
+
+Loaded grammar does not compile! Unexpected input at line 6 column 20 in <string>: 
+
+string: "\\\"" char-seq "\\\""
+                   ^
+
+start: stmt
+stmt: string
+    | number
+    | object
+    | array
+string: "\\\"" char-seq "\\\""
+char-seq: char char-seq
+    | 
+char: talphanums
+number: integer
+    | float
+integer: digit-seq
+    | "-" digit-seq
+digit-seq: digit digit-seq
+    | digit
+digit: talphanums
+float: integer "." digit-seq
+object: "{" members "}"
+    | "{}"
+members: pair
+    | pair "," members
+pair: string ":" value
+value: string
+    | number
+    | object
+    | array
+    | "true"
+    | "false"
+    | "null"
+array: "[" elements "]"
+    | "[]"
+elements: value
+    | value "," elements
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Unexpected input at line 6 column 20 in <string>: 
+
+string: "\\\"" char-seq "\\\""
+                   ^
+
+<production-rules>
+<stmt> ::= <string> | <number> | <object> | <array>
+<string> ::= "\"" <char-seq> "\""
+<char-seq> ::= <char> <char-seq> | ""
+<char> ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" | "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<number> ::= <integer> | <float>
+<integer> ::= <digit-seq> | "-" <digit-seq>
+<digit-seq> ::= <digit> <digit-seq> | <digit>
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<float> ::= <integer> "." <digit-seq>
+<object> ::= "{" <members> "}" | "{}"
+<members> ::= <pair> | <pair> "," <members>
+<pair> ::= <string> ":" <value>
+<value> ::= <string> | <number> | <object> | <array> | "true" | "false" | "null"
+<array> ::= "[" <elements> "]" | "[]"
+<elements> ::= <value> | <value> "," <elements>
+</production-rules>
+<re.Match object; span=(0, 1055), match='<production-rules>\n<stmt> ::= <string> | <number>
+HI
+Production Rules saved to results/gpt_grammar_microbench-json-r1-6.txt
+start: stmt
+stmt: string
+    | number
+    | object
+    | array
+string: "\\\"" char-seq "\\\""
+char-seq: char char-seq
+    | 
+char: talphanums
+number: integer
+    | float
+integer: digit-seq
+    | "-" digit-seq
+digit-seq: digit digit-seq
+    | digit
+digit: talphanums
+float: integer "." digit-seq
+object: "{" members "}"
+    | "{}"
+members: pair
+    | pair "," members
+pair: string ":" value
+value: string
+    | number
+    | object
+    | array
+    | "true"
+    | "false"
+    | "null"
+array: "[" elements "]"
+    | "[]"
+elements: value
+    | value "," elements
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+
+
+Loaded grammar does not compile! Unexpected input at line 6 column 20 in <string>: 
+
+string: "\\\"" char-seq "\\\""
+                   ^
+
+start: stmt
+stmt: string
+    | number
+    | object
+    | array
+string: "\\\"" char-seq "\\\""
+char-seq: char char-seq
+    | 
+char: talphanums
+number: integer
+    | float
+integer: digit-seq
+    | "-" digit-seq
+digit-seq: digit digit-seq
+    | digit
+digit: talphanums
+float: integer "." digit-seq
+object: "{" members "}"
+    | "{}"
+members: pair
+    | pair "," members
+pair: string ":" value
+value: string
+    | number
+    | object
+    | array
+    | "true"
+    | "false"
+    | "null"
+array: "[" elements "]"
+    | "[]"
+elements: value
+    | value "," elements
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Unexpected input at line 6 column 20 in <string>: 
+
+string: "\\\"" char-seq "\\\""
+                   ^
+
+<production-rules>
+<stmt> ::= <string> | <number> | <object> | <array>
+<string> ::= "\"" <char-seq> "\""
+<char-seq> ::= <char> <char-seq> | ""
+<char> ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" | "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<number> ::= <integer> | <float>
+<integer> ::= <digit-seq> | "-" <digit-seq>
+<digit-seq> ::= <digit> <digit-seq> | <digit>
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<float> ::= <integer> "." <digit-seq>
+<object> ::= "{" <members> "}" | "{}"
+<members> ::= <pair> | <pair> "," <members>
+<pair> ::= <string> ":" <value>
+<value> ::= <string> | <number> | <object> | <array> | "true" | "false" | "null"
+<array> ::= "[" <elements> "]" | "[]"
+<elements> ::= <value> | <value> "," <elements>
+</production-rules>
+<re.Match object; span=(0, 1055), match='<production-rules>\n<stmt> ::= <string> | <number>
+HI
+Production Rules saved to results/gpt_grammar_microbench-json-r1-7.txt
+start: stmt
+stmt: string
+    | number
+    | object
+    | array
+string: "\\\"" char-seq "\\\""
+char-seq: char char-seq
+    | 
+char: talphanums
+number: integer
+    | float
+integer: digit-seq
+    | "-" digit-seq
+digit-seq: digit digit-seq
+    | digit
+digit: talphanums
+float: integer "." digit-seq
+object: "{" members "}"
+    | "{}"
+members: pair
+    | pair "," members
+pair: string ":" value
+value: string
+    | number
+    | object
+    | array
+    | "true"
+    | "false"
+    | "null"
+array: "[" elements "]"
+    | "[]"
+elements: value
+    | value "," elements
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+
+
+Loaded grammar does not compile! Unexpected input at line 6 column 20 in <string>: 
+
+string: "\\\"" char-seq "\\\""
+                   ^
+
+start: stmt
+stmt: string
+    | number
+    | object
+    | array
+string: "\\\"" char-seq "\\\""
+char-seq: char char-seq
+    | 
+char: talphanums
+number: integer
+    | float
+integer: digit-seq
+    | "-" digit-seq
+digit-seq: digit digit-seq
+    | digit
+digit: talphanums
+float: integer "." digit-seq
+object: "{" members "}"
+    | "{}"
+members: pair
+    | pair "," members
+pair: string ":" value
+value: string
+    | number
+    | object
+    | array
+    | "true"
+    | "false"
+    | "null"
+array: "[" elements "]"
+    | "[]"
+elements: value
+    | value "," elements
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Unexpected input at line 6 column 20 in <string>: 
+
+string: "\\\"" char-seq "\\\""
+                   ^
+
+<production-rules>
+<stmt> ::= <string> | <number> | <object> | <array>
+<string> ::= "\"" <char-seq> "\""
+<char-seq> ::= <char> <char-seq> | ""
+<char> ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" | "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<number> ::= <integer> | <float>
+<integer> ::= <digit-seq> | "-" <digit-seq>
+<digit-seq> ::= <digit> <digit-seq> | <digit>
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<float> ::= <integer> "." <digit-seq>
+<object> ::= "{" <members> "}" | "{}"
+<members> ::= <pair> | <pair> "," <members>
+<pair> ::= <string> ":" <value>
+<value> ::= <stmt> | "true" | "false" | "null"
+<array> ::= "[" <elements> "]" | "[]"
+<elements> ::= <value> | <value> "," <elements>
+</production-rules>
+<re.Match object; span=(0, 1021), match='<production-rules>\n<stmt> ::= <string> | <number>
+HI
+Production Rules saved to results/gpt_grammar_microbench-json-r1-8.txt
+start: stmt
+stmt: string
+    | number
+    | object
+    | array
+string: "\\\"" char-seq "\\\""
+char-seq: char char-seq
+    | 
+char: talphanums
+number: integer
+    | float
+integer: digit-seq
+    | "-" digit-seq
+digit-seq: digit digit-seq
+    | digit
+digit: talphanums
+float: integer "." digit-seq
+object: "{" members "}"
+    | "{}"
+members: pair
+    | pair "," members
+pair: string ":" value
+value: stmt
+    | "true"
+    | "false"
+    | "null"
+array: "[" elements "]"
+    | "[]"
+elements: value
+    | value "," elements
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+
+
+Loaded grammar does not compile! Unexpected input at line 6 column 20 in <string>: 
+
+string: "\\\"" char-seq "\\\""
+                   ^
+
+start: stmt
+stmt: string
+    | number
+    | object
+    | array
+string: "\\\"" char-seq "\\\""
+char-seq: char char-seq
+    | 
+char: talphanums
+number: integer
+    | float
+integer: digit-seq
+    | "-" digit-seq
+digit-seq: digit digit-seq
+    | digit
+digit: talphanums
+float: integer "." digit-seq
+object: "{" members "}"
+    | "{}"
+members: pair
+    | pair "," members
+pair: string ":" value
+value: stmt
+    | "true"
+    | "false"
+    | "null"
+array: "[" elements "]"
+    | "[]"
+elements: value
+    | value "," elements
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Unexpected input at line 6 column 20 in <string>: 
+
+string: "\\\"" char-seq "\\\""
+                   ^
+
+<production-rules>
+<stmt> ::= <string> | <number> | <object> | <array>
+<string> ::= "\"" <char-seq> "\""
+<char-seq> ::= <char> <char-seq> | ""
+<char> ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" | "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<number> ::= <integer> | <float>
+<integer> ::= <digit-seq> | "-" <digit-seq>
+<digit-seq> ::= <digit> <digit-seq> | <digit>
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<float> ::= <integer> "." <digit-seq>
+<object> ::= "{" <members> "}" | "{}"
+<members> ::= <pair> | <pair> "," <members>
+<pair> ::= <string> ":" <value>
+<value> ::= <stmt> | "true" | "false" | "null"
+<array> ::= "[" <elements> "]" | "[]"
+<elements> ::= <value> | <value> "," <elements>
+</production-rules>
+<re.Match object; span=(0, 1021), match='<production-rules>\n<stmt> ::= <string> | <number>
+HI
+Production Rules saved to results/gpt_grammar_microbench-json-r1-9.txt
+start: stmt
+stmt: string
+    | number
+    | object
+    | array
+string: "\\\"" char-seq "\\\""
+char-seq: char char-seq
+    | 
+char: talphanums
+number: integer
+    | float
+integer: digit-seq
+    | "-" digit-seq
+digit-seq: digit digit-seq
+    | digit
+digit: talphanums
+float: integer "." digit-seq
+object: "{" members "}"
+    | "{}"
+members: pair
+    | pair "," members
+pair: string ":" value
+value: stmt
+    | "true"
+    | "false"
+    | "null"
+array: "[" elements "]"
+    | "[]"
+elements: value
+    | value "," elements
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+
+
+Loaded grammar does not compile! Unexpected input at line 6 column 20 in <string>: 
+
+string: "\\\"" char-seq "\\\""
+                   ^
+
+start: stmt
+stmt: string
+    | number
+    | object
+    | array
+string: "\\\"" char-seq "\\\""
+char-seq: char char-seq
+    | 
+char: talphanums
+number: integer
+    | float
+integer: digit-seq
+    | "-" digit-seq
+digit-seq: digit digit-seq
+    | digit
+digit: talphanums
+float: integer "." digit-seq
+object: "{" members "}"
+    | "{}"
+members: pair
+    | pair "," members
+pair: string ":" value
+value: stmt
+    | "true"
+    | "false"
+    | "null"
+array: "[" elements "]"
+    | "[]"
+elements: value
+    | value "," elements
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Unexpected input at line 6 column 20 in <string>: 
+
+string: "\\\"" char-seq "\\\""
+                   ^
+
+<production-rules>
+<stmt> ::= <string> | <number> | <object> | <array>
+<string> ::= "\"" <char-sequence> "\""
+<char-sequence> ::= <char> <char-sequence> | ""
+<char> ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" | "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<number> ::= <integer> | <float>
+<integer> ::= <digit-sequence> | "-" <digit-sequence>
+<digit-sequence> ::= <digit> <digit-sequence> | <digit>
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<float> ::= <integer> "." <digit-sequence>
+<object> ::= "{" <members> "}" | "{}"
+<members> ::= <pair> | <pair> "," <members>
+<pair> ::= <string> ":" <value>
+<value> ::= <string> | <number> | <object> | <array> | "true" | "false" | "null"
+<array> ::= "[" <elements> "]" | "[]"
+<elements> ::= <value> | <value> "," <elements>
+</production-rules>
+<re.Match object; span=(0, 1095), match='<production-rules>\n<stmt> ::= <string> | <number>
+HI
+Production Rules saved to results/gpt_grammar_microbench-json-r1-10.txt
+start: stmt
+stmt: string
+    | number
+    | object
+    | array
+string: "\\\"" char-sequence "\\\""
+char-sequence: char char-sequence
+    | 
+char: talphanums
+number: integer
+    | float
+integer: digit-sequence
+    | "-" digit-sequence
+digit-sequence: digit digit-sequence
+    | digit
+digit: talphanums
+float: integer "." digit-sequence
+object: "{" members "}"
+    | "{}"
+members: pair
+    | pair "," members
+pair: string ":" value
+value: string
+    | number
+    | object
+    | array
+    | "true"
+    | "false"
+    | "null"
+array: "[" elements "]"
+    | "[]"
+elements: value
+    | value "," elements
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+
+
+Loaded grammar does not compile! Unexpected input at line 6 column 20 in <string>: 
+
+string: "\\\"" char-sequence "\\\""
+                   ^
+
+start: stmt
+stmt: string
+    | number
+    | object
+    | array
+string: "\\\"" char-sequence "\\\""
+char-sequence: char char-sequence
+    | 
+char: talphanums
+number: integer
+    | float
+integer: digit-sequence
+    | "-" digit-sequence
+digit-sequence: digit digit-sequence
+    | digit
+digit: talphanums
+float: integer "." digit-sequence
+object: "{" members "}"
+    | "{}"
+members: pair
+    | pair "," members
+pair: string ":" value
+value: string
+    | number
+    | object
+    | array
+    | "true"
+    | "false"
+    | "null"
+array: "[" elements "]"
+    | "[]"
+elements: value
+    | value "," elements
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Unexpected input at line 6 column 20 in <string>: 
+
+string: "\\\"" char-sequence "\\\""
+                   ^
+

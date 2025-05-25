@@ -1,0 +1,2473 @@
+<production-rules>
+<stmt> ::= <expr> | <expr> <stmt>
+<expr> ::= <builtin> | <number> | <char> | <identifier> | <operator> | <group> | <attribute> | <alignof>
+<builtin> ::= "__builtin_va_arg" "(" <expr> "," <expr> ")" | "__builtin_offsetof" "(" <expr> "," <expr> ")"
+<number> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | <number> <number>
+<char> ::= "\uD416e0ec" | "\uE5a2" | "\udB57"
+<identifier> ::= "_Atomic" | "restrict" | "enum" | "const" | "_M" | "restrictrestrict"
+<operator> ::= "&" | "|" | "^" | "%" | "+" | "-" | "*" | "/" | "==" | "!=" | "<" | ">" | "<=" | ">=" | "<<" | ">>"
+<group> ::= "(" <expr> ")" | "{" <expr> "}"
+<attribute> ::= "__attribute__" "(" <group> ")"
+<alignof> ::= "_Alignof" "(" <expr> ")"
+</production-rules>
+<re.Match object; span=(0, 756), match='<production-rules>\n<stmt> ::= <expr> | <expr> <s>
+HI
+Production Rules saved to results/gpt_grammar_glade2-c-1.txt
+start: stmt
+stmt: expr
+    | expr stmt
+expr: builtin
+    | number
+    | char
+    | identifier
+    | operator
+    | group
+    | attribute
+    | alignof
+builtin: "__builtin_va_arg" "(" expr "," expr ")"
+    | "__builtin_offsetof" "(" expr "," expr ")"
+number: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+    | number number
+char: "\\uD416e0ec"
+    | "\\uE5a2"
+    | "\\udB57"
+identifier: "_Atomic"
+    | "_M"
+    | talphanums
+operator: "&"
+    | "|"
+    | "^"
+    | "%"
+    | "+"
+    | "-"
+    | "*"
+    | "/"
+    | "=="
+    | "!="
+    | "<"
+    | ">"
+    | "<="
+    | ">="
+    | "<<"
+    | ">>"
+group: "(" expr ")"
+    | "{" expr "}"
+attribute: "__attribute__" "(" group ")"
+alignof: "_Alignof" "(" expr ")"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: expr
+    | expr stmt
+expr: builtin
+    | number
+    | char
+    | identifier
+    | operator
+    | group
+    | attribute
+    | alignof
+builtin: "__builtin_va_arg" "(" expr "," expr ")"
+    | "__builtin_offsetof" "(" expr "," expr ")"
+number: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+    | number number
+char: "\\uD416e0ec"
+    | "\\uE5a2"
+    | "\\udB57"
+identifier: "_Atomic"
+    | "_M"
+    | talphanums
+operator: "&"
+    | "|"
+    | "^"
+    | "%"
+    | "+"
+    | "-"
+    | "*"
+    | "/"
+    | "=="
+    | "!="
+    | "<"
+    | ">"
+    | "<="
+    | ">="
+    | "<<"
+    | ">>"
+group: "(" expr ")"
+    | "{" expr "}"
+attribute: "__attribute__" "(" group ")"
+alignof: "_Alignof" "(" expr ")"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.207, Precision: 0.33, F-1: 0.254413407821229
+<production-rules>
+<stmt> ::= <expr> | <stmt> <expr>
+<expr> ::= <builtin> | <attribute> | <alignof> | <sizeof> | <enum> | <atomic> | <restrict> | <number> | <hex> | <unicode> | <identifier> | <operator> | <parentheses> | <brackets> | <curlybraces> | <comma> | <semicolon> | <logical> | <bitwise> | <comparison> | <assignment> | <whitespace>
+<builtin> ::= "__builtin_va_arg" | "__builtin_offsetof"
+<attribute> ::= "__attribute__" <parentheses>
+<alignof> ::= "_Alignof" <parentheses>
+<sizeof> ::= "sizeof" <operator> "sizeof" <parentheses>
+<enum> ::= "enum" <curlybraces>
+<atomic> ::= "_Atomic" <parentheses>
+<restrict> ::= "restrict" | "restrictrestrict"
+<number> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "80" | "0255" | "2283"
+<hex> ::= "\uD416e0ec" | "\uE5a2" | "\udB57"
+<unicode> ::= "\UD416e0ec" | "\uE5a2" | "\udB57"
+<identifier> ::= "_M" | "jc5"
+<operator> ::= "++" | "--" | "+" | "-" | "*" | "/" | "%" | "&" | "|" | "^" | "<<" | ">>"
+<parentheses> ::= "(" <expr> ")" | "()"
+<brackets> ::= "[" <expr> "]" | "[]"
+<curlybraces> ::= "{" <expr> "}" | "{}"
+<comma> ::= ","
+<semicolon> ::= ";"
+<logical> ::= "&&" | "||" | "!"
+<bitwise> ::= "&" | "|" | "^" | "~"
+<comparison> ::= "==" | "!=" | "<" | ">" | "<=" | ">="
+<assignment> ::= "="
+<whitespace> ::= " "
+</production-rules>
+<re.Match object; span=(0, 1300), match='<production-rules>\n<stmt> ::= <expr> | <stmt> <e>
+HI
+Production Rules saved to results/gpt_grammar_glade2-c-2.txt
+start: stmt
+stmt: expr
+    | stmt expr
+expr: builtin
+    | attribute
+    | alignof
+    | sizeof
+    | enum
+    | atomic
+    | restrict
+    | number
+    | hex
+    | unicode
+    | identifier
+    | operator
+    | parentheses
+    | brackets
+    | curlybraces
+    | comma
+    | semicolon
+    | logical
+    | bitwise
+    | comparison
+    | assignment
+    | whitespace
+builtin: "__builtin_va_arg"
+    | "__builtin_offsetof"
+attribute: "__attribute__" parentheses
+alignof: "_Alignof" parentheses
+sizeof: "sizeof" operator "sizeof" parentheses
+enum: "enum" curlybraces
+atomic: "_Atomic" parentheses
+restrict: talphanums
+number: tinteger
+hex: "\\uD416e0ec"
+    | "\\uE5a2"
+    | "\\udB57"
+unicode: "\\UD416e0ec"
+    | "\\uE5a2"
+    | "\\udB57"
+identifier: "_M"
+    | "jc5"
+operator: "++"
+    | "--"
+    | "+"
+    | "-"
+    | "*"
+    | "/"
+    | "%"
+    | "&"
+    | "|"
+    | "^"
+    | "<<"
+    | ">>"
+parentheses: "(" expr ")"
+    | "()"
+brackets: "[" expr "]"
+    | "[]"
+curlybraces: "{" expr "}"
+    | "{}"
+comma: ","
+semicolon: ";"
+logical: "&&"
+    | "||"
+    | "!"
+bitwise: "&"
+    | "|"
+    | "^"
+    | "~"
+comparison: "=="
+    | "!="
+    | "<"
+    | ">"
+    | "<="
+    | ">="
+assignment: "="
+whitespace: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tinteger: tdigit
+    | tnzdigit tdigits
+tnzdigit: "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: expr
+    | stmt expr
+expr: builtin
+    | attribute
+    | alignof
+    | sizeof
+    | enum
+    | atomic
+    | restrict
+    | number
+    | hex
+    | unicode
+    | identifier
+    | operator
+    | parentheses
+    | brackets
+    | curlybraces
+    | comma
+    | semicolon
+    | logical
+    | bitwise
+    | comparison
+    | assignment
+    | whitespace
+builtin: "__builtin_va_arg"
+    | "__builtin_offsetof"
+attribute: "__attribute__" parentheses
+alignof: "_Alignof" parentheses
+sizeof: "sizeof" operator "sizeof" parentheses
+enum: "enum" curlybraces
+atomic: "_Atomic" parentheses
+restrict: talphanums
+number: tinteger
+hex: "\\uD416e0ec"
+    | "\\uE5a2"
+    | "\\udB57"
+unicode: "\\UD416e0ec"
+    | "\\uE5a2"
+    | "\\udB57"
+identifier: "_M"
+    | "jc5"
+operator: "++"
+    | "--"
+    | "+"
+    | "-"
+    | "*"
+    | "/"
+    | "%"
+    | "&"
+    | "|"
+    | "^"
+    | "<<"
+    | ">>"
+parentheses: "(" expr ")"
+    | "()"
+brackets: "[" expr "]"
+    | "[]"
+curlybraces: "{" expr "}"
+    | "{}"
+comma: ","
+semicolon: ";"
+logical: "&&"
+    | "||"
+    | "!"
+bitwise: "&"
+    | "|"
+    | "^"
+    | "~"
+comparison: "=="
+    | "!="
+    | "<"
+    | ">"
+    | "<="
+    | ">="
+assignment: "="
+whitespace: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tinteger: tdigit
+    | tnzdigit tdigits
+tnzdigit: "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.27, Precision: 0.299, F-1: 0.2837609841827768
+<production-rules>
+<stmt> ::= <expr> | <expr> <stmt>
+<expr> ::= <builtin> | <number> | <char> | <identifier> | <operator> | <group> | <attribute> | <alignof>
+<builtin> ::= "__builtin_va_arg" "(" <expr> "," <expr> ")" | "__builtin_offsetof" "(" <expr> ")"
+<number> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | <number> <number>
+<char> ::= "\uD416e0ec" | "\uE5a2" | "\udB57"
+<identifier> ::= "_Atomic" | "restrict" | "enum" | "const" | "_M"
+<operator> ::= "&" | "|" | "^" | "%" | "+" | "-" | "*" | "/" | "==" | "!=" | "<" | ">" | "<=" | ">=" | "<<" | ">>"
+<group> ::= "(" <expr> ")" | "{" <expr> "}"
+<attribute> ::= "__attribute__" "(" <group> ")"
+<alignof> ::= "_Alignof" "(" <expr> ")"
+</production-rules>
+<re.Match object; span=(0, 724), match='<production-rules>\n<stmt> ::= <expr> | <expr> <s>
+HI
+Production Rules saved to results/gpt_grammar_glade2-c-3.txt
+start: stmt
+stmt: expr
+    | expr stmt
+expr: builtin
+    | number
+    | char
+    | identifier
+    | operator
+    | group
+    | attribute
+    | alignof
+builtin: "__builtin_va_arg" "(" expr "," expr ")"
+    | "__builtin_offsetof" "(" expr ")"
+number: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+    | number number
+char: "\\uD416e0ec"
+    | "\\uE5a2"
+    | "\\udB57"
+identifier: "_Atomic"
+    | "restrict"
+    | "enum"
+    | "const"
+    | "_M"
+operator: "&"
+    | "|"
+    | "^"
+    | "%"
+    | "+"
+    | "-"
+    | "*"
+    | "/"
+    | "=="
+    | "!="
+    | "<"
+    | ">"
+    | "<="
+    | ">="
+    | "<<"
+    | ">>"
+group: "(" expr ")"
+    | "{" expr "}"
+attribute: "__attribute__" "(" group ")"
+alignof: "_Alignof" "(" expr ")"
+start: stmt
+stmt: expr
+    | expr stmt
+expr: builtin
+    | number
+    | char
+    | identifier
+    | operator
+    | group
+    | attribute
+    | alignof
+builtin: "__builtin_va_arg" "(" expr "," expr ")"
+    | "__builtin_offsetof" "(" expr ")"
+number: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+    | number number
+char: "\\uD416e0ec"
+    | "\\uE5a2"
+    | "\\udB57"
+identifier: "_Atomic"
+    | "restrict"
+    | "enum"
+    | "const"
+    | "_M"
+operator: "&"
+    | "|"
+    | "^"
+    | "%"
+    | "+"
+    | "-"
+    | "*"
+    | "/"
+    | "=="
+    | "!="
+    | "<"
+    | ">"
+    | "<="
+    | ">="
+    | "<<"
+    | ">>"
+group: "(" expr ")"
+    | "{" expr "}"
+attribute: "__attribute__" "(" group ")"
+alignof: "_Alignof" "(" expr ")"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.052, Precision: 0.284, F-1: 0.0879047619047619
+<production-rules>
+<stmt> ::= <expr> | <stmt> <expr>
+<expr> ::= <builtin> | <attribute> | <alignof> | <sizeof> | <enum> | <atomic> | <restrict> | <number> | <hex> | <unicode> | <identifier> | <operator> | <parentheses> | <brackets> | <curlybraces> | <comma> | <semicolon> | <colon> | <question> | <exclamation> | <ampersand> | <pipe> | <caret> | <percent> | <asterisk> | <plus> | <minus> | <slash> | <less> | <greater> | <equals> | <not> | <and> | <or>
+<builtin> ::= "__builtin_va_arg" | "__builtin_offsetof"
+<attribute> ::= "__attribute__"
+<alignof> ::= "_Alignof"
+<sizeof> ::= "sizeof"
+<enum> ::= "enum"
+<atomic> ::= "_Atomic"
+<restrict> ::= "restrict"
+<number> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | <number> <number>
+<hex> ::= "\u" <hex_digit> <hex_digit> <hex_digit> <hex_digit>
+<unicode> ::= "\U" <hex_digit> <hex_digit> <hex_digit> <hex_digit> <hex_digit> <hex_digit> <hex_digit> <hex_digit>
+<identifier> ::= "_M" | <identifier> <identifier>
+<operator> ::= "+" | "-" | "*" | "/" | "%" | "&" | "|" | "^" | "<<" | ">>" | "==" | "!=" | "<" | ">" | "<=" | ">="
+<parentheses> ::= "(" <expr> ")" | "(" ")"
+<brackets> ::= "[" <expr> "]" | "[" "]"
+<curlybraces> ::= "{" <expr> "}" | "{" "}"
+<comma> ::= ","
+<semicolon> ::= ";"
+<colon> ::= ":"
+<question> ::= "?"
+<exclamation> ::= "!"
+<ampersand> ::= "&"
+<pipe> ::= "|"
+<caret> ::= "^"
+<percent> ::= "%"
+<asterisk> ::= "*"
+<plus> ::= "+"
+<minus> ::= "-"
+<slash> ::= "/"
+<less> ::= "<"
+<greater> ::= ">"
+<equals> ::= "="
+<not> ::= "!"
+<and> ::= "&&"
+<or> ::= "||"
+<hex_digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "a" | "b" | "c" | "d" | "e" | "f" | "A" | "B" | "C" | "D" | "E" | "F"
+</production-rules>
+<re.Match object; span=(0, 1701), match='<production-rules>\n<stmt> ::= <expr> | <stmt> <e>
+HI
+Production Rules saved to results/gpt_grammar_glade2-c-4.txt
+start: stmt
+stmt: expr
+    | stmt expr
+expr: builtin
+    | attribute
+    | alignof
+    | sizeof
+    | enum
+    | atomic
+    | restrict
+    | number
+    | hex
+    | unicode
+    | identifier
+    | operator
+    | parentheses
+    | brackets
+    | curlybraces
+    | comma
+    | semicolon
+    | colon
+    | question
+    | exclamation
+    | ampersand
+    | pipe
+    | caret
+    | percent
+    | asterisk
+    | plus
+    | minus
+    | slash
+    | less
+    | greater
+    | equals
+    | not
+    | and
+    | or
+builtin: "__builtin_va_arg"
+    | "__builtin_offsetof"
+attribute: "__attribute__"
+alignof: "_Alignof"
+sizeof: talphanums
+enum: "enum"
+atomic: "_Atomic"
+restrict: talphanums
+number: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+    | number number
+hex: "\\u" hex_digit hex_digit hex_digit hex_digit
+unicode: "\\U" hex_digit hex_digit hex_digit hex_digit hex_digit hex_digit hex_digit hex_digit
+identifier: "_M"
+    | identifier identifier
+operator: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "%"
+    | "&"
+    | "|"
+    | "^"
+    | "<<"
+    | ">>"
+    | "=="
+    | "!="
+    | "<"
+    | ">"
+    | "<="
+    | ">="
+parentheses: "(" expr ")"
+    | "(" ")"
+brackets: "[" expr "]"
+    | "[" "]"
+curlybraces: "{" expr "}"
+    | "{" "}"
+comma: ","
+semicolon: ";"
+colon: ":"
+question: "?"
+exclamation: "!"
+ampersand: "&"
+pipe: "|"
+caret: "^"
+percent: "%"
+asterisk: "*"
+plus: "+"
+minus: "-"
+slash: "/"
+less: "<"
+greater: ">"
+equals: "="
+not: "!"
+and: "&&"
+or: "||"
+hex_digit: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: expr
+    | stmt expr
+expr: builtin
+    | attribute
+    | alignof
+    | sizeof
+    | enum
+    | atomic
+    | restrict
+    | number
+    | hex
+    | unicode
+    | identifier
+    | operator
+    | parentheses
+    | brackets
+    | curlybraces
+    | comma
+    | semicolon
+    | colon
+    | question
+    | exclamation
+    | ampersand
+    | pipe
+    | caret
+    | percent
+    | asterisk
+    | plus
+    | minus
+    | slash
+    | less
+    | greater
+    | equals
+    | not
+    | and
+    | or
+builtin: "__builtin_va_arg"
+    | "__builtin_offsetof"
+attribute: "__attribute__"
+alignof: "_Alignof"
+sizeof: talphanums
+enum: "enum"
+atomic: "_Atomic"
+restrict: talphanums
+number: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+    | number number
+hex: "\\u" hex_digit hex_digit hex_digit hex_digit
+unicode: "\\U" hex_digit hex_digit hex_digit hex_digit hex_digit hex_digit hex_digit hex_digit
+identifier: "_M"
+    | identifier identifier
+operator: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "%"
+    | "&"
+    | "|"
+    | "^"
+    | "<<"
+    | ">>"
+    | "=="
+    | "!="
+    | "<"
+    | ">"
+    | "<="
+    | ">="
+parentheses: "(" expr ")"
+    | "(" ")"
+brackets: "[" expr "]"
+    | "[" "]"
+curlybraces: "{" expr "}"
+    | "{" "}"
+comma: ","
+semicolon: ";"
+colon: ":"
+question: "?"
+exclamation: "!"
+ampersand: "&"
+pipe: "|"
+caret: "^"
+percent: "%"
+asterisk: "*"
+plus: "+"
+minus: "-"
+slash: "/"
+less: "<"
+greater: ">"
+equals: "="
+not: "!"
+and: "&&"
+or: "||"
+hex_digit: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.385, Precision: 0.198, F-1: 0.26150943396226417
+<production-rules>
+<stmt> ::= <expr> | <expr> <stmt>
+<expr> ::= <builtin> | <number> | <char> | <identifier> | <operator> | <group> | <attribute> | <alignof> | <sizeof>
+<builtin> ::= "__builtin_va_arg" "(" <expr> "," <expr> ")" | "__builtin_offsetof" "(" <expr> "," <expr> ")"
+<number> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | <number> <number>
+<char> ::= "\uD416e0ec" | "\uE5a2" | "\udB57"
+<identifier> ::= "enumjc5" | "_Atomic" | "restrict" | "enum" | "const" | "_M" | "restrictrestrict"
+<operator> ::= "&" | "|" | "^" | "%" | "+" | "-" | "*" | "/" | "==" | "!=" | "<" | ">" | "<=" | ">=" | "<<" | ">>"
+<group> ::= "(" <expr> ")" | "{" <expr> "}" | "[" <expr> "]"
+<attribute> ::= "__attribute__" "(" <group> ")"
+<alignof> ::= "_Alignof" "(" <expr> ")"
+<sizeof> ::= "sizeof" <operator> "sizeof" "(" <expr> ")"
+</production-rules>
+<re.Match object; span=(0, 853), match='<production-rules>\n<stmt> ::= <expr> | <expr> <s>
+HI
+Production Rules saved to results/gpt_grammar_glade2-c-5.txt
+start: stmt
+stmt: expr
+    | expr stmt
+expr: builtin
+    | number
+    | char
+    | identifier
+    | operator
+    | group
+    | attribute
+    | alignof
+    | sizeof
+builtin: "__builtin_va_arg" "(" expr "," expr ")"
+    | "__builtin_offsetof" "(" expr "," expr ")"
+number: number number
+    | tinteger
+char: "\\uD416e0ec"
+    | "\\uE5a2"
+    | "\\udB57"
+identifier: "enumjc5"
+    | "_Atomic"
+    | "restrict"
+    | "enum"
+    | "const"
+    | "_M"
+    | "restrictrestrict"
+operator: "&"
+    | "|"
+    | "^"
+    | "%"
+    | "+"
+    | "-"
+    | "*"
+    | "/"
+    | "=="
+    | "!="
+    | "<"
+    | ">"
+    | "<="
+    | ">="
+    | "<<"
+    | ">>"
+group: "(" expr ")"
+    | "{" expr "}"
+    | "[" expr "]"
+attribute: "__attribute__" "(" group ")"
+alignof: "_Alignof" "(" expr ")"
+sizeof: "sizeof" operator "sizeof" "(" expr ")"
+tinteger: tdigit
+    | tnzdigit tdigits
+tnzdigit: "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: expr
+    | expr stmt
+expr: builtin
+    | number
+    | char
+    | identifier
+    | operator
+    | group
+    | attribute
+    | alignof
+    | sizeof
+builtin: "__builtin_va_arg" "(" expr "," expr ")"
+    | "__builtin_offsetof" "(" expr "," expr ")"
+number: number number
+    | tinteger
+char: "\\uD416e0ec"
+    | "\\uE5a2"
+    | "\\udB57"
+identifier: "enumjc5"
+    | "_Atomic"
+    | "restrict"
+    | "enum"
+    | "const"
+    | "_M"
+    | "restrictrestrict"
+operator: "&"
+    | "|"
+    | "^"
+    | "%"
+    | "+"
+    | "-"
+    | "*"
+    | "/"
+    | "=="
+    | "!="
+    | "<"
+    | ">"
+    | "<="
+    | ">="
+    | "<<"
+    | ">>"
+group: "(" expr ")"
+    | "{" expr "}"
+    | "[" expr "]"
+attribute: "__attribute__" "(" group ")"
+alignof: "_Alignof" "(" expr ")"
+sizeof: "sizeof" operator "sizeof" "(" expr ")"
+tinteger: tdigit
+    | tnzdigit tdigits
+tnzdigit: "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.052, Precision: 0.258, F-1: 0.08655483870967741
+<production-rules>
+<stmt> ::= <expr> | <stmt> <expr>
+<expr> ::= <builtin> | <offsetof> | <alignof> | <attribute> | <atomic> | <enum> | <number> | <char> | <paren_expr> | <brace_expr>
+<builtin> ::= "__builtin_va_arg" "(" <expr> "," <expr> ")" | "__builtin_offsetof" "(" <expr> ")" | "__builtin_va_arg" "(" "sizeof" "++" "sizeof" "(" <enum> ")" "," "const" ")"
+<offsetof> ::= "__builtin_offsetof" "(" <expr> ")"
+<alignof> ::= "_Alignof" "(" <expr> ")"
+<attribute> ::= "__attribute__" "(" "(" ")" ")"
+<atomic> ::= "_Atomic" "(" <expr> ")"
+<enum> ::= "enum" "{" <char> "," "}" | "enum" <char>
+<number> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | <number> <number>
+<char> ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" | "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "_" | "\\" "u" <hex> <hex> <hex> <hex>
+<hex> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "a" | "b" | "c" | "d" | "e" | "f" | "A" | "B" | "C" | "D" | "E" | "F"
+<paren_expr> ::= "(" <expr> ")"
+<brace_expr> ::= "{" <expr> "}"
+</production-rules>
+<re.Match object; span=(0, 1265), match='<production-rules>\n<stmt> ::= <expr> | <stmt> <e>
+HI
+Production Rules saved to results/gpt_grammar_glade2-c-6.txt
+start: stmt
+stmt: expr
+    | stmt expr
+expr: builtin
+    | offsetof
+    | alignof
+    | attribute
+    | atomic
+    | enum
+    | number
+    | char
+    | paren_expr
+    | brace_expr
+builtin: "__builtin_va_arg" "(" expr "," expr ")"
+    | "__builtin_offsetof" "(" expr ")"
+    | "__builtin_va_arg" "(" "sizeof" "++" "sizeof" "(" enum ")" "," "const" ")"
+offsetof: "__builtin_offsetof" "(" expr ")"
+alignof: "_Alignof" "(" expr ")"
+attribute: "__attribute__" "(" "(" ")" ")"
+atomic: "_Atomic" "(" expr ")"
+enum: "enum" "{" char "," "}"
+    | "enum" char
+number: number number
+    | talphanums
+char: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "_"
+    | "\\\\" "u" hex hex hex hex
+hex: talphanums
+paren_expr: "(" expr ")"
+brace_expr: "{" expr "}"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: expr
+    | stmt expr
+expr: builtin
+    | offsetof
+    | alignof
+    | attribute
+    | atomic
+    | enum
+    | number
+    | char
+    | paren_expr
+    | brace_expr
+builtin: "__builtin_va_arg" "(" expr "," expr ")"
+    | "__builtin_offsetof" "(" expr ")"
+    | "__builtin_va_arg" "(" "sizeof" "++" "sizeof" "(" enum ")" "," "const" ")"
+offsetof: "__builtin_offsetof" "(" expr ")"
+alignof: "_Alignof" "(" expr ")"
+attribute: "__attribute__" "(" "(" ")" ")"
+atomic: "_Atomic" "(" expr ")"
+enum: "enum" "{" char "," "}"
+    | "enum" char
+number: number number
+    | talphanums
+char: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "_"
+    | "\\\\" "u" hex hex hex hex
+hex: talphanums
+paren_expr: "(" expr ")"
+brace_expr: "{" expr "}"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.195, Precision: 0.311, F-1: 0.23970355731225299
+<production-rules>
+<stmt> ::= <expr> | <expr> <stmt>
+<expr> ::= <builtin> | <number> | <char> | <identifier> | <operator> | <group> | <attribute> | <alignof>
+<builtin> ::= "__builtin_va_arg" "(" <expr> "," <expr> ")" | "__builtin_offsetof" "(" <expr> ")" 
+<number> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | <number> <number>
+<char> ::= "\uD416e0ec" | "\uE5a2" | "\udB57"
+<identifier> ::= "enumjc5" | "_Atomic" | "restrict" | "_M"
+<operator> ::= "&" | "|" | "^" | "%" | "+" | "-" | "*" | "/" | "==" | "!=" | "<" | ">" | "<=" | ">=" | "<<" | ">>"
+<group> ::= "(" <expr> ")" | "{" <expr> "}" | "[" <expr> "]"
+<attribute> ::= "__attribute__" "(" <group> ")"
+<alignof> ::= "_Alignof" "(" <expr> ")"
+</production-rules>
+<re.Match object; span=(0, 735), match='<production-rules>\n<stmt> ::= <expr> | <expr> <s>
+HI
+Production Rules saved to results/gpt_grammar_glade2-c-7.txt
+start: stmt
+stmt: expr
+    | expr stmt
+expr: builtin
+    | number
+    | char
+    | identifier
+    | operator
+    | group
+    | attribute
+    | alignof
+builtin: "__builtin_va_arg" "(" expr "," expr ")"
+    | "__builtin_offsetof" "(" expr ")"
+number: number number
+    | tinteger
+char: "\\uD416e0ec"
+    | "\\uE5a2"
+    | "\\udB57"
+identifier: "enumjc5"
+    | "_Atomic"
+    | "restrict"
+    | "_M"
+operator: "&"
+    | "|"
+    | "^"
+    | "%"
+    | "+"
+    | "-"
+    | "*"
+    | "/"
+    | "=="
+    | "!="
+    | "<"
+    | ">"
+    | "<="
+    | ">="
+    | "<<"
+    | ">>"
+group: "(" expr ")"
+    | "{" expr "}"
+    | "[" expr "]"
+attribute: "__attribute__" "(" group ")"
+alignof: "_Alignof" "(" expr ")"
+tinteger: tdigit
+    | tnzdigit tdigits
+tnzdigit: "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: expr
+    | expr stmt
+expr: builtin
+    | number
+    | char
+    | identifier
+    | operator
+    | group
+    | attribute
+    | alignof
+builtin: "__builtin_va_arg" "(" expr "," expr ")"
+    | "__builtin_offsetof" "(" expr ")"
+number: number number
+    | tinteger
+char: "\\uD416e0ec"
+    | "\\uE5a2"
+    | "\\udB57"
+identifier: "enumjc5"
+    | "_Atomic"
+    | "restrict"
+    | "_M"
+operator: "&"
+    | "|"
+    | "^"
+    | "%"
+    | "+"
+    | "-"
+    | "*"
+    | "/"
+    | "=="
+    | "!="
+    | "<"
+    | ">"
+    | "<="
+    | ">="
+    | "<<"
+    | ">>"
+group: "(" expr ")"
+    | "{" expr "}"
+    | "[" expr "]"
+attribute: "__attribute__" "(" group ")"
+alignof: "_Alignof" "(" expr ")"
+tinteger: tdigit
+    | tnzdigit tdigits
+tnzdigit: "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.052, Precision: 0.335, F-1: 0.09002583979328166
+<production-rules>
+<stmt> ::= <expr> | <stmt> <expr>
+<expr> ::= <builtin> | <attribute> | <alignof> | <sizeof> | <number> | <char> | <enum> | <atomic> | <restrict> | <operator> | <parentheses> | <brackets> | <curlybraces> | <identifier>
+<builtin> ::= "__builtin_va_arg" <parentheses> | "__builtin_offsetof" <parentheses>
+<attribute> ::= "__attribute__" <parentheses>
+<alignof> ::= "_Alignof" <parentheses>
+<sizeof> ::= "sizeof" <operator> "sizeof" <parentheses>
+<number> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | <number> <number>
+<char> ::= "\uD416" | "\uE5a2" | "\udB57" | "\UD416e0ec"
+<enum> ::= "enum" <identifier>
+<atomic> ::= "_Atomic" <parentheses>
+<restrict> ::= "restrict" | "restrictrestrict"
+<operator> ::= "+" | "-" | "*" | "/" | "%" | "<<" | ">>" | "&" | "|" | "==" | "!=" | "<" | ">" | "<=" | ">="
+<parentheses> ::= "(" <stmt> ")" | "(" ")"
+<brackets> ::= "[" <stmt> "]" | "[" "]"
+<curlybraces> ::= "{" <stmt> "}" | "{" "}"
+<identifier> ::= "jc5" | "M" | <identifier> <identifier>
+</production-rules>
+<re.Match object; span=(0, 1036), match='<production-rules>\n<stmt> ::= <expr> | <stmt> <e>
+HI
+Production Rules saved to results/gpt_grammar_glade2-c-8.txt
+start: stmt
+stmt: expr
+    | stmt expr
+expr: builtin
+    | attribute
+    | alignof
+    | sizeof
+    | number
+    | char
+    | enum
+    | atomic
+    | restrict
+    | operator
+    | parentheses
+    | brackets
+    | curlybraces
+    | identifier
+builtin: "__builtin_va_arg" parentheses
+    | "__builtin_offsetof" parentheses
+attribute: "__attribute__" parentheses
+alignof: "_Alignof" parentheses
+sizeof: "sizeof" operator "sizeof" parentheses
+number: number number
+    | tinteger
+char: "\\uD416"
+    | "\\uE5a2"
+    | "\\udB57"
+    | "\\UD416e0ec"
+enum: "enum" identifier
+atomic: "_Atomic" parentheses
+restrict: talphanums
+operator: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "%"
+    | "<<"
+    | ">>"
+    | "&"
+    | "|"
+    | "=="
+    | "!="
+    | "<"
+    | ">"
+    | "<="
+    | ">="
+parentheses: "(" stmt ")"
+    | "(" ")"
+brackets: "[" stmt "]"
+    | "[" "]"
+curlybraces: "{" stmt "}"
+    | "{" "}"
+identifier: "jc5"
+    | identifier identifier
+    | talphanums
+tinteger: tdigit
+    | tnzdigit tdigits
+tnzdigit: "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: expr
+    | stmt expr
+expr: builtin
+    | attribute
+    | alignof
+    | sizeof
+    | number
+    | char
+    | enum
+    | atomic
+    | restrict
+    | operator
+    | parentheses
+    | brackets
+    | curlybraces
+    | identifier
+builtin: "__builtin_va_arg" parentheses
+    | "__builtin_offsetof" parentheses
+attribute: "__attribute__" parentheses
+alignof: "_Alignof" parentheses
+sizeof: "sizeof" operator "sizeof" parentheses
+number: number number
+    | tinteger
+char: "\\uD416"
+    | "\\uE5a2"
+    | "\\udB57"
+    | "\\UD416e0ec"
+enum: "enum" identifier
+atomic: "_Atomic" parentheses
+restrict: talphanums
+operator: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "%"
+    | "<<"
+    | ">>"
+    | "&"
+    | "|"
+    | "=="
+    | "!="
+    | "<"
+    | ">"
+    | "<="
+    | ">="
+parentheses: "(" stmt ")"
+    | "(" ")"
+brackets: "[" stmt "]"
+    | "[" "]"
+curlybraces: "{" stmt "}"
+    | "{" "}"
+identifier: "jc5"
+    | identifier identifier
+    | talphanums
+tinteger: tdigit
+    | tnzdigit tdigits
+tnzdigit: "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.268, Precision: 0.378, F-1: 0.3136346749226006
+<production-rules>
+<stmt> ::= <expr> | <expr> <stmt>
+<expr> ::= <builtin> | <number> | <char> | <identifier> | <operator> | <group> | <attribute> | <alignof>
+<builtin> ::= "__builtin_va_arg" "(" <expr> "," <expr> ")" | "__builtin_offsetof" "(" <expr> "," <expr> ")"
+<number> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | <number> <number>
+<char> ::= "\uD416e0ec" | "\uE5a2" | "\udB57"
+<identifier> ::= "enumjc5" | "_Atomic" | "restrict" | "__attribute__" | "_Alignof" | "_M"
+<operator> ::= "&" | "|" | "^" | "%" | "+" | "-" | "*" | "/" | "==" | "!=" | "<" | ">" | "<=" | ">=" | "<<" | ">>"
+<group> ::= "(" <expr> ")" | "{" <expr> "}"
+<attribute> ::= "__attribute__" "(" <expr> ")"
+<alignof> ::= "_Alignof" "(" <expr> ")"
+</production-rules>
+<re.Match object; span=(0, 758), match='<production-rules>\n<stmt> ::= <expr> | <expr> <s>
+HI
+Production Rules saved to results/gpt_grammar_glade2-c-9.txt
+start: stmt
+stmt: expr
+    | expr stmt
+expr: builtin
+    | number
+    | char
+    | identifier
+    | operator
+    | group
+    | attribute
+    | alignof
+builtin: "__builtin_va_arg" "(" expr "," expr ")"
+    | "__builtin_offsetof" "(" expr "," expr ")"
+number: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+    | number number
+char: "\\uD416e0ec"
+    | "\\uE5a2"
+    | "\\udB57"
+identifier: "enumjc5"
+    | "_Atomic"
+    | "restrict"
+    | "__attribute__"
+    | "_Alignof"
+    | "_M"
+operator: "&"
+    | "|"
+    | "^"
+    | "%"
+    | "+"
+    | "-"
+    | "*"
+    | "/"
+    | "=="
+    | "!="
+    | "<"
+    | ">"
+    | "<="
+    | ">="
+    | "<<"
+    | ">>"
+group: "(" expr ")"
+    | "{" expr "}"
+attribute: "__attribute__" "(" expr ")"
+alignof: "_Alignof" "(" expr ")"
+start: stmt
+stmt: expr
+    | expr stmt
+expr: builtin
+    | number
+    | char
+    | identifier
+    | operator
+    | group
+    | attribute
+    | alignof
+builtin: "__builtin_va_arg" "(" expr "," expr ")"
+    | "__builtin_offsetof" "(" expr "," expr ")"
+number: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+    | number number
+char: "\\uD416e0ec"
+    | "\\uE5a2"
+    | "\\udB57"
+identifier: "enumjc5"
+    | "_Atomic"
+    | "restrict"
+    | "__attribute__"
+    | "_Alignof"
+    | "_M"
+operator: "&"
+    | "|"
+    | "^"
+    | "%"
+    | "+"
+    | "-"
+    | "*"
+    | "/"
+    | "=="
+    | "!="
+    | "<"
+    | ">"
+    | "<="
+    | ">="
+    | "<<"
+    | ">>"
+group: "(" expr ")"
+    | "{" expr "}"
+attribute: "__attribute__" "(" expr ")"
+alignof: "_Alignof" "(" expr ")"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.052, Precision: 0.307, F-1: 0.0889359331476323
+<production-rules>
+<stmt> ::= <expr> | <stmt> <expr>
+<expr> ::= <builtin> | <attribute> | <alignof> | <sizeof> | <enum> | <atomic> | <restrict> | <number> | <hex> | <unicode> | <identifier> | <operator> | <parentheses> | <brackets> | <curlybraces>
+<builtin> ::= "__builtin_va_arg" <parentheses> | "__builtin_offsetof" <parentheses>
+<attribute> ::= "__attribute__" <parentheses>
+<alignof> ::= "_Alignof" <parentheses>
+<sizeof> ::= "sizeof" <operator> "sizeof" <parentheses>
+<enum> ::= "enum" <curlybraces>
+<atomic> ::= "_Atomic" <parentheses>
+<restrict> ::= "restrict" | "restrictrestrict"
+<number> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | <number> <number>
+<hex> ::= "\u" <hex_digit> <hex_digit> <hex_digit> <hex_digit>
+<unicode> ::= "\U" <hex_digit> <hex_digit> <hex_digit> <hex_digit> <hex_digit> <hex_digit> <hex_digit> <hex_digit>
+<identifier> ::= "_M" | <identifier> <identifier>
+<operator> ::= "+" | "-" | "*" | "/" | "%" | "==" | "!=" | "<" | ">" | "<=" | ">=" | "&" | "|" | "^" | "<<" | ">>"
+<parentheses> ::= "(" <stmt> ")" | "(" ")"
+<brackets> ::= "[" <stmt> "]" | "[" "]"
+<curlybraces> ::= "{" <stmt> "}" | "{" "}"
+<hex_digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "a" | "b" | "c" | "d" | "e" | "f" | "A" | "B" | "C" | "D" | "E" | "F"
+</production-rules>
+<re.Match object; span=(0, 1314), match='<production-rules>\n<stmt> ::= <expr> | <stmt> <e>
+HI
+Production Rules saved to results/gpt_grammar_glade2-c-10.txt
+start: stmt
+stmt: expr
+    | stmt expr
+expr: builtin
+    | attribute
+    | alignof
+    | sizeof
+    | enum
+    | atomic
+    | restrict
+    | number
+    | hex
+    | unicode
+    | identifier
+    | operator
+    | parentheses
+    | brackets
+    | curlybraces
+builtin: "__builtin_va_arg" parentheses
+    | "__builtin_offsetof" parentheses
+attribute: "__attribute__" parentheses
+alignof: "_Alignof" parentheses
+sizeof: "sizeof" operator "sizeof" parentheses
+enum: "enum" curlybraces
+atomic: "_Atomic" parentheses
+restrict: "restrict"
+    | "restrictrestrict"
+number: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+    | number number
+hex: "\\u" hex_digit hex_digit hex_digit hex_digit
+unicode: "\\U" hex_digit hex_digit hex_digit hex_digit hex_digit hex_digit hex_digit hex_digit
+identifier: "_M"
+    | identifier identifier
+operator: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "%"
+    | "=="
+    | "!="
+    | "<"
+    | ">"
+    | "<="
+    | ">="
+    | "&"
+    | "|"
+    | "^"
+    | "<<"
+    | ">>"
+parentheses: "(" stmt ")"
+    | "(" ")"
+brackets: "[" stmt "]"
+    | "[" "]"
+curlybraces: "{" stmt "}"
+    | "{" "}"
+hex_digit: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: expr
+    | stmt expr
+expr: builtin
+    | attribute
+    | alignof
+    | sizeof
+    | enum
+    | atomic
+    | restrict
+    | number
+    | hex
+    | unicode
+    | identifier
+    | operator
+    | parentheses
+    | brackets
+    | curlybraces
+builtin: "__builtin_va_arg" parentheses
+    | "__builtin_offsetof" parentheses
+attribute: "__attribute__" parentheses
+alignof: "_Alignof" parentheses
+sizeof: "sizeof" operator "sizeof" parentheses
+enum: "enum" curlybraces
+atomic: "_Atomic" parentheses
+restrict: "restrict"
+    | "restrictrestrict"
+number: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+    | number number
+hex: "\\u" hex_digit hex_digit hex_digit hex_digit
+unicode: "\\U" hex_digit hex_digit hex_digit hex_digit hex_digit hex_digit hex_digit hex_digit
+identifier: "_M"
+    | identifier identifier
+operator: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "%"
+    | "=="
+    | "!="
+    | "<"
+    | ">"
+    | "<="
+    | ">="
+    | "&"
+    | "|"
+    | "^"
+    | "<<"
+    | ">>"
+parentheses: "(" stmt ")"
+    | "(" ")"
+brackets: "[" stmt "]"
+    | "[" "]"
+curlybraces: "{" stmt "}"
+    | "{" "}"
+hex_digit: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.212, Precision: 0.124, F-1: 0.1564761904761905
