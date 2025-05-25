@@ -1,54 +1,3 @@
-
-#log_file=$1
-#ans=$(grep -r "Recall: " $log_file)
-#echo $ans
-##grep -o "Recall: [0-9.]*, Precision: [0-9.]*, F-1: [0-9.]*" "$log_file" | \
-##awk '
-##{
-##    split($2, r, ":"); recall_sum += r[2];
-##    split($4, p, ":"); precision_sum += p[2];
-##    split($6, f, ":"); f1_sum += f[2];
-##    count++;
-##}
-##END {
-##    if (count > 0) {
-##        printf "Average Recall: %.3f\n", recall_sum / count;
-##        printf "Average Precision: %.3f\n", precision_sum / count;
-##        printf "Average F1: %.3f\n", f1_sum / count;
-##    } else {
-##        print "No matching lines found.";
-##    }
-##}'
-## Get the line with all metrics
-#line=$(grep -o "Recall: [0-9.]*, Precision: [0-9.]*, F-1: [0-9.]*" "$log_file")
-#
-## Convert it to one item per line and feed to awk
-#echo "$line" | tr ' ' '\n' | awk '
-#BEGIN { recall_sum=0; precision_sum=0; f1_sum=0; count=0 }
-#/^Recall:/ {
-#    split($0, a, ":");
-#    recall_sum += a[2];
-#    count++;
-#}
-#/^Precision:/ {
-#    split($0, a, ":");
-#    precision_sum += a[2];
-#}
-#/^F-1:/ {
-#    split($0, a, ":");
-#    f1_sum += a[2];
-#}
-#END {
-#    if (count > 0) {
-#        printf "Average Recall: %.3f\n", recall_sum / count;
-#        printf "Average Precision: %.3f\n", precision_sum / count;
-#        printf "Average F1: %.3f\n", f1_sum / count;
-#    } else {
-#        print "No scores found.";
-#    }
-#}'
-#!/bin/bash
-
 log_file=$1
 
 recall_sum=0
@@ -77,9 +26,90 @@ if [ "$count" -gt 0 ]; then
     #printf "Average F1: %.3f\n" "$avg_f1"
     #printf "Average Recall: %.3f\nAverage Precision: %.3f\nAverage F1: %.3f\n" "$avg_recall" "$avg_precision" "$avg_f1"
     printf "%.3f,%.3f,%.3f\n" "$avg_recall" "$avg_precision" "$avg_f1"
-
-
 else
     echo "No valid lines found."
 fi
 
+#Time spent building grammar: 939.0642974376678s
+#Parse calls: 31396, 11717 
+#LLM calls for bubble finding: 10
+# === Time spent building grammar ===
+# === Time spent building grammar ===
+grammar_sum=0
+grammar_count=0
+while read -r line; do
+    value=$(echo "$line" | grep -oP "Time spent building grammar: \K[0-9.]+" )
+    grammar_sum=$(echo "$grammar_sum + $value" | bc -l)
+    grammar_count=$((grammar_count + 1))
+done < <(grep "Time spent building grammar:" "$log_file")
+
+# === LLM calls for bubble finding ===
+llm_sum=0
+llm_count=0
+while read -r line; do
+    value=$(echo "$line" | grep -oP "LLM calls for bubble finding: \K[0-9]+")
+    llm_sum=$(echo "$llm_sum + $value" | bc)
+    llm_count=$((llm_count + 1))
+done < <(grep "LLM calls for bubble finding:" "$log_file")
+
+# === Parse calls (only first number) ===
+parse_sum=0
+parse_count=0
+while read -r line; do
+    value=$(echo "$line" | grep -oP "Parse calls: \K[0-9]+")
+    parse_sum=$(echo "$parse_sum + $value" | bc)
+    parse_count=$((parse_count + 1))
+done < <(grep "Parse calls:" "$log_file")
+
+# === Compute Averages ===
+avg_grammar=$(echo "$grammar_count > 0" | bc -l) && [ "$avg_grammar" -eq 1 ] && avg_grammar=$(echo "$grammar_sum / $grammar_count" | bc -l) || avg_grammar=0
+avg_llm=$(echo "$llm_count > 0" | bc -l) && [ "$avg_llm" -eq 1 ] && avg_llm=$(echo "$llm_sum / $llm_count" | bc -l) || avg_llm=0
+avg_parse=$(echo "$parse_count > 0" | bc -l) && [ "$avg_parse" -eq 1 ] && avg_parse=$(echo "$parse_sum / $parse_count" | bc -l) || avg_parse=0
+
+#grammar_sum=0
+#grammar_count=0
+#while read -r line; do
+#    value=$(echo "$line" | cut -d':' -f2 | sed 's/s//g' | xargs)
+#    grammar_sum=$(echo "$grammar_sum + $value" | bc -l)
+#    grammar_count=$((grammar_count + 1))
+#done < <(grep "Time spent building grammar:" "$log_file")
+#
+## === LLM calls for bubble finding ===
+#llm_sum=0
+#llm_count=0
+#while read -r line; do
+#    value=$(echo "$line" | cut -d':' -f2 | xargs)
+#    llm_sum=$(echo "$llm_sum + $value" | bc)
+#    llm_count=$((llm_count + 1))
+#done < <(grep "LLM calls for bubble finding:" "$log_file")
+#
+## === Parse calls (only first number) ===
+#parse_sum=0
+#parse_count=0
+#while read -r line; do
+#    value=$(echo "$line" | cut -d':' -f2 | cut -d',' -f1 | xargs)
+#    parse_sum=$(echo "$parse_sum + $value" | bc)
+#    parse_count=$((parse_count + 1))
+#done < <(grep "Parse calls:" "$log_file")
+#
+## === Print averages ===
+#if [ "$grammar_count" -gt 0 ]; then
+#    avg_grammar=$(echo "$grammar_sum / $grammar_count" | bc -l)
+#else
+#    avg_grammar=0
+#fi
+#
+#if [ "$llm_count" -gt 0 ]; then
+#    avg_llm=$(echo "$llm_sum / $llm_count" | bc -l)
+#else
+#    avg_llm=0
+#fi
+#
+#if [ "$parse_count" -gt 0 ]; then
+#    avg_parse=$(echo "$parse_sum / $parse_count" | bc -l)
+#else
+#    avg_parse=0
+#fi
+
+# Output in one line
+printf "Avg Grammar Time:,Avg Parse Calls:,Avg LLM Calls:   %.3f,%.2f,%.2f\n" "$avg_grammar" "$avg_parse" "$avg_llm" 

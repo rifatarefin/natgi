@@ -1,20 +1,1687 @@
+arg=minic
 python3 search.py external Seed_Programs/minic/parse_minic Seed_Programs/minic/minic-train-r0 Seed_Programs/minic-r1-tv.log
 Using approximate pre-tokenization stage
-**** Running eval.py ****
-**** Running search.py ****
+Average guide length in char: 107.0, max guide length: 368
+Average token length: 89.7, max token length: 315
+Guides with brackets: 9, quotes: 0
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 8.9
+Average lengths of brackets(not normalized): 9.268472906403941
+Average n: 89.7
+Beginning coalescing...                           
+LLM suggested label: letter for a and b
+LLM suggested label: paramlist for ( float a , float a ) and ( bool a )
+LLM suggested label: block for { if ( a = a = ( a = 0 < 0 ) ) do ; while ( a < a ) ; } and { a(3); }
+LLM suggested label: type for float and bool
+LLM suggested label: boolexpr for ( a = a = ( a = 0 < 0 ) ) and ( a < a )
+LLM suggested label: num for 3 and 0
+LLM suggested label: addop for + and -
+LLM suggested label: tupleexpr for ( a ( a < ( 0 ) - 0 - ( 0 ) ) < 0 , 0 ) and ( 0 , 0 , 0 )
+max example size 315, node size: 103
+1-BUBBLES
+{
+    "siblings": [
+        ["if", "boolexpr"],
+        ["letter", "=", "letter"],
+        ["letter", "=", "num"],
+        ["letter", "<", "num"],
+        ["letter", "addop", "boolexpr"],
+        ["letter", "addop", "num"],
+        ["boolexpr", "addop", "boolexpr"],
+        ["boolexpr", "addop", "num"],
+        ["type", "letter"],
+        ["letter", ",", "letter"],
+        ["letter", ";"],
+        ["num", ";"],
+        ["do", "while", "boolexpr"],
+        ["while", "boolexpr"],
+        ["else", "if", "boolexpr"],
+        ["else", "block"],
+        ["letter", "tupleexpr"],
+        ["num", "<", "num"],
+        ["letter", "=", "boolexpr"],
+        ["num", ",", "num"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 1 (1/20)...     
+Successful grouping (single): [a,  , tupleexpr]
+    (aka ['a', ' ', '( a ( a < ( 0 ) - 0 - ( 0 ) ) < 0 , 0 )']
+coalesced into:  {'t99': 'num', 'num': 'num'}
+LLM suggested label: stmt for do while ( 0 ) and do
+ Next suggestion: loopstmt
+
+[Group len -1] Bubbling iteration 1 (12/20)...    
+Successful grouping (single): [do,  , while,  , boolexpr]
+    (aka ['do', ' ', 'while', ' ', '( 0 )']
+coalesced into:  {'t88': 'loopstmt', 'do': 'loopstmt'}
+
+[Group len -1] Bubbling iteration 1 (15/20)...    
+Successful grouping (single): [boolexpr,  , +,  , boolexpr]
+    (aka ['( 0 )', ' ', '+', ' ', '( a = a ( a < a ( a ) ) < 0 - ( a = ( 0 ) + 0 ) - 0 - 0 )']
+coalesced into:  {'t85': 'tupleexpr', 'tupleexpr': 'tupleexpr'}
+
+[Group len -1] Bubbling iteration 1 (16/20)...    
+Successful grouping (single): [a,  , +,  , 0]
+    (aka ['a', ' ', '+', ' ', '0']
+coalesced into:  {'t84': 'num', 'num': 'num'}
+
+[Group len -1] Bubbling iteration 1 (17/20)...    
+Successful grouping (single): [a,  , -,  , boolexpr]
+    (aka ['a', ' ', '-', ' ', '( 0 + ( a = a = 0 ) )']
+coalesced into:  {'t83': 'num', 'num': 'num'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 1 (1/20)...     
+Successful grouping (single): [a,  , tupleexpr]
+    (aka ['a', ' ', '( a ( a < ( 0 ) - 0 - ( 0 ) ) < 0 , 0 )']
+coalesced into:  {'t100': 'num', 'num': 'num'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["letter", "=", "num"],
+    ["letter", "=", "letter"],
+    ["letter", "<", "num"],
+    ["letter", "boolexpr"],
+    ["boolexpr", "<", "num"],
+    ["boolexpr", "addop", "num"],
+    ["num", "addop", "num"],
+    ["type", "letter"],
+    ["letter", ",", "letter"],
+    ["num", ",", "num"],
+    ["if", "boolexpr"],
+    ["while", "boolexpr"],
+    ["loopstmt", ";"],
+    ["block", "else"],
+    ["if", "boolexpr", "block"],
+    ["else", "block"],
+    ["else", "if"],
+    ["else", "loopstmt"],
+    ["else", "while"],
+    ["type", "letter", ","]
+  ]
+}
+
+[Group len -1] Bubbling iteration 2 (10/30)...    
+Successful grouping (single): [a, boolexpr]
+    (aka ['a', '(3)']
+coalesced into:  {'t116': 'num', 'num': 'num'}
+
+[Group len -1] Bubbling iteration 2 (15/30)...    
+Successful grouping (single): [num,  , +,  , 0]
+    (aka ['a ( 0 ) + ( a = a ( a < a ( a ) ) < 0 - ( a = ( 0 ) + 0 ) - 0 - 0 )', ' ', '+', ' ', '0']
+coalesced into:  {'t111': 'num', 'num': 'num'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["letter", "=", "letter"],
+    ["letter", "=", "num"],
+    ["letter", "<", "num"],
+    ["num", "<", "num"],
+    ["letter", "=", "boolexpr"],
+    ["boolexpr", "<", "num"],
+    ["letter", "=", "letter", "=", "letter"],
+    ["letter", "=", "letter", "=", "boolexpr"],
+    ["letter", "=", "letter", "=", "num"],
+    ["letter", "boolexpr", "<", "num"],
+    ["letter", "<", "boolexpr"],
+    ["letter", "<", "boolexpr", "addop", "num"],
+    ["letter", "=", "boolexpr", "addop", "num"],
+    ["letter", "=", "num", "<", "num"],
+    ["letter", "=", "boolexpr", "<", "num"],
+    ["letter", "=", "letter", "boolexpr"],
+    ["letter", "=", "letter", "boolexpr", "<", "num"],
+    ["letter", "=", "letter", "boolexpr", "addop", "num"],
+    ["letter", "=", "letter", "boolexpr", "addop", "num", "<", "num"],
+    ["letter", "=", "num", "addop", "boolexpr"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["if", "boolexpr", "letter", "=", "letter", "<", "num", ";", "else", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "num", ";", "else", "loopstmt", "if", "boolexpr", ";", "else", "loopstmt", "loopstmt", "block", "while", "boolexpr", ";", "while", "boolexpr", ";", "while", "boolexpr", ";", "else", "while", "boolexpr", "block"],
+      ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block", "else", "block", "else", "type", "letter", ";"]
+    ],
+    [
+      ["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";", "type", "letter", ",", "letter", ";"],
+      ["letter", "=", "num", "addop", "boolexpr", "addop", "num", "addop", "boolexpr", "addop", "num", "<", "num"]
+    ],
+    [
+      ["if", "boolexpr", "if", "boolexpr", "type", "letter", ",", "letter", ";", "else", "letter", "=", "letter", ";"],
+      ["if", "boolexpr", "while", "boolexpr", "block", "else", "if", "boolexpr", "block", "else", ";"]
+    ],
+    [
+      ["letter", "=", "letter", "boolexpr", "<", "num", "addop", "boolexpr", "addop", "num"],
+      ["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "num", "<", "num"]
+    ],
+    [
+      ["letter", "<", "num", "addop", "letter", "boolexpr", "addop", "num"],
+      ["letter", "<", "boolexpr", "addop", "num", "addop", "boolexpr"]
+    ],
+    [
+      ["type", "letter", ",", "type", "letter", ",", "type", "letter"],
+      ["type", "letter", ",", "letter", ";"]
+    ],
+    [
+      ["letter", "=", "letter", "=", "boolexpr"],
+      ["letter", "=", "boolexpr", "addop", "num"]
+    ],
+    [
+      ["letter", "=", "num", "<", "num"],
+      ["letter", "=", "boolexpr", "<", "num"]
+    ],
+    [
+      ["num", ",", "num", ",", "num"],
+      ["letter", "boolexpr", "<", "num", ",", "num"]
+    ],
+    [
+      ["letter", "=", "letter", "=", "num"],
+      ["letter", "=", "letter", "=", "boolexpr"]
+    ]
+  ]
+}
+1-BUBBLES
+{
+  "siblings": [
+    ["letter", "=", "letter"],
+    ["letter", "=", "num"],
+    ["letter", "<", "num"],
+    ["num", "<", "num"],
+    ["letter", "=", "boolexpr"],
+    ["boolexpr", "<", "num"],
+    ["letter", "=", "letter", "=", "letter"],
+    ["letter", "=", "letter", "=", "boolexpr"],
+    ["letter", "=", "letter", "boolexpr"],
+    ["letter", "=", "boolexpr", "addop", "num"],
+    ["letter", "<", "boolexpr", "addop", "num"],
+    ["letter", "boolexpr", "<", "num"],
+    ["letter", "=", "num", "<", "letter"],
+    ["letter", "=", "num", "<", "num"],
+    ["letter", "=", "num", "addop", "boolexpr"],
+    ["letter", "=", "num", "addop", "num"],
+    ["letter", "=", "letter", "boolexpr", "<", "num"],
+    ["letter", "=", "letter", "boolexpr", "addop", "num"],
+    ["letter", "=", "letter", "=", "num"],
+    ["type", "letter", ",", "letter"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["if", "boolexpr", "letter", "=", "letter", "<", "num", ";", "else", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "num", ";", "else", "loopstmt", "if", "boolexpr", ";", "else", "loopstmt", "loopstmt", "block", "while", "boolexpr", ";", "while", "boolexpr", ";", "while", "boolexpr", ";", "else", "while", "boolexpr", "block"],
+      ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block", "else", "block", "else", "type", "letter", ";"]
+    ],
+    [
+      ["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";", "type", "letter", ",", "letter", ";"],
+      ["letter", "=", "num", "addop", "boolexpr", "addop", "num", "addop", "boolexpr", "addop", "num", "<", "num"]
+    ],
+    [
+      ["if", "boolexpr", "if", "boolexpr", "type", "letter", ",", "letter", ";", "else", "letter", "=", "letter", ";"],
+      ["if", "boolexpr", "while", "boolexpr", "block", "else", "if", "boolexpr", "block", "else", ";"]
+    ],
+    [
+      ["letter", "=", "letter", "boolexpr", "<", "num", "addop", "boolexpr", "addop", "num"],
+      ["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "num", "<", "num"]
+    ],
+    [
+      ["letter", "<", "num", "addop", "letter", "boolexpr", "addop", "num"],
+      ["letter", "<", "boolexpr", "addop", "num", "addop", "boolexpr"]
+    ],
+    [
+      ["type", "letter", ",", "type", "letter", ",", "type", "letter"],
+      ["type", "letter", ",", "letter", ";"]
+    ],
+    [
+      ["letter", "=", "letter", "=", "boolexpr"],
+      ["letter", "=", "boolexpr", "addop", "num"]
+    ],
+    [
+      ["letter", "=", "num", "<", "num"],
+      ["letter", "=", "boolexpr", "<", "num"]
+    ],
+    [
+      ["num", ",", "num", ",", "num"],
+      ["letter", "boolexpr", "<", "num", ",", "num"]
+    ],
+    [
+      ["letter", "=", "letter", "=", "num"],
+      ["letter", "=", "letter", "=", "boolexpr"]
+    ],
+    [
+      ["if", "boolexpr", "loopstmt", ";", "while", "boolexpr", ";"],
+      ["if", "boolexpr", "while", "boolexpr", "block", "else", "if", "boolexpr", "block", "else", ";"]
+    ],
+    [
+      ["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";", "type", "letter", ",", "letter", ";"],
+      ["letter", "=", "letter", "boolexpr", "<", "num", "addop", "boolexpr", "addop", "num"]
+    ],
+    [
+      ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block", "else", "block", "else", "type", "letter", ";"],
+      ["if", "boolexpr", "while", "boolexpr", "block", "else", "if", "boolexpr", "block", "else", ";"]
+    ],
+    [
+      ["letter", "=", "letter", "boolexpr", "<", "num", "addop", "boolexpr", "addop", "num"],
+      ["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "num", "<", "num"]
+    ],
+    [
+      ["letter", "<", "num", "addop", "letter", "boolexpr", "addop", "num"],
+      ["letter", "<", "boolexpr", "addop", "num", "addop", "boolexpr"]
+    ],
+    [
+      ["type", "letter", ",", "type", "letter", ",", "type", "letter"],
+      ["type", "letter", ",", "letter", ";"]
+    ],
+    [
+      ["letter", "=", "letter", "=", "boolexpr"],
+      ["letter", "=", "boolexpr", "addop", "num"]
+    ],
+    [
+      ["letter", "=", "num", "<", "num"],
+      ["letter", "=", "boolexpr", "<", "num"]
+    ],
+    [
+      ["num", ",", "num", ",", "num"],
+      ["letter", "boolexpr", "<", "num", ",", "num"]
+    ],
+    [
+      ["letter", "=", "letter", "=", "num"],
+      ["letter", "=", "letter", "=", "boolexpr"]
+    ]
+  ]
+}
+1-BUBBLES
+{
+    "siblings": [
+        ["if", "boolexpr"],
+        ["letter", "=", "letter"],
+        ["letter", "<", "num"],
+        ["num", ";"],
+        ["else", "if"],
+        ["if", "boolexpr"],
+        ["if", "boolexpr"],
+        ["if", "boolexpr"],
+        ["if", "boolexpr"],
+        ["num", ";"],
+        ["else", "loopstmt"],
+        ["if", "boolexpr"],
+        [";", "else"],
+        ["loopstmt", "block"],
+        ["while", "boolexpr"],
+        [";", "while"],
+        ["boolexpr", ";"],
+        ["else", "while"],
+        ["boolexpr", "block"],
+        ["letter", "=", "num"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["if", "boolexpr", "letter", "=", "letter", "<", "num", ";", "else", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "num", ";", "else", "loopstmt", "if", "boolexpr", ";", "else", "loopstmt", "loopstmt", "block", "while", "boolexpr", ";", "while", "boolexpr", ";", "while", "boolexpr", ";", "else", "while", "boolexpr", "block"],
+      ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block", "else", "block", "else", "type", "letter", ";"]
+    ],
+    [
+      ["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";", "type", "letter", ",", "letter", ";"],
+      ["letter", "=", "num", "addop", "boolexpr", "addop", "num", "addop", "boolexpr", "addop", "num", "<", "num"]
+    ],
+    [
+      ["if", "boolexpr", "if", "boolexpr", "type", "letter", ",", "letter", ";", "else", "letter", "=", "letter", ";"],
+      ["if", "boolexpr", "while", "boolexpr", "block", "else", "if", "boolexpr", "block", "else", ";"]
+    ],
+    [
+      ["letter", "=", "letter", "boolexpr", "<", "num", "addop", "boolexpr", "addop", "num"],
+      ["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "num", "<", "num"]
+    ],
+    [
+      ["letter", "<", "num", "addop", "letter", "boolexpr", "addop", "num"],
+      ["letter", "<", "boolexpr", "addop", "num", "addop", "boolexpr"]
+    ],
+    [
+      ["type", "letter", ",", "type", "letter", ",", "type", "letter"],
+      ["type", "letter", ",", "letter", ";"]
+    ],
+    [
+      ["letter", "=", "letter", "=", "boolexpr"],
+      ["letter", "=", "boolexpr", "addop", "num"]
+    ],
+    [
+      ["letter", "=", "num", "<", "num"],
+      ["letter", "=", "boolexpr", "<", "num"]
+    ],
+    [
+      ["num", ",", "num", ",", "num"],
+      ["letter", "boolexpr", "<", "num", ",", "num"]
+    ],
+    [
+      ["letter", "=", "letter", "=", "num"],
+      ["letter", "=", "letter", "=", "boolexpr"]
+    ]
+  ]
+}
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-23 11:24:26
+Time spent in oracle calls: 794.0959661006927
+Time spent building grammar: 869.6414918899536s
+Time breakdown: {'FIRST_COALESCE': 221.50893592834473, 'BUILD': 437.50522899627686, 'LAST_COALESCE': 23.17718267440796, 'EXPAND': 36.65556502342224, 'MINIMIZE': 0.0010204315185546875, 'OVERALL_EXAMPLE_GEN': 14.111783742904663, 'OVERALL_GROUPING': 16.036420106887817, 'REAPPLY_COUNT': 0}
+Parse calls: 30288, 11502
+LLM calls for bubble finding: 8
+arg=minic
 python3 search.py external Seed_Programs/minic/parse_minic Seed_Programs/minic/minic-train-r0 Seed_Programs/minic-r1-tv.log
 Using approximate pre-tokenization stage
-**** Running eval.py ****
-**** Running search.py ****
+Average guide length in char: 107.0, max guide length: 368
+Average token length: 89.7, max token length: 315
+Guides with brackets: 9, quotes: 0
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 8.9
+Average lengths of brackets(not normalized): 9.268472906403941
+Average n: 89.7
+Beginning coalescing...                           
+LLM suggested label: letter for a and b
+LLM suggested label: paramlist for ( float a , float a ) and ( bool a )
+LLM suggested label: block for { if ( a = a = ( a = 0 < 0 ) ) do ; while ( a < a ) ; } and { a(3); }
+LLM suggested label: type for float and bool
+LLM suggested label: boolexpr for ( a = a = ( a = 0 < 0 ) ) and ( a < a )
+LLM suggested label: num for 3 and 0
+LLM suggested label: addop for + and -
+LLM suggested label: tupleexpr for ( a ( a < ( 0 ) - 0 - ( 0 ) ) < 0 , 0 ) and ( 0 , 0 , 0 )
+max example size 315, node size: 103
+1-BUBBLES
+{
+    "siblings": [
+        ["letter", "=", "letter"],
+        ["letter", "=", "num"],
+        ["letter", "<", "num"],
+        ["letter", "addop", "num"],
+        ["num", ",", "num"],
+        ["type", "letter"],
+        ["if", "boolexpr"],
+        ["while", "boolexpr"],
+        ["do", ";"],
+        ["else", "block"],
+        ["letter", "boolexpr"],
+        ["boolexpr", "addop", "boolexpr"],
+        ["boolexpr", "addop", "num"],
+        ["letter", "=", "boolexpr"],
+        ["letter", "=", "letter", "="],
+        ["letter", "=", "letter", "boolexpr"],
+        ["letter", "=", "letter", "tupleexpr"],
+        ["letter", "=", "letter", "addop"],
+        ["letter", "=", "letter", "<"],
+        ["letter", "=", "letter", "addop", "boolexpr"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 1 (1/18)...     
+Successful grouping (single): [a, boolexpr]
+    (aka ['a', '(3)']
+coalesced into:  {'t97': 'num', 'num': 'num'}
+
+[Group len -1] Bubbling iteration 1 (9/18)...     
+Successful grouping (single): [boolexpr,  , +,  , boolexpr]
+    (aka ['( 0 )', ' ', '+', ' ', '( a = a ( a < a ( a ) ) < 0 - ( a = ( 0 ) + 0 ) - 0 - 0 )']
+coalesced into:  {'t89': 'tupleexpr', 'tupleexpr': 'tupleexpr'}
+
+[Group len -1] Bubbling iteration 1 (11/18)...    
+Successful grouping (single): [a,  , +,  , 0]
+    (aka ['a', ' ', '+', ' ', '0']
+coalesced into:  {'t87': 'num', 'num': 'num'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["if", "boolexpr"],
+        ["letter", "=", "letter"],
+        ["letter", "<", "letter"],
+        ["tupleexpr", "addop", "num"],
+        ["else", "if"],
+        ["do", "while", "boolexpr"],
+        ["while", "boolexpr"],
+        ["letter", "=", "num"],
+        ["type", "letter"],
+        ["letter", "=", "letter", "=", "letter"],
+        ["letter", "boolexpr"],
+        ["letter", "<", "num"],
+        ["letter", "=", "boolexpr"],
+        ["num", ",", "num"],
+        ["letter", "=", "boolexpr", "addop", "num"],
+        ["letter", "=", "letter", "=", "num"],
+        ["type", "letter", ",", "letter"],
+        ["letter", "=", "boolexpr", "<", "num"],
+        ["letter", "boolexpr", "<", "num"],
+        ["letter", "<", "boolexpr"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 2 (1/29)...     
+Successful grouping (single): [a,  , boolexpr]
+    (aka ['a', ' ', '( 0 - 0 )']
+coalesced into:  {'t120': 'num', 'num': 'num'}
+LLM suggested label: stmt for do while ( 0 ) and do
+ Next suggestion: loopstmt
+
+[Group len -1] Bubbling iteration 2 (11/29)...    
+Successful grouping (single): [do,  , while,  , boolexpr]
+    (aka ['do', ' ', 'while', ' ', '( 0 )']
+coalesced into:  {'t110': 'loopstmt', 'do': 'loopstmt'}
+
+[Group len -1] Bubbling iteration 2 (12/29)...    
+Successful grouping (single): [tupleexpr,  , +,  , 0]
+    (aka ['( 0 ) + ( a = a ( a < a ( a ) ) < 0 - ( a = ( 0 ) + 0 ) - 0 - 0 )', ' ', '+', ' ', '0']
+coalesced into:  {'t109': 'tupleexpr', 'tupleexpr': 'tupleexpr'}
+
+[Group len -1] Bubbling iteration 2 (23/29)...    
+Successful grouping (single): [boolexpr,  , +,  , 0]
+    (aka ['( a = a ( a < a ( a ) ) < 0 - ( a = ( 0 ) + 0 ) - 0 - 0 )', ' ', '+', ' ', '0']
+coalesced into:  {'t90': 'num', 'num': 'num'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 2 (12/29)...    
+Successful grouping (single): [tupleexpr,  , +,  , 0]
+    (aka ['( 0 ) + ( a = a ( a < a ( a ) ) < 0 - ( a = ( 0 ) + 0 ) - 0 - 0 )', ' ', '+', ' ', '0']
+coalesced into:  {'t123': 'tupleexpr', 'tupleexpr': 'tupleexpr'}
+Reapply: 1
+
+[Group len -1] Bubbling iteration 2 (12/29)...    
+Successful grouping (single): [tupleexpr,  , +,  , 0]
+    (aka ['( 0 ) + ( a = a ( a < a ( a ) ) < 0 - ( a = ( 0 ) + 0 ) - 0 - 0 )', ' ', '+', ' ', '0']
+coalesced into:  {'t125': 'tupleexpr', 'tupleexpr': 'tupleexpr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["if", "boolexpr"],
+        ["letter", "=", "letter"],
+        ["letter", "<", "letter"],
+        ["letter", "=", "num"],
+        ["num", "<", "num"],
+        ["letter", "=", "boolexpr"],
+        ["letter", "=", "letter", "=", "num"],
+        ["letter", "=", "letter", "=", "boolexpr"],
+        ["letter", "<", "boolexpr"],
+        ["num", "<", "num", "addop", "num"],
+        ["letter", "<", "num", "addop", "num"],
+        ["letter", "<", "num", "addop", "boolexpr"],
+        ["type", "letter"],
+        ["type", "letter", ",", "letter"],
+        ["type", "letter", ",", "type", "letter"],
+        ["type", "letter", ",", "type", "letter", ",", "type", "letter"],
+        ["num", ",", "num"],
+        ["num", ",", "num", ",", "num"],
+        ["if", "boolexpr", "loopstmt"],
+        ["while", "boolexpr"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 3 (4/38)...     
+Successful grouping (single): [if,  , boolexpr,  , do]
+    (aka ['if', ' ', '( a = a = ( a = 0 < 0 ) )', ' ', 'do']
+coalesced into:  {'t143': 'loopstmt', 'loopstmt': 'loopstmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["if", "boolexpr"],
+    ["letter", "=", "letter"],
+    ["letter", "<", "letter"],
+    ["letter", "=", "num"],
+    ["num", "<", "num"],
+    ["letter", "=", "boolexpr"],
+    ["letter", "=", "letter", "=", "num"],
+    ["letter", "=", "letter", "=", "boolexpr"],
+    ["num", ",", "num"],
+    ["num", ",", "num", ",", "num"],
+    ["type", "letter"],
+    ["type", "letter", ",", "letter"],
+    ["type", "letter", ",", "type", "letter"],
+    ["type", "letter", ",", "type", "letter", ",", "type", "letter"],
+    ["letter", "<", "num"],
+    ["letter", "<", "boolexpr"],
+    ["letter", "<", "num", "addop", "num"],
+    ["letter", "<", "boolexpr", "addop", "letter"],
+    ["num", "<", "num", "addop", "num"],
+    ["loopstmt", ";"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["if", "boolexpr", "letter", "=", "letter", "<", "letter", "tupleexpr", ";", "else"], ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "num", ";", "else"]],
+    [["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block"], ["if", "boolexpr", "if", "boolexpr", "type", "letter", ",", "letter", ";", "else", "letter", "=", "letter", ";"]],
+    [["letter", "=", "num", "<", "num", ";", "type", "letter", ",", "letter", ";"], ["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "<", "num"]],
+    [["letter", "=", "letter", "=", "num", "addop", "letter", "tupleexpr", "<", "num"], ["letter", "=", "num", "<", "num", "addop", "num", "addop", "num"]],
+    [["type", "letter", ",", "type", "letter", ",", "type", "letter"], ["type", "letter", ",", "type", "letter"]],
+    [["letter", "<", "num", "addop", "num", "addop", "num"], ["letter", "<", "boolexpr", "addop", "letter", "addop", "boolexpr"]],
+    [["loopstmt", ";", "while", "boolexpr", ";"], ["if", "boolexpr", "while", "boolexpr", "block", "else", "if", "boolexpr", "block", "else", ";"]],
+    [["letter", "=", "letter", "=", "boolexpr"], ["letter", "=", "letter", "=", "num"]],
+    [["letter", "=", "num", "<", "num"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["num", ",", "num", ",", "num"], ["num", "<", "num", "addop", "num"]],
+    [["letter", "=", "letter", "=", "num"], ["letter", "=", "num", "<", "num"]],
+    [["type", "letter", ",", "letter", ";"], ["type", "letter", ",", "type", "letter"]],
+    [["num", "<", "num", ",", "num"], ["letter", "<", "num", "addop", "boolexpr"]],
+    [["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "num", ";", "else"], ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block"]],
+    [["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "<", "num"], ["letter", "=", "letter", "=", "num", "addop", "letter", "tupleexpr", "<", "num"]],
+    [["letter", "=", "num", "<", "num", "addop", "num", "addop", "num"], ["letter", "=", "num", "<", "num"]],
+    [["type", "letter", ",", "type", "letter", ",", "type", "letter"], ["type", "letter", ",", "letter", ";"]],
+    [["letter", "<", "num", "addop", "num", "addop", "num"], ["num", "<", "num", "addop", "num"]],
+    [["loopstmt", ";", "while", "boolexpr", ";"], ["letter", "=", "letter", "=", "boolexpr"]],
+    [["letter", "=", "letter", "=", "boolexpr"], ["letter", "=", "boolexpr", "<", "num"]]
+  ]
+}
+1-BUBBLES
+{
+  "siblings": [
+    ["letter", "=", "letter"],
+    ["letter", "=", "num"],
+    ["letter", "<", "num"],
+    ["num", "<", "num"],
+    ["letter", "=", "boolexpr"],
+    ["letter", "<", "boolexpr"],
+    ["num", ",", "num"],
+    ["letter", "=", "letter", "=", "num"],
+    ["letter", "=", "letter", "=", "boolexpr"],
+    ["letter", "=", "num", "<", "num"],
+    ["num", "<", "num", "addop", "num"],
+    ["letter", "<", "num", "addop", "num"],
+    ["letter", "<", "boolexpr", "addop", "letter"],
+    ["type", "letter"],
+    ["type", "letter", ",", "letter"],
+    ["type", "letter", ",", "type", "letter"],
+    ["type", "letter", ",", "type", "letter", ",", "type", "letter"],
+    ["if", "boolexpr"],
+    ["while", "boolexpr"],
+    ["loopstmt", ";"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["if", "boolexpr", "letter", "=", "letter", "<", "letter", "tupleexpr", ";", "else"], ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "num", ";", "else"]],
+    [["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block"], ["if", "boolexpr", "if", "boolexpr", "type", "letter", ",", "letter", ";", "else"]],
+    [["letter", "=", "num", "<", "num", ";", "type", "letter", ",", "letter", ";"], ["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "<", "num"]],
+    [["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "<", "num"], ["letter", "=", "letter", "=", "num", "addop", "letter", "tupleexpr", "<", "num"]],
+    [["letter", "=", "num", "<", "num", "addop", "num", "addop", "num"], ["letter", "<", "num", "addop", "num", "addop", "num"]],
+    [["type", "letter", ",", "type", "letter", ",", "type", "letter"], ["type", "letter", ",", "type", "letter"]],
+    [["letter", "=", "letter", "=", "boolexpr"], ["letter", "=", "letter", "=", "num"]],
+    [["num", "<", "num", "addop", "num"], ["num", "<", "num", ",", "num"]],
+    [["letter", "<", "boolexpr", "addop", "letter", "addop", "boolexpr"], ["letter", "<", "num", "addop", "boolexpr"]],
+    [["if", "boolexpr", "while", "boolexpr", "block", "else", "if", "boolexpr", "block", "else", ";"], ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block"]],
+    [["letter", "=", "num", "<", "num"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["loopstmt", ";", "while", "boolexpr", ";"], ["while", "boolexpr", ";", "while", "boolexpr", ";"]],
+    [["letter", "=", "letter", "=", "num"], ["letter", "=", "num", "<", "num"]],
+    [["type", "letter", ",", "letter", ";"], ["type", "letter", ",", "type", "letter"]],
+    [["num", ",", "num", ",", "num"], ["num", "<", "num", "addop", "num"]],
+    [["letter", "=", "letter", "=", "num"], ["letter", "=", "letter", "=", "boolexpr"]],
+    [["letter", "=", "num", "<", "num"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["letter", "=", "letter", "=", "boolexpr"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["letter", "=", "letter", "=", "num"], ["letter", "=", "num", "<", "num"]],
+    [["letter", "=", "letter", "=", "boolexpr"], ["letter", "=", "letter", "=", "num"]]
+  ]
+}
+1-BUBBLES
+{
+  "siblings": [
+    ["if", "boolexpr"],
+    ["letter", "=", "letter"],
+    ["letter", "<", "letter"],
+    ["letter", "=", "num"],
+    ["num", "<", "num"],
+    ["letter", "=", "boolexpr"],
+    ["letter", "=", "letter", "=", "num"],
+    ["letter", "=", "letter", "=", "boolexpr"],
+    ["letter", "<", "num"],
+    ["num", "<", "num", "addop", "num"],
+    ["letter", "<", "boolexpr"],
+    ["type", "letter"],
+    ["type", "letter", ",", "letter"],
+    ["type", "letter", ",", "type", "letter"],
+    ["type", "letter", ",", "type", "letter", ",", "type", "letter"],
+    ["loopstmt", ";"],
+    ["while", "boolexpr"],
+    ["while", "boolexpr", ";"],
+    ["if", "boolexpr", "block"],
+    ["else", "block"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["if", "boolexpr", "letter", "=", "letter", "<", "letter", "tupleexpr", ";", "else"], ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "num", ";", "else"]],
+    [["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block"], ["if", "boolexpr", "if", "boolexpr", "type", "letter", ",", "letter", ";", "else"]],
+    [["letter", "=", "num", "<", "num", ";", "type", "letter", ",", "letter", ";"], ["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "<", "num"]],
+    [["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "<", "num"], ["letter", "=", "letter", "=", "num", "addop", "letter", "tupleexpr", "<", "num"]],
+    [["letter", "=", "num", "<", "num", "addop", "num", "addop", "num"], ["letter", "<", "num", "addop", "num", "addop", "num"]],
+    [["type", "letter", ",", "type", "letter", ",", "type", "letter"], ["type", "letter", ",", "type", "letter"]],
+    [["letter", "=", "letter", "=", "boolexpr"], ["letter", "=", "letter", "=", "num"]],
+    [["letter", "=", "num", "<", "num"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["num", "<", "num", "addop", "num"], ["num", "<", "num", ",", "num"]],
+    [["letter", "<", "num", "addop", "boolexpr"], ["letter", "<", "boolexpr", "addop", "letter", "addop", "boolexpr"]],
+    [["if", "boolexpr", "while", "boolexpr", "block", "else", "if", "boolexpr", "block", "else", ";"], ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block"]],
+    [["loopstmt", ";", "while", "boolexpr", ";"], ["while", "boolexpr", ";", "while", "boolexpr", ";"]],
+    [["letter", "=", "letter", "=", "num"], ["letter", "=", "letter", "=", "boolexpr"]],
+    [["type", "letter", ",", "letter", ";"], ["type", "letter", ",", "type", "letter"]],
+    [["letter", "=", "num", "<", "num"], ["letter", "=", "letter", "=", "num"]],
+    [["letter", "=", "boolexpr", "<", "num"], ["letter", "=", "letter", "=", "boolexpr"]],
+    [["num", ",", "num", ",", "num"], ["num", "<", "num", ",", "num"]],
+    [["letter", "<", "num", "addop", "num", "addop", "num"], ["letter", "<", "boolexpr", "addop", "letter", "addop", "boolexpr"]],
+    [["if", "boolexpr", "if", "boolexpr", "type", "letter", ",", "letter", ";", "else"], ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block"]],
+    [["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "<", "num"], ["letter", "=", "num", "<", "num", "addop", "num", "addop", "num"]]
+  ]
+}
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-23 11:39:35
+Time spent in oracle calls: 814.718279838562
+Time spent building grammar: 907.8489050865173s
+Time breakdown: {'FIRST_COALESCE': 232.43858432769775, 'BUILD': 457.9442138671875, 'LAST_COALESCE': 25.83500099182129, 'EXPAND': 37.83590650558472, 'MINIMIZE': 0.0010077953338623047, 'OVERALL_EXAMPLE_GEN': 16.398703575134277, 'OVERALL_GROUPING': 27.588102340698242, 'REAPPLY_COUNT': 1}
+Parse calls: 29695, 11395
+LLM calls for bubble finding: 9
+arg=minic
 python3 search.py external Seed_Programs/minic/parse_minic Seed_Programs/minic/minic-train-r0 Seed_Programs/minic-r1-tv.log
 Using approximate pre-tokenization stage
-**** Running eval.py ****
-**** Running search.py ****
+Average guide length in char: 107.0, max guide length: 368
+Average token length: 89.7, max token length: 315
+Guides with brackets: 9, quotes: 0
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 8.9
+Average lengths of brackets(not normalized): 9.268472906403941
+Average n: 89.7
+Beginning coalescing...                           
+LLM suggested label: letter for a and b
+LLM suggested label: paramlist for ( float a , float a ) and ( bool a )
+LLM suggested label: block for { if ( a = a = ( a = 0 < 0 ) ) do ; while ( a < a ) ; } and { a(3); }
+LLM suggested label: type for float and bool
+LLM suggested label: boolexpr for ( a = a = ( a = 0 < 0 ) ) and ( a < a )
+LLM suggested label: num for 3 and 0
+LLM suggested label: addop for + and -
+LLM suggested label: tupleexpr for ( a ( a < ( 0 ) - 0 - ( 0 ) ) < 0 , 0 ) and ( 0 , 0 , 0 )
+max example size 315, node size: 103
+1-BUBBLES
+{
+    "siblings": [
+        ["if", "boolexpr"],
+        ["letter", "=", "letter"],
+        ["letter", "<", "letter"],
+        ["boolexpr", "addop", "boolexpr"],
+        ["boolexpr", "addop", "num"],
+        ["else", "if"],
+        ["do", "while"],
+        ["while", "boolexpr"],
+        ["letter", "=", "num"],
+        ["type", "letter"],
+        ["letter", "addop", "boolexpr"],
+        ["letter", "addop", "num"],
+        ["letter", "<", "num"],
+        ["num", "<", "num"],
+        ["letter", "=", "boolexpr"],
+        ["letter", "=", "letter", "=", "letter"],
+        ["letter", "=", "letter", "=", "num"],
+        ["letter", "boolexpr", "<", "num"],
+        ["letter", "boolexpr", "addop", "letter"],
+        ["letter", "boolexpr", "addop", "num"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 1 (9/20)...     
+Successful grouping (single): [a,  , +,  , 0]
+    (aka ['a', ' ', '+', ' ', '0']
+coalesced into:  {'t91': 'num', 'num': 'num'}
+
+[Group len -1] Bubbling iteration 1 (10/20)...    
+Successful grouping (single): [a,  , -,  , boolexpr]
+    (aka ['a', ' ', '-', ' ', '( 0 + ( a = a = 0 ) )']
+coalesced into:  {'t90': 'num', 'num': 'num'}
+
+[Group len -1] Bubbling iteration 1 (13/20)...    
+Successful grouping (single): [boolexpr,  , +,  , boolexpr]
+    (aka ['( 0 )', ' ', '+', ' ', '( a = a ( a < a ( a ) ) < 0 - ( a = ( 0 ) + 0 ) - 0 - 0 )']
+coalesced into:  {'t87': 'tupleexpr', 'tupleexpr': 'tupleexpr'}
+
+[Group len -1] Bubbling iteration 1 (16/20)...    
+Successful grouping (single): [a,  , boolexpr,  , -,  , 0]
+    (aka ['a', ' ', '( a ( a < ( 0 ) - a - ( 0 + ( a = a = 0 ) ) ) < 0 + 0 )', ' ', '-', ' ', '0']
+coalesced into:  {'t84': 'num', 'num': 'num'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["letter", "=", "letter"],
+    ["letter", "=", "num"],
+    ["letter", "<", "num"],
+    ["letter", "<", "boolexpr"],
+    ["letter", "boolexpr", "<", "num"],
+    ["letter", "=", "boolexpr"],
+    ["letter", "=", "letter", "=", "letter"],
+    ["letter", "=", "letter", "=", "num"],
+    ["letter", "=", "boolexpr", "<", "num"],
+    ["letter", "=", "boolexpr", "addop", "num"],
+    ["letter", "<", "num", "addop", "num"],
+    ["letter", "<", "boolexpr", "addop", "num"],
+    ["num", ",", "num"],
+    ["num", ",", "num", ",", "num"],
+    ["type", "letter"],
+    ["type", "letter", ",", "letter"],
+    ["type", "letter", ",", "type", "letter"],
+    ["if", "boolexpr"],
+    ["while", "boolexpr"],
+    ["do", ";", "while", "boolexpr"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [
+      ["if", "boolexpr", "letter", "=", "letter", "<", "letter", "tupleexpr", "addop", "num", ";", "else", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "num", ";", "else", "do", "while", "boolexpr", "if", "boolexpr", ";", "else", "do", "do", "while", "boolexpr", "block", "while", "boolexpr", ";", "while", "boolexpr", ";", "while", "boolexpr", ";", "else", "while", "boolexpr", "block"],
+      ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block", "else", "block", "else", "type", "letter", ";"]
+    ],
+    [
+      ["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "addop", "boolexpr", "addop", "num", "addop", "num", "<", "num"],
+      ["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "letter", "tupleexpr", "addop", "num", "<", "num"]
+    ],
+    [
+      ["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "addop", "boolexpr", "addop", "num", "addop", "num", "<", "num"],
+      ["letter", "=", "letter", "boolexpr", "<", "num", "addop", "boolexpr", "addop", "num", "addop", "num"]
+    ],
+    [
+      ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block", "else", "block", "else", "type", "letter", ";"],
+      ["if", "boolexpr", "if", "boolexpr", "type", "letter", ",", "letter", ";", "else", "letter", "=", "letter", ";"]
+    ],
+    [
+      ["if", "boolexpr", "while", "boolexpr", "block", "else", "if", "boolexpr", "block", "else", ";"],
+      ["if", "boolexpr", "do", ";", "while", "boolexpr", ";"]
+    ],
+    [
+      ["type", "letter", ",", "type", "letter", ",", "type", "letter"],
+      ["type", "letter", ",", "letter", ";"]
+    ],
+    [
+      ["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "letter", "tupleexpr", "addop", "num", "<", "num"],
+      ["letter", "=", "letter", "=", "boolexpr"]
+    ],
+    [
+      ["letter", "=", "letter", "boolexpr", "<", "num", "addop", "boolexpr", "addop", "num", "addop", "num"],
+      ["letter", "=", "boolexpr", "<", "num"]
+    ],
+    [
+      ["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "letter", "tupleexpr", "addop", "num", "<", "num"],
+      ["letter", "=", "letter", "=", "num"]
+    ],
+    [
+      ["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "addop", "boolexpr", "addop", "num", "addop", "num", "<", "num"],
+      ["letter", "=", "num", "<", "num"]
+    ],
+    [
+      ["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "addop", "boolexpr", "addop", "num", "addop", "num", "<", "num"],
+      ["letter", "=", "boolexpr", "addop", "num"]
+    ],
+    [
+      ["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "addop", "boolexpr", "addop", "num", "addop", "num", "<", "num"],
+      ["letter", "<", "num", "addop", "num"]
+    ],
+    [
+      ["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "addop", "boolexpr", "addop", "num", "addop", "num", "<", "num"],
+      ["letter", "<", "boolexpr", "addop", "num"]
+    ],
+    [
+      ["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "addop", "boolexpr", "addop", "num", "addop", "num", "<", "num"],
+      ["letter", "boolexpr", "<", "num", "addop", "num"]
+    ],
+    [
+      ["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "addop", "boolexpr", "addop", "num", "addop", "num", "<", "num"],
+      ["letter", "boolexpr", "<", "num", "," , "num"]
+    ],
+    [
+      ["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "addop", "boolexpr", "addop", "num", "addop", "num", "<", "num"],
+      ["num", ",", "num", ",", "num"]
+    ],
+    [
+      ["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "addop", "boolexpr", "addop", "num", "addop", "num", "<", "num"],
+      ["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";", "type", "letter", ",", "letter", ";"]
+    ],
+    [
+      ["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "addop", "boolexpr", "addop", "num", "addop", "num", "<", "num"],
+      ["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "letter", "tupleexpr", "addop", "num", "<", "num"]
+    ],
+    [
+      ["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "addop", "boolexpr", "addop", "num", "addop", "num", "<", "num"],
+      ["letter", "=", "letter", "boolexpr", "<", "num", "addop", "boolexpr", "addop", "num", "addop", "num"]
+    ],
+    [
+      ["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "addop", "boolexpr", "addop", "num", "addop", "num", "<", "num"],
+      ["letter", "=", "boolexpr", "<", "num"]
+    ]
+  ]
+}
+1-BUBBLES
+{
+  "siblings": [
+    ["letter", "=", "letter"],
+    ["letter", "=", "num"],
+    ["letter", "<", "num"],
+    ["letter", "<", "boolexpr"],
+    ["letter", "boolexpr"],
+    ["letter", "=", "boolexpr"],
+    ["letter", "=", "letter", "=", "letter"],
+    ["letter", "=", "letter", "=", "num"],
+    ["letter", "=", "boolexpr", "<", "num"],
+    ["letter", "=", "boolexpr", "addop", "num"],
+    ["letter", "<", "num", "addop", "num"],
+    ["letter", "<", "boolexpr", "addop", "num"],
+    ["num", ",", "num"],
+    ["num", ",", "num", ",", "num"],
+    ["type", "letter"],
+    ["type", "letter", ",", "letter"],
+    ["type", "letter", ",", "type", "letter"],
+    ["if", "boolexpr"],
+    ["while", "boolexpr"],
+    ["do", ";", "while", "boolexpr"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 2 (4/31)...     
+Successful grouping (single): [a, boolexpr]
+    (aka ['a', '(3)']
+coalesced into:  {'t140': 'num', 'num': 'num'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["letter", "=", "letter"],
+    ["letter", "=", "num"],
+    ["letter", "<", "num"],
+    ["letter", "<", "boolexpr"],
+    ["letter", "boolexpr"],
+    ["boolexpr", "<", "num"],
+    ["boolexpr", "addop", "num"],
+    ["letter", "addop", "num"],
+    ["letter", "addop", "boolexpr"],
+    ["num", "addop", "num"],
+    ["num", ",", "num"],
+    ["type", "letter"],
+    ["type", "letter", ",", "letter"],
+    ["if", "boolexpr"],
+    ["while", "boolexpr"],
+    ["do", ";"],
+    ["else", "block"],
+    ["else", ";"],
+    ["letter", "=", "boolexpr"],
+    ["letter", "=", "letter", "=", "letter"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 3 (7/36)...     
+Successful grouping (single): [a,  , boolexpr]
+    (aka ['a', ' ', '( 0 - 0 )']
+coalesced into:  {'t158': 'num', 'num': 'num'}
+
+[Group len -1] Bubbling iteration 3 (10/36)...    
+Successful grouping (single): [0,  , -,  , 0]
+    (aka ['0', ' ', '-', ' ', '0']
+coalesced into:  {'t155': 'num', 'num': 'num'}
+
+[Group len -1] Bubbling iteration 3 (13/36)...    
+Successful grouping (single): [boolexpr,  , -,  , 0]
+    (aka ['( a = ( 0 ) + 0 )', ' ', '-', ' ', '0']
+coalesced into:  {'t152': 'num', 'num': 'num'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 3 (10/36)...    
+Successful grouping (single): [0,  , -,  , 0]
+    (aka ['0', ' ', '-', ' ', '0']
+coalesced into:  {'t166': 'num', 'num': 'num'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["letter", "=", "letter"],
+    ["letter", "=", "num"],
+    ["num", "<", "num"],
+    ["letter", "<", "num"],
+    ["letter", "=", "boolexpr"],
+    ["letter", "=", "letter", "=", "num"],
+    ["letter", "=", "letter", "=", "boolexpr"],
+    ["letter", "=", "num", "<", "num"],
+    ["letter", "=", "boolexpr", "<", "num"],
+    ["num", ",", "num"],
+    ["num", ",", "num", ",", "num"],
+    ["type", "letter"],
+    ["type", "letter", ",", "letter"],
+    ["type", "letter", ",", "letter", ";"],
+    ["type", "letter", ",", "type", "letter"],
+    ["type", "letter", ",", "type", "letter", ",", "type", "letter"],
+    ["if", "boolexpr"],
+    ["while", "boolexpr"],
+    ["do", ";", "while", "boolexpr", ";"],
+    ["if", "boolexpr", "block"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["if", "boolexpr", "letter", "=", "letter", "<", "letter", "tupleexpr", "addop", "num", ";", "else", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "num", ";", "else", "do", "while", "boolexpr", "if", "boolexpr", ";", "else", "do", "do", "while", "boolexpr", "block", "while", "boolexpr", ";", "while", "boolexpr", ";", "while", "boolexpr", ";", "else", "while", "boolexpr", "block"], ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block", "else", "block", "else", "type", "letter", ";"]],
+    [["letter", "=", "num", "<", "num", ";", "type", "letter", ",", "letter", ";", "type", "letter", ",", "letter", ";"], ["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "addop", "num", "<", "num"]],
+    [["if", "boolexpr", "if", "boolexpr", "type", "letter", ",", "letter", ";", "else", "letter", "=", "letter", ";"], ["if", "boolexpr", "while", "boolexpr", "block", "else", "if", "boolexpr", "block", "else", ";"]],
+    [["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "addop", "num", "<", "num"], ["letter", "=", "letter", "=", "num", "addop", "letter", "tupleexpr", "addop", "num", "<", "num"]],
+    [["letter", "=", "letter", "=", "num", "addop", "letter", "tupleexpr", "addop", "num", "<", "num"], ["letter", "=", "letter", "=", "boolexpr"]],
+    [["if", "boolexpr", "while", "boolexpr", "block", "else", "if", "boolexpr", "block", "else", ";"], ["if", "boolexpr", "do", ";", "while", "boolexpr", ";"]],
+    [["type", "letter", ",", "type", "letter", ",", "type", "letter"], ["type", "letter", ",", "type", "letter"]],
+    [["letter", "=", "letter", "=", "boolexpr"], ["letter", "=", "num", "<", "num"]],
+    [["letter", "=", "num", "<", "num"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["num", ",", "num", ",", "num"], ["num", "<", "num", ",", "num"]],
+    [["letter", "<", "num", "addop", "boolexpr"], ["letter", "=", "letter", "=", "num"]],
+    [["type", "letter", ",", "letter", ";"], ["type", "letter", ",", "type", "letter"]],
+    [["letter", "=", "letter", "=", "num"], ["letter", "=", "letter", "=", "boolexpr"]],
+    [["letter", "=", "boolexpr", "<", "num"], ["letter", "=", "num", "<", "num"]],
+    [["letter", "=", "letter", "=", "boolexpr"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["letter", "=", "num", "<", "num"], ["num", "<", "num", ",", "num"]],
+    [["letter", "=", "letter", "=", "num"], ["letter", "=", "letter", "=", "boolexpr"]],
+    [["letter", "=", "boolexpr", "<", "num"], ["letter", "=", "letter", "=", "boolexpr"]],
+    [["letter", "=", "letter", "=", "boolexpr"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["letter", "=", "num", "<", "num"], ["letter", "=", "letter", "=", "num"]]
+  ]
+}
+1-BUBBLES
+{
+  "siblings": [
+    ["letter", "=", "letter"],
+    ["letter", "=", "num"],
+    ["num", "<", "num"],
+    ["letter", "<", "num"],
+    ["letter", "=", "boolexpr"],
+    ["letter", "=", "letter", "=", "num"],
+    ["letter", "=", "letter", "=", "boolexpr"],
+    ["letter", "=", "num", "<", "num"],
+    ["letter", "=", "boolexpr", "<", "num"],
+    ["num", ",", "num"],
+    ["num", ",", "num", ",", "num"],
+    ["type", "letter"],
+    ["type", "letter", ",", "letter"],
+    ["type", "letter", ",", "letter", ";"],
+    ["type", "letter", ",", "type", "letter"],
+    ["type", "letter", ",", "type", "letter", ",", "type", "letter"],
+    ["if", "boolexpr"],
+    ["if", "boolexpr", "block"],
+    ["while", "boolexpr"],
+    ["while", "boolexpr", "block"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["if", "boolexpr", "letter", "=", "letter", "<", "letter", "tupleexpr", "addop", "num", ";", "else", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "num", ";", "else", "do", "while", "boolexpr", "if", "boolexpr", ";", "else", "do", "do", "while", "boolexpr", "block", "while", "boolexpr", ";", "while", "boolexpr", ";", "while", "boolexpr", ";", "else", "while", "boolexpr", "block"], ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block", "else", "block", "else", "type", "letter", ";"]],
+    [["letter", "=", "num", "<", "num", ";", "type", "letter", ",", "letter", ";", "type", "letter", ",", "letter", ";"], ["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "addop", "num", "<", "num"]],
+    [["if", "boolexpr", "if", "boolexpr", "type", "letter", ",", "letter", ";", "else", "letter", "=", "letter", ";"], ["if", "boolexpr", "while", "boolexpr", "block", "else", "if", "boolexpr", "block", "else", ";"]],
+    [["letter", "=", "letter", "tupleexpr", "addop", "boolexpr", "addop", "letter", "tupleexpr", "addop", "num", "<", "num"], ["letter", "=", "letter", "=", "num", "addop", "letter", "tupleexpr", "addop", "num", "<", "num"]],
+    [["letter", "=", "letter", "=", "num", "addop", "letter", "tupleexpr", "addop", "num", "<", "num"], ["letter", "=", "letter", "=", "boolexpr"]],
+    [["if", "boolexpr", "while", "boolexpr", "block", "else", "if", "boolexpr", "block", "else", ";"], ["if", "boolexpr", "do", ";", "while", "boolexpr", ";"]],
+    [["type", "letter", ",", "type", "letter", ",", "type", "letter"], ["type", "letter", ",", "type", "letter"]],
+    [["letter", "=", "letter", "=", "boolexpr"], ["letter", "=", "num", "<", "num"]],
+    [["letter", "=", "num", "<", "num"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["num", ",", "num", ",", "num"], ["num", "<", "num", ",", "num"]],
+    [["letter", "=", "letter", "=", "num"], ["letter", "=", "letter", "=", "boolexpr"]],
+    [["type", "letter", ",", "letter", ";"], ["type", "letter", ",", "type", "letter"]],
+    [["num", "<", "num", ",", "num"], ["letter", "<", "num", "addop", "boolexpr"]]
+  ]
+}
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-23 11:55:39
+Time spent in oracle calls: 846.68235039711
+Time spent building grammar: 961.9191551208496s
+Time breakdown: {'FIRST_COALESCE': 230.34301280975342, 'BUILD': 515.2296953201294, 'LAST_COALESCE': 23.457777738571167, 'EXPAND': 36.93045616149902, 'MINIMIZE': 0.0010116100311279297, 'OVERALL_EXAMPLE_GEN': 16.825486183166504, 'OVERALL_GROUPING': 39.62034010887146, 'REAPPLY_COUNT': 0}
+Parse calls: 32195, 11798
+LLM calls for bubble finding: 9
+arg=minic
 python3 search.py external Seed_Programs/minic/parse_minic Seed_Programs/minic/minic-train-r0 Seed_Programs/minic-r1-tv.log
 Using approximate pre-tokenization stage
-**** Running eval.py ****
-**** Running search.py ****
+Average guide length in char: 107.0, max guide length: 368
+Average token length: 89.7, max token length: 315
+Guides with brackets: 9, quotes: 0
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 8.9
+Average lengths of brackets(not normalized): 9.268472906403941
+Average n: 89.7
+Beginning coalescing...                           
+LLM suggested label: letter for a and b
+LLM suggested label: paramlist for ( float a , float a ) and ( bool a )
+LLM suggested label: block for { if ( a = a = ( a = 0 < 0 ) ) do ; while ( a < a ) ; } and { a(3); }
+LLM suggested label: type for float and bool
+LLM suggested label: boolexpr for ( a = a = ( a = 0 < 0 ) ) and ( a < a )
+LLM suggested label: num for 3 and 0
+LLM suggested label: addop for + and -
+LLM suggested label: tupleexpr for ( a ( a < ( 0 ) - 0 - ( 0 ) ) < 0 , 0 ) and ( 0 , 0 , 0 )
+max example size 315, node size: 103
+1-BUBBLES
+{
+    "siblings": [
+        ["if", "boolexpr"],
+        ["letter", "=", "letter"],
+        ["letter", "=", "num"],
+        ["letter", "<", "num"],
+        ["letter", "<", "letter"],
+        ["boolexpr", "addop", "boolexpr"],
+        ["boolexpr", "addop", "num"],
+        ["letter", "addop", "boolexpr"],
+        ["letter", "addop", "num"],
+        ["num", "addop", "num"],
+        ["type", "letter"],
+        ["letter", "=", "boolexpr"],
+        ["letter", "=", "letter", "=", "letter"],
+        ["letter", "=", "letter", "=", "num"],
+        ["letter", "boolexpr", "<", "num"],
+        ["letter", "boolexpr", "<", "letter"],
+        ["type", "letter", ",", "letter"],
+        ["type", "letter", ",", "type", "letter"],
+        ["num", ",", "num"],
+        ["num", ",", "num", ",", "num"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 1 (5/19)...     
+Successful grouping (single): [0,  , -,  , 0]
+    (aka ['0', ' ', '-', ' ', '0']
+coalesced into:  {'t94': 'num', 'num': 'num'}
+
+[Group len -1] Bubbling iteration 1 (6/19)...     
+Successful grouping (single): [a,  , +,  , 0]
+    (aka ['a', ' ', '+', ' ', '0']
+coalesced into:  {'t93': 'num', 'num': 'num'}
+
+[Group len -1] Bubbling iteration 1 (7/19)...     
+Successful grouping (single): [a,  , -,  , boolexpr]
+    (aka ['a', ' ', '-', ' ', '( 0 + ( a = a = 0 ) )']
+coalesced into:  {'t92': 'num', 'num': 'num'}
+
+[Group len -1] Bubbling iteration 1 (9/19)...     
+Successful grouping (single): [boolexpr,  , +,  , boolexpr]
+    (aka ['( 0 )', ' ', '+', ' ', '( a = a ( a < a ( a ) ) < 0 - ( a = ( 0 ) + 0 ) - 0 - 0 )']
+coalesced into:  {'t90': 'tupleexpr', 'tupleexpr': 'tupleexpr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["if", "boolexpr"],
+    ["letter", "=", "letter"],
+    ["letter", "<", "letter"],
+    ["tupleexpr", "addop", "num"],
+    ["else", "if"],
+    ["do", "while", "boolexpr"],
+    ["while", "boolexpr"],
+    ["letter", "=", "num"],
+    ["num", "<", "letter"],
+    ["type", "letter"],
+    ["letter", "=", "letter", "=", "letter"],
+    ["boolexpr", "addop", "letter"],
+    ["letter", "tupleexpr", "addop", "boolexpr"],
+    ["num", "<", "num"],
+    ["letter", "boolexpr", "<", "num"],
+    ["letter", "<", "num"],
+    ["letter", "=", "boolexpr"],
+    ["num", ",", "num"],
+    ["letter", "=", "boolexpr", "addop", "num"],
+    ["letter", "<", "boolexpr", "addop", "num"]
+  ]
+}
+LLM suggested label: stmt for do while ( 0 ) and do
+ Next suggestion: loopstmt
+
+[Group len -1] Bubbling iteration 2 (12/29)...    
+Successful grouping (single): [do,  , while,  , boolexpr]
+    (aka ['do', ' ', 'while', ' ', '( 0 )']
+coalesced into:  {'t111': 'loopstmt', 'do': 'loopstmt'}
+
+[Group len -1] Bubbling iteration 2 (13/29)...    
+Successful grouping (single): [tupleexpr,  , +,  , 0]
+    (aka ['( 0 ) + ( a = a ( a < a ( a ) ) < 0 - ( a = ( 0 ) + 0 ) - 0 - 0 )', ' ', '+', ' ', '0']
+coalesced into:  {'t110': 'tupleexpr', 'tupleexpr': 'tupleexpr'}
+
+[Group len -1] Bubbling iteration 2 (17/29)...    
+Successful grouping (single): [a,  , tupleexpr,  , -,  , boolexpr]
+    (aka ['a', ' ', '( 0 , 0 , 0 )', ' ', '-', ' ', '( 0 )']
+coalesced into:  {'t106': 'num', 'num': 'num'}
+
+[Group len -1] Bubbling iteration 2 (21/29)...    
+Successful grouping (single): [0,  , -,  , 0]
+    (aka ['0', ' ', '-', ' ', '0']
+coalesced into:  {'t99': 'num', 'num': 'num'}
+Reapply: 1
+
+[Group len -1] Bubbling iteration 2 (21/29)...    
+Successful grouping (single): [0,  , -,  , 0]
+    (aka ['0', ' ', '-', ' ', '0']
+coalesced into:  {'t126': 'num', 'num': 'num'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["if", "boolexpr"],
+    ["letter", "=", "letter"],
+    ["letter", "<", "letter"],
+    ["letter", "=", "num"],
+    ["letter", "<", "num"],
+    ["letter", "=", "boolexpr"],
+    ["boolexpr", "<", "num"],
+    ["boolexpr", "addop", "letter"],
+    ["boolexpr", "addop", "num"],
+    ["letter", "=", "letter", "=", "letter"],
+    ["letter", "=", "letter", "=", "num"],
+    ["letter", "=", "letter", "=", "boolexpr"],
+    ["type", "letter"],
+    ["type", "letter", ",", "letter"],
+    ["type", "letter", ",", "type", "letter"],
+    ["num", ",", "num"],
+    ["num", ",", "num", ",", "num"],
+    ["if", "boolexpr", "loopstmt"],
+    ["while", "boolexpr"],
+    ["else", "block"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 3 (5/33)...     
+Successful grouping (single): [if,  , boolexpr,  , do]
+    (aka ['if', ' ', '( a = a = ( a = 0 < 0 ) )', ' ', 'do']
+coalesced into:  {'t143': 'loopstmt', 'loopstmt': 'loopstmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["letter", "=", "letter"],
+    ["letter", "=", "num"],
+    ["letter", "<", "letter"],
+    ["letter", "<", "num"],
+    ["letter", "=", "boolexpr"],
+    ["boolexpr", "<", "letter"],
+    ["boolexpr", "<", "num"],
+    ["letter", "=", "letter", "=", "letter"],
+    ["letter", "=", "letter", "=", "num"],
+    ["letter", "=", "boolexpr", "addop", "num"],
+    ["letter", "<", "boolexpr", "addop", "num"],
+    ["type", "letter", ",", "letter"],
+    ["type", "letter", ",", "letter", ";"],
+    ["type", "letter", ",", "type", "letter"],
+    ["type", "letter", ",", "type", "letter", ","],
+    ["num", ",", "num"],
+    ["num", ",", "num", ",", "num"],
+    ["if", "boolexpr"],
+    ["while", "boolexpr"],
+    ["loopstmt", ";"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["if", "boolexpr", "letter", "=", "letter", "<", "letter", "tupleexpr", ";", "else"], ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "num", ";", "else"]],
+    [["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block"], ["if", "boolexpr", "if", "boolexpr", "type", "letter", ",", "letter", ";", "else"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";"], ["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "letter", "tupleexpr", "<", "num"]],
+    [["type", "letter", ",", "letter", ";"], ["type", "letter", ",", "type", "letter"]],
+    [["letter", "=", "letter", "=", "boolexpr"], ["letter", "=", "boolexpr", "addop", "num"]],
+    [["letter", "<", "num", "addop", "letter", "boolexpr", "addop", "num"], ["letter", "<", "boolexpr", "addop", "num", "addop", "boolexpr"]],
+    [["type", "letter", ",", "type", "letter", ",", "type", "letter"], ["type", "letter", ",", "letter", ";"]],
+    [["letter", "=", "letter", "=", "num"], ["letter", "=", "num", "<", "num"]],
+    [["letter", "boolexpr", "<", "num", ",", "num"], ["letter", "<", "boolexpr", "addop", "num"]],
+    [["loopstmt", ";", "while", "boolexpr", ";"], ["while", "boolexpr", ";", "while", "boolexpr", ";"]],
+    [["letter", "=", "boolexpr", "<", "num"], ["letter", "=", "boolexpr", "addop", "num"]],
+    [["num", ",", "num", ",", "num"], ["letter", "=", "letter", "=", "num"]],
+    [["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "letter", "tupleexpr", "<", "num"], ["letter", "=", "letter", "boolexpr", "<", "num", "addop", "boolexpr", "addop", "num"]],
+    [["letter", "=", "letter", "=", "boolexpr"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["letter", "=", "letter", "=", "num"], ["letter", "=", "num", "<", "num"]],
+    [["letter", "=", "boolexpr", "<", "num"], ["letter", "=", "boolexpr", "addop", "num"]],
+    [["letter", "<", "boolexpr", "addop", "num"], ["letter", "boolexpr", "<", "num", ",", "num"]],
+    [["type", "letter", ",", "type", "letter"], ["type", "letter", ",", "letter", ";"]],
+    [["letter", "=", "letter", "=", "boolexpr"], ["letter", "=", "boolexpr", "addop", "num"]],
+    [["letter", "=", "letter", "=", "num"], ["letter", "=", "num", "<", "num"]]
+  ]
+}
+1-BUBBLES
+{
+    "siblings": [
+        ["if", "boolexpr"],
+        ["letter", "=", "letter"],
+        ["letter", "<", "letter"],
+        ["letter", "=", "num"],
+        ["letter", "<", "num"],
+        ["letter", "=", "boolexpr"],
+        ["boolexpr", "<", "letter"],
+        ["boolexpr", "<", "num"],
+        ["letter", "=", "letter", "=", "letter"],
+        ["letter", "=", "letter", "=", "num"],
+        ["letter", "=", "boolexpr", "addop", "num"],
+        ["letter", "<", "boolexpr", "addop", "num"],
+        ["type", "letter"],
+        ["type", "letter", ",", "letter"],
+        ["type", "letter", ",", "type", "letter"],
+        ["type", "letter", ",", "type", "letter", ",", "type", "letter"],
+        ["num", ",", "num"],
+        ["num", ",", "num", ",", "num"],
+        ["loopstmt", ";"],
+        ["while", "boolexpr"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["if", "boolexpr", "letter", "=", "letter", "<", "letter", "tupleexpr", ";", "else"], ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block"]],
+    [["if", "boolexpr", "letter", "=", "letter", "<", "letter", "tupleexpr", ";", "else"], ["if", "boolexpr", "if", "boolexpr", "type", "letter", ",", "letter", ";", "else"]],
+    [["if", "boolexpr", "letter", "=", "letter", "<", "letter", "tupleexpr", ";", "else"], ["if", "boolexpr", "while", "boolexpr", "block", "else"]],
+    [["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block"], ["if", "boolexpr", "if", "boolexpr", "type", "letter", ",", "letter", ";", "else"]],
+    [["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block"], ["if", "boolexpr", "while", "boolexpr", "block", "else"]],
+    [["if", "boolexpr", "if", "boolexpr", "type", "letter", ",", "letter", ";", "else"], ["if", "boolexpr", "while", "boolexpr", "block", "else"]],
+    [["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "letter", "tupleexpr", "<", "num"], ["letter", "=", "letter", "boolexpr", "<", "num", "addop", "boolexpr", "addop", "num"]],
+    [["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "letter", "tupleexpr", "<", "num"], ["letter", "<", "num", "addop", "letter", "boolexpr", "addop", "num"]],
+    [["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "letter", "tupleexpr", "<", "num"], ["letter", "<", "boolexpr", "addop", "num", "addop", "boolexpr"]],
+    [["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "letter", "tupleexpr", "<", "num"], ["letter", "boolexpr", "<", "num", ",", "num"]],
+    [["letter", "=", "letter", "boolexpr", "<", "num", "addop", "boolexpr", "addop", "num"], ["letter", "<", "num", "addop", "letter", "boolexpr", "addop", "num"]],
+    [["letter", "=", "letter", "boolexpr", "<", "num", "addop", "boolexpr", "addop", "num"], ["letter", "<", "boolexpr", "addop", "num", "addop", "boolexpr"]],
+    [["letter", "=", "letter", "boolexpr", "<", "num", "addop", "boolexpr", "addop", "num"], ["letter", "boolexpr", "<", "num", ",", "num"]],
+    [["letter", "<", "num", "addop", "letter", "boolexpr", "addop", "num"], ["letter", "<", "boolexpr", "addop", "num", "addop", "boolexpr"]],
+    [["letter", "<", "num", "addop", "letter", "boolexpr", "addop", "num"], ["letter", "boolexpr", "<", "num", ",", "num"]],
+    [["type", "letter", ",", "type", "letter", ",", "type", "letter"], ["type", "letter", ",", "type", "letter"]],
+    [["type", "letter", ",", "type", "letter", ",", "type", "letter"], ["type", "letter", ",", "letter", ";"]],
+    [["letter", "=", "letter", "=", "boolexpr"], ["letter", "=", "boolexpr", "addop", "num"]],
+    [["letter", "=", "letter", "=", "boolexpr"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["letter", "=", "letter", "=", "boolexpr"], ["letter", "=", "letter", "=", "num"]]
+  ]
+}
+1-BUBBLES
+{
+  "siblings": [
+    ["if", "boolexpr"],
+    ["letter", "=", "letter"],
+    ["letter", "<", "letter"],
+    ["letter", "=", "num"],
+    ["num", "<", "letter"],
+    ["letter", "=", "boolexpr"],
+    ["letter", "=", "letter", "=", "letter"],
+    ["letter", "=", "letter", "=", "num"],
+    ["letter", "<", "boolexpr"],
+    ["boolexpr", ";"],
+    ["type", "letter"],
+    ["type", "letter", ",", "letter"],
+    ["type", "letter", ",", "letter", ";"],
+    ["type", "letter", ",", "type", "letter"],
+    ["type", "letter", ",", "type", "letter", ",", "type", "letter"],
+    ["letter", "boolexpr", "<", "num"],
+    ["letter", "boolexpr", "addop", "num"],
+    ["letter", "<", "num"],
+    ["num", ",", "num"],
+    ["num", ",", "num", ",", "num"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 4 (12/40)...    
+Successful grouping (single): [a,  , boolexpr,  , -,  , 0]
+    (aka ['a', ' ', '( a ( a < ( 0 ) - a - ( 0 + ( a = a = 0 ) ) ) < 0 + 0 )', ' ', '-', ' ', '0']
+coalesced into:  {'t195': 'num', 'num': 'num'}
+
+[Group len -1] Bubbling iteration 4 (37/40)...    
+Successful grouping (single): [0,  , -,  , 0]
+    (aka ['0', ' ', '-', ' ', '0']
+coalesced into:  {'t127': 'num', 'num': 'num'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["if", "boolexpr"],
+    ["letter", "=", "letter"],
+    ["letter", "<", "letter"],
+    ["letter", "=", "num"],
+    ["num", "<", "letter"],
+    ["letter", "=", "boolexpr"],
+    ["boolexpr", "<", "num"],
+    ["letter", "=", "letter", "=", "letter"],
+    ["letter", "=", "letter", "=", "num"],
+    ["letter", "=", "boolexpr", "addop", "num"],
+    ["letter", "<", "boolexpr", "addop", "num"],
+    ["type", "letter"],
+    ["type", "letter", ",", "letter"],
+    ["type", "letter", ",", "type", "letter"],
+    ["num", ",", "num"],
+    ["num", ",", "num", ",", "num"],
+    ["loopstmt", ";"],
+    ["while", "boolexpr"],
+    ["while", "boolexpr", ";"],
+    ["else", "block"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["if", "boolexpr", "letter", "=", "letter", "<", "letter", "tupleexpr", ";", "else", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "num", ";", "else", "loopstmt", "if", "boolexpr", ";", "else", "loopstmt", "loopstmt", "block", "while", "boolexpr", ";", "while", "boolexpr", ";", "while", "boolexpr", ";", "else", "while", "boolexpr", "block"], ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block", "else", "block", "else", "type", "letter", ";"]],
+    [["if", "boolexpr", "letter", "=", "letter", "<", "letter", "tupleexpr", ";", "else", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "num", ";", "else", "loopstmt", "if", "boolexpr", ";", "else", "loopstmt", "loopstmt", "block", "while", "boolexpr", ";", "while", "boolexpr", ";", "while", "boolexpr", ";", "else", "while", "boolexpr", "block"], ["if", "boolexpr", "if", "boolexpr", "type", "letter", ",", "letter", ";", "else", "letter", "=", "letter", ";"]],
+    [["if", "boolexpr", "letter", "=", "letter", "<", "letter", "tupleexpr", ";", "else", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "num", ";", "else", "loopstmt", "if", "boolexpr", ";", "else", "loopstmt", "loopstmt", "block", "while", "boolexpr", ";", "while", "boolexpr", ";", "while", "boolexpr", ";", "else", "while", "boolexpr", "block"], ["if", "boolexpr", "while", "boolexpr", "block", "else", "if", "boolexpr", "block", "else", ";"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";", "type", "letter", ",", "letter", ";"], ["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "letter", "tupleexpr", "<", "num"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";", "type", "letter", ",", "letter", ";"], ["letter", "=", "letter", "boolexpr", "<", "num", "addop", "boolexpr", "addop", "num"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";", "type", "letter", ",", "letter", ";"], ["letter", "=", "letter", "=", "boolexpr"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";", "type", "letter", ",", "letter", ";"], ["letter", "=", "num", "<", "num"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";", "type", "letter", ",", "letter", ";"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";", "type", "letter", ",", "letter", ";"], ["letter", "=", "boolexpr", "addop", "num"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";", "type", "letter", ",", "letter", ";"], ["letter", "<", "boolexpr", "addop", "num"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";", "type", "letter", ",", "letter", ";"], ["letter", "boolexpr", "<", "num", ",", "num"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";", "type", "letter", ",", "letter", ";"], ["letter", "=", "letter", "=", "num"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";", "type", "letter", ",", "letter", ";"], ["type", "letter", ",", "letter", ";"]],
+    [["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "letter", "tupleexpr", "<", "num"], ["letter", "=", "letter", "boolexpr", "<", "num", "addop", "boolexpr", "addop", "num"]],
+    [["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "letter", "tupleexpr", "<", "num"], ["letter", "=", "letter", "=", "boolexpr"]],
+    [["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "letter", "tupleexpr", "<", "num"], ["letter", "=", "num", "<", "num"]],
+    [["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "letter", "tupleexpr", "<", "num"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "letter", "tupleexpr", "<", "num"], ["letter", "=", "boolexpr", "addop", "num"]],
+    [["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "letter", "tupleexpr", "<", "num"], ["letter", "<", "boolexpr", "addop", "num"]],
+    [["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "letter", "tupleexpr", "<", "num"], ["letter", "boolexpr", "<", "num", ",", "num"]]
+  ]
+}
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-23 12:13:07
+Time spent in oracle calls: 934.032422542572
+Time spent building grammar: 1047.203987121582s
+Time breakdown: {'FIRST_COALESCE': 232.3055670261383, 'BUILD': 601.2424430847168, 'LAST_COALESCE': 25.678144454956055, 'EXPAND': 37.05924367904663, 'MINIMIZE': 0.000982522964477539, 'OVERALL_EXAMPLE_GEN': 18.921201944351196, 'OVERALL_GROUPING': 38.56541037559509, 'REAPPLY_COUNT': 1}
+Parse calls: 32019, 12979
+LLM calls for bubble finding: 10
+arg=minic
 python3 search.py external Seed_Programs/minic/parse_minic Seed_Programs/minic/minic-train-r0 Seed_Programs/minic-r1-tv.log
 Using approximate pre-tokenization stage
-**** Running eval.py ****
-**** Running search.py ****
+Average guide length in char: 107.0, max guide length: 368
+Average token length: 89.7, max token length: 315
+Guides with brackets: 9, quotes: 0
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 8.9
+Average lengths of brackets(not normalized): 9.268472906403941
+Average n: 89.7
+Beginning coalescing...                           
+LLM suggested label: letter for a and b
+LLM suggested label: paramlist for ( float a , float a ) and ( bool a )
+LLM suggested label: block for { if ( a = a = ( a = 0 < 0 ) ) do ; while ( a < a ) ; } and { a(3); }
+LLM suggested label: type for float and bool
+LLM suggested label: boolexpr for ( a = a = ( a = 0 < 0 ) ) and ( a < a )
+LLM suggested label: num for 3 and 0
+LLM suggested label: addop for + and -
+LLM suggested label: tupleexpr for ( a ( a < ( 0 ) - 0 - ( 0 ) ) < 0 , 0 ) and ( 0 , 0 , 0 )
+max example size 315, node size: 103
+1-BUBBLES
+{
+    "siblings": [
+        ["if", "boolexpr"],
+        ["letter", "=", "letter"],
+        ["letter", "=", "num"],
+        ["letter", "<", "letter"],
+        ["letter", "<", "num"],
+        ["boolexpr", "addop", "boolexpr"],
+        ["boolexpr", "addop", "num"],
+        ["letter", "addop", "boolexpr"],
+        ["letter", "addop", "num"],
+        ["num", "<", "num"],
+        ["type", "letter"],
+        ["letter", "=", "boolexpr"],
+        ["letter", "=", "letter", "=", "letter"],
+        ["letter", "=", "letter", "=", "num"],
+        ["letter", "=", "boolexpr", "<", "num"],
+        ["letter", "addop", "num", "<", "num"],
+        ["num", ",", "num"],
+        ["type", "letter", ",", "letter"],
+        ["type", "letter", ",", "type", "letter"],
+        ["if", "boolexpr", "while", "boolexpr", "block"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 1 (6/20)...     
+Successful grouping (single): [a,  , +,  , 0]
+    (aka ['a', ' ', '+', ' ', '0']
+coalesced into:  {'t94': 'num', 'num': 'num'}
+
+[Group len -1] Bubbling iteration 1 (7/20)...     
+Successful grouping (single): [a,  , -,  , boolexpr]
+    (aka ['a', ' ', '-', ' ', '( 0 + ( a = a = 0 ) )']
+coalesced into:  {'t93': 'num', 'num': 'num'}
+
+[Group len -1] Bubbling iteration 1 (9/20)...     
+Successful grouping (single): [boolexpr,  , +,  , boolexpr]
+    (aka ['( 0 )', ' ', '+', ' ', '( a = a ( a < a ( a ) ) < 0 - ( a = ( 0 ) + 0 ) - 0 - 0 )']
+coalesced into:  {'t91': 'tupleexpr', 'tupleexpr': 'tupleexpr'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["letter", "=", "letter"],
+        ["letter", "=", "num"],
+        ["letter", "<", "num"],
+        ["letter", "=", "boolexpr"],
+        ["boolexpr", "<", "num"],
+        ["boolexpr", "addop", "num"],
+        ["letter", "addop", "num"],
+        ["num", ",", "num"],
+        ["type", "letter"],
+        ["type", "letter", ",", "letter"],
+        ["if", "boolexpr"],
+        ["while", "boolexpr"],
+        ["do", ";"],
+        ["else", "block"],
+        ["else", ";"],
+        ["letter", "boolexpr"],
+        ["letter", "tupleexpr"],
+        ["letter", "addop"],
+        ["num", "addop"],
+        ["letter", "=", "letter", "=", "letter"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 2 (3/29)...     
+Successful grouping (single): [a,  , tupleexpr]
+    (aka ['a', ' ', '( 0 ) + ( a = a ( a < a ( a ) ) < 0 - ( a = ( 0 ) + 0 ) - 0 - 0 )']
+coalesced into:  {'t120': 'num', 'num': 'num'}
+
+[Group len -1] Bubbling iteration 2 (4/29)...     
+Successful grouping (single): [a, boolexpr]
+    (aka ['a', '(3)']
+coalesced into:  {'t119': 'num', 'num': 'num'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["letter", "=", "num"],
+        ["letter", "=", "letter"],
+        ["letter", "<", "num"],
+        ["letter", "=", "boolexpr"],
+        ["letter", "boolexpr", "<", "num"],
+        ["letter", "=", "letter", "=", "num"],
+        ["letter", "=", "letter", "=", "boolexpr"],
+        ["letter", "=", "boolexpr", "addop", "num"],
+        ["letter", "<", "boolexpr", "addop", "num"],
+        ["letter", "boolexpr", "<", "num", "addop", "num"],
+        ["letter", "=", "num", "<", "num"],
+        ["letter", "=", "num", "<", "letter"],
+        ["letter", "=", "letter", "<", "num"],
+        ["letter", "=", "letter", "<", "letter"],
+        ["letter", "=", "letter", "boolexpr", "<", "num"],
+        ["letter", "=", "letter", "boolexpr", "<", "letter"],
+        ["letter", "=", "letter", "boolexpr", "addop", "num"],
+        ["letter", "=", "letter", "boolexpr", "addop", "letter"],
+        ["letter", "=", "letter", "boolexpr", "addop", "boolexpr"],
+        ["letter", "=", "letter", "boolexpr", "addop", "num", "addop", "num"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["if", "boolexpr", "letter", "=", "letter", "<", "num", "addop", "num", ";", "else"], ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "num", ";", "else"]],
+    [["if", "boolexpr", "letter", "=", "letter", "<", "num", "addop", "num", ";", "else"], ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else"]],
+    [["if", "boolexpr", "letter", "=", "letter", "<", "num", "addop", "num", ";", "else"], ["if", "boolexpr", "if", "boolexpr", "type", "letter", ",", "letter", ";", "else"]],
+    [["if", "boolexpr", "letter", "=", "letter", "<", "num", "addop", "num", ";", "else"], ["if", "boolexpr", "while", "boolexpr", "block", "else"]],
+    [["if", "boolexpr", "letter", "=", "letter", "<", "num", "addop", "num", ";", "else"], ["if", "boolexpr", "do", ";", "while", "boolexpr", ";"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";"], ["letter", "=", "num", "addop", "boolexpr", "addop", "num", "addop", "boolexpr", "addop", "num", "addop", "num", "<", "num"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";"], ["letter", "=", "letter", "boolexpr", "<", "num", "addop", "boolexpr", "addop", "num", "addop", "num"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";"], ["letter", "=", "letter", "=", "letter", "boolexpr", "addop", "num", "addop", "num", "<", "num"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";"], ["letter", "<", "num", "addop", "letter", "boolexpr", "addop", "num"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";"], ["letter", "<", "boolexpr", "addop", "num", "addop", "boolexpr"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";"], ["letter", "boolexpr", "<", "num", "addop", "num"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";"], ["letter", "boolexpr", "<", "num", ",", "num"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";"], ["letter", "=", "letter", "=", "boolexpr"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";"], ["letter", "=", "num", "<", "num"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";"], ["letter", "=", "boolexpr", "addop", "num"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";"], ["letter", "<", "boolexpr", "addop", "num"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";"], ["letter", "=", "letter", "=", "num"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";"], ["type", "letter", ",", "letter", ";"]],
+    [["letter", "=", "num", "<", "letter", "boolexpr", ";", "type", "letter", ",", "letter", ";"], ["type", "letter", ",", "type", "letter", ",", "type", "letter"]]
+  ]
+}
+1-BUBBLES
+{
+    "siblings": [
+        ["letter", "=", "num"],
+        ["letter", "=", "letter"],
+        ["letter", "<", "num"],
+        ["letter", "boolexpr"],
+        ["boolexpr", "<", "num"],
+        ["boolexpr", "addop", "num"],
+        ["num", "addop", "num"],
+        ["type", "letter"],
+        ["letter", ",", "letter"],
+        ["num", ",", "num"],
+        ["if", "boolexpr"],
+        ["while", "boolexpr"],
+        ["do", ";"],
+        ["else", "block"],
+        ["else", "if"],
+        ["else", "do"],
+        ["else", "while"],
+        ["letter", ";"],
+        ["num", ";"],
+        ["type", "letter", ","]
+    ]
+}
+
+[Group len -1] Bubbling iteration 3 (11/48)...    
+Successful grouping (single): [a,  , boolexpr]
+    (aka ['a', ' ', '( 0 - 0 )']
+coalesced into:  {'t150': 'num', 'num': 'num'}
+
+[Group len -1] Bubbling iteration 3 (15/48)...    
+Successful grouping (single): [num,  , +,  , 0]
+    (aka ['a ( 0 ) + ( a = a ( a < a ( a ) ) < 0 - ( a = ( 0 ) + 0 ) - 0 - 0 )', ' ', '+', ' ', '0']
+coalesced into:  {'t146': 'num', 'num': 'num'}
+Reapply: 1
+
+[Group len -1] Bubbling iteration 3 (15/48)...    
+Successful grouping (single): [num,  , +,  , 0]
+    (aka ['a ( 0 ) + ( a = a ( a < a ( a ) ) < 0 - ( a = ( 0 ) + 0 ) - 0 - 0 )', ' ', '+', ' ', '0']
+coalesced into:  {'t162': 'num', 'num': 'num'}
+
+[Group len -1] Bubbling iteration 3 (16/48)...    
+Successful grouping (single): [boolexpr,  , +,  , num]
+    (aka ['( a = ( a - a ) + 0 )', ' ', '+', ' ', 'a ( a ( a < ( 0 ) - 0 - ( 0 ) ) < 0 , 0 )']
+coalesced into:  {'t145': 'num', 'num': 'num'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 3 (15/48)...    
+Successful grouping (single): [num,  , +,  , 0]
+    (aka ['a ( 0 ) + ( a = a ( a < a ( a ) ) < 0 - ( a = ( 0 ) + 0 ) - 0 - 0 )', ' ', '+', ' ', '0']
+coalesced into:  {'t163': 'num', 'num': 'num'}
+Reapply: 2
+
+[Group len -1] Bubbling iteration 3 (15/48)...    
+Successful grouping (single): [num,  , +,  , 0]
+    (aka ['a ( 0 ) + ( a = a ( a < a ( a ) ) < 0 - ( a = ( 0 ) + 0 ) - 0 - 0 )', ' ', '+', ' ', '0']
+coalesced into:  {'t165': 'num', 'num': 'num'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["letter", "=", "letter"],
+        ["letter", "=", "num"],
+        ["num", "<", "num"],
+        ["letter", "<", "num"],
+        ["if", "boolexpr"],
+        ["while", "boolexpr"],
+        ["do", ";"],
+        ["else", "block"],
+        ["type", "letter"],
+        ["letter", "=", "boolexpr"],
+        ["letter", "=", "letter", "=", "num"],
+        ["letter", "=", "letter", "=", "boolexpr"],
+        ["letter", "=", "num", "<", "num"],
+        ["letter", "=", "boolexpr", "<", "num"],
+        ["type", "letter", ",", "letter"],
+        ["type", "letter", ",", "type", "letter"],
+        ["num", ",", "num"],
+        ["num", ",", "num", ",", "num"],
+        ["letter", "<", "num", "addop", "boolexpr"],
+        ["if", "boolexpr", "block"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["if", "boolexpr", "letter", "=", "letter", "<", "num", ";", "else"], ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "num", ";", "else"]],
+    [["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block"], ["if", "boolexpr", "if", "boolexpr", "type", "letter", ",", "letter", ";", "else"]],
+    [["letter", "=", "num", "<", "num", ";"], ["letter", "=", "letter", "=", "num", "<", "num"]],
+    [["type", "letter", ",", "letter", ";"], ["type", "letter", ",", "type", "letter"]],
+    [["letter", "=", "letter", "=", "boolexpr"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["if", "boolexpr", "while", "boolexpr", "block", "else"], ["if", "boolexpr", "do", ";", "while", "boolexpr", ";"]],
+    [["type", "letter", ",", "type", "letter", ",", "type", "letter"], ["type", "letter", ",", "letter", ";"]],
+    [["num", ",", "num", ",", "num"], ["num", "<", "num", ",", "num"]],
+    [["letter", "=", "letter", "=", "num"], ["letter", "=", "letter", "=", "boolexpr"]],
+    [["letter", "=", "num", "<", "num"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block"], ["if", "boolexpr", "while", "boolexpr", "block", "else"]],
+    [["if", "boolexpr", "if", "boolexpr", "type", "letter", ",", "letter", ";", "else"], ["if", "boolexpr", "do", ";", "while", "boolexpr", ";"]],
+    [["letter", "=", "letter", "=", "num", "<", "num"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["type", "letter", ",", "letter", ";"], ["type", "letter", ",", "type", "letter"]],
+    [["num", ",", "num", ",", "num"], ["num", "<", "num", ",", "num"]],
+    [["letter", "=", "letter", "=", "num"], ["letter", "=", "letter", "=", "boolexpr"]],
+    [["letter", "=", "num", "<", "num"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["if", "boolexpr", "while", "boolexpr", "block", "else"], ["if", "boolexpr", "do", ";", "while", "boolexpr", ";"]],
+    [["type", "letter", ",", "type", "letter", ",", "type", "letter"], ["type", "letter", ",", "letter", ";"]],
+    [["num", ",", "num", ",", "num"], ["num", "<", "num", ",", "num"]]
+  ]
+}
+1-BUBBLES
+{
+    "siblings": [
+        ["if", "boolexpr"],
+        ["letter", "=", "letter"],
+        ["letter", "<", "num"],
+        ["num", ";"],
+        ["else", "if"],
+        ["do", "while"],
+        ["while", "boolexpr"],
+        ["letter", "=", "num"],
+        ["type", "letter"],
+        ["letter", ",", "letter"],
+        ["letter", "=", "boolexpr"],
+        ["num", "<", "num"],
+        ["boolexpr", "<", "num"],
+        ["num", ","],
+        ["letter", "=", "letter", "=", "num"],
+        ["letter", "=", "letter", "=", "boolexpr"],
+        ["letter", "<", "num", "addop", "boolexpr"],
+        ["type", "letter", ",", "letter"],
+        ["type", "letter", ",", "type", "letter"],
+        ["type", "letter", ",", "type", "letter", ",", "type", "letter"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["if", "boolexpr", "letter", "=", "letter", "<", "num", ";", "else"], ["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "num", ";", "else"]],
+    [["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block"], ["if", "boolexpr", "if", "boolexpr", "type", "letter", ",", "letter", ";", "else"]],
+    [["letter", "=", "num", "<", "num", ";"], ["letter", "=", "letter", "=", "num", "<", "num"]],
+    [["type", "letter", ",", "letter", ";"], ["type", "letter", ",", "type", "letter"]],
+    [["if", "boolexpr", "while", "boolexpr", "block", "else"], ["if", "boolexpr", "do", ";", "while", "boolexpr", ";"]],
+    [["letter", "=", "letter", "=", "boolexpr"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["num", ",", "num", ",", "num"], ["num", "<", "num", ",", "num"]],
+    [["type", "letter", ",", "type", "letter", ",", "type", "letter"], ["type", "letter", ",", "letter", ";"]],
+    [["letter", "=", "letter", "=", "num"], ["letter", "=", "letter", "=", "boolexpr"]],
+    [["letter", "=", "num", "<", "num"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["if", "boolexpr", "if", "boolexpr", "if", "boolexpr", "letter", ";", "else", "block"], ["if", "boolexpr", "while", "boolexpr", "block", "else"]],
+    [["if", "boolexpr", "if", "boolexpr", "type", "letter", ",", "letter", ";", "else"], ["if", "boolexpr", "do", ";", "while", "boolexpr", ";"]],
+    [["letter", "=", "letter", "=", "num", "<", "num"], ["letter", "=", "letter", "=", "boolexpr"]],
+    [["type", "letter", ",", "letter", ";"], ["type", "letter", ",", "type", "letter"]],
+    [["letter", "=", "letter", "=", "boolexpr"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["num", ",", "num", ",", "num"], ["num", "<", "num", ",", "num"]],
+    [["if", "boolexpr", "while", "boolexpr", "block", "else"], ["if", "boolexpr", "do", ";", "while", "boolexpr", ";"]],
+    [["letter", "=", "num", "<", "num"], ["letter", "=", "boolexpr", "<", "num"]],
+    [["type", "letter", ",", "type", "letter", ",", "type", "letter"], ["type", "letter", ",", "letter", ";"]],
+    [["letter", "=", "letter", "=", "num"], ["letter", "=", "letter", "=", "boolexpr"]]
+  ]
+}
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-23 12:30:00
+Time spent in oracle calls: 914.946412563324
+Time spent building grammar: 1010.8733303546906s
+Time breakdown: {'FIRST_COALESCE': 232.07697772979736, 'BUILD': 570.3817336559296, 'LAST_COALESCE': 23.10809850692749, 'EXPAND': 37.25891184806824, 'MINIMIZE': 0.0017621517181396484, 'OVERALL_EXAMPLE_GEN': 19.660529375076294, 'OVERALL_GROUPING': 26.019676685333252, 'REAPPLY_COUNT': 2}
+Parse calls: 31195, 12752
+LLM calls for bubble finding: 9
