@@ -1,0 +1,362 @@
+**** Running search.py ****
+python3 search.py external Seed_Programs/micro-benchmarks/json/parse_json Seed_Programs/micro-benchmarks/json/guides-r1 Seed_Programs/json-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 11.733333333333333, max guide length: 90
+Average token length: 8.2, max token length: 72
+Guides with brackets: 10, quotes: 20
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 1.7333333333333334
+Average lengths of brackets(not normalized): 3.767460317460317
+Average n: 8.2
+Beginning coalescing...                           
+LLM suggested label: num for 1 and 34
+LLM suggested label: letter for O and rN
+max example size 72, node size: 29
+Number of bubbles:  54
+LLM suggested label: stringliteral for ,"0365 and ,"1
+
+[Group len 3] Bubbling iteration 1 (2/100)...     
+Successful grouping (double): [,, ", T], [,, ", 1]
+     (aka [',', '"', 'T'], [',', '"', '1']))
+coalesced into:  {'t63': 'stringliteral', 't73': 'stringliteral'}
+Number of bubbles:  56
+LLM suggested label: stringliteral for "0365 and "1
+ Next suggestion: stringliteral2
+
+[Group len 3] Bubbling iteration 2 (2/100)...     
+Successful grouping (double): [", O], [", 34]
+     (aka ['"', 'O'], ['"', '34']))
+coalesced into:  {'t88': 'stringliteral2', 't92': 'stringliteral2'}
+Number of bubbles:  48
+LLM suggested label: stringliteral for :"1" and :6831
+ Next suggestion: stringliteral2
+ Next suggestion: stringliteral3
+
+[Group len 3] Bubbling iteration 3 (5/100)...     
+Successful grouping (double): [:, stringliteral2, "], [:, true]
+     (aka [':', '"3', '"'], [':', 'true']))
+coalesced into:  {'t177': 'stringliteral3', 't160': 'stringliteral3'}
+Number of bubbles:  45
+LLM suggested label: stringliteral for ":3 and ":"1"
+ Next suggestion: stringliteral2
+ Next suggestion: stringliteral3
+ Next suggestion: stringliteral4
+
+[Group len 3] Bubbling iteration 4 (5/100)...     
+Successful grouping (double): [", :, 3], [", stringliteral3]
+     (aka ['"', ':', '3'], ['"', ':true']))
+coalesced into:  {'t228': 'stringliteral4', 't213': 'stringliteral4'}
+Number of bubbles:  46
+
+[Group len 3] Bubbling iteration 5 (2/100)...     
+Successful grouping (single): [:, 3]
+    (aka [':', '3']
+coalesced into:  {'t284': 'stringliteral3', 'stringliteral3': 'stringliteral3'}
+Number of bubbles:  45
+
+[Group len 3] Bubbling iteration 6 (5/100)...     
+Successful grouping (single): [stringliteral4, stringliteral, stringliteral4]
+    (aka ['":[]', ',"T', '":[]']
+coalesced into:  {'t347': 'stringliteral4', 'stringliteral4': 'stringliteral4'}
+Reapply: 1
+
+[Group len 3] Bubbling iteration 6 (5/100)...     
+Successful grouping (single): [stringliteral4, stringliteral, stringliteral4]
+    (aka ['":[]', ',"T', '":[]']
+coalesced into:  {'t368': 'stringliteral4', 'stringliteral4': 'stringliteral4'}
+Number of bubbles:  43
+LLM suggested label: num for -2 and 0
+ Next suggestion: intnum
+
+[Group len 3] Bubbling iteration 7 (6/100)...     
+Successful grouping (single): [-, 2]
+    (aka ['-', '2']
+coalesced into:  {'t389': 'intnum', '0': 'intnum'}
+Number of bubbles:  42
+LLM suggested label: listexpr for [false,null,null,3,true,4,[]], and 3,
+
+[Group len 3] Bubbling iteration 8 (3/100)...     
+Successful grouping (double): [null, ,], [9, ,]
+     (aka ['null', ','], ['9', ',']))
+coalesced into:  {'t471': 'listexpr', 't473': 'listexpr'}
+Number of bubbles:  39
+
+[Group len 3] Bubbling iteration 9 (1/100)...     
+Successful grouping (single): [listexpr, listexpr]
+    (aka ['9,', '{"70":true,"U4Z":null},']
+coalesced into:  {'t530': 'listexpr', 'listexpr': 'listexpr'}
+Reapply: 2
+
+[Group len 3] Bubbling iteration 9 (1/100)...     
+Successful grouping (single): [listexpr, listexpr]
+    (aka ['9,', '{"70":true,"U4Z":null},']
+coalesced into:  {'t534': 'listexpr', 'listexpr': 'listexpr'}
+Reapply: 3
+
+[Group len 3] Bubbling iteration 9 (1/100)...     
+Successful grouping (single): [listexpr, listexpr]
+    (aka ['9,', '{"70":true,"U4Z":null},']
+coalesced into:  {'t535': 'listexpr', 'listexpr': 'listexpr'}
+Number of bubbles:  36
+LLM suggested label: num for 1. and -3.
+ Next suggestion: numexpr2
+
+[Group len 3] Bubbling iteration 10 (4/100)...    
+Successful grouping (double): [1, .], [intnum, .]
+     (aka ['1', '.'], ['-64', '.']))
+coalesced into:  {'t538': 'numexpr2', 't562': 'numexpr2'}
+Number of bubbles:  36
+
+[Group len 3] Bubbling iteration 11 (1/100)...    
+Successful grouping (single): [", :, intnum]
+    (aka ['"', ':', '-5']
+coalesced into:  {'t634': 'stringliteral4', 'stringliteral4': 'stringliteral4'}
+Number of bubbles:  34
+
+[Group len 3] Bubbling iteration 12 (1/100)...    
+Successful grouping (single): [:, intnum]
+    (aka [':', '-5']
+coalesced into:  {'t687': 'stringliteral3', 'stringliteral3': 'stringliteral3'}
+Number of bubbles:  33
+
+[Group len 3] Bubbling iteration 13 (1/100)...    
+Successful grouping (single): [stringliteral2, "]
+    (aka ['"O', '"']
+coalesced into:  {'t701': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  31
+LLM suggested label: literal for -2,true and 9,{"70":true,"U4Z":null},[false,null,null,3,true,4,[]],[]
+
+[Group len 3] Bubbling iteration 14 (1/100)...    
+Successful grouping (double): [intnum, ,, true], [listexpr, stmt]
+     (aka ['-2', ',', 'true'], ['null,', '[9,{"70":true,"U4Z":null},[false,null,null,3,true,4,[]],[]]']))
+coalesced into:  {'t766': 'literal', 't790': 'literal'}
+Number of bubbles:  30
+
+[Group len 3] Bubbling iteration 15 (1/90)...     
+Successful grouping (single): [intnum, ,]
+    (aka ['-2', ',']
+coalesced into:  {'t817': 'listexpr', 'listexpr': 'listexpr'}
+Number of bubbles:  28
+
+[Group len 3] Bubbling iteration 16 (5/64)...     
+Successful grouping (single): [numexpr2, 1]
+    (aka ['1.', '1']
+coalesced into:  {'t848': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  26
+
+[Group len 3] Bubbling iteration 17 (4/46)...     
+Successful grouping (single): [:, true]
+    (aka [':', 'true']
+coalesced into:  {'t912': 'stringliteral3', 'stringliteral3': 'stringliteral3'}
+Number of bubbles:  24
+
+[Group len 3] Bubbling iteration 18 (4/32)...     
+Successful grouping (single): [", stringliteral3]
+    (aka ['"', ':true']
+coalesced into:  {'t956': 'stringliteral4', 'stringliteral4': 'stringliteral4'}
+Number of bubbles:  21
+
+[Group len 3] Bubbling iteration 19 (1/14)...     
+Successful grouping (single): [stringliteral4, stringliteral, stringliteral4]
+    (aka ['":[],"T":[],"0365":{"B":-5},"4AlX24":{"2":"1","t":"90b","vR0":false,"1":{}}', ',"05', '":-8.9']
+coalesced into:  {'t1019': 'stringliteral4', 'stringliteral4': 'stringliteral4'}
+Number of bubbles:  19
+Number of bubbles:  19
+Number of bubbles:  19
+Number of bubbles:  19
+Number of bubbles:  19
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-24 14:07:38
+Time spent in oracle calls: 9.654876470565796
+Time spent building grammar: 21.37751817703247s
+Time breakdown: {'FIRST_COALESCE': 3.5860157012939453, 'BUILD': 12.780399322509766, 'LAST_COALESCE': 0.6669278144836426, 'EXPAND': 4.00347113609314, 'MINIMIZE': 0.0003161430358886719, 'OVERALL_EXAMPLE_GEN': 1.1660027503967285, 'OVERALL_GROUPING': 0, 'REAPPLY_COUNT': 3}
+Parse calls: 11975, 7622
+LLM calls for bubble finding: 0
+**** Running eval.py ****
+start: stmt
+stmt: numexpr2 num
+    | stringliteral2 "\""
+    | "{" stringliteral2 stringliteral4 "}"
+    | "true"
+    | "[" listexpr stmt "]"
+    | "-" num
+    | "null"
+    | "[" "]"
+    | "false"
+    | "{" "}"
+    | num
+    | intnum
+    | tinteger
+numexpr2: num "."
+    | intnum "."
+num: tinteger
+stringliteral2: "\"" letter
+    | "\"" num
+letter: "GE34F5kC5"
+    | "4n"
+    | "4AlX24"
+    | "90b"
+    | "vR0"
+    | "U4Z"
+    | "r5"
+    | "hZ5"
+    | talphanums
+    | tletters
+stringliteral4: "\"" stringliteral3
+    | stringliteral4 "," stringliteral2 stringliteral4
+stringliteral3: ":" stmt
+    | ":" num
+    | ":" intnum
+listexpr: intnum ","
+    | stmt ","
+    | listexpr listexpr
+    | num ","
+intnum: "-" num
+    | tinteger
+tinteger: tdigit
+    | tnzdigit tdigits
+tnzdigit: "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tletters: tletter
+    | tletter tletters
+tletter: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.898, Precision: 0.964, F-1: 0.9298302900107411
+**** Running search.py ****
