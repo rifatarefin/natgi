@@ -1,0 +1,2110 @@
+python3 search.py external glade-2/mysql/parse_mysql glade-2/mysql/mysql-train glade-2/mysql-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 99.2, max guide length: 402
+Average token length: 51.5, max token length: 238
+Guides with brackets: 3, quotes: 4
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 1.4
+Average lengths of brackets(not normalized): 25.366666666666667
+Average n: 51.5
+Beginning coalescing...                           
+LLM suggested label: char for   and h
+LLM suggested label: relop for \> and Q
+LLM suggested label: num for 0 and N
+LLM suggested label: escape_sequence for \ and SOUNDS
+LLM suggested label: num for 5 and 962929
+ Next suggestion: num2
+LLM suggested label: factor for MEMBER and *
+LLM suggested label: timeunit for SECOND and MICROSECOND
+LLM suggested label: char for 귥 and 翼
+ Next suggestion: char6
+LLM suggested label: boolval for FALSE and TRUE
+LLM suggested label: transaction_stmt for COMMIT and ROLLBACK
+LLM suggested label: expr for \x( and (
+LLM suggested label: keyword for ALL and DISTINCT
+max example size 238, node size: 69
+Number of bubbles:  623
+LLM suggested label: stmt for  -- and  ;
+ Next suggestion: comment
+
+[Group len 3] Bubbling iteration 1 (4/100)...     
+Successful grouping (double): [ , -, -], [ , ;]
+     (aka [' ', '-', '-'], [' ', ';']))
+coalesced into:  {'t225': 'comment', 't219': 'comment'}
+Number of bubbles:  632
+
+[Group len 3] Bubbling iteration 2 (1/100)...     
+Successful grouping (single): [-, -]
+    (aka ['-', '-']
+coalesced into:  {'t904': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  630
+LLM suggested label: identifier for @@7 and \N
+
+[Group len 3] Bubbling iteration 3 (15/100)...    
+Successful grouping (double): [@, @, L], [\, N]
+     (aka ['@', '@', 'L'], ['\\', 'N']))
+coalesced into:  {'t1487': 'identifier', 't1357': 'identifier'}
+Number of bubbles:  629
+LLM suggested label: stringliteral for """ and "
+
+[Group len 3] Bubbling iteration 4 (14/100)...    
+Successful grouping (single): [", ", "]
+    (aka ['"', '"', '"']
+coalesced into:  {'t2461': 'stringliteral', '"': 'stringliteral'}
+Number of bubbles:  628
+
+[Group len 3] Bubbling iteration 5 (7/100)...     
+Successful grouping (single): [comment,  ]
+    (aka [' --', ' ']
+coalesced into:  {'t2753': 'comment', 'comment': 'comment'}
+Number of bubbles:  621
+
+[Group len 3] Bubbling iteration 6 (9/100)...     
+Successful grouping (single): [귥, 翼]
+    (aka ['귥', '翼']
+coalesced into:  {'t3353': 'char6', 'char6': 'char6'}
+LLM suggested label: identifier for 刨ﭧ顗 and DEFAULT
+ Next suggestion: identifier2
+Reapply: 1
+
+[Group len 3] Bubbling iteration 6 (9/100)...     
+Successful grouping (single): [귥, 翼]
+    (aka ['귥', '翼']
+coalesced into:  {'t3794': 'identifier2', 'DEFAULT': 'identifier2'}
+Number of bubbles:  624
+LLM suggested label: identifier for U2X and TIMESTAMP
+ Next suggestion: identifier2
+ Next suggestion: identifier3
+
+[Group len 3] Bubbling iteration 7 (13/100)...    
+Successful grouping (single): [U, 2, X]
+    (aka ['U', '2', 'X']
+coalesced into:  {'t4205': 'identifier3', 'TIMESTAMP': 'identifier3'}
+Number of bubbles:  625
+
+[Group len 3] Bubbling iteration 8 (3/100)...     
+Successful grouping (single): [U, 2]
+    (aka ['U', '2']
+coalesced into:  {'t4931': 'identifier3', 'identifier3': 'identifier3'}
+Number of bubbles:  623
+LLM suggested label: relop for \>'' and :
+ Next suggestion: comparison
+
+[Group len 3] Bubbling iteration 9 (23/100)...    
+Successful grouping (single): [\>, ', ']
+    (aka ['\\>', "'", "'"]
+coalesced into:  {'t5083': 'comparison', ':': 'comparison'}
+Number of bubbles:  626
+
+[Group len 3] Bubbling iteration 10 (19/100)...   
+Successful grouping (single): [comment, comment]
+    (aka [' ;', ' -- ']
+coalesced into:  {'t5913': 'comment', 'comment': 'comment'}
+Reapply: 2
+
+[Group len 3] Bubbling iteration 10 (19/100)...   
+Successful grouping (single): [comment, comment]
+    (aka [' ;', ' -- ']
+coalesced into:  {'t6331': 'comment', 'comment': 'comment'}
+Number of bubbles:  620
+LLM suggested label: stmt for $` -- ; ; ;  and ` -- 
+ Next suggestion: delimiter
+
+[Group len 3] Bubbling iteration 11 (7/100)...    
+Successful grouping (double): [EUCKR, `, comment], [`, comment]
+     (aka ['EUCKR', '`', ' -- '], ['`', ' -- ']))
+coalesced into:  {'t6661': 'delimiter', 't6662': 'delimiter'}
+Number of bubbles:  623
+
+[Group len 3] Bubbling iteration 12 (23/100)...   
+Successful grouping (single): [EUCKR, delimiter]
+    (aka ['EUCKR', '` -- ']
+coalesced into:  {'t7297': 'delimiter', 'delimiter': 'delimiter'}
+Number of bubbles:  621
+LLM suggested label: bitwiseor for  |  and |
+
+[Group len 3] Bubbling iteration 13 (25/100)...   
+Successful grouping (single): [ , |,  ]
+    (aka [' ', '|', ' ']
+coalesced into:  {'t8069': 'bitwiseor', '|': 'bitwiseor'}
+Number of bubbles:  622
+
+[Group len 3] Bubbling iteration 14 (2/100)...    
+Successful grouping (single): [ , |]
+    (aka [' ', '|']
+coalesced into:  {'t8746': 'bitwiseor', 'bitwiseor': 'bitwiseor'}
+Number of bubbles:  621
+LLM suggested label: chainstmt for NO CHAIN and CHAIN NO
+
+[Group len 3] Bubbling iteration 15 (30/100)...   
+Successful grouping (double): [NO,  , CHAIN], [CHAIN,  , NO]
+     (aka ['NO', ' ', 'CHAIN'], ['CHAIN', ' ', 'NO']))
+coalesced into:  {'t9458': 'chainstmt', 't9471': 'chainstmt'}
+Number of bubbles:  619
+LLM suggested label: stmt for DEALLOCATE PREPARE and USE
+ Next suggestion: stmt2
+
+[Group len 3] Bubbling iteration 16 (36/100)...   
+Successful grouping (single): [DEALLOCATE,  , PREPARE]
+    (aka ['DEALLOCATE', ' ', 'PREPARE']
+coalesced into:  {'t10138': 'stmt2', 'USE': 'stmt2'}
+Number of bubbles:  616
+LLM suggested label: stmt for UNLOCK TABLES and DEALLOCATE PREPARE TIMESTAMP
+ Next suggestion: command2
+
+[Group len 3] Bubbling iteration 17 (3/100)...    
+Successful grouping (double): [UNLOCK,  , TABLES], [stmt2,  , TIMESTAMP]
+     (aka ['UNLOCK', ' ', 'TABLES'], ['DEALLOCATE PREPARE', ' ', 'TIMESTAMP']))
+coalesced into:  {'t10423': 'command2', 't10772': 'command2'}
+Number of bubbles:  614
+LLM suggested label: stmt for ; XA and XA
+ Next suggestion: stmt1
+
+[Group len 3] Bubbling iteration 18 (25/100)...   
+Successful grouping (single): [;,  , XA]
+    (aka [';', ' ', 'XA']
+coalesced into:  {'t11396': 'stmt1', 'XA': 'stmt1'}
+Number of bubbles:  612
+
+[Group len 3] Bubbling iteration 19 (87/100)...   
+Successful grouping (single): [|,  ]
+    (aka ['|', ' ']
+coalesced into:  {'t11889': 'bitwiseor', 'bitwiseor': 'bitwiseor'}
+Number of bubbles:  612
+LLM suggested label: identifier for  @$ and  @U2X
+ Next suggestion: identifier2
+ Next suggestion: identifier3
+ Next suggestion: identifier4
+
+[Group len 3] Bubbling iteration 20 (30/100)...   
+Successful grouping (double): [h, @, C], [ , @, identifier3]
+     (aka ['h', '@', 'C'], [' ', '@', 'U2X']))
+coalesced into:  {'t12342': 'identifier4', 't12466': 'identifier4'}
+Number of bubbles:  614
+
+[Group len 3] Bubbling iteration 21 (2/100)...    
+Successful grouping (single): [@, C]
+    (aka ['@', 'C']
+coalesced into:  {'t13020': 'identifier', 'identifier': 'identifier'}
+Number of bubbles:  613
+
+[Group len 3] Bubbling iteration 22 (2/100)...    
+Successful grouping (single): [@, identifier3]
+    (aka ['@', 'U2X']
+coalesced into:  {'t13836': 'identifier', 'identifier': 'identifier'}
+Number of bubbles:  612
+LLM suggested label: stringliteral for @"" and @5
+ Next suggestion: stringliteral2
+
+[Group len 3] Bubbling iteration 23 (81/100)...   
+Successful grouping (double): [@, ", "], [@, 5]
+     (aka ['@', '"', '"'], ['@', '5']))
+coalesced into:  {'t14416': 'stringliteral2', 't14071': 'stringliteral2'}
+Number of bubbles:  610
+Number of bubbles:  932
+LLM suggested label: floatliteral for .5E+ and 962929.E
+
+[Group len 4] Bubbling iteration 25 (9/100)...    
+Successful grouping (double): [., 5, E, +], [962929, ., E]
+     (aka ['.', '5', 'E', '+'], ['962929', '.', 'E']))
+coalesced into:  {'t15623': 'floatliteral', 't15604': 'floatliteral'}
+Number of bubbles:  920
+
+[Group len 4] Bubbling iteration 26 (18/100)...   
+Successful grouping (single): [ , floatliteral]
+    (aka [' ', '962929.E']
+coalesced into:  {'t16561': 'floatliteral', 'floatliteral': 'floatliteral'}
+Number of bubbles:  920
+
+[Group len 4] Bubbling iteration 27 (44/100)...   
+Successful grouping (single): [>,  , ., identifier2]
+    (aka ['>', ' ', '.', '큻䱇ꍟ']
+coalesced into:  {'t17732': 'identifier4', 'identifier4': 'identifier4'}
+Number of bubbles:  918
+LLM suggested label: num for 81 , .5E+ and 5 , 
+ Next suggestion: numexpr2
+
+[Group len 4] Bubbling iteration 28 (92/100)...   
+Successful grouping (double): [81,  , ,, floatliteral], [5,  , ,,  ]
+     (aka ['81', ' ', ',', ' .5E+'], ['5', ' ', ',', ' ']))
+coalesced into:  {'t18468': 'numexpr2', 't18469': 'numexpr2'}
+Number of bubbles:  917
+LLM suggested label: stmt for '''' and I_H.
+ Next suggestion: emptystmt
+
+[Group len 4] Bubbling iteration 29 (93/100)...   
+Successful grouping (double): [', ', ', '], [I, _, H, .]
+     (aka ["'", "'", "'", "'"], ['I', '_', 'H', '.']))
+coalesced into:  {'t19829': 'emptystmt', 't19907': 'emptystmt'}
+Number of bubbles:  915
+LLM suggested label: identifier for _H. and TABLE
+ Next suggestion: identifier2
+ Next suggestion: identifier3
+ Next suggestion: identifier4
+ Next suggestion: identifier5
+
+[Group len 4] Bubbling iteration 30 (3/100)...    
+Successful grouping (single): [_, H, .]
+    (aka ['_', 'H', '.']
+coalesced into:  {'t20873': 'identifier5', 'TABLE': 'identifier5'}
+Number of bubbles:  912
+LLM suggested label: stmt for '''' , and I_H. OFFSET
+ Next suggestion: identifier
+ Next suggestion: identifier2
+ Next suggestion: identifier3
+ Next suggestion: identifier4
+ Next suggestion: identifier5
+ Next suggestion: identifier7
+
+[Group len 4] Bubbling iteration 31 (74/100)...   
+Successful grouping (double): [emptystmt,  , ,], [emptystmt,  , OFFSET]
+     (aka ["''''", ' ', ','], ['I_H.', ' ', 'OFFSET']))
+coalesced into:  {'t21739': 'identifier7', 't21810': 'identifier7'}
+Number of bubbles:  906
+Number of bubbles:  1210
+LLM suggested label: stmt for RELEASE RESET MASTER and RELEASE
+ Next suggestion: command
+
+[Group len 5] Bubbling iteration 33 (17/100)...   
+Successful grouping (single): [RELEASE,  , RESET,  , MASTER]
+    (aka ['RELEASE', ' ', 'RESET', ' ', 'MASTER']
+coalesced into:  {'t24053': 'command', 'RELEASE': 'command'}
+Number of bubbles:  1199
+Number of bubbles:  1498
+LLM suggested label: ternaryexpr for ''\?' : and ' :
+
+[Group len 6] Bubbling iteration 35 (32/100)...   
+Successful grouping (double): [', ', \?, ',  , :], [',  , :]
+     (aka ["'", "'", '\\?', "'", ' ', ':'], ["'", ' ', ':']))
+coalesced into:  {'t26297': 'ternaryexpr', 't25530': 'ternaryexpr'}
+Number of bubbles:  1482
+
+[Group len 6] Bubbling iteration 36 (39/100)...   
+Successful grouping (single): [\?, ternaryexpr]
+    (aka ['\\?', "' :"]
+coalesced into:  {'t28115': 'ternaryexpr', 'ternaryexpr': 'ternaryexpr'}
+Number of bubbles:  1480
+Number of bubbles:  1769
+Number of bubbles:  2052
+LLM suggested label: stmt for WORK AND CHAIN NO RELEASE RESET MASTER -- ; --  and WORK ; 
+ Next suggestion: commandstmt
+
+[Group len 8] Bubbling iteration 39 (37/100)...   
+Successful grouping (double): [WORK,  , AND,  , chainstmt,  , RELEASE, comment], [WORK, comment]
+     (aka ['WORK', ' ', 'AND', ' ', 'NO CHAIN', ' ', 'RELEASE', ' ; '], ['WORK', ' ; ']))
+coalesced into:  {'t33752': 'commandstmt', 't33780': 'commandstmt'}
+Number of bubbles:  2038
+
+[Group len 8] Bubbling iteration 40 (11/100)...   
+Successful grouping (single): [WORK,  , AND,  , chainstmt,  , RELEASE]
+    (aka ['WORK', ' ', 'AND', ' ', 'NO CHAIN', ' ', 'RELEASE']
+coalesced into:  {'t35839': 'commandstmt', 'commandstmt': 'commandstmt'}
+Number of bubbles:  2031
+Number of bubbles:  2308
+Number of bubbles:  2581
+LLM suggested label: stmt for * LIMIT @'''' , EXECUTE UNION and * UNION
+ Next suggestion: queryexpr
+
+[Group len 10] Bubbling iteration 43 (92/100)...  
+Successful grouping (double): [*,  , LIMIT,  , @, identifier7,  , EXECUTE,  , UNION], [*,  , UNION]
+     (aka ['*', ' ', 'LIMIT', ' ', '@', "'''' ,", ' ', 'EXECUTE', ' ', 'UNION'], ['*', ' ', 'UNION']))
+coalesced into:  {'t42578': 'queryexpr', 't42692': 'queryexpr'}
+Number of bubbles:  2536
+Number of bubbles:  2793
+Number of bubbles:  3047
+Number of bubbles:  3297
+Number of bubbles:  3543
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-23 19:33:59
+Time spent in oracle calls: 28291.009959936142
+Time spent building grammar: 28753.418642282486s
+Time breakdown: {'FIRST_COALESCE': 3659.835061311722, 'BUILD': 19772.76825284958, 'LAST_COALESCE': 4162.462301492691, 'EXPAND': 1011.1097142696381, 'MINIMIZE': 0.0019843578338623047, 'OVERALL_EXAMPLE_GEN': 68.20715570449829, 'OVERALL_GROUPING': 0, 'REAPPLY_COUNT': 2}
+Parse calls: 133153, 63731
+LLM calls for bubble finding: 0
+**** Running eval.py ****
+start: stmt
+char: " "
+    | "\\?"
+    | tlowers
+comparison: relop "'" "'"
+    | ":"
+relop: "\\>"
+    | "1"
+    | "$"
+    | tupper tlowers
+num: "0"
+    | "7"
+    | "58"
+    | "8"
+    | tuppers
+ternaryexpr: "'" char comparison
+    | "'" "'" ternaryexpr
+    | char ternaryexpr
+identifier: t58451 num
+    | "@" "@" num
+    | "@" relop
+    | "@" identifier3
+stringliteral2: "@" num2
+    | "@" stringliteral stringliteral
+num2: tdigits
+factor: "MEMBER"
+    | "*"
+t1: expr char identifier char "IS" char "NOT" char "NULL" char ")"
+expr: "("
+    | "\\x("
+timeunit: "SECOND"
+    | "MICROSECOND"
+char6: char6 char6
+    | "귥"
+    | "翼"
+    | "刨"
+    | "ﭧ"
+    | ""
+    | "顗"
+    | "銪"
+    | "큻"
+    | "䱇"
+    | "ꍟ"
+    | tuppers
+t2: expr char boolval char "," floatliteral numexpr2 numexpr2 num2 char ")"
+boolval: "TRUE"
+    | "FALSE"
+floatliteral: char floatliteral
+    | num2 "." "E"
+    | "." num2 "E" "+"
+numexpr2: num2 char "," floatliteral
+    | num2 char "," char
+comment: comment comment
+    | char stmt
+    | comment char
+identifier4: char identifier
+    | ">" char "." identifier2
+identifier5: "TABLE"
+    | "_" num "."
+delimiter: relop delimiter
+    | "`" comment
+t3: expr char "`" char "`" char ")"
+identifier2: char6 char6
+    | tuppers
+identifier3: identifier3 num
+    | num num2
+    | tuppers
+stringliteral: "\""
+    | stringliteral stringliteral stringliteral
+bitwiseor: bitwiseor char
+    | char bitwiseor
+    | "|"
+queryexpr: factor char "LIMIT" char "@" identifier7 char num char "UNION"
+    | factor char "UNION"
+identifier7: emptystmt char ","
+    | emptystmt char "OFFSET"
+emptystmt: "'" "'" "'" "'"
+    | num identifier5
+keyword: "ALL"
+    | "DISTINCT"
+stmt2: "USE"
+    | "DEALLOCATE" char "PREPARE"
+commandstmt: commandstmt comment
+    | "WORK" char "AND" char chainstmt char command
+    | "WORK" comment
+chainstmt: "NO" char "CHAIN"
+    | "CHAIN" char "NO"
+command: "RELEASE"
+    | command char "RESET" char "MASTER"
+stmt1: stmt char stmt1
+    | "XA"
+stmt: "CREATE" char "DEFINER" char "=" char "'" comparison "'" "'" relop "'" "@" "'" "'" char "EVENT" char "`" relop relop "`" char "ON" char "SCHEDULE" char "AT" char num char "+" char "INTERVAL" char "@" "'" ternaryexpr "=" char identifier char t58451 char "LIKE" char stringliteral2 char comparison "=" char "@" num char factor char "OF" char t1 char "DAY" "_" timeunit char "+" char "INTERVAL" char num char timeunit char "ON" char "COMPLETION" char "PRESERVE" char "DISABLE" char "ON" char "SLAVE" char "DO" char "HANDLER" char "`" relop "`" char "." char6 char "READ" char char6 char "!" char "=" char t2 char "LIMIT" char num comment
+    | ";"
+    | "-" "-"
+    | stmt char
+    | "ALTER" char "TABLESPACE" char "`" identifier4 "`" char "ADD" char "DATAFILE" char "'" "'" char "WAIT" char "ENGINE" char char6 char "TRUNCATE" char identifier5 char "`" delimiter
+    | "GET" char "DIAGNOSTICS" char identifier num char "=" char "NUMBER" comment
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relop char "." identifier2 char6 char "=" char identifier2 char "," char identifier4 char "." char "`" relop "`" char "=" char "@" "'" ternaryexpr "=" char identifier char t58451 char "LIKE" identifier4 char "NOT" char "LIKE" identifier4 char "NOT" char "BETWEEN" char "@" "`" "`" "`" t58451 "." t58451 "!" "`" char comparison "=" char "NULL" char "AND" char stringliteral2 char comparison "=" char "@" num char "ESCAPE" char "`" "`" bitwiseor bitwiseor stringliteral2 char comparison "=" char "@" num char "NOT" char "REGEXP" char "NOT" char "NULL" char "<" char "=" char ">" char "ANY" char expr char "SELECT" char queryexpr char keyword char "SELECT" char queryexpr char keyword char "SELECT" char factor char "INTO" char "OUTFILE" char "'" "'" char "LINES" char "TERMINATED" char "BY" char stringliteral stringliteral char "LIMIT" char "@" identifier7 char stringliteral2 char ")" char "IS" char boolval comment stmt2 char "`" delimiter
+    | t58452 char commandstmt
+    | stmt1 char "END" char "'" expr "'" comment
+    | "UNLOCK" char "TABLES"
+    | stmt2 char identifier3
+    | "CREATE" char "DEFINER" char "=" char "'" comparison "'" "'" relop "'" "@" "'" "'" char "EVENT" char "`" relop relop "`" char "ON" char "SCHEDULE" char "AT" char num char "+" char "INTERVAL" char "@" "'" ternaryexpr "=" num char factor char "OF" char t1 char "DAY" "_" timeunit char "+" char "INTERVAL" char num char timeunit char "ON" char "COMPLETION" char "PRESERVE" char "DISABLE" char "ON" char "SLAVE" char "DO" char "HANDLER" char "`" relop "`" char "." char6 char "READ" char char6 char "!" char "=" char t2 char "LIMIT" char num comment
+    | char "HANDLER" char "`" relop "`" char "." char6 char "READ" char char6 char "!" char "=" char t2 char "LIMIT" char num comment
+    | char "HANDLER" char "`" relop "`" char "." char6 char "READ" char char6 char "!" char "=" char t2 char
+    | char "HANDLER" char "`" relop "`" char "READ" char char6 char "!" char "=" char t2 char
+    | char "HANDLER" char "`" relop "`" char "READ" char char6 char "=" char t2 char
+    | char "HANDLER" char "`" "`" char "READ" char char6 char "=" char t2 char
+    | char
+    | "ALTER" char "TABLESPACE" char "`" identifier4 "`" char "ADD" char "DATAFILE" char "'" "'" char "WAIT" char "ENGINE" char char6
+    | "ALTER" char "TABLESPACE" char "`" identifier4 "`" char "ADD" char "DATAFILE" char "'" "'" char "ENGINE" char char6
+    | "ALTER" char "TABLESPACE" char "`" "`" char "ADD" char "DATAFILE" char "'" "'" char "ENGINE" char char6
+    | "GET" char "DIAGNOSTICS" char num char "=" char "NUMBER" comment
+    | "GET" char "DIAGNOSTICS" char num char "=" char "NUMBER"
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relop char "." identifier2 char6 char "=" char identifier2 char "," char identifier4 char "." char "`" relop "`" char "=" char "@" "'" ternaryexpr "=" char identifier char t58451 char "LIKE" identifier4 char "NOT" char "LIKE" identifier4 char "NOT" char "BETWEEN" char "@" "`" "`" "`" t58451 "." t58451 "!" "`" char comparison "=" char "NULL" char "AND" char stringliteral2 char comparison "=" char "@" num char "ESCAPE" char "`" "`" bitwiseor bitwiseor stringliteral2 char
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relop char "." identifier2 char6 char "=" char identifier2 char "," char identifier4 char "." char "`" relop "`" char "=" char "@" "'" ternaryexpr "=" char identifier char t58451 char "LIKE" identifier4 char "NOT" char "LIKE" identifier4 char "NOT" char "BETWEEN" char "@" "`" "`" "`" t58451 "." t58451 "!" "`" char comparison "=" char "NULL" char "AND" char stringliteral2
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relop char "." identifier2 char "." char "`" relop "`" char "=" char "@" "'" ternaryexpr "=" char identifier char t58451 char "LIKE" identifier4 char "NOT" char "LIKE" identifier4 char "NOT" char "BETWEEN" char "@" "`" "`" "`" t58451 "." t58451 "!" "`" char comparison "=" char "NULL" char "AND" char stringliteral2
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relop char "." identifier2 char "." char "`" relop "`" char "=" char "@" "'" ternaryexpr "=" char identifier
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relop char char "=" char "@" "'" ternaryexpr "=" char identifier
+    | "SET" char relop char char "=" char "@" "'" ternaryexpr "=" char identifier
+    | t58452
+    | comment
+    | stmt1 char "END" char "'" "'" comment
+    | stmt1 char "END" char "'" "'"
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+tupper: "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+tuppers: tupper
+    | tupper tuppers
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+t58451: "\\"
+    | "SOUNDS"
+t58452: "COMMIT"
+    | "ROLLBACK"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 713):
+Recall eval:
+Recall: 0.4488078541374474, Precision: 0.647, F-1: 0.5299810190820301
+**** Running search.py ****
+python3 search.py external glade-2/mysql/parse_mysql glade-2/mysql/mysql-train glade-2/mysql-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 99.2, max guide length: 402
+Average token length: 51.5, max token length: 238
+Guides with brackets: 3, quotes: 4
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 1.4
+Average lengths of brackets(not normalized): 25.366666666666667
+Average n: 51.5
+Beginning coalescing...                           
+LLM suggested label: char for   and h
+LLM suggested label: relation for \> and Q
+LLM suggested label: num for 0 and N
+LLM suggested label: escape_sequence for \ and SOUNDS
+LLM suggested label: num for 5 and 962929
+ Next suggestion: num2
+LLM suggested label: factor for MEMBER and *
+LLM suggested label: timeunit for SECOND and MICROSECOND
+LLM suggested label: char for 귥 and 翼
+ Next suggestion: char2
+LLM suggested label: boolval for FALSE and TRUE
+LLM suggested label: transaction_stmt for COMMIT and ROLLBACK
+LLM suggested label: expr for \x( and (
+LLM suggested label: keyword for ALL and DISTINCT
+max example size 238, node size: 69
+Number of bubbles:  623
+LLM suggested label: stmt for  -- and  ;
+ Next suggestion: comment
+
+[Group len 3] Bubbling iteration 1 (4/100)...     
+Successful grouping (double): [ , -, -], [ , ;]
+     (aka [' ', '-', '-'], [' ', ';']))
+coalesced into:  {'t225': 'comment', 't219': 'comment'}
+Number of bubbles:  632
+
+[Group len 3] Bubbling iteration 2 (1/100)...     
+Successful grouping (single): [-, -]
+    (aka ['-', '-']
+coalesced into:  {'t904': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  630
+LLM suggested label: identifier for @@7 and \N
+
+[Group len 3] Bubbling iteration 3 (15/100)...    
+Successful grouping (double): [@, @, L], [\, N]
+     (aka ['@', '@', 'L'], ['\\', 'N']))
+coalesced into:  {'t1487': 'identifier', 't1357': 'identifier'}
+Number of bubbles:  629
+LLM suggested label: stringliteral for """ and "
+
+[Group len 3] Bubbling iteration 4 (14/100)...    
+Successful grouping (single): [", ", "]
+    (aka ['"', '"', '"']
+coalesced into:  {'t2461': 'stringliteral', '"': 'stringliteral'}
+Number of bubbles:  628
+
+[Group len 3] Bubbling iteration 5 (7/100)...     
+Successful grouping (single): [comment,  ]
+    (aka [' --', ' ']
+coalesced into:  {'t2753': 'comment', 'comment': 'comment'}
+Number of bubbles:  621
+
+[Group len 3] Bubbling iteration 6 (9/100)...     
+Successful grouping (single): [귥, 翼]
+    (aka ['귥', '翼']
+coalesced into:  {'t3353': 'char2', 'char2': 'char2'}
+LLM suggested label: identifier for 刨ﭧ顗 and DEFAULT
+ Next suggestion: identifier2
+Reapply: 1
+
+[Group len 3] Bubbling iteration 6 (9/100)...     
+Successful grouping (single): [귥, 翼]
+    (aka ['귥', '翼']
+coalesced into:  {'t3794': 'identifier2', 'DEFAULT': 'identifier2'}
+Number of bubbles:  624
+LLM suggested label: identifier for U2X and TIMESTAMP
+ Next suggestion: identifier2
+ Next suggestion: identifier3
+
+[Group len 3] Bubbling iteration 7 (13/100)...    
+Successful grouping (single): [U, 2, X]
+    (aka ['U', '2', 'X']
+coalesced into:  {'t4205': 'identifier3', 'TIMESTAMP': 'identifier3'}
+Number of bubbles:  625
+
+[Group len 3] Bubbling iteration 8 (3/100)...     
+Successful grouping (single): [U, 2]
+    (aka ['U', '2']
+coalesced into:  {'t4931': 'identifier3', 'identifier3': 'identifier3'}
+Number of bubbles:  623
+LLM suggested label: relop for \>'' and :
+
+[Group len 3] Bubbling iteration 9 (23/100)...    
+Successful grouping (single): [\>, ', ']
+    (aka ['\\>', "'", "'"]
+coalesced into:  {'t5083': 'relop', ':': 'relop'}
+Number of bubbles:  626
+
+[Group len 3] Bubbling iteration 10 (19/100)...   
+Successful grouping (single): [comment, comment]
+    (aka [' ;', ' -- ']
+coalesced into:  {'t5913': 'comment', 'comment': 'comment'}
+Reapply: 2
+
+[Group len 3] Bubbling iteration 10 (19/100)...   
+Successful grouping (single): [comment, comment]
+    (aka [' ;', ' -- ']
+coalesced into:  {'t6331': 'comment', 'comment': 'comment'}
+Number of bubbles:  620
+LLM suggested label: stmt for $` -- ; ; ;  and ` -- 
+ Next suggestion: stmt2
+
+[Group len 3] Bubbling iteration 11 (7/100)...    
+Successful grouping (double): [EUCKR, `, comment], [`, comment]
+     (aka ['EUCKR', '`', ' -- '], ['`', ' -- ']))
+coalesced into:  {'t6661': 'stmt2', 't6662': 'stmt2'}
+Number of bubbles:  623
+
+[Group len 3] Bubbling iteration 12 (23/100)...   
+Successful grouping (single): [EUCKR, stmt2]
+    (aka ['EUCKR', '` -- ']
+coalesced into:  {'t7297': 'stmt2', 'stmt2': 'stmt2'}
+Number of bubbles:  621
+LLM suggested label: bitwiseor for  |  and |
+
+[Group len 3] Bubbling iteration 13 (25/100)...   
+Successful grouping (single): [ , |,  ]
+    (aka [' ', '|', ' ']
+coalesced into:  {'t8069': 'bitwiseor', '|': 'bitwiseor'}
+Number of bubbles:  622
+
+[Group len 3] Bubbling iteration 14 (2/100)...    
+Successful grouping (single): [ , |]
+    (aka [' ', '|']
+coalesced into:  {'t8746': 'bitwiseor', 'bitwiseor': 'bitwiseor'}
+Number of bubbles:  621
+LLM suggested label: chainstmt for NO CHAIN and CHAIN NO
+
+[Group len 3] Bubbling iteration 15 (30/100)...   
+Successful grouping (double): [NO,  , CHAIN], [CHAIN,  , NO]
+     (aka ['NO', ' ', 'CHAIN'], ['CHAIN', ' ', 'NO']))
+coalesced into:  {'t9458': 'chainstmt', 't9471': 'chainstmt'}
+Number of bubbles:  619
+LLM suggested label: stmt for DEALLOCATE PREPARE and USE
+ Next suggestion: stmt2
+ Next suggestion: stmt3
+
+[Group len 3] Bubbling iteration 16 (36/100)...   
+Successful grouping (single): [DEALLOCATE,  , PREPARE]
+    (aka ['DEALLOCATE', ' ', 'PREPARE']
+coalesced into:  {'t10138': 'stmt3', 'USE': 'stmt3'}
+Number of bubbles:  616
+LLM suggested label: stmt for UNLOCK TABLES and DEALLOCATE PREPARE TIMESTAMP
+ Next suggestion: stmt2
+ Next suggestion: stmt3
+ Next suggestion: stmt4
+
+[Group len 3] Bubbling iteration 17 (3/100)...    
+Successful grouping (double): [UNLOCK,  , TABLES], [stmt3,  , TIMESTAMP]
+     (aka ['UNLOCK', ' ', 'TABLES'], ['DEALLOCATE PREPARE', ' ', 'TIMESTAMP']))
+coalesced into:  {'t10423': 'stmt4', 't10772': 'stmt4'}
+Number of bubbles:  614
+LLM suggested label: stmt for ; XA and XA
+ Next suggestion: stmt1
+
+[Group len 3] Bubbling iteration 18 (25/100)...   
+Successful grouping (single): [;,  , XA]
+    (aka [';', ' ', 'XA']
+coalesced into:  {'t11396': 'stmt1', 'XA': 'stmt1'}
+Number of bubbles:  612
+
+[Group len 3] Bubbling iteration 19 (87/100)...   
+Successful grouping (single): [|,  ]
+    (aka ['|', ' ']
+coalesced into:  {'t11889': 'bitwiseor', 'bitwiseor': 'bitwiseor'}
+Number of bubbles:  612
+LLM suggested label: identifier for  @$ and  @U2X
+ Next suggestion: identifier2
+ Next suggestion: identifier3
+ Next suggestion: identifier4
+
+[Group len 3] Bubbling iteration 20 (30/100)...   
+Successful grouping (double): [h, @, C], [ , @, identifier3]
+     (aka ['h', '@', 'C'], [' ', '@', 'U2X']))
+coalesced into:  {'t12342': 'identifier4', 't12466': 'identifier4'}
+Number of bubbles:  614
+
+[Group len 3] Bubbling iteration 21 (2/100)...    
+Successful grouping (single): [@, C]
+    (aka ['@', 'C']
+coalesced into:  {'t13020': 'identifier', 'identifier': 'identifier'}
+Number of bubbles:  613
+
+[Group len 3] Bubbling iteration 22 (2/100)...    
+Successful grouping (single): [@, identifier3]
+    (aka ['@', 'U2X']
+coalesced into:  {'t13836': 'identifier', 'identifier': 'identifier'}
+Number of bubbles:  612
+LLM suggested label: stringliteral for @"" and @5
+ Next suggestion: stringliteral2
+
+[Group len 3] Bubbling iteration 23 (81/100)...   
+Successful grouping (double): [@, ", "], [@, 5]
+     (aka ['@', '"', '"'], ['@', '5']))
+coalesced into:  {'t14416': 'stringliteral2', 't14071': 'stringliteral2'}
+Number of bubbles:  610
+Number of bubbles:  932
+LLM suggested label: floatliteral for .5E+ and 962929.E
+
+[Group len 4] Bubbling iteration 25 (9/100)...    
+Successful grouping (double): [., 5, E, +], [962929, ., E]
+     (aka ['.', '5', 'E', '+'], ['962929', '.', 'E']))
+coalesced into:  {'t15623': 'floatliteral', 't15604': 'floatliteral'}
+Number of bubbles:  920
+
+[Group len 4] Bubbling iteration 26 (18/100)...   
+Successful grouping (single): [ , floatliteral]
+    (aka [' ', '962929.E']
+coalesced into:  {'t16561': 'floatliteral', 'floatliteral': 'floatliteral'}
+Number of bubbles:  920
+
+[Group len 4] Bubbling iteration 27 (44/100)...   
+Successful grouping (single): [>,  , ., identifier2]
+    (aka ['>', ' ', '.', '큻䱇ꍟ']
+coalesced into:  {'t17732': 'identifier4', 'identifier4': 'identifier4'}
+Number of bubbles:  918
+LLM suggested label: num for 81 , .5E+ and 5 , 
+ Next suggestion: numexpr2
+
+[Group len 4] Bubbling iteration 28 (92/100)...   
+Successful grouping (double): [81,  , ,, floatliteral], [5,  , ,,  ]
+     (aka ['81', ' ', ',', ' .5E+'], ['5', ' ', ',', ' ']))
+coalesced into:  {'t18468': 'numexpr2', 't18469': 'numexpr2'}
+Number of bubbles:  917
+LLM suggested label: stmt for '''' and I_H.
+ Next suggestion: emptystmt
+
+[Group len 4] Bubbling iteration 29 (93/100)...   
+Successful grouping (double): [', ', ', '], [I, _, H, .]
+     (aka ["'", "'", "'", "'"], ['I', '_', 'H', '.']))
+coalesced into:  {'t19829': 'emptystmt', 't19907': 'emptystmt'}
+Number of bubbles:  915
+LLM suggested label: identifier for _H. and TABLE
+ Next suggestion: identifier2
+ Next suggestion: identifier3
+ Next suggestion: identifier4
+ Next suggestion: identifier5
+
+[Group len 4] Bubbling iteration 30 (3/100)...    
+Successful grouping (single): [_, H, .]
+    (aka ['_', 'H', '.']
+coalesced into:  {'t20873': 'identifier5', 'TABLE': 'identifier5'}
+Number of bubbles:  912
+LLM suggested label: stmt for '''' , and I_H. OFFSET
+ Next suggestion: identifier
+ Next suggestion: identifier2
+ Next suggestion: identifier3
+ Next suggestion: identifier4
+ Next suggestion: identifier5
+ Next suggestion: identifier7
+
+[Group len 4] Bubbling iteration 31 (74/100)...   
+Successful grouping (double): [emptystmt,  , ,], [emptystmt,  , OFFSET]
+     (aka ["''''", ' ', ','], ['I_H.', ' ', 'OFFSET']))
+coalesced into:  {'t21739': 'identifier7', 't21810': 'identifier7'}
+Number of bubbles:  906
+Number of bubbles:  1210
+LLM suggested label: stmt for RELEASE RESET MASTER and RELEASE
+ Next suggestion: commandexpr
+
+[Group len 5] Bubbling iteration 33 (17/100)...   
+Successful grouping (single): [RELEASE,  , RESET,  , MASTER]
+    (aka ['RELEASE', ' ', 'RESET', ' ', 'MASTER']
+coalesced into:  {'t24053': 'commandexpr', 'RELEASE': 'commandexpr'}
+Number of bubbles:  1199
+Number of bubbles:  1498
+LLM suggested label: ternaryexpr for ''\?' : and ' :
+
+[Group len 6] Bubbling iteration 35 (32/100)...   
+Successful grouping (double): [', ', \?, ',  , :], [',  , :]
+     (aka ["'", "'", '\\?', "'", ' ', ':'], ["'", ' ', ':']))
+coalesced into:  {'t26297': 'ternaryexpr', 't25530': 'ternaryexpr'}
+Number of bubbles:  1482
+
+[Group len 6] Bubbling iteration 36 (39/100)...   
+Successful grouping (single): [\?, ternaryexpr]
+    (aka ['\\?', "' :"]
+coalesced into:  {'t28115': 'ternaryexpr', 'ternaryexpr': 'ternaryexpr'}
+Number of bubbles:  1480
+Number of bubbles:  1769
+Number of bubbles:  2052
+LLM suggested label: stmt for WORK AND CHAIN NO RELEASE RESET MASTER -- ; --  and WORK ; 
+ Next suggestion: commandstmt
+
+[Group len 8] Bubbling iteration 39 (37/100)...   
+Successful grouping (double): [WORK,  , AND,  , chainstmt,  , RELEASE, comment], [WORK, comment]
+     (aka ['WORK', ' ', 'AND', ' ', 'NO CHAIN', ' ', 'RELEASE', ' ; '], ['WORK', ' ; ']))
+coalesced into:  {'t33752': 'commandstmt', 't33780': 'commandstmt'}
+Number of bubbles:  2038
+
+[Group len 8] Bubbling iteration 40 (11/100)...   
+Successful grouping (single): [WORK,  , AND,  , chainstmt,  , RELEASE]
+    (aka ['WORK', ' ', 'AND', ' ', 'NO CHAIN', ' ', 'RELEASE']
+coalesced into:  {'t35839': 'commandstmt', 'commandstmt': 'commandstmt'}
+Number of bubbles:  2031
+Number of bubbles:  2308
+Number of bubbles:  2581
+LLM suggested label: stmt for * LIMIT @'''' , EXECUTE UNION and * UNION
+ Next suggestion: queryexpr
+
+[Group len 10] Bubbling iteration 43 (92/100)...  
+Successful grouping (double): [*,  , LIMIT,  , @, identifier7,  , EXECUTE,  , UNION], [*,  , UNION]
+     (aka ['*', ' ', 'LIMIT', ' ', '@', "'''' ,", ' ', 'EXECUTE', ' ', 'UNION'], ['*', ' ', 'UNION']))
+coalesced into:  {'t42578': 'queryexpr', 't42692': 'queryexpr'}
+Number of bubbles:  2536
+Number of bubbles:  2793
+Number of bubbles:  3047
+Number of bubbles:  3297
+Number of bubbles:  3543
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-24 03:38:54
+Time spent in oracle calls: 28297.687799453735
+Time spent building grammar: 28762.085298538208s
+Time breakdown: {'FIRST_COALESCE': 3666.129722595215, 'BUILD': 19773.168701171875, 'LAST_COALESCE': 4164.866573572159, 'EXPAND': 1010.6959223747253, 'MINIMIZE': 0.0019407272338867188, 'OVERALL_EXAMPLE_GEN': 67.84920382499695, 'OVERALL_GROUPING': 0, 'REAPPLY_COUNT': 2}
+Parse calls: 133153, 63731
+LLM calls for bubble finding: 0
+**** Running eval.py ****
+start: stmt
+char: " "
+    | "\\?"
+    | tlowers
+relop: relation "'" "'"
+    | ":"
+relation: "\\>"
+    | "1"
+    | "$"
+    | tupper tlowers
+num: "0"
+    | "7"
+    | "58"
+    | "8"
+    | tuppers
+ternaryexpr: "'" char relop
+    | "'" "'" ternaryexpr
+    | char ternaryexpr
+identifier: t58451 num
+    | "@" "@" num
+    | "@" relation
+    | "@" identifier3
+stringliteral2: "@" num2
+    | "@" stringliteral stringliteral
+num2: tdigits
+factor: "MEMBER"
+    | "*"
+t1: expr char identifier char "IS" char "NOT" char "NULL" char ")"
+expr: "("
+    | "\\x("
+timeunit: "SECOND"
+    | "MICROSECOND"
+char2: char2 char2
+    | "귥"
+    | "翼"
+    | "刨"
+    | "ﭧ"
+    | ""
+    | "顗"
+    | "銪"
+    | "큻"
+    | "䱇"
+    | "ꍟ"
+    | tuppers
+t2: expr char boolval char "," floatliteral numexpr2 numexpr2 num2 char ")"
+boolval: "TRUE"
+    | "FALSE"
+floatliteral: char floatliteral
+    | num2 "." "E"
+    | "." num2 "E" "+"
+numexpr2: num2 char "," floatliteral
+    | num2 char "," char
+comment: comment comment
+    | char stmt
+    | comment char
+identifier4: char identifier
+    | ">" char "." identifier2
+identifier5: "TABLE"
+    | "_" num "."
+stmt2: relation stmt2
+    | "`" comment
+t3: expr char "`" char "`" char ")"
+identifier2: char2 char2
+    | tuppers
+identifier3: identifier3 num
+    | num num2
+    | tuppers
+stringliteral: "\""
+    | stringliteral stringliteral stringliteral
+bitwiseor: bitwiseor char
+    | char bitwiseor
+    | "|"
+queryexpr: factor char "LIMIT" char "@" identifier7 char num char "UNION"
+    | factor char "UNION"
+identifier7: emptystmt char ","
+    | emptystmt char "OFFSET"
+emptystmt: "'" "'" "'" "'"
+    | num identifier5
+keyword: "ALL"
+    | "DISTINCT"
+stmt3: "USE"
+    | "DEALLOCATE" char "PREPARE"
+commandstmt: commandstmt comment
+    | "WORK" char "AND" char chainstmt char commandexpr
+    | "WORK" comment
+chainstmt: "NO" char "CHAIN"
+    | "CHAIN" char "NO"
+commandexpr: "RELEASE"
+    | commandexpr char "RESET" char "MASTER"
+stmt1: stmt char stmt1
+    | "XA"
+stmt: "CREATE" char "DEFINER" char "=" char "'" relop "'" "'" relation "'" "@" "'" "'" char "EVENT" char "`" relation relation "`" char "ON" char "SCHEDULE" char "AT" char num char "+" char "INTERVAL" char "@" "'" ternaryexpr "=" char identifier char t58451 char "LIKE" char stringliteral2 char relop "=" char "@" num char factor char "OF" char t1 char "DAY" "_" timeunit char "+" char "INTERVAL" char num char timeunit char "ON" char "COMPLETION" char "PRESERVE" char "DISABLE" char "ON" char "SLAVE" char "DO" char "HANDLER" char "`" relation "`" char "." char2 char "READ" char char2 char "!" char "=" char t2 char "LIMIT" char num comment
+    | ";"
+    | "-" "-"
+    | stmt char
+    | "ALTER" char "TABLESPACE" char "`" identifier4 "`" char "ADD" char "DATAFILE" char "'" "'" char "WAIT" char "ENGINE" char char2 char "TRUNCATE" char identifier5 char "`" stmt2
+    | "GET" char "DIAGNOSTICS" char identifier num char "=" char "NUMBER" comment
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relation char "." identifier2 char2 char "=" char identifier2 char "," char identifier4 char "." char "`" relation "`" char "=" char "@" "'" ternaryexpr "=" char identifier char t58451 char "LIKE" identifier4 char "NOT" char "LIKE" identifier4 char "NOT" char "BETWEEN" char "@" "`" "`" "`" t58451 "." t58451 "!" "`" char relop "=" char "NULL" char "AND" char stringliteral2 char relop "=" char "@" num char "ESCAPE" char "`" "`" bitwiseor bitwiseor stringliteral2 char relop "=" char "@" num char "NOT" char "REGEXP" char "NOT" char "NULL" char "<" char "=" char ">" char "ANY" char expr char "SELECT" char queryexpr char keyword char "SELECT" char queryexpr char keyword char "SELECT" char factor char "INTO" char "OUTFILE" char "'" "'" char "LINES" char "TERMINATED" char "BY" char stringliteral stringliteral char "LIMIT" char "@" identifier7 char stringliteral2 char ")" char "IS" char boolval comment stmt3 char "`" stmt2
+    | t58452 char commandstmt
+    | stmt1 char "END" char "'" expr "'" comment
+    | "UNLOCK" char "TABLES"
+    | stmt3 char identifier3
+    | "CREATE" char "DEFINER" char "=" char "'" relop "'" "'" relation "'" "@" "'" "'" char "EVENT" char "`" relation relation "`" char "ON" char "SCHEDULE" char "AT" char num char "+" char "INTERVAL" char "@" "'" ternaryexpr "=" num char factor char "OF" char t1 char "DAY" "_" timeunit char "+" char "INTERVAL" char num char timeunit char "ON" char "COMPLETION" char "PRESERVE" char "DISABLE" char "ON" char "SLAVE" char "DO" char "HANDLER" char "`" relation "`" char "." char2 char "READ" char char2 char "!" char "=" char t2 char "LIMIT" char num comment
+    | char "HANDLER" char "`" relation "`" char "." char2 char "READ" char char2 char "!" char "=" char t2 char "LIMIT" char num comment
+    | char "HANDLER" char "`" relation "`" char "." char2 char "READ" char char2 char "!" char "=" char t2 char
+    | char "HANDLER" char "`" relation "`" char "READ" char char2 char "!" char "=" char t2 char
+    | char "HANDLER" char "`" relation "`" char "READ" char char2 char "=" char t2 char
+    | char "HANDLER" char "`" "`" char "READ" char char2 char "=" char t2 char
+    | char
+    | "ALTER" char "TABLESPACE" char "`" identifier4 "`" char "ADD" char "DATAFILE" char "'" "'" char "WAIT" char "ENGINE" char char2
+    | "ALTER" char "TABLESPACE" char "`" identifier4 "`" char "ADD" char "DATAFILE" char "'" "'" char "ENGINE" char char2
+    | "ALTER" char "TABLESPACE" char "`" "`" char "ADD" char "DATAFILE" char "'" "'" char "ENGINE" char char2
+    | "GET" char "DIAGNOSTICS" char num char "=" char "NUMBER" comment
+    | "GET" char "DIAGNOSTICS" char num char "=" char "NUMBER"
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relation char "." identifier2 char2 char "=" char identifier2 char "," char identifier4 char "." char "`" relation "`" char "=" char "@" "'" ternaryexpr "=" char identifier char t58451 char "LIKE" identifier4 char "NOT" char "LIKE" identifier4 char "NOT" char "BETWEEN" char "@" "`" "`" "`" t58451 "." t58451 "!" "`" char relop "=" char "NULL" char "AND" char stringliteral2 char relop "=" char "@" num char "ESCAPE" char "`" "`" bitwiseor bitwiseor stringliteral2 char
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relation char "." identifier2 char2 char "=" char identifier2 char "," char identifier4 char "." char "`" relation "`" char "=" char "@" "'" ternaryexpr "=" char identifier char t58451 char "LIKE" identifier4 char "NOT" char "LIKE" identifier4 char "NOT" char "BETWEEN" char "@" "`" "`" "`" t58451 "." t58451 "!" "`" char relop "=" char "NULL" char "AND" char stringliteral2
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relation char "." identifier2 char "." char "`" relation "`" char "=" char "@" "'" ternaryexpr "=" char identifier char t58451 char "LIKE" identifier4 char "NOT" char "LIKE" identifier4 char "NOT" char "BETWEEN" char "@" "`" "`" "`" t58451 "." t58451 "!" "`" char relop "=" char "NULL" char "AND" char stringliteral2
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relation char "." identifier2 char "." char "`" relation "`" char "=" char "@" "'" ternaryexpr "=" char identifier
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relation char char "=" char "@" "'" ternaryexpr "=" char identifier
+    | "SET" char relation char char "=" char "@" "'" ternaryexpr "=" char identifier
+    | t58452
+    | comment
+    | stmt1 char "END" char "'" "'" comment
+    | stmt1 char "END" char "'" "'"
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+tupper: "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+tuppers: tupper
+    | tupper tuppers
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+t58451: "\\"
+    | "SOUNDS"
+t58452: "COMMIT"
+    | "ROLLBACK"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 713):
+Recall eval:
+Recall: 0.4488078541374474, Precision: 0.647, F-1: 0.5299810190820301
+**** Running search.py ****
+python3 search.py external glade-2/mysql/parse_mysql glade-2/mysql/mysql-train glade-2/mysql-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 99.2, max guide length: 402
+Average token length: 51.5, max token length: 238
+Guides with brackets: 3, quotes: 4
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 1.4
+Average lengths of brackets(not normalized): 25.366666666666667
+Average n: 51.5
+Beginning coalescing...                           
+LLM suggested label: char for   and h
+LLM suggested label: relop for \> and Q
+LLM suggested label: num for 0 and N
+LLM suggested label: command for \ and SOUNDS
+LLM suggested label: num for 5 and 962929
+ Next suggestion: num2
+LLM suggested label: factor for MEMBER and *
+LLM suggested label: timeunit for SECOND and MICROSECOND
+LLM suggested label: char for 귥 and 翼
+ Next suggestion: char2
+LLM suggested label: boolval for FALSE and TRUE
+LLM suggested label: transaction_stmt for COMMIT and ROLLBACK
+LLM suggested label: expr for \x( and (
+LLM suggested label: keyword for ALL and DISTINCT
+max example size 238, node size: 69
+Number of bubbles:  623
+LLM suggested label: stmt for  -- and  ;
+ Next suggestion: delimiter
+
+[Group len 3] Bubbling iteration 1 (4/100)...     
+Successful grouping (double): [ , -, -], [ , ;]
+     (aka [' ', '-', '-'], [' ', ';']))
+coalesced into:  {'t225': 'delimiter', 't219': 'delimiter'}
+Number of bubbles:  632
+
+[Group len 3] Bubbling iteration 2 (1/100)...     
+Successful grouping (single): [-, -]
+    (aka ['-', '-']
+coalesced into:  {'t904': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  630
+LLM suggested label: identifier for @@7 and \N
+
+[Group len 3] Bubbling iteration 3 (15/100)...    
+Successful grouping (double): [@, @, L], [\, N]
+     (aka ['@', '@', 'L'], ['\\', 'N']))
+coalesced into:  {'t1487': 'identifier', 't1357': 'identifier'}
+Number of bubbles:  629
+LLM suggested label: stringliteral for """ and "
+
+[Group len 3] Bubbling iteration 4 (14/100)...    
+Successful grouping (single): [", ", "]
+    (aka ['"', '"', '"']
+coalesced into:  {'t2461': 'stringliteral', '"': 'stringliteral'}
+Number of bubbles:  628
+
+[Group len 3] Bubbling iteration 5 (7/100)...     
+Successful grouping (single): [delimiter,  ]
+    (aka [' --', ' ']
+coalesced into:  {'t2753': 'delimiter', 'delimiter': 'delimiter'}
+Number of bubbles:  621
+
+[Group len 3] Bubbling iteration 6 (9/100)...     
+Successful grouping (single): [귥, 翼]
+    (aka ['귥', '翼']
+coalesced into:  {'t3353': 'char2', 'char2': 'char2'}
+LLM suggested label: identifier for 刨ﭧ顗 and DEFAULT
+ Next suggestion: identifier2
+Reapply: 1
+
+[Group len 3] Bubbling iteration 6 (9/100)...     
+Successful grouping (single): [귥, 翼]
+    (aka ['귥', '翼']
+coalesced into:  {'t3794': 'identifier2', 'DEFAULT': 'identifier2'}
+Number of bubbles:  624
+LLM suggested label: identifier for U2X and TIMESTAMP
+ Next suggestion: identifier2
+ Next suggestion: identifier3
+
+[Group len 3] Bubbling iteration 7 (13/100)...    
+Successful grouping (single): [U, 2, X]
+    (aka ['U', '2', 'X']
+coalesced into:  {'t4205': 'identifier3', 'TIMESTAMP': 'identifier3'}
+Number of bubbles:  625
+
+[Group len 3] Bubbling iteration 8 (3/100)...     
+Successful grouping (single): [U, 2]
+    (aka ['U', '2']
+coalesced into:  {'t4931': 'identifier3', 'identifier3': 'identifier3'}
+Number of bubbles:  623
+LLM suggested label: relop for \>'' and :
+ Next suggestion: comparison
+
+[Group len 3] Bubbling iteration 9 (23/100)...    
+Successful grouping (single): [\>, ', ']
+    (aka ['\\>', "'", "'"]
+coalesced into:  {'t5083': 'comparison', ':': 'comparison'}
+Number of bubbles:  626
+
+[Group len 3] Bubbling iteration 10 (19/100)...   
+Successful grouping (single): [delimiter, delimiter]
+    (aka [' ;', ' -- ']
+coalesced into:  {'t5913': 'delimiter', 'delimiter': 'delimiter'}
+Reapply: 2
+
+[Group len 3] Bubbling iteration 10 (19/100)...   
+Successful grouping (single): [delimiter, delimiter]
+    (aka [' ;', ' -- ']
+coalesced into:  {'t6331': 'delimiter', 'delimiter': 'delimiter'}
+Number of bubbles:  620
+LLM suggested label: stmt for $` -- ; ; ;  and ` -- 
+ Next suggestion: stmt2
+
+[Group len 3] Bubbling iteration 11 (7/100)...    
+Successful grouping (double): [EUCKR, `, delimiter], [`, delimiter]
+     (aka ['EUCKR', '`', ' -- '], ['`', ' -- ']))
+coalesced into:  {'t6661': 'stmt2', 't6662': 'stmt2'}
+Number of bubbles:  623
+
+[Group len 3] Bubbling iteration 12 (23/100)...   
+Successful grouping (single): [EUCKR, stmt2]
+    (aka ['EUCKR', '` -- ']
+coalesced into:  {'t7297': 'stmt2', 'stmt2': 'stmt2'}
+Number of bubbles:  621
+LLM suggested label: bitwiseor for  |  and |
+
+[Group len 3] Bubbling iteration 13 (25/100)...   
+Successful grouping (single): [ , |,  ]
+    (aka [' ', '|', ' ']
+coalesced into:  {'t8069': 'bitwiseor', '|': 'bitwiseor'}
+Number of bubbles:  622
+
+[Group len 3] Bubbling iteration 14 (2/100)...    
+Successful grouping (single): [ , |]
+    (aka [' ', '|']
+coalesced into:  {'t8746': 'bitwiseor', 'bitwiseor': 'bitwiseor'}
+Number of bubbles:  621
+LLM suggested label: chainstmt for NO CHAIN and CHAIN NO
+
+[Group len 3] Bubbling iteration 15 (30/100)...   
+Successful grouping (double): [NO,  , CHAIN], [CHAIN,  , NO]
+     (aka ['NO', ' ', 'CHAIN'], ['CHAIN', ' ', 'NO']))
+coalesced into:  {'t9458': 'chainstmt', 't9471': 'chainstmt'}
+Number of bubbles:  619
+LLM suggested label: stmt for DEALLOCATE PREPARE and USE
+ Next suggestion: stmt2
+ Next suggestion: stmt3
+
+[Group len 3] Bubbling iteration 16 (36/100)...   
+Successful grouping (single): [DEALLOCATE,  , PREPARE]
+    (aka ['DEALLOCATE', ' ', 'PREPARE']
+coalesced into:  {'t10138': 'stmt3', 'USE': 'stmt3'}
+Number of bubbles:  616
+LLM suggested label: stmt for UNLOCK TABLES and DEALLOCATE PREPARE TIMESTAMP
+ Next suggestion: commandstmt
+
+[Group len 3] Bubbling iteration 17 (3/100)...    
+Successful grouping (double): [UNLOCK,  , TABLES], [stmt3,  , TIMESTAMP]
+     (aka ['UNLOCK', ' ', 'TABLES'], ['DEALLOCATE PREPARE', ' ', 'TIMESTAMP']))
+coalesced into:  {'t10423': 'commandstmt', 't10772': 'commandstmt'}
+Number of bubbles:  614
+LLM suggested label: stmt for ; XA and XA
+ Next suggestion: stmt2
+ Next suggestion: stmt1
+
+[Group len 3] Bubbling iteration 18 (25/100)...   
+Successful grouping (single): [;,  , XA]
+    (aka [';', ' ', 'XA']
+coalesced into:  {'t11396': 'stmt1', 'XA': 'stmt1'}
+Number of bubbles:  612
+
+[Group len 3] Bubbling iteration 19 (87/100)...   
+Successful grouping (single): [|,  ]
+    (aka ['|', ' ']
+coalesced into:  {'t11889': 'bitwiseor', 'bitwiseor': 'bitwiseor'}
+Number of bubbles:  612
+LLM suggested label: identifier for  @$ and  @U2X
+ Next suggestion: identifier2
+ Next suggestion: identifier3
+ Next suggestion: identifier4
+
+[Group len 3] Bubbling iteration 20 (30/100)...   
+Successful grouping (double): [h, @, C], [ , @, identifier3]
+     (aka ['h', '@', 'C'], [' ', '@', 'U2X']))
+coalesced into:  {'t12342': 'identifier4', 't12466': 'identifier4'}
+Number of bubbles:  614
+
+[Group len 3] Bubbling iteration 21 (2/100)...    
+Successful grouping (single): [@, C]
+    (aka ['@', 'C']
+coalesced into:  {'t13020': 'identifier', 'identifier': 'identifier'}
+Number of bubbles:  613
+
+[Group len 3] Bubbling iteration 22 (2/100)...    
+Successful grouping (single): [@, identifier3]
+    (aka ['@', 'U2X']
+coalesced into:  {'t13836': 'identifier', 'identifier': 'identifier'}
+Number of bubbles:  612
+LLM suggested label: stringliteral for @"" and @5
+ Next suggestion: stringliteral2
+
+[Group len 3] Bubbling iteration 23 (81/100)...   
+Successful grouping (double): [@, ", "], [@, 5]
+     (aka ['@', '"', '"'], ['@', '5']))
+coalesced into:  {'t14416': 'stringliteral2', 't14071': 'stringliteral2'}
+Number of bubbles:  610
+Number of bubbles:  932
+LLM suggested label: floatliteral for .5E+ and 962929.E
+
+[Group len 4] Bubbling iteration 25 (9/100)...    
+Successful grouping (double): [., 5, E, +], [962929, ., E]
+     (aka ['.', '5', 'E', '+'], ['962929', '.', 'E']))
+coalesced into:  {'t15623': 'floatliteral', 't15604': 'floatliteral'}
+Number of bubbles:  920
+
+[Group len 4] Bubbling iteration 26 (18/100)...   
+Successful grouping (single): [ , floatliteral]
+    (aka [' ', '962929.E']
+coalesced into:  {'t16561': 'floatliteral', 'floatliteral': 'floatliteral'}
+Number of bubbles:  920
+
+[Group len 4] Bubbling iteration 27 (44/100)...   
+Successful grouping (single): [>,  , ., identifier2]
+    (aka ['>', ' ', '.', '큻䱇ꍟ']
+coalesced into:  {'t17732': 'identifier4', 'identifier4': 'identifier4'}
+Number of bubbles:  918
+LLM suggested label: num for 81 , .5E+ and 5 , 
+ Next suggestion: numexpr2
+
+[Group len 4] Bubbling iteration 28 (92/100)...   
+Successful grouping (double): [81,  , ,, floatliteral], [5,  , ,,  ]
+     (aka ['81', ' ', ',', ' .5E+'], ['5', ' ', ',', ' ']))
+coalesced into:  {'t18468': 'numexpr2', 't18469': 'numexpr2'}
+Number of bubbles:  917
+LLM suggested label: stmt for '''' and I_H.
+ Next suggestion: emptystmt
+
+[Group len 4] Bubbling iteration 29 (93/100)...   
+Successful grouping (double): [', ', ', '], [I, _, H, .]
+     (aka ["'", "'", "'", "'"], ['I', '_', 'H', '.']))
+coalesced into:  {'t19829': 'emptystmt', 't19907': 'emptystmt'}
+Number of bubbles:  915
+LLM suggested label: identifier for _H. and TABLE
+ Next suggestion: identifier2
+ Next suggestion: identifier3
+ Next suggestion: identifier4
+ Next suggestion: identifier5
+
+[Group len 4] Bubbling iteration 30 (3/100)...    
+Successful grouping (single): [_, H, .]
+    (aka ['_', 'H', '.']
+coalesced into:  {'t20873': 'identifier5', 'TABLE': 'identifier5'}
+Number of bubbles:  912
+LLM suggested label: stmt for '''' , and I_H. OFFSET
+ Next suggestion: identifier
+ Next suggestion: identifier2
+ Next suggestion: identifier3
+ Next suggestion: identifier4
+ Next suggestion: identifier5
+ Next suggestion: identifier7
+
+[Group len 4] Bubbling iteration 31 (74/100)...   
+Successful grouping (double): [emptystmt,  , ,], [emptystmt,  , OFFSET]
+     (aka ["''''", ' ', ','], ['I_H.', ' ', 'OFFSET']))
+coalesced into:  {'t21739': 'identifier7', 't21810': 'identifier7'}
+Number of bubbles:  906
+Number of bubbles:  1210
+LLM suggested label: stmt for RELEASE RESET MASTER and RELEASE
+ Next suggestion: command
+ Next suggestion: commandexpr
+
+[Group len 5] Bubbling iteration 33 (17/100)...   
+Successful grouping (single): [RELEASE,  , RESET,  , MASTER]
+    (aka ['RELEASE', ' ', 'RESET', ' ', 'MASTER']
+coalesced into:  {'t24053': 'commandexpr', 'RELEASE': 'commandexpr'}
+Number of bubbles:  1199
+Number of bubbles:  1498
+LLM suggested label: ternaryexpr for ''\?' : and ' :
+
+[Group len 6] Bubbling iteration 35 (32/100)...   
+Successful grouping (double): [', ', \?, ',  , :], [',  , :]
+     (aka ["'", "'", '\\?', "'", ' ', ':'], ["'", ' ', ':']))
+coalesced into:  {'t26297': 'ternaryexpr', 't25530': 'ternaryexpr'}
+Number of bubbles:  1482
+
+[Group len 6] Bubbling iteration 36 (39/100)...   
+Successful grouping (single): [\?, ternaryexpr]
+    (aka ['\\?', "' :"]
+coalesced into:  {'t28115': 'ternaryexpr', 'ternaryexpr': 'ternaryexpr'}
+Number of bubbles:  1480
+Number of bubbles:  1769
+Number of bubbles:  2052
+LLM suggested label: stmt for WORK AND CHAIN NO RELEASE RESET MASTER -- ; --  and WORK ; 
+ Next suggestion: commandexpr
+ Next suggestion: commandstmt
+ Next suggestion: commandstmt2
+
+[Group len 8] Bubbling iteration 39 (37/100)...   
+Successful grouping (double): [WORK,  , AND,  , chainstmt,  , RELEASE, delimiter], [WORK, delimiter]
+     (aka ['WORK', ' ', 'AND', ' ', 'NO CHAIN', ' ', 'RELEASE', ' ; '], ['WORK', ' ; ']))
+coalesced into:  {'t33752': 'commandstmt2', 't33780': 'commandstmt2'}
+Number of bubbles:  2038
+
+[Group len 8] Bubbling iteration 40 (11/100)...   
+Successful grouping (single): [WORK,  , AND,  , chainstmt,  , RELEASE]
+    (aka ['WORK', ' ', 'AND', ' ', 'NO CHAIN', ' ', 'RELEASE']
+coalesced into:  {'t35839': 'commandstmt2', 'commandstmt2': 'commandstmt2'}
+Number of bubbles:  2031
+Number of bubbles:  2308
+Number of bubbles:  2581
+LLM suggested label: sqlstmt for * LIMIT @'''' , EXECUTE UNION and * UNION
+
+[Group len 10] Bubbling iteration 43 (92/100)...  
+Successful grouping (double): [*,  , LIMIT,  , @, identifier7,  , EXECUTE,  , UNION], [*,  , UNION]
+     (aka ['*', ' ', 'LIMIT', ' ', '@', "'''' ,", ' ', 'EXECUTE', ' ', 'UNION'], ['*', ' ', 'UNION']))
+coalesced into:  {'t42578': 'sqlstmt', 't42692': 'sqlstmt'}
+Number of bubbles:  2536
+Number of bubbles:  2793
+Number of bubbles:  3047
+Number of bubbles:  3297
+Number of bubbles:  3543
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-24 11:44:17
+Time spent in oracle calls: 28308.395154953003
+Time spent building grammar: 28790.426316022873s
+Time breakdown: {'FIRST_COALESCE': 3670.1816062927246, 'BUILD': 19796.262122392654, 'LAST_COALESCE': 4165.873895645142, 'EXPAND': 1010.8693602085114, 'MINIMIZE': 0.0019123554229736328, 'OVERALL_EXAMPLE_GEN': 67.48718976974487, 'OVERALL_GROUPING': 0, 'REAPPLY_COUNT': 2}
+Parse calls: 133153, 63731
+LLM calls for bubble finding: 0
+**** Running eval.py ****
+start: stmt
+char: " "
+    | "\\?"
+    | tlowers
+comparison: relop "'" "'"
+    | ":"
+relop: "\\>"
+    | "1"
+    | "$"
+    | tupper tlowers
+num: "0"
+    | "7"
+    | "58"
+    | "8"
+    | tuppers
+ternaryexpr: "'" char comparison
+    | "'" "'" ternaryexpr
+    | char ternaryexpr
+identifier: command num
+    | "@" "@" num
+    | "@" relop
+    | "@" identifier3
+command: "\\"
+    | "SOUNDS"
+stringliteral2: "@" num2
+    | "@" stringliteral stringliteral
+num2: tdigits
+factor: "MEMBER"
+    | "*"
+t1: expr char identifier char "IS" char "NOT" char "NULL" char ")"
+expr: "("
+    | "\\x("
+timeunit: "SECOND"
+    | "MICROSECOND"
+char2: char2 char2
+    | "귥"
+    | "翼"
+    | "刨"
+    | "ﭧ"
+    | ""
+    | "顗"
+    | "銪"
+    | "큻"
+    | "䱇"
+    | "ꍟ"
+    | tuppers
+t2: expr char boolval char "," floatliteral numexpr2 numexpr2 num2 char ")"
+boolval: "TRUE"
+    | "FALSE"
+floatliteral: char floatliteral
+    | num2 "." "E"
+    | "." num2 "E" "+"
+numexpr2: num2 char "," floatliteral
+    | num2 char "," char
+delimiter: delimiter delimiter
+    | char stmt
+    | delimiter char
+identifier4: char identifier
+    | ">" char "." identifier2
+identifier5: "TABLE"
+    | "_" num "."
+stmt2: relop stmt2
+    | "`" delimiter
+t3: expr char "`" char "`" char ")"
+identifier2: char2 char2
+    | tuppers
+identifier3: identifier3 num
+    | num num2
+    | tuppers
+stringliteral: "\""
+    | stringliteral stringliteral stringliteral
+bitwiseor: bitwiseor char
+    | char bitwiseor
+    | "|"
+sqlstmt: factor char "LIMIT" char "@" identifier7 char num char "UNION"
+    | factor char "UNION"
+identifier7: emptystmt char ","
+    | emptystmt char "OFFSET"
+emptystmt: "'" "'" "'" "'"
+    | num identifier5
+keyword: "ALL"
+    | "DISTINCT"
+stmt3: "USE"
+    | "DEALLOCATE" char "PREPARE"
+commandstmt2: commandstmt2 delimiter
+    | "WORK" char "AND" char chainstmt char commandexpr
+    | "WORK" delimiter
+chainstmt: "NO" char "CHAIN"
+    | "CHAIN" char "NO"
+commandexpr: "RELEASE"
+    | commandexpr char "RESET" char "MASTER"
+stmt1: stmt char stmt1
+    | "XA"
+stmt: "CREATE" char "DEFINER" char "=" char "'" comparison "'" "'" relop "'" "@" "'" "'" char "EVENT" char "`" relop relop "`" char "ON" char "SCHEDULE" char "AT" char num char "+" char "INTERVAL" char "@" "'" ternaryexpr "=" char identifier char command char "LIKE" char stringliteral2 char comparison "=" char "@" num char factor char "OF" char t1 char "DAY" "_" timeunit char "+" char "INTERVAL" char num char timeunit char "ON" char "COMPLETION" char "PRESERVE" char "DISABLE" char "ON" char "SLAVE" char "DO" char "HANDLER" char "`" relop "`" char "." char2 char "READ" char char2 char "!" char "=" char t2 char "LIMIT" char num delimiter
+    | ";"
+    | "-" "-"
+    | stmt char
+    | "ALTER" char "TABLESPACE" char "`" identifier4 "`" char "ADD" char "DATAFILE" char "'" "'" char "WAIT" char "ENGINE" char char2 char "TRUNCATE" char identifier5 char "`" stmt2
+    | "GET" char "DIAGNOSTICS" char identifier num char "=" char "NUMBER" delimiter
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relop char "." identifier2 char2 char "=" char identifier2 char "," char identifier4 char "." char "`" relop "`" char "=" char "@" "'" ternaryexpr "=" char identifier char command char "LIKE" identifier4 char "NOT" char "LIKE" identifier4 char "NOT" char "BETWEEN" char "@" "`" "`" "`" command "." command "!" "`" char comparison "=" char "NULL" char "AND" char stringliteral2 char comparison "=" char "@" num char "ESCAPE" char "`" "`" bitwiseor bitwiseor stringliteral2 char comparison "=" char "@" num char "NOT" char "REGEXP" char "NOT" char "NULL" char "<" char "=" char ">" char "ANY" char expr char "SELECT" char sqlstmt char keyword char "SELECT" char sqlstmt char keyword char "SELECT" char factor char "INTO" char "OUTFILE" char "'" "'" char "LINES" char "TERMINATED" char "BY" char stringliteral stringliteral char "LIMIT" char "@" identifier7 char stringliteral2 char ")" char "IS" char boolval delimiter stmt3 char "`" stmt2
+    | t58451 char commandstmt2
+    | stmt1 char "END" char "'" expr "'" delimiter
+    | "UNLOCK" char "TABLES"
+    | stmt3 char identifier3
+    | "CREATE" char "DEFINER" char "=" char "'" comparison "'" "'" relop "'" "@" "'" "'" char "EVENT" char "`" relop relop "`" char "ON" char "SCHEDULE" char "AT" char num char "+" char "INTERVAL" char "@" "'" ternaryexpr "=" num char factor char "OF" char t1 char "DAY" "_" timeunit char "+" char "INTERVAL" char num char timeunit char "ON" char "COMPLETION" char "PRESERVE" char "DISABLE" char "ON" char "SLAVE" char "DO" char "HANDLER" char "`" relop "`" char "." char2 char "READ" char char2 char "!" char "=" char t2 char "LIMIT" char num delimiter
+    | char "HANDLER" char "`" relop "`" char "." char2 char "READ" char char2 char "!" char "=" char t2 char "LIMIT" char num delimiter
+    | char "HANDLER" char "`" relop "`" char "." char2 char "READ" char char2 char "!" char "=" char t2 char
+    | char "HANDLER" char "`" relop "`" char "READ" char char2 char "!" char "=" char t2 char
+    | char "HANDLER" char "`" relop "`" char "READ" char char2 char "=" char t2 char
+    | char "HANDLER" char "`" "`" char "READ" char char2 char "=" char t2 char
+    | char
+    | "ALTER" char "TABLESPACE" char "`" identifier4 "`" char "ADD" char "DATAFILE" char "'" "'" char "WAIT" char "ENGINE" char char2
+    | "ALTER" char "TABLESPACE" char "`" identifier4 "`" char "ADD" char "DATAFILE" char "'" "'" char "ENGINE" char char2
+    | "ALTER" char "TABLESPACE" char "`" "`" char "ADD" char "DATAFILE" char "'" "'" char "ENGINE" char char2
+    | "GET" char "DIAGNOSTICS" char num char "=" char "NUMBER" delimiter
+    | "GET" char "DIAGNOSTICS" char num char "=" char "NUMBER"
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relop char "." identifier2 char2 char "=" char identifier2 char "," char identifier4 char "." char "`" relop "`" char "=" char "@" "'" ternaryexpr "=" char identifier char command char "LIKE" identifier4 char "NOT" char "LIKE" identifier4 char "NOT" char "BETWEEN" char "@" "`" "`" "`" command "." command "!" "`" char comparison "=" char "NULL" char "AND" char stringliteral2 char comparison "=" char "@" num char "ESCAPE" char "`" "`" bitwiseor bitwiseor stringliteral2 char
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relop char "." identifier2 char2 char "=" char identifier2 char "," char identifier4 char "." char "`" relop "`" char "=" char "@" "'" ternaryexpr "=" char identifier char command char "LIKE" identifier4 char "NOT" char "LIKE" identifier4 char "NOT" char "BETWEEN" char "@" "`" "`" "`" command "." command "!" "`" char comparison "=" char "NULL" char "AND" char stringliteral2
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relop char "." identifier2 char "." char "`" relop "`" char "=" char "@" "'" ternaryexpr "=" char identifier char command char "LIKE" identifier4 char "NOT" char "LIKE" identifier4 char "NOT" char "BETWEEN" char "@" "`" "`" "`" command "." command "!" "`" char comparison "=" char "NULL" char "AND" char stringliteral2
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relop char "." identifier2 char "." char "`" relop "`" char "=" char "@" "'" ternaryexpr "=" char identifier
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relop char char "=" char "@" "'" ternaryexpr "=" char identifier
+    | "SET" char relop char char "=" char "@" "'" ternaryexpr "=" char identifier
+    | t58451
+    | delimiter
+    | stmt1 char "END" char "'" "'" delimiter
+    | stmt1 char "END" char "'" "'"
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+tupper: "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+tuppers: tupper
+    | tupper tuppers
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+t58451: "COMMIT"
+    | "ROLLBACK"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 713):
+Recall eval:
+Recall: 0.4488078541374474, Precision: 0.647, F-1: 0.5299810190820301
+**** Running search.py ****
+python3 search.py external glade-2/mysql/parse_mysql glade-2/mysql/mysql-train glade-2/mysql-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 99.2, max guide length: 402
+Average token length: 51.5, max token length: 238
+Guides with brackets: 3, quotes: 4
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 1.4
+Average lengths of brackets(not normalized): 25.366666666666667
+Average n: 51.5
+Beginning coalescing...                           
+LLM suggested label: char for   and h
+LLM suggested label: relop for \> and Q
+LLM suggested label: num for 0 and N
+LLM suggested label: escape_sequence for \ and SOUNDS
+LLM suggested label: num for 5 and 962929
+ Next suggestion: num2
+LLM suggested label: factor for MEMBER and *
+LLM suggested label: timeunit for SECOND and MICROSECOND
+LLM suggested label: char for 귥 and 翼
+ Next suggestion: char6
+LLM suggested label: boolval for FALSE and TRUE
+LLM suggested label: transaction_stmt for COMMIT and ROLLBACK
+LLM suggested label: expr for \x( and (
+LLM suggested label: keyword for ALL and DISTINCT
+max example size 238, node size: 69
+Number of bubbles:  623
+LLM suggested label: stmt for  -- and  ;
+ Next suggestion: comment
+
+[Group len 3] Bubbling iteration 1 (4/100)...     
+Successful grouping (double): [ , -, -], [ , ;]
+     (aka [' ', '-', '-'], [' ', ';']))
+coalesced into:  {'t225': 'comment', 't219': 'comment'}
+Number of bubbles:  632
+
+[Group len 3] Bubbling iteration 2 (1/100)...     
+Successful grouping (single): [-, -]
+    (aka ['-', '-']
+coalesced into:  {'t904': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  630
+LLM suggested label: identifier for @@7 and \N
+
+[Group len 3] Bubbling iteration 3 (15/100)...    
+Successful grouping (double): [@, @, L], [\, N]
+     (aka ['@', '@', 'L'], ['\\', 'N']))
+coalesced into:  {'t1487': 'identifier', 't1357': 'identifier'}
+Number of bubbles:  629
+LLM suggested label: stringliteral for """ and "
+
+[Group len 3] Bubbling iteration 4 (14/100)...    
+Successful grouping (single): [", ", "]
+    (aka ['"', '"', '"']
+coalesced into:  {'t2461': 'stringliteral', '"': 'stringliteral'}
+Number of bubbles:  628
+
+[Group len 3] Bubbling iteration 5 (7/100)...     
+Successful grouping (single): [comment,  ]
+    (aka [' --', ' ']
+coalesced into:  {'t2753': 'comment', 'comment': 'comment'}
+Number of bubbles:  621
+
+[Group len 3] Bubbling iteration 6 (9/100)...     
+Successful grouping (single): [귥, 翼]
+    (aka ['귥', '翼']
+coalesced into:  {'t3353': 'char6', 'char6': 'char6'}
+LLM suggested label: identifier for 刨ﭧ顗 and DEFAULT
+ Next suggestion: identifier2
+Reapply: 1
+
+[Group len 3] Bubbling iteration 6 (9/100)...     
+Successful grouping (single): [귥, 翼]
+    (aka ['귥', '翼']
+coalesced into:  {'t3794': 'identifier2', 'DEFAULT': 'identifier2'}
+Number of bubbles:  624
+LLM suggested label: identifier for U2X and TIMESTAMP
+ Next suggestion: identifier2
+ Next suggestion: identifier3
+
+[Group len 3] Bubbling iteration 7 (13/100)...    
+Successful grouping (single): [U, 2, X]
+    (aka ['U', '2', 'X']
+coalesced into:  {'t4205': 'identifier3', 'TIMESTAMP': 'identifier3'}
+Number of bubbles:  625
+
+[Group len 3] Bubbling iteration 8 (3/100)...     
+Successful grouping (single): [U, 2]
+    (aka ['U', '2']
+coalesced into:  {'t4931': 'identifier3', 'identifier3': 'identifier3'}
+Number of bubbles:  623
+LLM suggested label: relop for \>'' and :
+ Next suggestion: comparison
+
+[Group len 3] Bubbling iteration 9 (23/100)...    
+Successful grouping (single): [\>, ', ']
+    (aka ['\\>', "'", "'"]
+coalesced into:  {'t5083': 'comparison', ':': 'comparison'}
+Number of bubbles:  626
+
+[Group len 3] Bubbling iteration 10 (19/100)...   
+Successful grouping (single): [comment, comment]
+    (aka [' ;', ' -- ']
+coalesced into:  {'t5913': 'comment', 'comment': 'comment'}
+Reapply: 2
+
+[Group len 3] Bubbling iteration 10 (19/100)...   
+Successful grouping (single): [comment, comment]
+    (aka [' ;', ' -- ']
+coalesced into:  {'t6331': 'comment', 'comment': 'comment'}
+Number of bubbles:  620
+LLM suggested label: stmt for $` -- ; ; ;  and ` -- 
+ Next suggestion: delimiter
+
+[Group len 3] Bubbling iteration 11 (7/100)...    
+Successful grouping (double): [EUCKR, `, comment], [`, comment]
+     (aka ['EUCKR', '`', ' -- '], ['`', ' -- ']))
+coalesced into:  {'t6661': 'delimiter', 't6662': 'delimiter'}
+Number of bubbles:  623
+
+[Group len 3] Bubbling iteration 12 (23/100)...   
+Successful grouping (single): [EUCKR, delimiter]
+    (aka ['EUCKR', '` -- ']
+coalesced into:  {'t7297': 'delimiter', 'delimiter': 'delimiter'}
+Number of bubbles:  621
+LLM suggested label: bitwiseor for  |  and |
+
+[Group len 3] Bubbling iteration 13 (25/100)...   
+Successful grouping (single): [ , |,  ]
+    (aka [' ', '|', ' ']
+coalesced into:  {'t8069': 'bitwiseor', '|': 'bitwiseor'}
+Number of bubbles:  622
+
+[Group len 3] Bubbling iteration 14 (2/100)...    
+Successful grouping (single): [ , |]
+    (aka [' ', '|']
+coalesced into:  {'t8746': 'bitwiseor', 'bitwiseor': 'bitwiseor'}
+Number of bubbles:  621
+LLM suggested label: phrase for NO CHAIN and CHAIN NO
+
+[Group len 3] Bubbling iteration 15 (30/100)...   
+Successful grouping (double): [NO,  , CHAIN], [CHAIN,  , NO]
+     (aka ['NO', ' ', 'CHAIN'], ['CHAIN', ' ', 'NO']))
+coalesced into:  {'t9458': 'phrase', 't9471': 'phrase'}
+Number of bubbles:  619
+LLM suggested label: stmt for DEALLOCATE PREPARE and USE
+ Next suggestion: stmt2
+
+[Group len 3] Bubbling iteration 16 (36/100)...   
+Successful grouping (single): [DEALLOCATE,  , PREPARE]
+    (aka ['DEALLOCATE', ' ', 'PREPARE']
+coalesced into:  {'t10138': 'stmt2', 'USE': 'stmt2'}
+Number of bubbles:  616
+LLM suggested label: stmt for UNLOCK TABLES and DEALLOCATE PREPARE TIMESTAMP
+ Next suggestion: stmt2
+ Next suggestion: stmt3
+
+[Group len 3] Bubbling iteration 17 (3/100)...    
+Successful grouping (double): [UNLOCK,  , TABLES], [stmt2,  , TIMESTAMP]
+     (aka ['UNLOCK', ' ', 'TABLES'], ['DEALLOCATE PREPARE', ' ', 'TIMESTAMP']))
+coalesced into:  {'t10423': 'stmt3', 't10772': 'stmt3'}
+Number of bubbles:  614
+LLM suggested label: stmt for ; XA and XA
+ Next suggestion: stmt1
+
+[Group len 3] Bubbling iteration 18 (25/100)...   
+Successful grouping (single): [;,  , XA]
+    (aka [';', ' ', 'XA']
+coalesced into:  {'t11396': 'stmt1', 'XA': 'stmt1'}
+Number of bubbles:  612
+
+[Group len 3] Bubbling iteration 19 (87/100)...   
+Successful grouping (single): [|,  ]
+    (aka ['|', ' ']
+coalesced into:  {'t11889': 'bitwiseor', 'bitwiseor': 'bitwiseor'}
+Number of bubbles:  612
+LLM suggested label: identifier for  @$ and  @U2X
+ Next suggestion: identifier2
+ Next suggestion: identifier3
+ Next suggestion: identifier4
+
+[Group len 3] Bubbling iteration 20 (30/100)...   
+Successful grouping (double): [h, @, C], [ , @, identifier3]
+     (aka ['h', '@', 'C'], [' ', '@', 'U2X']))
+coalesced into:  {'t12342': 'identifier4', 't12466': 'identifier4'}
+Number of bubbles:  614
+
+[Group len 3] Bubbling iteration 21 (2/100)...    
+Successful grouping (single): [@, C]
+    (aka ['@', 'C']
+coalesced into:  {'t13020': 'identifier', 'identifier': 'identifier'}
+Number of bubbles:  613
+
+[Group len 3] Bubbling iteration 22 (2/100)...    
+Successful grouping (single): [@, identifier3]
+    (aka ['@', 'U2X']
+coalesced into:  {'t13836': 'identifier', 'identifier': 'identifier'}
+Number of bubbles:  612
+LLM suggested label: stringliteral for @"" and @5
+ Next suggestion: stringliteral2
+
+[Group len 3] Bubbling iteration 23 (81/100)...   
+Successful grouping (double): [@, ", "], [@, 5]
+     (aka ['@', '"', '"'], ['@', '5']))
+coalesced into:  {'t14416': 'stringliteral2', 't14071': 'stringliteral2'}
+Number of bubbles:  610
+Number of bubbles:  932
+LLM suggested label: floatliteral for .5E+ and 962929.E
+
+[Group len 4] Bubbling iteration 25 (9/100)...    
+Successful grouping (double): [., 5, E, +], [962929, ., E]
+     (aka ['.', '5', 'E', '+'], ['962929', '.', 'E']))
+coalesced into:  {'t15623': 'floatliteral', 't15604': 'floatliteral'}
+Number of bubbles:  920
+
+[Group len 4] Bubbling iteration 26 (18/100)...   
+Successful grouping (single): [ , floatliteral]
+    (aka [' ', '962929.E']
+coalesced into:  {'t16561': 'floatliteral', 'floatliteral': 'floatliteral'}
+Number of bubbles:  920
+
+[Group len 4] Bubbling iteration 27 (44/100)...   
+Successful grouping (single): [>,  , ., identifier2]
+    (aka ['>', ' ', '.', '큻䱇ꍟ']
+coalesced into:  {'t17732': 'identifier4', 'identifier4': 'identifier4'}
+Number of bubbles:  918
+LLM suggested label: num for 81 , .5E+ and 5 , 
+ Next suggestion: numexpr2
+
+[Group len 4] Bubbling iteration 28 (92/100)...   
+Successful grouping (double): [81,  , ,, floatliteral], [5,  , ,,  ]
+     (aka ['81', ' ', ',', ' .5E+'], ['5', ' ', ',', ' ']))
+coalesced into:  {'t18468': 'numexpr2', 't18469': 'numexpr2'}
+Number of bubbles:  917
+LLM suggested label: stmt for '''' and I_H.
+ Next suggestion: emptystmt
+
+[Group len 4] Bubbling iteration 29 (93/100)...   
+Successful grouping (double): [', ', ', '], [I, _, H, .]
+     (aka ["'", "'", "'", "'"], ['I', '_', 'H', '.']))
+coalesced into:  {'t19829': 'emptystmt', 't19907': 'emptystmt'}
+Number of bubbles:  915
+LLM suggested label: identifier for _H. and TABLE
+ Next suggestion: identifier2
+ Next suggestion: identifier3
+ Next suggestion: identifier4
+ Next suggestion: identifier5
+
+[Group len 4] Bubbling iteration 30 (3/100)...    
+Successful grouping (single): [_, H, .]
+    (aka ['_', 'H', '.']
+coalesced into:  {'t20873': 'identifier5', 'TABLE': 'identifier5'}
+Number of bubbles:  912
+LLM suggested label: identifier for '''' , and I_H. OFFSET
+ Next suggestion: identifier2
+ Next suggestion: identifier3
+ Next suggestion: identifier4
+ Next suggestion: identifier5
+ Next suggestion: identifier6
+
+[Group len 4] Bubbling iteration 31 (74/100)...   
+Successful grouping (double): [emptystmt,  , ,], [emptystmt,  , OFFSET]
+     (aka ["''''", ' ', ','], ['I_H.', ' ', 'OFFSET']))
+coalesced into:  {'t21739': 'identifier6', 't21810': 'identifier6'}
+Number of bubbles:  906
+Number of bubbles:  1210
+LLM suggested label: stmt for RELEASE RESET MASTER and RELEASE
+ Next suggestion: commandexpr
+
+[Group len 5] Bubbling iteration 33 (17/100)...   
+Successful grouping (single): [RELEASE,  , RESET,  , MASTER]
+    (aka ['RELEASE', ' ', 'RESET', ' ', 'MASTER']
+coalesced into:  {'t24053': 'commandexpr', 'RELEASE': 'commandexpr'}
+Number of bubbles:  1199
+Number of bubbles:  1498
+LLM suggested label: ternaryexpr for ''\?' : and ' :
+
+[Group len 6] Bubbling iteration 35 (32/100)...   
+Successful grouping (double): [', ', \?, ',  , :], [',  , :]
+     (aka ["'", "'", '\\?', "'", ' ', ':'], ["'", ' ', ':']))
+coalesced into:  {'t26297': 'ternaryexpr', 't25530': 'ternaryexpr'}
+Number of bubbles:  1482
+
+[Group len 6] Bubbling iteration 36 (39/100)...   
+Successful grouping (single): [\?, ternaryexpr]
+    (aka ['\\?', "' :"]
+coalesced into:  {'t28115': 'ternaryexpr', 'ternaryexpr': 'ternaryexpr'}
+Number of bubbles:  1480
+Number of bubbles:  1769
+Number of bubbles:  2052
+LLM suggested label: stmt for WORK AND CHAIN NO RELEASE RESET MASTER -- ; --  and WORK ; 
+ Next suggestion: commandstmt
+
+[Group len 8] Bubbling iteration 39 (37/100)...   
+Successful grouping (double): [WORK,  , AND,  , phrase,  , RELEASE, comment], [WORK, comment]
+     (aka ['WORK', ' ', 'AND', ' ', 'NO CHAIN', ' ', 'RELEASE', ' ; '], ['WORK', ' ; ']))
+coalesced into:  {'t33752': 'commandstmt', 't33780': 'commandstmt'}
+Number of bubbles:  2038
+
+[Group len 8] Bubbling iteration 40 (11/100)...   
+Successful grouping (single): [WORK,  , AND,  , phrase,  , RELEASE]
+    (aka ['WORK', ' ', 'AND', ' ', 'NO CHAIN', ' ', 'RELEASE']
+coalesced into:  {'t35839': 'commandstmt', 'commandstmt': 'commandstmt'}
+Number of bubbles:  2031
+Number of bubbles:  2308
+Number of bubbles:  2581
+LLM suggested label: stmt for * LIMIT @'''' , EXECUTE UNION and * UNION
+ Next suggestion: queryexpr
+
+[Group len 10] Bubbling iteration 43 (92/100)...  
+Successful grouping (double): [*,  , LIMIT,  , @, identifier6,  , EXECUTE,  , UNION], [*,  , UNION]
+     (aka ['*', ' ', 'LIMIT', ' ', '@', "'''' ,", ' ', 'EXECUTE', ' ', 'UNION'], ['*', ' ', 'UNION']))
+coalesced into:  {'t42578': 'queryexpr', 't42692': 'queryexpr'}
+Number of bubbles:  2536
+Number of bubbles:  2793
+Number of bubbles:  3047
+Number of bubbles:  3297
+Number of bubbles:  3543
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-24 20:13:59
+Time spent in oracle calls: 29725.457607507706
+Time spent building grammar: 30248.719890594482s
+Time breakdown: {'FIRST_COALESCE': 3672.9547729492188, 'BUILD': 20826.753230571747, 'LAST_COALESCE': 4493.492058753967, 'EXPAND': 1096.665764093399, 'MINIMIZE': 0.0020177364349365234, 'OVERALL_EXAMPLE_GEN': 69.14760780334473, 'OVERALL_GROUPING': 0, 'REAPPLY_COUNT': 2}
+Parse calls: 133153, 63731
+LLM calls for bubble finding: 0
+**** Running eval.py ****
+start: stmt
+char: " "
+    | "\\?"
+    | tlowers
+comparison: relop "'" "'"
+    | ":"
+relop: "\\>"
+    | "1"
+    | "$"
+    | tupper tlowers
+num: "0"
+    | "7"
+    | "58"
+    | "8"
+    | tuppers
+ternaryexpr: "'" char comparison
+    | "'" "'" ternaryexpr
+    | char ternaryexpr
+identifier: t58451 num
+    | "@" "@" num
+    | "@" relop
+    | "@" identifier3
+stringliteral2: "@" num2
+    | "@" stringliteral stringliteral
+num2: tdigits
+factor: "MEMBER"
+    | "*"
+t1: expr char identifier char "IS" char "NOT" char "NULL" char ")"
+expr: "("
+    | "\\x("
+timeunit: "SECOND"
+    | "MICROSECOND"
+char6: char6 char6
+    | "귥"
+    | "翼"
+    | "刨"
+    | "ﭧ"
+    | ""
+    | "顗"
+    | "銪"
+    | "큻"
+    | "䱇"
+    | "ꍟ"
+    | tuppers
+t2: expr char boolval char "," floatliteral numexpr2 numexpr2 num2 char ")"
+boolval: "TRUE"
+    | "FALSE"
+floatliteral: char floatliteral
+    | num2 "." "E"
+    | "." num2 "E" "+"
+numexpr2: num2 char "," floatliteral
+    | num2 char "," char
+comment: comment comment
+    | char stmt
+    | comment char
+identifier4: char identifier
+    | ">" char "." identifier2
+identifier5: "TABLE"
+    | "_" num "."
+delimiter: relop delimiter
+    | "`" comment
+t3: expr char "`" char "`" char ")"
+identifier2: char6 char6
+    | tuppers
+identifier3: identifier3 num
+    | num num2
+    | tuppers
+stringliteral: "\""
+    | stringliteral stringliteral stringliteral
+bitwiseor: bitwiseor char
+    | char bitwiseor
+    | "|"
+queryexpr: factor char "LIMIT" char "@" identifier6 char num char "UNION"
+    | factor char "UNION"
+identifier6: emptystmt char ","
+    | emptystmt char "OFFSET"
+emptystmt: "'" "'" "'" "'"
+    | num identifier5
+keyword: "ALL"
+    | "DISTINCT"
+stmt2: "USE"
+    | "DEALLOCATE" char "PREPARE"
+commandstmt: commandstmt comment
+    | "WORK" char "AND" char phrase char commandexpr
+    | "WORK" comment
+phrase: "NO" char "CHAIN"
+    | "CHAIN" char "NO"
+commandexpr: "RELEASE"
+    | commandexpr char "RESET" char "MASTER"
+stmt1: stmt char stmt1
+    | "XA"
+stmt: "CREATE" char "DEFINER" char "=" char "'" comparison "'" "'" relop "'" "@" "'" "'" char "EVENT" char "`" relop relop "`" char "ON" char "SCHEDULE" char "AT" char num char "+" char "INTERVAL" char "@" "'" ternaryexpr "=" char identifier char t58451 char "LIKE" char stringliteral2 char comparison "=" char "@" num char factor char "OF" char t1 char "DAY" "_" timeunit char "+" char "INTERVAL" char num char timeunit char "ON" char "COMPLETION" char "PRESERVE" char "DISABLE" char "ON" char "SLAVE" char "DO" char "HANDLER" char "`" relop "`" char "." char6 char "READ" char char6 char "!" char "=" char t2 char "LIMIT" char num comment
+    | ";"
+    | "-" "-"
+    | stmt char
+    | "ALTER" char "TABLESPACE" char "`" identifier4 "`" char "ADD" char "DATAFILE" char "'" "'" char "WAIT" char "ENGINE" char char6 char "TRUNCATE" char identifier5 char "`" delimiter
+    | "GET" char "DIAGNOSTICS" char identifier num char "=" char "NUMBER" comment
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relop char "." identifier2 char6 char "=" char identifier2 char "," char identifier4 char "." char "`" relop "`" char "=" char "@" "'" ternaryexpr "=" char identifier char t58451 char "LIKE" identifier4 char "NOT" char "LIKE" identifier4 char "NOT" char "BETWEEN" char "@" "`" "`" "`" t58451 "." t58451 "!" "`" char comparison "=" char "NULL" char "AND" char stringliteral2 char comparison "=" char "@" num char "ESCAPE" char "`" "`" bitwiseor bitwiseor stringliteral2 char comparison "=" char "@" num char "NOT" char "REGEXP" char "NOT" char "NULL" char "<" char "=" char ">" char "ANY" char expr char "SELECT" char queryexpr char keyword char "SELECT" char queryexpr char keyword char "SELECT" char factor char "INTO" char "OUTFILE" char "'" "'" char "LINES" char "TERMINATED" char "BY" char stringliteral stringliteral char "LIMIT" char "@" identifier6 char stringliteral2 char ")" char "IS" char boolval comment stmt2 char "`" delimiter
+    | t58452 char commandstmt
+    | stmt1 char "END" char "'" expr "'" comment
+    | "UNLOCK" char "TABLES"
+    | stmt2 char identifier3
+    | "CREATE" char "DEFINER" char "=" char "'" comparison "'" "'" relop "'" "@" "'" "'" char "EVENT" char "`" relop relop "`" char "ON" char "SCHEDULE" char "AT" char num char "+" char "INTERVAL" char "@" "'" ternaryexpr "=" num char factor char "OF" char t1 char "DAY" "_" timeunit char "+" char "INTERVAL" char num char timeunit char "ON" char "COMPLETION" char "PRESERVE" char "DISABLE" char "ON" char "SLAVE" char "DO" char "HANDLER" char "`" relop "`" char "." char6 char "READ" char char6 char "!" char "=" char t2 char "LIMIT" char num comment
+    | char "HANDLER" char "`" relop "`" char "." char6 char "READ" char char6 char "!" char "=" char t2 char "LIMIT" char num comment
+    | char "HANDLER" char "`" relop "`" char "." char6 char "READ" char char6 char "!" char "=" char t2 char
+    | char "HANDLER" char "`" relop "`" char "READ" char char6 char "!" char "=" char t2 char
+    | char "HANDLER" char "`" relop "`" char "READ" char char6 char "=" char t2 char
+    | char "HANDLER" char "`" "`" char "READ" char char6 char "=" char t2 char
+    | char
+    | "ALTER" char "TABLESPACE" char "`" identifier4 "`" char "ADD" char "DATAFILE" char "'" "'" char "WAIT" char "ENGINE" char char6
+    | "ALTER" char "TABLESPACE" char "`" identifier4 "`" char "ADD" char "DATAFILE" char "'" "'" char "ENGINE" char char6
+    | "ALTER" char "TABLESPACE" char "`" "`" char "ADD" char "DATAFILE" char "'" "'" char "ENGINE" char char6
+    | "GET" char "DIAGNOSTICS" char num char "=" char "NUMBER" comment
+    | "GET" char "DIAGNOSTICS" char num char "=" char "NUMBER"
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relop char "." identifier2 char6 char "=" char identifier2 char "," char identifier4 char "." char "`" relop "`" char "=" char "@" "'" ternaryexpr "=" char identifier char t58451 char "LIKE" identifier4 char "NOT" char "LIKE" identifier4 char "NOT" char "BETWEEN" char "@" "`" "`" "`" t58451 "." t58451 "!" "`" char comparison "=" char "NULL" char "AND" char stringliteral2 char comparison "=" char "@" num char "ESCAPE" char "`" "`" bitwiseor bitwiseor stringliteral2 char
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relop char "." identifier2 char6 char "=" char identifier2 char "," char identifier4 char "." char "`" relop "`" char "=" char "@" "'" ternaryexpr "=" char identifier char t58451 char "LIKE" identifier4 char "NOT" char "LIKE" identifier4 char "NOT" char "BETWEEN" char "@" "`" "`" "`" t58451 "." t58451 "!" "`" char comparison "=" char "NULL" char "AND" char stringliteral2
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relop char "." identifier2 char "." char "`" relop "`" char "=" char "@" "'" ternaryexpr "=" char identifier char t58451 char "LIKE" identifier4 char "NOT" char "LIKE" identifier4 char "NOT" char "BETWEEN" char "@" "`" "`" "`" t58451 "." t58451 "!" "`" char comparison "=" char "NULL" char "AND" char stringliteral2
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relop char "." identifier2 char "." char "`" relop "`" char "=" char "@" "'" ternaryexpr "=" char identifier
+    | "REPLACE" char "DELAYED" char "INTO" char "TABLES" char "PARTITION" char t3 char "SET" char relop char char "=" char "@" "'" ternaryexpr "=" char identifier
+    | "SET" char relop char char "=" char "@" "'" ternaryexpr "=" char identifier
+    | t58452
+    | comment
+    | stmt1 char "END" char "'" "'" comment
+    | stmt1 char "END" char "'" "'"
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+tupper: "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+tuppers: tupper
+    | tupper tuppers
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+t58451: "\\"
+    | "SOUNDS"
+t58452: "COMMIT"
+    | "ROLLBACK"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 713):
+Recall eval:
+Recall: 0.4488078541374474, Precision: 0.647, F-1: 0.5299810190820301
+**** Running search.py ****

@@ -1,0 +1,2509 @@
+**** Running search.py ****
+python3 search.py external Seed_Programs/micro-benchmarks/while/parse_while Seed_Programs/micro-benchmarks/while/guides-r1 Seed_Programs/while-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 171.43333333333334, max guide length: 793
+Average token length: 110.7, max token length: 534
+Guides with brackets: 22, quotes: 0
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 6.733333333333333
+Average lengths of brackets(not normalized): 24.389495504495503
+Average n: 110.7
+Beginning coalescing...                           
+LLM suggested label: boolexpr for true and false
+LLM suggested label: numexpr for (L+n) and (L+L)
+max example size 534, node size: 5
+1-BUBBLES
+{
+    "siblings": [
+        ["L", "=", "numexpr"],
+        ["numexpr", "=", "=", "L"],
+        ["numexpr", "=", "=", "numexpr"],
+        ["boolexpr", "&", "boolexpr"],
+        ["~", "boolexpr"],
+        ["if", "boolexpr", "then", "stmt"],
+        ["while", "boolexpr", "do", "stmt"],
+        ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["while", "boolexpr", "do", "if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["if", "numexpr", "=", "=", "L", "then", "stmt"],
+        ["if", "L", "=", "=", "L", "then", "stmt"],
+        ["if", "boolexpr", "then", "while", "boolexpr", "do", "stmt"],
+        ["while", "numexpr", "=", "=", "numexpr", "do", "stmt"],
+        ["while", "boolexpr", "do", "if", "numexpr", "=", "=", "numexpr", "then", "stmt"],
+        ["if", "L", "=", "=", "numexpr", "then", "stmt"],
+        ["if", "boolexpr", "then", "L", "=", "numexpr"],
+        ["if", "boolexpr", "then", "L", "=", "L"],
+        ["while", "boolexpr", "do", "L", "=", "numexpr"],
+        ["while", "boolexpr", "do", "L", "=", "L"],
+        ["while", "boolexpr", "do", "if", "boolexpr", "then", "L", "=", "L"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 1 (1/17)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t189': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 1
+
+[Group len -1] Bubbling iteration 1 (1/17)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t190': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (2/17)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t188': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 2
+
+[Group len -1] Bubbling iteration 1 (2/17)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t192': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 3
+
+[Group len -1] Bubbling iteration 1 (2/17)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t193': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (3/17)...     
+Successful grouping (single): [L,  , =,  , numexpr]
+    (aka ['L', ' ', '=', ' ', '(L+n)']
+coalesced into:  {'t187': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 1 (4/17)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t186': 'stmt', 'stmt': 'stmt'}
+Reapply: 4
+
+[Group len -1] Bubbling iteration 1 (4/17)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t196': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 1 (6/17)...     
+Successful grouping (single): [numexpr,  , =, =,  , n]
+    (aka ['((n+L)+n)', ' ', '=', '=', ' ', 'n']
+coalesced into:  {'t184': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (7/17)...     
+Successful grouping (single): [n,  , =, =,  , L]
+    (aka ['n', ' ', '=', '=', ' ', 'L']
+coalesced into:  {'t183': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (11/17)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t179': 'stmt', 'stmt': 'stmt'}
+Reapply: 5
+
+[Group len -1] Bubbling iteration 1 (11/17)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t200': 'stmt', 'stmt': 'stmt'}
+Reapply: 6
+
+[Group len -1] Bubbling iteration 1 (11/17)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t201': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 1 (1/17)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t191': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 7
+
+[Group len -1] Bubbling iteration 1 (1/17)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t203': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 8
+
+[Group len -1] Bubbling iteration 1 (1/17)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t204': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (2/17)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t194': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 9
+
+[Group len -1] Bubbling iteration 1 (2/17)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t206': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 10
+
+[Group len -1] Bubbling iteration 1 (2/17)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t207': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (4/17)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t197': 'stmt', 'stmt': 'stmt'}
+Reapply: 11
+
+[Group len -1] Bubbling iteration 1 (4/17)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t209': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 1 (11/17)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t202': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["stmt", ";"],
+    ["while", "boolexpr", "do"],
+    ["if", "boolexpr", "then"],
+    ["if", "boolexpr", "then"],
+    ["if", "boolexpr", "then"],
+    ["L", "=", "L"],
+    ["if", "boolexpr", "then"],
+    ["if", "boolexpr", "then"],
+    ["while", "boolexpr", "do"],
+    ["if", "boolexpr", "then"],
+    ["L", "=", "=", "L"],
+    ["stmt", ";"],
+    ["stmt", ";"],
+    ["stmt", ";"],
+    ["L", "=", "L"],
+    ["if", "boolexpr", "then"],
+    ["stmt", ";"],
+    ["stmt", ";"],
+    ["while", "boolexpr", "do"],
+    ["if", "boolexpr", "then"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 2 (2/22)...     
+Successful grouping (single): [L,  , =,  , L]
+    (aka ['L', ' ', '=', ' ', 'L']
+coalesced into:  {'t215': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (5/22)...     
+Successful grouping (single): [L,  , =, =,  , L]
+    (aka ['L', ' ', '=', '=', ' ', 'L']
+coalesced into:  {'t212': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 2 (6/22)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t205': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 2 (7/22)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t208': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 12
+
+[Group len -1] Bubbling iteration 2 (7/22)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t220': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 2 (9/22)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t210': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (16/22)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t211': 'stmt', 'stmt': 'stmt'}
+Reapply: 13
+
+[Group len -1] Bubbling iteration 2 (16/22)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t223': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 2 (9/22)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t222': 'stmt', 'stmt': 'stmt'}
+Reapply: 14
+
+[Group len -1] Bubbling iteration 2 (9/22)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t225': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["stmt", ";"],
+    ["while", "boolexpr", "do"],
+    ["if", "boolexpr", "then"],
+    ["stmt", "else", "stmt"],
+    ["L", "=", "=", "numexpr"],
+    ["boolexpr", "&", "boolexpr"],
+    ["~", "L", "=", "=", "numexpr"],
+    ["stmt", ";", "stmt"],
+    ["stmt", ";", "stmt", ";"],
+    ["stmt", ";", "stmt", ";", "stmt"],
+    ["stmt", ";", "stmt", ";", "stmt", ";"],
+    ["stmt", ";", "stmt", ";", "stmt", ";", "stmt"],
+    ["stmt", ";", "stmt", ";", "stmt", ";", "stmt", ";"],
+    ["stmt", ";", "stmt", ";", "stmt", ";", "stmt", ";", "stmt"],
+    ["stmt", ";", "stmt", ";", "stmt", ";", "stmt", ";", "stmt", ";"],
+    ["stmt", ";", "stmt", ";", "stmt", ";", "stmt", ";", "stmt", ";", "stmt"],
+    ["stmt", ";", "stmt", ";", "stmt", ";", "stmt", ";", "stmt", ";", "stmt", ";"],
+    ["stmt", ";", "stmt", ";", "stmt", ";", "stmt", ";", "stmt", ";", "stmt", ";", "stmt"],
+    ["stmt", ";", "stmt", ";", "stmt", ";", "stmt", ";", "stmt", ";", "stmt", ";", "stmt", ";"],
+    ["stmt", ";", "stmt", ";", "stmt", ";", "stmt", ";", "stmt", ";", "stmt", ";", "stmt", ";", "stmt"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 3 (2/38)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t245': 'stmt', 'stmt': 'stmt'}
+Reapply: 15
+
+[Group len -1] Bubbling iteration 3 (2/38)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t247': 'stmt', 'stmt': 'stmt'}
+Reapply: 16
+
+[Group len -1] Bubbling iteration 3 (2/38)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t248': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 3 (8/38)...     
+Successful grouping (single): [L,  , =, =,  , numexpr]
+    (aka ['L', ' ', '=', '=', ' ', '(L+L)']
+coalesced into:  {'t239': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 3 (23/38)...    
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t219': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 17
+
+[Group len -1] Bubbling iteration 3 (23/38)...    
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t251': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 3 (25/38)...    
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t226': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 3 (32/38)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t224': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 3 (2/38)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t249': 'stmt', 'stmt': 'stmt'}
+Reapply: 18
+
+[Group len -1] Bubbling iteration 3 (2/38)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t255': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 3 (3/38)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t244': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 19
+
+[Group len -1] Bubbling iteration 3 (3/38)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t257': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 3 (25/38)...    
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t253': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 3 (32/38)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t254': 'stmt', 'stmt': 'stmt'}
+Reapply: 20
+
+[Group len -1] Bubbling iteration 3 (32/38)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t260': 'stmt', 'stmt': 'stmt'}
+Reapply: 21
+
+[Group len -1] Bubbling iteration 3 (32/38)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t261': 'stmt', 'stmt': 'stmt'}
+Reapply: 22
+
+[Group len -1] Bubbling iteration 3 (32/38)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t262': 'stmt', 'stmt': 'stmt'}
+Reapply: 23
+
+[Group len -1] Bubbling iteration 3 (32/38)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t263': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 3 (2/38)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t256': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 3 (25/38)...    
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t259': 'stmt', 'stmt': 'stmt'}
+Reapply: 24
+
+[Group len -1] Bubbling iteration 3 (25/38)...    
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t266': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 3 (32/38)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t264': 'stmt', 'stmt': 'stmt'}
+Reapply: 25
+
+[Group len -1] Bubbling iteration 3 (32/38)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t268': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 3 (2/38)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t265': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 3 (25/38)...    
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t267': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["if", "boolexpr", "then", "stmt"],
+        ["stmt", "else", "stmt"],
+        ["boolexpr", "then"],
+        ["then", "stmt"],
+        ["else", "stmt"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["then", "stmt"], ["else", "stmt"]]
+  ]
+}
+1-BUBBLES
+{
+    "siblings": [
+        ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["if", "boolexpr", "then", "stmt"],
+        ["stmt", "else", "stmt"],
+        ["then", "stmt"],
+        ["else", "stmt"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["then", "stmt"], ["else", "stmt"]]
+  ]
+}
+1-BUBBLES
+{
+  "siblings": [
+    ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+    ["if", "boolexpr", "then", "stmt"],
+    ["then", "stmt", "else", "stmt"],
+    ["boolexpr", "then"],
+    ["then", "stmt"],
+    ["else", "stmt"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["then", "stmt"], ["else", "stmt"]]
+  ]
+}
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-23 01:30:50
+Time spent in oracle calls: 29.758322954177856
+Time spent building grammar: 164.08190298080444s
+Time breakdown: {'FIRST_COALESCE': 29.42098569869995, 'BUILD': 129.6207115650177, 'LAST_COALESCE': 1.3083596229553223, 'EXPAND': 0.018675565719604492, 'MINIMIZE': 0.00014281272888183594, 'OVERALL_EXAMPLE_GEN': 64.13182187080383, 'OVERALL_GROUPING': 13.0723135471344, 'REAPPLY_COUNT': 25}
+Parse calls: 27588, 19235
+LLM calls for bubble finding: 9
+**** Running eval.py ****
+start: stmt
+stmt: stmt " " ";" " " stmt
+    | "skip"
+    | "if" " " boolexpr " " "then" " " stmt " " "else" " " stmt
+    | "while" " " boolexpr " " "do" " " stmt
+    | "L" " " "=" " " numexpr
+    | "L" " " "=" " " "L"
+boolexpr: "true"
+    | boolexpr " " "&" " " boolexpr
+    | "L" " " "=" "=" " " numexpr
+    | "~" boolexpr
+    | "false"
+    | numexpr " " "=" "=" " " numexpr
+    | numexpr " " "=" "=" " " "L"
+    | "L" " " "=" "=" " " "L"
+numexpr: "(" "L" "+" numexpr ")"
+    | "n"
+    | "(" "L" "+" "L" ")"
+    | "(" numexpr "+" "L" ")"
+    | "(" numexpr "+" numexpr ")"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 1.0, Precision: 1.0, F-1: 1.0
+**** Running search.py ****
+**** Running search.py ****
+python3 search.py external Seed_Programs/micro-benchmarks/while/parse_while Seed_Programs/micro-benchmarks/while/guides-r1 Seed_Programs/while-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 171.43333333333334, max guide length: 793
+Average token length: 110.7, max token length: 534
+Guides with brackets: 22, quotes: 0
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 6.733333333333333
+Average lengths of brackets(not normalized): 24.389495504495503
+Average n: 110.7
+Beginning coalescing...                           
+LLM suggested label: boolexpr for true and false
+LLM suggested label: numexpr for (L+n) and (L+L)
+max example size 534, node size: 5
+1-BUBBLES
+{
+    "siblings": [
+        ["L", "=", "numexpr"],
+        ["numexpr", "=", "=", "L"],
+        ["numexpr", "=", "=", "numexpr"],
+        ["boolexpr", "&", "boolexpr"],
+        ["~", "boolexpr"],
+        ["if", "boolexpr", "then", "stmt"],
+        ["while", "boolexpr", "do", "stmt"],
+        ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["while", "boolexpr", "do", "if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["if", "numexpr", "=", "=", "numexpr", "then", "stmt"],
+        ["if", "L", "=", "=", "L", "then", "stmt"],
+        ["while", "numexpr", "=", "=", "numexpr", "do", "stmt"],
+        ["while", "boolexpr", "do", "if", "numexpr", "=", "=", "numexpr", "then", "stmt"],
+        ["if", "boolexpr", "then", "while", "boolexpr", "do", "stmt"],
+        ["while", "boolexpr", "do", "while", "boolexpr", "do", "stmt"],
+        ["if", "boolexpr", "then", "while", "boolexpr", "do", "stmt", "else", "stmt"],
+        ["while", "boolexpr", "do", "if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["if", "boolexpr", "then", "if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["while", "boolexpr", "do", "if", "boolexpr", "then", "stmt", "else", "while", "boolexpr", "do", "stmt"],
+        ["if", "boolexpr", "then", "if", "boolexpr", "then", "stmt", "else", "while", "boolexpr", "do", "stmt"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 1 (1/13)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t185': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 1
+
+[Group len -1] Bubbling iteration 1 (1/13)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t186': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (2/13)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t184': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 2
+
+[Group len -1] Bubbling iteration 1 (2/13)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t188': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 3
+
+[Group len -1] Bubbling iteration 1 (2/13)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t189': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (3/13)...     
+Successful grouping (single): [L,  , =,  , numexpr]
+    (aka ['L', ' ', '=', ' ', '(L+n)']
+coalesced into:  {'t183': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 1 (4/13)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t182': 'stmt', 'stmt': 'stmt'}
+Reapply: 4
+
+[Group len -1] Bubbling iteration 1 (4/13)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t192': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 1 (6/13)...     
+Successful grouping (single): [numexpr,  , =, =,  , n]
+    (aka ['((n+L)+n)', ' ', '=', '=', ' ', 'n']
+coalesced into:  {'t180': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (7/13)...     
+Successful grouping (single): [n,  , =, =,  , L]
+    (aka ['n', ' ', '=', '=', ' ', 'L']
+coalesced into:  {'t179': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (8/13)...     
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t178': 'stmt', 'stmt': 'stmt'}
+Reapply: 5
+
+[Group len -1] Bubbling iteration 1 (8/13)...     
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t196': 'stmt', 'stmt': 'stmt'}
+Reapply: 6
+
+[Group len -1] Bubbling iteration 1 (8/13)...     
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t197': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 1 (1/13)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t187': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 7
+
+[Group len -1] Bubbling iteration 1 (1/13)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t199': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 8
+
+[Group len -1] Bubbling iteration 1 (1/13)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t200': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (2/13)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t190': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 9
+
+[Group len -1] Bubbling iteration 1 (2/13)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t202': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 10
+
+[Group len -1] Bubbling iteration 1 (2/13)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t203': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (4/13)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t193': 'stmt', 'stmt': 'stmt'}
+Reapply: 11
+
+[Group len -1] Bubbling iteration 1 (4/13)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t205': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 1 (8/13)...     
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t198': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["stmt", ";"],
+    ["while", "boolexpr", "do"],
+    ["if", "boolexpr", "then"],
+    ["if", "boolexpr", "then", "stmt", "else"],
+    ["L", "=", "L"],
+    ["L", "=", "=", "L"],
+    ["L", "=", "=", "numexpr"],
+    ["stmt", ";", "stmt"],
+    ["stmt", ";", "stmt", ";"],
+    ["stmt", ";", "stmt", ";", "stmt"],
+    ["stmt", ";", "stmt", ";", "stmt", ";"],
+    ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+    ["if", "boolexpr", "then", "stmt", "else", "stmt", "else"],
+    ["if", "boolexpr", "then", "stmt", "else", "stmt", "else", "stmt"],
+    ["if", "boolexpr", "then", "stmt", "else", "stmt", "else", "stmt", "else"],
+    ["while", "boolexpr", "do", "stmt"],
+    ["while", "boolexpr", "do", "stmt", ";"],
+    ["while", "boolexpr", "do", "stmt", ";", "stmt"],
+    ["while", "boolexpr", "do", "stmt", ";", "stmt", ";"],
+    ["while", "boolexpr", "do", "stmt", ";", "stmt", ";", "stmt"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 2 (2/24)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t219': 'stmt', 'stmt': 'stmt'}
+Reapply: 12
+
+[Group len -1] Bubbling iteration 2 (2/24)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t221': 'stmt', 'stmt': 'stmt'}
+Reapply: 13
+
+[Group len -1] Bubbling iteration 2 (2/24)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t222': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (3/24)...     
+Successful grouping (single): [L,  , =,  , L]
+    (aka ['L', ' ', '=', ' ', 'L']
+coalesced into:  {'t218': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (6/24)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t215': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (8/24)...     
+Successful grouping (single): [L,  , =, =,  , numexpr]
+    (aka ['L', ' ', '=', '=', ' ', '(L+L)']
+coalesced into:  {'t213': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 2 (9/24)...     
+Successful grouping (single): [L,  , =, =,  , L]
+    (aka ['L', ' ', '=', '=', ' ', 'L']
+coalesced into:  {'t212': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 2 (10/24)...    
+Successful grouping (single): [stmt,  , ;,  , skip,  , ;,  , stmt]
+    (aka ['while false & false & false do L = n', ' ', ';', ' ', 'skip', ' ', ';', ' ', 'while ~~false do if false & false then if true then skip else skip else skip']
+coalesced into:  {'t211': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (12/24)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t209': 'stmt', 'stmt': 'stmt'}
+Reapply: 14
+
+[Group len -1] Bubbling iteration 2 (12/24)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t229': 'stmt', 'stmt': 'stmt'}
+Reapply: 15
+
+[Group len -1] Bubbling iteration 2 (12/24)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t230': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (14/24)...    
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t201': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 16
+
+[Group len -1] Bubbling iteration 2 (14/24)...    
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t232': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 2 (15/24)...    
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t204': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 17
+
+[Group len -1] Bubbling iteration 2 (15/24)...    
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t234': 'boolexpr', 'boolexpr': 'boolexpr'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 2 (2/24)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t223': 'stmt', 'stmt': 'stmt'}
+Reapply: 18
+
+[Group len -1] Bubbling iteration 2 (2/24)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t236': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (6/24)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t225': 'stmt', 'stmt': 'stmt'}
+Reapply: 19
+
+[Group len -1] Bubbling iteration 2 (6/24)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t238': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (12/24)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t231': 'stmt', 'stmt': 'stmt'}
+Reapply: 20
+
+[Group len -1] Bubbling iteration 2 (12/24)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t240': 'stmt', 'stmt': 'stmt'}
+Reapply: 21
+
+[Group len -1] Bubbling iteration 2 (12/24)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t241': 'stmt', 'stmt': 'stmt'}
+Reapply: 22
+
+[Group len -1] Bubbling iteration 2 (12/24)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t242': 'stmt', 'stmt': 'stmt'}
+Reapply: 23
+
+[Group len -1] Bubbling iteration 2 (12/24)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t243': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 2 (2/24)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t237': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (6/24)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t239': 'stmt', 'stmt': 'stmt'}
+Reapply: 24
+
+[Group len -1] Bubbling iteration 2 (6/24)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t246': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (12/24)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t244': 'stmt', 'stmt': 'stmt'}
+Reapply: 25
+
+[Group len -1] Bubbling iteration 2 (12/24)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t248': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 2 (2/24)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t245': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (6/24)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t247': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (12/24)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t249': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 2 (6/24)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t251': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["if", "boolexpr", "then", "stmt"],
+        ["stmt", "else", "stmt"],
+        ["then", "stmt"],
+        ["else", "stmt"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["then", "stmt"], ["else", "stmt"]]
+  ]
+}
+1-BUBBLES
+{
+  "siblings": [
+    ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+    ["if", "boolexpr", "then", "stmt"],
+    ["then", "stmt", "else", "stmt"],
+    ["boolexpr", "then"],
+    ["then", "stmt"],
+    ["else", "stmt"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["then", "stmt"], ["else", "stmt"]]
+  ]
+}
+1-BUBBLES
+{
+    "siblings": [
+        ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["boolexpr", "then"],
+        ["then", "stmt"],
+        ["else", "stmt"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["then", "stmt"], ["else", "stmt"]]
+  ]
+}
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-23 01:33:12
+Time spent in oracle calls: 28.964094877243042
+Time spent building grammar: 131.8261263370514s
+Time breakdown: {'FIRST_COALESCE': 29.48906898498535, 'BUILD': 97.08051872253418, 'LAST_COALESCE': 1.3374605178833008, 'EXPAND': 0.018829822540283203, 'MINIMIZE': 0.00014519691467285156, 'OVERALL_EXAMPLE_GEN': 48.14898943901062, 'OVERALL_GROUPING': 10.758884191513062, 'REAPPLY_COUNT': 25}
+Parse calls: 27183, 18789
+LLM calls for bubble finding: 8
+**** Running eval.py ****
+start: stmt
+stmt: stmt " " ";" " " stmt
+    | "skip"
+    | "if" " " boolexpr " " "then" " " stmt " " "else" " " stmt
+    | "while" " " boolexpr " " "do" " " stmt
+    | "L" " " "=" " " numexpr
+    | "L" " " "=" " " "L"
+boolexpr: "true"
+    | boolexpr " " "&" " " boolexpr
+    | "L" " " "=" "=" " " numexpr
+    | "~" boolexpr
+    | "false"
+    | numexpr " " "=" "=" " " numexpr
+    | numexpr " " "=" "=" " " "L"
+    | "L" " " "=" "=" " " "L"
+numexpr: "(" "L" "+" numexpr ")"
+    | "n"
+    | "(" "L" "+" "L" ")"
+    | "(" numexpr "+" "L" ")"
+    | "(" numexpr "+" numexpr ")"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 1.0, Precision: 1.0, F-1: 1.0
+**** Running search.py ****
+**** Running search.py ****
+python3 search.py external Seed_Programs/micro-benchmarks/while/parse_while Seed_Programs/micro-benchmarks/while/guides-r1 Seed_Programs/while-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 171.43333333333334, max guide length: 793
+Average token length: 110.7, max token length: 534
+Guides with brackets: 22, quotes: 0
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 6.733333333333333
+Average lengths of brackets(not normalized): 24.389495504495503
+Average n: 110.7
+Beginning coalescing...                           
+LLM suggested label: boolexpr for true and false
+LLM suggested label: numexpr for (L+n) and (L+L)
+max example size 534, node size: 5
+1-BUBBLES
+{
+    "siblings": [
+        ["L", "=", "numexpr"],
+        ["numexpr", "=", "=", "L"],
+        ["numexpr", "=", "=", "numexpr"],
+        ["boolexpr", "&", "boolexpr"],
+        ["~", "boolexpr"],
+        ["if", "boolexpr", "then", "stmt"],
+        ["while", "boolexpr", "do", "stmt"],
+        ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["while", "boolexpr", "do", "if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["if", "numexpr", "=", "=", "numexpr", "then", "stmt"],
+        ["if", "L", "=", "=", "L", "then", "stmt"],
+        ["if", "boolexpr", "then", "while", "boolexpr", "do", "stmt"],
+        ["while", "numexpr", "=", "=", "numexpr", "do", "stmt"],
+        ["while", "boolexpr", "do", "if", "numexpr", "=", "=", "numexpr", "then", "stmt"],
+        ["if", "boolexpr", "then", "while", "boolexpr", "do", "stmt", "else", "stmt"],
+        ["while", "boolexpr", "do", "if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["if", "boolexpr", "then", "while", "boolexpr", "do", "stmt", "else", "stmt"],
+        ["while", "boolexpr", "do", "if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["if", "boolexpr", "then", "while", "boolexpr", "do", "stmt", "else", "stmt"],
+        ["while", "boolexpr", "do", "if", "boolexpr", "then", "stmt", "else", "stmt"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 1 (1/13)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t185': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 1
+
+[Group len -1] Bubbling iteration 1 (1/13)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t186': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (2/13)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t184': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 2
+
+[Group len -1] Bubbling iteration 1 (2/13)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t188': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 3
+
+[Group len -1] Bubbling iteration 1 (2/13)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t189': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (3/13)...     
+Successful grouping (single): [L,  , =,  , numexpr]
+    (aka ['L', ' ', '=', ' ', '(L+n)']
+coalesced into:  {'t183': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 1 (4/13)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t182': 'stmt', 'stmt': 'stmt'}
+Reapply: 4
+
+[Group len -1] Bubbling iteration 1 (4/13)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t192': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 1 (6/13)...     
+Successful grouping (single): [numexpr,  , =, =,  , n]
+    (aka ['((n+L)+n)', ' ', '=', '=', ' ', 'n']
+coalesced into:  {'t180': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (7/13)...     
+Successful grouping (single): [n,  , =, =,  , L]
+    (aka ['n', ' ', '=', '=', ' ', 'L']
+coalesced into:  {'t179': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (8/13)...     
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t178': 'stmt', 'stmt': 'stmt'}
+Reapply: 5
+
+[Group len -1] Bubbling iteration 1 (8/13)...     
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t196': 'stmt', 'stmt': 'stmt'}
+Reapply: 6
+
+[Group len -1] Bubbling iteration 1 (8/13)...     
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t197': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 1 (1/13)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t187': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 7
+
+[Group len -1] Bubbling iteration 1 (1/13)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t199': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 8
+
+[Group len -1] Bubbling iteration 1 (1/13)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t200': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (2/13)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t190': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 9
+
+[Group len -1] Bubbling iteration 1 (2/13)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t202': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 10
+
+[Group len -1] Bubbling iteration 1 (2/13)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t203': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (4/13)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t193': 'stmt', 'stmt': 'stmt'}
+Reapply: 11
+
+[Group len -1] Bubbling iteration 1 (4/13)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t205': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 1 (8/13)...     
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t198': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["stmt", ";"],
+    ["while", "boolexpr", "do"],
+    ["if", "boolexpr", "then"],
+    ["if", "boolexpr", "then", "stmt", "else"],
+    ["L", "=", "L"],
+    ["L", "=", "=", "L"],
+    ["L", "=", "=", "numexpr"],
+    ["if", "L", "=", "=", "L", "then"],
+    ["if", "L", "=", "=", "numexpr", "then"],
+    ["if", "boolexpr", "then", "stmt", "else"],
+    ["if", "boolexpr", "then", "if", "boolexpr", "then"],
+    ["if", "boolexpr", "then", "if", "boolexpr", "then", "stmt", "else"],
+    ["while", "boolexpr", "do", "stmt"],
+    ["while", "boolexpr", "do", "if", "boolexpr", "then"],
+    ["while", "boolexpr", "do", "if", "boolexpr", "then", "stmt", "else"],
+    ["while", "L", "=", "=", "numexpr", "do"],
+    ["while", "~", "L", "=", "=", "numexpr", "do"],
+    ["if", "boolexpr", "&", "L", "=", "=", "numexpr", "then"],
+    ["if", "boolexpr", "&", "L", "=", "=", "L", "&", "boolexpr", "then"],
+    ["if", "boolexpr", "&", "~", "L", "=", "=", "L", "&", "boolexpr", "then"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 2 (2/29)...     
+Successful grouping (single): [L,  , =,  , L]
+    (aka ['L', ' ', '=', ' ', 'L']
+coalesced into:  {'t223': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (5/29)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t220': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (6/29)...     
+Successful grouping (single): [L,  , =, =,  , numexpr]
+    (aka ['L', ' ', '=', '=', ' ', '(L+L)']
+coalesced into:  {'t219': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 2 (7/29)...     
+Successful grouping (single): [L,  , =, =,  , L]
+    (aka ['L', ' ', '=', '=', ' ', 'L']
+coalesced into:  {'t218': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 2 (18/29)...    
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t201': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 12
+
+[Group len -1] Bubbling iteration 2 (18/29)...    
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t229': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 2 (19/29)...    
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t204': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 13
+
+[Group len -1] Bubbling iteration 2 (19/29)...    
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t231': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 2 (24/29)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t207': 'stmt', 'stmt': 'stmt'}
+Reapply: 14
+
+[Group len -1] Bubbling iteration 2 (24/29)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t233': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 2 (5/29)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t226': 'stmt', 'stmt': 'stmt'}
+Reapply: 15
+
+[Group len -1] Bubbling iteration 2 (5/29)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t235': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (24/29)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t234': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 2 (5/29)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t236': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["stmt", ";"],
+    ["while", "boolexpr", "do"],
+    ["if", "boolexpr", "then"],
+    ["stmt", "else", "stmt"],
+    ["stmt", ";", "stmt"],
+    ["stmt", ";", "stmt", ";", "stmt"],
+    ["if", "boolexpr", "then", "stmt"],
+    ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+    ["if", "boolexpr", "then", "stmt", "else", "if"],
+    ["if", "boolexpr", "then", "if", "boolexpr", "then"],
+    ["if", "boolexpr", "then", "if", "boolexpr", "then", "stmt"],
+    ["if", "boolexpr", "then", "if", "boolexpr", "then", "stmt", "else", "stmt"],
+    ["while", "boolexpr", "do", "if", "boolexpr", "then"],
+    ["while", "boolexpr", "do", "if", "boolexpr", "then", "stmt"],
+    ["while", "boolexpr", "do", "if", "boolexpr", "then", "stmt", ";", "stmt"],
+    ["while", "boolexpr", "do", "if", "boolexpr", "then", "stmt", ";", "stmt", ";", "stmt"],
+    ["stmt", ";", "while", "boolexpr", "do"],
+    ["stmt", ";", "while", "boolexpr", "do", "if"],
+    ["stmt", ";", "while", "boolexpr", "do", "if", "boolexpr", "then"],
+    ["stmt", ";", "while", "boolexpr", "do", "if", "boolexpr", "then", "stmt"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 3 (2/41)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t256': 'stmt', 'stmt': 'stmt'}
+Reapply: 16
+
+[Group len -1] Bubbling iteration 3 (2/41)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t258': 'stmt', 'stmt': 'stmt'}
+Reapply: 17
+
+[Group len -1] Bubbling iteration 3 (2/41)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t259': 'stmt', 'stmt': 'stmt'}
+LLM suggested label: stmt for L = (L+L) ; while false do if and if
+ Next suggestion: stmt2
+
+[Group len -1] Bubbling iteration 3 (9/41)...     
+Successful grouping (single): [stmt,  , ;,  , while,  , true,  , do,  , if]
+    (aka ['while false do skip', ' ', ';', ' ', 'while', ' ', 'true', ' ', 'do', ' ', 'if']
+coalesced into:  {'t249': 'stmt2', 'if': 'stmt2'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["stmt2", "boolexpr", "then", "stmt"],
+        ["stmt2", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt"],
+        ["stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt", "else", "stmt", "else", "stmt"],
+        ["while", "boolexpr", "do", "stmt2"],
+        ["stmt", ";", "stmt2"],
+        ["stmt", ";", "while", "boolexpr", "do", "stmt2"],
+        ["while", "boolexpr", "do", "stmt2", "boolexpr", "then", "stmt"],
+        ["while", "boolexpr", "do", "stmt2", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["stmt2", "boolexpr", "then", "stmt", "else", "stmt", "else", "stmt"],
+        ["stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt", "else", "stmt", "else", "stmt", "else", "stmt"],
+        ["stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt"],
+        ["stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt", "else", "stmt", "else", "stmt"],
+        ["stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt", "else", "stmt", "else", "stmt", "else", "stmt"],
+        ["stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt"],
+        ["stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt", "else", "stmt", "else", "stmt"],
+        ["stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt2", "boolexpr", "then", "stmt", "else", "stmt", "else", "stmt", "else", "stmt"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 4 (1/53)...     
+Successful grouping (single): [stmt,  , ;,  , if]
+    (aka ['L = L', ' ', ';', ' ', 'if']
+coalesced into:  {'t273': 'stmt2', 'stmt2': 'stmt2'}
+
+[Group len -1] Bubbling iteration 4 (2/53)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , if]
+    (aka ['while', ' ', '~false & true & false & true & false & ~L == L & ~true & true & false', ' ', 'do', ' ', 'if']
+coalesced into:  {'t272': 'stmt2', 'stmt2': 'stmt2'}
+
+[Group len -1] Bubbling iteration 4 (5/53)...     
+Successful grouping (single): [if,  , boolexpr,  , then,  , stmt,  , else,  , stmt]
+    (aka ['if', ' ', '~false', ' ', 'then', ' ', 'L = (L+L) ; L = L ; skip', ' ', 'else', ' ', 'if L == L then if false then L = L else while ~false do skip else L = n']
+coalesced into:  {'t269': 'stmt', 'stmt': 'stmt'}
+Reapply: 18
+
+[Group len -1] Bubbling iteration 4 (5/53)...     
+Successful grouping (single): [if,  , boolexpr,  , then,  , stmt,  , else,  , stmt]
+    (aka ['if', ' ', '~false', ' ', 'then', ' ', 'L = (L+L) ; L = L ; skip', ' ', 'else', ' ', 'if L == L then if false then L = L else while ~false do skip else L = n']
+coalesced into:  {'t276': 'stmt', 'stmt': 'stmt'}
+Reapply: 19
+
+[Group len -1] Bubbling iteration 4 (5/53)...     
+Successful grouping (single): [if,  , boolexpr,  , then,  , stmt,  , else,  , stmt]
+    (aka ['if', ' ', '~false', ' ', 'then', ' ', 'L = (L+L) ; L = L ; skip', ' ', 'else', ' ', 'if L == L then if false then L = L else while ~false do skip else L = n']
+coalesced into:  {'t277': 'stmt', 'stmt': 'stmt'}
+Reapply: 20
+
+[Group len -1] Bubbling iteration 4 (5/53)...     
+Successful grouping (single): [if,  , boolexpr,  , then,  , stmt,  , else,  , stmt]
+    (aka ['if', ' ', '~false', ' ', 'then', ' ', 'L = (L+L) ; L = L ; skip', ' ', 'else', ' ', 'if L == L then if false then L = L else while ~false do skip else L = n']
+coalesced into:  {'t278': 'stmt', 'stmt': 'stmt'}
+Reapply: 21
+
+[Group len -1] Bubbling iteration 4 (5/53)...     
+Successful grouping (single): [if,  , boolexpr,  , then,  , stmt,  , else,  , stmt]
+    (aka ['if', ' ', '~false', ' ', 'then', ' ', 'L = (L+L) ; L = L ; skip', ' ', 'else', ' ', 'if L == L then if false then L = L else while ~false do skip else L = n']
+coalesced into:  {'t279': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["stmt2", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["boolexpr", "then", "stmt"],
+        ["then", "stmt", "else", "stmt"],
+        ["stmt", "else", "stmt"],
+        ["boolexpr", "then"],
+        ["then", "stmt"],
+        ["else", "stmt"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["stmt2", "boolexpr", "then", "stmt", "else", "stmt"], ["stmt2", "boolexpr", "then", "stmt", "else", "stmt"]]
+  ]
+}
+1-BUBBLES
+{
+  "siblings": [
+    ["stmt2", "boolexpr", "then", "stmt", "else", "stmt"],
+    ["boolexpr", "then", "stmt"],
+    ["then", "stmt", "else", "stmt"],
+    ["stmt2", "boolexpr"],
+    ["stmt", "else", "stmt"],
+    ["boolexpr", "then"],
+    ["then", "stmt"],
+    ["else", "stmt"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["stmt2"], ["stmt"]],
+    [["stmt2"], ["stmt"]],
+    [["stmt"], ["stmt"]]
+  ]
+}
+1-BUBBLES
+{
+    "siblings": [
+        ["stmt2", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["boolexpr", "then", "stmt"],
+        ["then", "stmt", "else", "stmt"],
+        ["stmt", "else", "stmt"],
+        ["boolexpr", "then"],
+        ["then", "stmt"],
+        ["else", "stmt"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["stmt2", "boolexpr", "then", "stmt", "else", "stmt"], ["stmt2", "boolexpr", "then", "stmt", "else", "stmt"]]
+  ]
+}
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-23 01:36:28
+Time spent in oracle calls: 28.523735523223877
+Time spent building grammar: 186.6419529914856s
+Time breakdown: {'FIRST_COALESCE': 29.499539852142334, 'BUILD': 151.8743257522583, 'LAST_COALESCE': 1.187410593032837, 'EXPAND': 0.018471956253051758, 'MINIMIZE': 0.00015401840209960938, 'OVERALL_EXAMPLE_GEN': 70.6067841053009, 'OVERALL_GROUPING': 23.528751611709595, 'REAPPLY_COUNT': 21}
+Parse calls: 27254, 18604
+LLM calls for bubble finding: 10
+**** Running eval.py ****
+start: stmt
+stmt: stmt " " ";" " " stmt
+    | "skip"
+    | stmt2 " " boolexpr " " "then" " " stmt " " "else" " " stmt
+    | "while" " " boolexpr " " "do" " " stmt
+    | "L" " " "=" " " numexpr
+    | "L" " " "=" " " "L"
+stmt2: "if"
+    | "while" " " boolexpr " " "do" " " stmt2
+    | stmt " " ";" " " stmt2
+boolexpr: "true"
+    | boolexpr " " "&" " " boolexpr
+    | "L" " " "=" "=" " " numexpr
+    | "~" boolexpr
+    | "false"
+    | numexpr " " "=" "=" " " numexpr
+    | numexpr " " "=" "=" " " "L"
+    | "L" " " "=" "=" " " "L"
+numexpr: "(" "L" "+" numexpr ")"
+    | "n"
+    | "(" "L" "+" "L" ")"
+    | "(" numexpr "+" "L" ")"
+    | "(" numexpr "+" numexpr ")"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 1.0, Precision: 1.0, F-1: 1.0
+**** Running search.py ****
+**** Running search.py ****
+python3 search.py external Seed_Programs/micro-benchmarks/while/parse_while Seed_Programs/micro-benchmarks/while/guides-r1 Seed_Programs/while-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 171.43333333333334, max guide length: 793
+Average token length: 110.7, max token length: 534
+Guides with brackets: 22, quotes: 0
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 6.733333333333333
+Average lengths of brackets(not normalized): 24.389495504495503
+Average n: 110.7
+Beginning coalescing...                           
+LLM suggested label: boolexpr for true and false
+LLM suggested label: numexpr for (L+n) and (L+L)
+max example size 534, node size: 5
+1-BUBBLES
+{
+    "siblings": [
+        ["L", "=", "numexpr"],
+        ["numexpr", "=", "=", "L"],
+        ["numexpr", "=", "=", "numexpr"],
+        ["boolexpr", "&", "boolexpr"],
+        ["~", "boolexpr"],
+        ["if", "boolexpr", "then", "stmt"],
+        ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["while", "boolexpr", "do", "stmt"],
+        ["while", "boolexpr", "do", "if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["if", "numexpr", "=", "=", "numexpr", "then", "stmt"],
+        ["if", "numexpr", "=", "=", "numexpr", "then", "stmt", "else", "stmt"],
+        ["if", "L", "=", "=", "L", "then", "stmt"],
+        ["if", "L", "=", "=", "L", "then", "stmt", "else", "stmt"],
+        ["while", "numexpr", "=", "=", "numexpr", "do", "stmt"],
+        ["while", "numexpr", "=", "=", "numexpr", "do", "if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["while", "boolexpr", "do", "if", "numexpr", "=", "=", "numexpr", "then", "stmt", "else", "stmt"],
+        ["if", "boolexpr", "then", "while", "boolexpr", "do", "stmt"],
+        ["if", "boolexpr", "then", "while", "boolexpr", "do", "stmt", "else", "stmt"],
+        ["while", "boolexpr", "do", "while", "boolexpr", "do", "stmt"],
+        ["while", "boolexpr", "do", "while", "boolexpr", "do", "stmt", "else", "stmt"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 1 (1/13)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t185': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 1
+
+[Group len -1] Bubbling iteration 1 (1/13)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t186': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (2/13)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t184': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 2
+
+[Group len -1] Bubbling iteration 1 (2/13)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t188': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 3
+
+[Group len -1] Bubbling iteration 1 (2/13)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t189': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (3/13)...     
+Successful grouping (single): [L,  , =,  , numexpr]
+    (aka ['L', ' ', '=', ' ', '(L+n)']
+coalesced into:  {'t183': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 1 (4/13)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t182': 'stmt', 'stmt': 'stmt'}
+Reapply: 4
+
+[Group len -1] Bubbling iteration 1 (4/13)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t192': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 1 (6/13)...     
+Successful grouping (single): [numexpr,  , =, =,  , n]
+    (aka ['((n+L)+n)', ' ', '=', '=', ' ', 'n']
+coalesced into:  {'t180': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (7/13)...     
+Successful grouping (single): [n,  , =, =,  , L]
+    (aka ['n', ' ', '=', '=', ' ', 'L']
+coalesced into:  {'t179': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (8/13)...     
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t178': 'stmt', 'stmt': 'stmt'}
+Reapply: 5
+
+[Group len -1] Bubbling iteration 1 (8/13)...     
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t196': 'stmt', 'stmt': 'stmt'}
+Reapply: 6
+
+[Group len -1] Bubbling iteration 1 (8/13)...     
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t197': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 1 (13/13)...    
+Successful grouping (single): [if,  , L,  , =, =,  , L,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'L', ' ', '=', '=', ' ', 'L', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t173': 'stmt', 'stmt': 'stmt'}
+Reapply: 7
+
+[Group len -1] Bubbling iteration 1 (13/13)...    
+Successful grouping (single): [if,  , L,  , =, =,  , L,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'L', ' ', '=', '=', ' ', 'L', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t199': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 1 (1/13)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t187': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 8
+
+[Group len -1] Bubbling iteration 1 (1/13)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t201': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 9
+
+[Group len -1] Bubbling iteration 1 (1/13)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t202': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (2/13)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t190': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 10
+
+[Group len -1] Bubbling iteration 1 (2/13)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t204': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 11
+
+[Group len -1] Bubbling iteration 1 (2/13)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t205': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (4/13)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t193': 'stmt', 'stmt': 'stmt'}
+Reapply: 12
+
+[Group len -1] Bubbling iteration 1 (4/13)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t207': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 1 (8/13)...     
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t198': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["stmt", ";"],
+    ["while", "boolexpr", "do"],
+    ["if", "boolexpr", "then"],
+    ["if", "boolexpr", "then", "stmt"],
+    ["L", "=", "L"],
+    ["L", "=", "=", "numexpr"],
+    ["if", "boolexpr", "then", "stmt", "else"],
+    ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+    ["while", "boolexpr", "do", "stmt"],
+    ["if", "L", "=", "=", "numexpr", "then"],
+    ["if", "L", "=", "=", "numexpr", "then", "stmt"],
+    ["if", "L", "=", "=", "numexpr", "then", "stmt", "else"],
+    ["if", "L", "=", "=", "numexpr", "then", "stmt", "else", "stmt"],
+    ["while", "L", "=", "=", "numexpr", "do"],
+    ["while", "L", "=", "=", "numexpr", "do", "stmt"],
+    ["if", "boolexpr", "&", "L", "=", "=", "numexpr", "then"],
+    ["if", "boolexpr", "&", "L", "=", "=", "numexpr", "then", "stmt"],
+    ["if", "boolexpr", "&", "L", "=", "=", "numexpr", "then", "stmt", "else"],
+    ["if", "boolexpr", "&", "L", "=", "=", "numexpr", "then", "stmt", "else", "stmt"],
+    ["while", "boolexpr", "&", "L", "=", "=", "numexpr", "do"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 2 (2/30)...     
+Successful grouping (single): [L,  , =,  , L]
+    (aka ['L', ' ', '=', ' ', 'L']
+coalesced into:  {'t228': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (5/30)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t225': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (6/30)...     
+Successful grouping (single): [L,  , =, =,  , numexpr]
+    (aka ['L', ' ', '=', '=', ' ', '(L+L)']
+coalesced into:  {'t224': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 2 (11/30)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t219': 'stmt', 'stmt': 'stmt'}
+Reapply: 13
+
+[Group len -1] Bubbling iteration 2 (11/30)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t233': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (21/30)...    
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t203': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 14
+
+[Group len -1] Bubbling iteration 2 (21/30)...    
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t235': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 2 (22/30)...    
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t206': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 15
+
+[Group len -1] Bubbling iteration 2 (22/30)...    
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t237': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 2 (30/30)...    
+Successful grouping (single): [if,  , L,  , =, =,  , L,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'L', ' ', '=', '=', ' ', 'L', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t200': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 2 (5/30)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t231': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (11/30)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t234': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 2 (5/30)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t240': 'stmt', 'stmt': 'stmt'}
+Reapply: 16
+
+[Group len -1] Bubbling iteration 2 (5/30)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t242': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["stmt", ";"],
+    ["while", "boolexpr", "do"],
+    ["if", "boolexpr", "then"],
+    ["stmt", "else", "stmt"],
+    ["if", "boolexpr", "then", "stmt"],
+    ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+    ["if", "boolexpr", "then", "if", "boolexpr", "then", "stmt"],
+    ["if", "boolexpr", "then", "if", "boolexpr", "then", "stmt", "else", "stmt"],
+    ["while", "boolexpr", "do", "stmt"],
+    ["while", "boolexpr", "do", "if", "boolexpr", "then", "stmt"],
+    ["while", "boolexpr", "do", "if", "boolexpr", "then", "stmt", "else", "stmt"],
+    ["if", "L", "=", "=", "L", "then", "stmt"],
+    ["if", "L", "=", "=", "L", "then", "stmt", "else", "stmt"],
+    ["while", "L", "=", "=", "L", "do", "stmt"],
+    ["while", "L", "=", "=", "L", "do", "stmt", "else", "stmt"],
+    ["if", "boolexpr", "then", "if", "boolexpr", "then", "if", "boolexpr", "then", "stmt"],
+    ["if", "boolexpr", "then", "if", "boolexpr", "then", "if", "boolexpr", "then", "stmt", "else", "stmt"],
+    ["stmt", ";", "stmt"],
+    ["stmt", ";", "stmt", ";", "stmt"],
+    ["stmt", ";", "stmt", ";", "stmt", ";", "stmt"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 3 (2/38)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t258': 'stmt', 'stmt': 'stmt'}
+Reapply: 17
+
+[Group len -1] Bubbling iteration 3 (2/38)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t260': 'stmt', 'stmt': 'stmt'}
+Reapply: 18
+
+[Group len -1] Bubbling iteration 3 (2/38)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t261': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 3 (9/38)...     
+Successful grouping (single): [if,  , boolexpr,  , then,  , stmt,  , else,  , stmt]
+    (aka ['if', ' ', 'L == (L+n)', ' ', 'then', ' ', 'while L == ((((L+n)+n)+n)+n) do L = n', ' ', 'else', ' ', 'if false & L == ((n+(n+L))+L) then L = L else while ~~n == n do skip']
+coalesced into:  {'t251': 'stmt', 'stmt': 'stmt'}
+Reapply: 19
+
+[Group len -1] Bubbling iteration 3 (9/38)...     
+Successful grouping (single): [if,  , boolexpr,  , then,  , stmt,  , else,  , stmt]
+    (aka ['if', ' ', 'L == (L+n)', ' ', 'then', ' ', 'while L == ((((L+n)+n)+n)+n) do L = n', ' ', 'else', ' ', 'if false & L == ((n+(n+L))+L) then L = L else while ~~n == n do skip']
+coalesced into:  {'t263': 'stmt', 'stmt': 'stmt'}
+Reapply: 20
+
+[Group len -1] Bubbling iteration 3 (9/38)...     
+Successful grouping (single): [if,  , boolexpr,  , then,  , stmt,  , else,  , stmt]
+    (aka ['if', ' ', 'L == (L+n)', ' ', 'then', ' ', 'while L == ((((L+n)+n)+n)+n) do L = n', ' ', 'else', ' ', 'if false & L == ((n+(n+L))+L) then L = L else while ~~n == n do skip']
+coalesced into:  {'t264': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 3 (11/38)...    
+Successful grouping (single): [while,  , L,  , =, =,  , L,  , do,  , stmt]
+    (aka ['while', ' ', 'L', ' ', '=', '=', ' ', 'L', ' ', 'do', ' ', 'L = (n+(L+n))']
+coalesced into:  {'t249': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 3 (15/38)...    
+Successful grouping (single): [if,  , L,  , =, =,  , L,  , then,  , stmt,  , else,  , stmt]
+    (aka ['if', ' ', 'L', ' ', '=', '=', ' ', 'L', ' ', 'then', ' ', 'if L == L then while false do skip else skip', ' ', 'else', ' ', 'while true do L = n']
+coalesced into:  {'t245': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 3 (2/38)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t262': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 3 (6/38)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t254': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 3 (9/38)...     
+Successful grouping (single): [if,  , boolexpr,  , then,  , stmt,  , else,  , stmt]
+    (aka ['if', ' ', 'L == (L+n)', ' ', 'then', ' ', 'while L == ((((L+n)+n)+n)+n) do L = n', ' ', 'else', ' ', 'if false & L == ((n+(n+L))+L) then L = L else while ~~n == n do skip']
+coalesced into:  {'t265': 'stmt', 'stmt': 'stmt'}
+Reapply: 21
+
+[Group len -1] Bubbling iteration 3 (9/38)...     
+Successful grouping (single): [if,  , boolexpr,  , then,  , stmt,  , else,  , stmt]
+    (aka ['if', ' ', 'L == (L+n)', ' ', 'then', ' ', 'while L == ((((L+n)+n)+n)+n) do L = n', ' ', 'else', ' ', 'if false & L == ((n+(n+L))+L) then L = L else while ~~n == n do skip']
+coalesced into:  {'t270': 'stmt', 'stmt': 'stmt'}
+Reapply: 22
+
+[Group len -1] Bubbling iteration 3 (9/38)...     
+Successful grouping (single): [if,  , boolexpr,  , then,  , stmt,  , else,  , stmt]
+    (aka ['if', ' ', 'L == (L+n)', ' ', 'then', ' ', 'while L == ((((L+n)+n)+n)+n) do L = n', ' ', 'else', ' ', 'if false & L == ((n+(n+L))+L) then L = L else while ~~n == n do skip']
+coalesced into:  {'t271': 'stmt', 'stmt': 'stmt'}
+Reapply: 23
+
+[Group len -1] Bubbling iteration 3 (9/38)...     
+Successful grouping (single): [if,  , boolexpr,  , then,  , stmt,  , else,  , stmt]
+    (aka ['if', ' ', 'L == (L+n)', ' ', 'then', ' ', 'while L == ((((L+n)+n)+n)+n) do L = n', ' ', 'else', ' ', 'if false & L == ((n+(n+L))+L) then L = L else while ~~n == n do skip']
+coalesced into:  {'t272': 'stmt', 'stmt': 'stmt'}
+Reapply: 24
+
+[Group len -1] Bubbling iteration 3 (9/38)...     
+Successful grouping (single): [if,  , boolexpr,  , then,  , stmt,  , else,  , stmt]
+    (aka ['if', ' ', 'L == (L+n)', ' ', 'then', ' ', 'while L == ((((L+n)+n)+n)+n) do L = n', ' ', 'else', ' ', 'if false & L == ((n+(n+L))+L) then L = L else while ~~n == n do skip']
+coalesced into:  {'t273': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 3 (2/38)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t268': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 3 (6/38)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t269': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+    ["while", "boolexpr", "do", "stmt"],
+    ["L", "=", "=", "L"],
+    ["boolexpr", "&", "boolexpr"],
+    ["while", "boolexpr", "do", "while", "boolexpr", "do", "stmt"],
+    ["if", "boolexpr", "then", "while", "boolexpr", "do", "stmt", "else", "stmt"],
+    ["if", "boolexpr", "then", "stmt", "else", "if", "boolexpr", "then", "stmt", "else", "stmt"],
+    ["if", "boolexpr", "then", "stmt", "else", "while", "boolexpr", "do", "stmt"],
+    ["while", "boolexpr", "do", "if", "boolexpr", "then", "stmt", "else", "stmt"],
+    ["if", "L", "=", "=", "L", "then", "stmt", "else", "stmt"],
+    ["while", "L", "=", "=", "L", "do", "stmt"],
+    ["if", "boolexpr", "then", "while", "boolexpr", "&", "boolexpr", "do", "stmt", "else", "stmt"],
+    ["if", "boolexpr", "then", "while", "boolexpr", "&", "~", "L", "=", "=", "L", "&", "boolexpr", "do", "stmt", "else", "stmt"],
+    ["while", "~", "L", "=", "=", "L", "do", "stmt"],
+    ["if", "boolexpr", "then", "stmt", "else", "if", "boolexpr", "then", "while", "boolexpr", "&", "boolexpr", "do", "stmt", "else", "stmt"],
+    ["while", "boolexpr", "do", "if", "L", "=", "=", "L", "&", "boolexpr", "then", "stmt", "else", "stmt"],
+    ["if", "L", "=", "=", "L", "&", "boolexpr", "then", "stmt", "else", "stmt"],
+    ["while", "L", "=", "=", "L", "&", "boolexpr", "do", "stmt"],
+    ["if", "boolexpr", "then", "stmt", "else", "while", "~", "L", "=", "=", "L", "do", "stmt"],
+    ["while", "boolexpr", "do", "stmt"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 4 (2/42)...     
+Successful grouping (single): [L,  , =, =,  , L]
+    (aka ['L', ' ', '=', '=', ' ', 'L']
+coalesced into:  {'t284': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 4 (36/42)...    
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t236': 'boolexpr', 'boolexpr': 'boolexpr'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 4 (1/42)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t285': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 25
+
+[Group len -1] Bubbling iteration 4 (1/42)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t288': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 4 (3/42)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t283': 'stmt', 'stmt': 'stmt'}
+Reapply: 26
+
+[Group len -1] Bubbling iteration 4 (3/42)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t290': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 4 (4/42)...     
+Successful grouping (single): [if,  , boolexpr,  , then,  , stmt,  , else,  , stmt]
+    (aka ['if', ' ', 'L == (L+n)', ' ', 'then', ' ', 'while L == ((((L+n)+n)+n)+n) do L = n', ' ', 'else', ' ', 'if false & L == ((n+(n+L))+L) then L = L else while ~~n == n do skip']
+coalesced into:  {'t282': 'stmt', 'stmt': 'stmt'}
+Reapply: 27
+
+[Group len -1] Bubbling iteration 4 (4/42)...     
+Successful grouping (single): [if,  , boolexpr,  , then,  , stmt,  , else,  , stmt]
+    (aka ['if', ' ', 'L == (L+n)', ' ', 'then', ' ', 'while L == ((((L+n)+n)+n)+n) do L = n', ' ', 'else', ' ', 'if false & L == ((n+(n+L))+L) then L = L else while ~~n == n do skip']
+coalesced into:  {'t292': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["boolexpr", "then"],
+        ["then", "stmt"],
+        ["else", "stmt"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["then", "stmt"], ["else", "stmt"]]
+  ]
+}
+1-BUBBLES
+{
+  "siblings": [
+    ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+    ["if", "boolexpr", "then", "stmt"],
+    ["stmt", "else", "stmt"],
+    ["then", "stmt", "else", "stmt"],
+    ["boolexpr", "then"],
+    ["then", "stmt"],
+    ["else", "stmt"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["then", "stmt"], ["else", "stmt"]]
+  ]
+}
+1-BUBBLES
+{
+  "siblings": [
+    ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+    ["if", "boolexpr", "then", "stmt"],
+    ["stmt", "else", "stmt"],
+    ["boolexpr", "then"],
+    ["then", "stmt"],
+    ["else", "stmt"]
+  ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["then", "stmt"], ["else", "stmt"]]
+  ]
+}
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-23 01:40:18
+Time spent in oracle calls: 31.19957137107849
+Time spent building grammar: 217.43916988372803s
+Time breakdown: {'FIRST_COALESCE': 29.181576251983643, 'BUILD': 183.0896189212799, 'LAST_COALESCE': 1.2894952297210693, 'EXPAND': 0.01824212074279785, 'MINIMIZE': 0.00013947486877441406, 'OVERALL_EXAMPLE_GEN': 86.16691613197327, 'OVERALL_GROUPING': 21.331008911132812, 'REAPPLY_COUNT': 27}
+Parse calls: 28367, 20048
+LLM calls for bubble finding: 10
+**** Running eval.py ****
+start: stmt
+stmt: stmt " " ";" " " stmt
+    | "skip"
+    | "if" " " boolexpr " " "then" " " stmt " " "else" " " stmt
+    | "while" " " boolexpr " " "do" " " stmt
+    | "L" " " "=" " " numexpr
+    | "L" " " "=" " " "L"
+boolexpr: "true"
+    | boolexpr " " "&" " " boolexpr
+    | "L" " " "=" "=" " " numexpr
+    | "~" boolexpr
+    | "false"
+    | numexpr " " "=" "=" " " numexpr
+    | numexpr " " "=" "=" " " "L"
+    | "L" " " "=" "=" " " "L"
+numexpr: "(" "L" "+" numexpr ")"
+    | "n"
+    | "(" "L" "+" "L" ")"
+    | "(" numexpr "+" "L" ")"
+    | "(" numexpr "+" numexpr ")"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 1.0, Precision: 1.0, F-1: 1.0
+**** Running search.py ****
+**** Running search.py ****
+python3 search.py external Seed_Programs/micro-benchmarks/while/parse_while Seed_Programs/micro-benchmarks/while/guides-r1 Seed_Programs/while-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 171.43333333333334, max guide length: 793
+Average token length: 110.7, max token length: 534
+Guides with brackets: 22, quotes: 0
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 6.733333333333333
+Average lengths of brackets(not normalized): 24.389495504495503
+Average n: 110.7
+Beginning coalescing...                           
+LLM suggested label: boolexpr for true and false
+LLM suggested label: numexpr for (L+n) and (L+L)
+max example size 534, node size: 5
+1-BUBBLES
+{
+    "siblings": [
+        ["L", "=", "numexpr"],
+        ["numexpr", "=", "=", "L"],
+        ["numexpr", "=", "=", "numexpr"],
+        ["boolexpr", "&", "boolexpr"],
+        ["~", "boolexpr"],
+        ["if", "boolexpr", "then", "stmt"],
+        ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["while", "boolexpr", "do", "stmt"],
+        ["while", "boolexpr", "do", "if", "boolexpr", "then", "stmt"],
+        ["while", "boolexpr", "do", "if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["if", "numexpr", "=", "=", "numexpr", "then", "stmt"],
+        ["if", "numexpr", "=", "=", "numexpr", "then", "stmt", "else", "stmt"],
+        ["if", "L", "=", "=", "L", "then", "stmt"],
+        ["if", "L", "=", "=", "L", "then", "stmt", "else", "stmt"],
+        ["while", "numexpr", "=", "=", "numexpr", "do", "stmt"],
+        ["while", "numexpr", "=", "=", "numexpr", "do", "if", "boolexpr", "then", "stmt"],
+        ["while", "numexpr", "=", "=", "numexpr", "do", "if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["if", "boolexpr", "&", "boolexpr", "then", "stmt"],
+        ["if", "boolexpr", "&", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["while", "boolexpr", "&", "boolexpr", "do", "stmt"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 1 (1/14)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t186': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 1
+
+[Group len -1] Bubbling iteration 1 (1/14)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t187': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (2/14)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t185': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 2
+
+[Group len -1] Bubbling iteration 1 (2/14)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t189': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 3
+
+[Group len -1] Bubbling iteration 1 (2/14)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t190': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (3/14)...     
+Successful grouping (single): [L,  , =,  , numexpr]
+    (aka ['L', ' ', '=', ' ', '(L+n)']
+coalesced into:  {'t184': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 1 (4/14)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t183': 'stmt', 'stmt': 'stmt'}
+Reapply: 4
+
+[Group len -1] Bubbling iteration 1 (4/14)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t193': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 1 (6/14)...     
+Successful grouping (single): [numexpr,  , =, =,  , n]
+    (aka ['((n+L)+n)', ' ', '=', '=', ' ', 'n']
+coalesced into:  {'t181': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (7/14)...     
+Successful grouping (single): [n,  , =, =,  , L]
+    (aka ['n', ' ', '=', '=', ' ', 'L']
+coalesced into:  {'t180': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (8/14)...     
+Successful grouping (single): [while,  , true,  , &,  , true,  , do,  , skip]
+    (aka ['while', ' ', 'true', ' ', '&', ' ', 'true', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t179': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 1 (9/14)...     
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t178': 'stmt', 'stmt': 'stmt'}
+Reapply: 5
+
+[Group len -1] Bubbling iteration 1 (9/14)...     
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t198': 'stmt', 'stmt': 'stmt'}
+Reapply: 6
+
+[Group len -1] Bubbling iteration 1 (9/14)...     
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t199': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 1 (14/14)...    
+Successful grouping (single): [if,  , L,  , =, =,  , L,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'L', ' ', '=', '=', ' ', 'L', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t173': 'stmt', 'stmt': 'stmt'}
+Reapply: 7
+
+[Group len -1] Bubbling iteration 1 (14/14)...    
+Successful grouping (single): [if,  , L,  , =, =,  , L,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'L', ' ', '=', '=', ' ', 'L', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t201': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 1 (1/14)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t188': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 8
+
+[Group len -1] Bubbling iteration 1 (1/14)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t203': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 9
+
+[Group len -1] Bubbling iteration 1 (1/14)...     
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t204': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (2/14)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t191': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 10
+
+[Group len -1] Bubbling iteration 1 (2/14)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t206': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 11
+
+[Group len -1] Bubbling iteration 1 (2/14)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t207': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 1 (4/14)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t194': 'stmt', 'stmt': 'stmt'}
+Reapply: 12
+
+[Group len -1] Bubbling iteration 1 (4/14)...     
+Successful grouping (single): [while,  , false,  , do,  , skip]
+    (aka ['while', ' ', 'false', ' ', 'do', ' ', 'skip']
+coalesced into:  {'t209': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 1 (9/14)...     
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t200': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["stmt", ";"],
+        ["while", "boolexpr", "do"],
+        ["if", "boolexpr", "then"],
+        ["L", "=", "L"],
+        ["L", "=", "=", "numexpr"],
+        ["stmt", ";", "stmt"],
+        ["stmt", "else", "stmt"],
+        ["if", "boolexpr", "then", "stmt"],
+        ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["while", "boolexpr", "do", "stmt"],
+        ["if", "boolexpr", "then", "if", "boolexpr", "then", "stmt"],
+        ["if", "boolexpr", "then", "if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["if", "boolexpr", "then", "stmt", "else", "if", "boolexpr", "then", "stmt"],
+        ["if", "boolexpr", "then", "stmt", "else", "if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["while", "boolexpr", "do", "if", "boolexpr", "then", "stmt"],
+        ["while", "boolexpr", "do", "if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["if", "L", "=", "=", "numexpr", "then", "stmt"],
+        ["if", "L", "=", "=", "numexpr", "then", "stmt", "else", "stmt"],
+        ["if", "L", "=", "=", "numexpr", "then", "while", "boolexpr", "do", "stmt"],
+        ["if", "L", "=", "=", "numexpr", "then", "while", "boolexpr", "do", "stmt", "else", "stmt"]
+    ]
+}
+
+[Group len -1] Bubbling iteration 2 (3/25)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t224': 'stmt', 'stmt': 'stmt'}
+Reapply: 13
+
+[Group len -1] Bubbling iteration 2 (3/25)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t227': 'stmt', 'stmt': 'stmt'}
+Reapply: 14
+
+[Group len -1] Bubbling iteration 2 (3/25)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t228': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (4/25)...     
+Successful grouping (single): [L,  , =,  , L]
+    (aka ['L', ' ', '=', ' ', 'L']
+coalesced into:  {'t223': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (7/25)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t220': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (9/25)...     
+Successful grouping (single): [L,  , =, =,  , numexpr]
+    (aka ['L', ' ', '=', '=', ' ', '(L+L)']
+coalesced into:  {'t218': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 2 (10/25)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t217': 'stmt', 'stmt': 'stmt'}
+Reapply: 15
+
+[Group len -1] Bubbling iteration 2 (10/25)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t233': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (16/25)...    
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t205': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 16
+
+[Group len -1] Bubbling iteration 2 (16/25)...    
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t235': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 2 (17/25)...    
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t208': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 17
+
+[Group len -1] Bubbling iteration 2 (17/25)...    
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t237': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 2 (25/25)...    
+Successful grouping (single): [if,  , L,  , =, =,  , L,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'L', ' ', '=', '=', ' ', 'L', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t202': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 2 (3/25)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t229': 'stmt', 'stmt': 'stmt'}
+Reapply: 18
+
+[Group len -1] Bubbling iteration 2 (3/25)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t240': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (7/25)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t231': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (10/25)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t234': 'stmt', 'stmt': 'stmt'}
+Reapply: 19
+
+[Group len -1] Bubbling iteration 2 (10/25)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t243': 'stmt', 'stmt': 'stmt'}
+Reapply: 20
+
+[Group len -1] Bubbling iteration 2 (10/25)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t244': 'stmt', 'stmt': 'stmt'}
+Reapply: 21
+
+[Group len -1] Bubbling iteration 2 (10/25)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t245': 'stmt', 'stmt': 'stmt'}
+Reapply: 22
+
+[Group len -1] Bubbling iteration 2 (10/25)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t246': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (25/25)...    
+Successful grouping (single): [if,  , L,  , =, =,  , L,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'L', ' ', '=', '=', ' ', 'L', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t239': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 2 (3/25)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t241': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (7/25)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t242': 'stmt', 'stmt': 'stmt'}
+Reapply: 23
+
+[Group len -1] Bubbling iteration 2 (7/25)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t250': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (10/25)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t247': 'stmt', 'stmt': 'stmt'}
+Reapply: 24
+
+[Group len -1] Bubbling iteration 2 (10/25)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t252': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 2 (3/25)...     
+Successful grouping (single): [skip,  , ;,  , stmt]
+    (aka ['skip', ' ', ';', ' ', 'if true then skip else skip']
+coalesced into:  {'t249': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (7/25)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t251': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 2 (10/25)...    
+Successful grouping (single): [if,  , true,  , then,  , skip,  , else,  , skip]
+    (aka ['if', ' ', 'true', ' ', 'then', ' ', 'skip', ' ', 'else', ' ', 'skip']
+coalesced into:  {'t253': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 2 (7/25)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t255': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+  "siblings": [
+    ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+    ["if", "boolexpr", "then", "stmt"],
+    ["while", "boolexpr", "do", "stmt"],
+    ["L", "=", "=", "L"],
+    ["boolexpr", "&", "boolexpr"],
+    ["if", "boolexpr", "then", "if", "boolexpr", "then", "stmt", "else", "stmt"],
+    ["if", "boolexpr", "then", "if", "boolexpr", "then", "stmt"],
+    ["if", "boolexpr", "then", "while", "boolexpr", "do", "stmt"],
+    ["while", "boolexpr", "do", "while", "boolexpr", "do", "stmt"],
+    ["while", "boolexpr", "do", "if", "boolexpr", "then", "stmt"],
+    ["if", "L", "=", "=", "L", "then", "stmt"],
+    ["while", "L", "=", "=", "L", "do", "stmt"],
+    ["if", "L", "=", "=", "L", "&", "boolexpr", "then", "stmt"],
+    ["while", "~", "L", "=", "=", "L", "do", "stmt"],
+    ["if", "boolexpr", "then", "while", "boolexpr", "&", "boolexpr", "do", "stmt"],
+    ["if", "boolexpr", "then", "while", "boolexpr", "&", "~", "L", "=", "=", "L", "&", "boolexpr", "do", "stmt"],
+    ["if", "boolexpr", "then", "while", "boolexpr", "do", "stmt", "else", "stmt"],
+    ["if", "boolexpr", "then", "while", "boolexpr", "do", "stmt"],
+    ["if", "boolexpr", "then", "stmt", "else", "if", "boolexpr", "then", "stmt"],
+    ["if", "boolexpr", "then", "stmt", "else", "if", "boolexpr", "then", "while", "boolexpr", "do", "stmt"]
+  ]
+}
+
+[Group len -1] Bubbling iteration 3 (2/28)...     
+Successful grouping (single): [L,  , =, =,  , L]
+    (aka ['L', ' ', '=', '=', ' ', 'L']
+coalesced into:  {'t267': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 3 (3/28)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t266': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 3 (5/28)...     
+Successful grouping (single): [if,  , boolexpr,  , then,  , stmt,  , else,  , stmt]
+    (aka ['if', ' ', 'L == (L+L) & ~false & false', ' ', 'then', ' ', 'while ~true & false do skip', ' ', 'else', ' ', 'L = n ; skip']
+coalesced into:  {'t264': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 3 (21/28)...    
+Successful grouping (single): [~, false]
+    (aka ['~', 'false']
+coalesced into:  {'t236': 'boolexpr', 'boolexpr': 'boolexpr'}
+RECHECKING 1-BUBBLES
+
+[Group len -1] Bubbling iteration 3 (1/28)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t268': 'boolexpr', 'boolexpr': 'boolexpr'}
+Reapply: 25
+
+[Group len -1] Bubbling iteration 3 (1/28)...     
+Successful grouping (single): [true,  , &,  , true]
+    (aka ['true', ' ', '&', ' ', 'true']
+coalesced into:  {'t273': 'boolexpr', 'boolexpr': 'boolexpr'}
+
+[Group len -1] Bubbling iteration 3 (3/28)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t270': 'stmt', 'stmt': 'stmt'}
+Reapply: 26
+
+[Group len -1] Bubbling iteration 3 (3/28)...     
+Successful grouping (single): [while,  , boolexpr,  , do,  , stmt]
+    (aka ['while', ' ', 'true & true', ' ', 'do', ' ', 'L = (L+n)']
+coalesced into:  {'t275': 'stmt', 'stmt': 'stmt'}
+
+[Group len -1] Bubbling iteration 3 (5/28)...     
+Successful grouping (single): [if,  , boolexpr,  , then,  , stmt,  , else,  , stmt]
+    (aka ['if', ' ', 'L == (L+L) & ~false & false', ' ', 'then', ' ', 'while ~true & false do skip', ' ', 'else', ' ', 'L = n ; skip']
+coalesced into:  {'t271': 'stmt', 'stmt': 'stmt'}
+Reapply: 27
+
+[Group len -1] Bubbling iteration 3 (5/28)...     
+Successful grouping (single): [if,  , boolexpr,  , then,  , stmt,  , else,  , stmt]
+    (aka ['if', ' ', 'L == (L+L) & ~false & false', ' ', 'then', ' ', 'while ~true & false do skip', ' ', 'else', ' ', 'L = n ; skip']
+coalesced into:  {'t277': 'stmt', 'stmt': 'stmt'}
+RECHECKING 1-BUBBLES
+1-BUBBLES
+{
+    "siblings": [
+        ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["if", "boolexpr", "then", "stmt"],
+        ["stmt", "else", "stmt"],
+        ["then", "stmt"],
+        ["else", "stmt"],
+        ["if", "boolexpr"],
+        ["boolexpr", "then"],
+        ["stmt", "else"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["then", "stmt"], ["else", "stmt"]]
+  ]
+}
+1-BUBBLES
+{
+    "siblings": [
+        ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["if", "boolexpr", "then", "stmt"],
+        ["stmt", "else", "stmt"],
+        ["boolexpr", "then"],
+        ["then", "stmt"],
+        ["else", "stmt"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["then", "stmt"], ["else", "stmt"]]
+  ]
+}
+1-BUBBLES
+{
+    "siblings": [
+        ["if", "boolexpr", "then", "stmt", "else", "stmt"],
+        ["if", "boolexpr", "then", "stmt"],
+        ["then", "stmt", "else", "stmt"],
+        ["boolexpr", "then"],
+        ["then", "stmt"],
+        ["else", "stmt"]
+    ]
+}
+2-BUBBLES
+{
+  "siblings": [
+    [["then", "stmt"], ["else", "stmt"]]
+  ]
+}
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-23 01:43:24
+Time spent in oracle calls: 31.783305883407593
+Time spent building grammar: 175.10856866836548s
+Time breakdown: {'FIRST_COALESCE': 29.89213728904724, 'BUILD': 139.84892773628235, 'LAST_COALESCE': 1.3271307945251465, 'EXPAND': 0.025261878967285156, 'MINIMIZE': 0.00014400482177734375, 'OVERALL_EXAMPLE_GEN': 66.00830030441284, 'OVERALL_GROUPING': 17.56203866004944, 'REAPPLY_COUNT': 27}
+Parse calls: 28558, 20165
+LLM calls for bubble finding: 9
+**** Running eval.py ****
+start: stmt
+stmt: stmt " " ";" " " stmt
+    | "skip"
+    | "if" " " boolexpr " " "then" " " stmt " " "else" " " stmt
+    | "while" " " boolexpr " " "do" " " stmt
+    | "L" " " "=" " " numexpr
+    | "L" " " "=" " " "L"
+boolexpr: "true"
+    | boolexpr " " "&" " " boolexpr
+    | "L" " " "=" "=" " " numexpr
+    | "~" boolexpr
+    | "false"
+    | numexpr " " "=" "=" " " numexpr
+    | numexpr " " "=" "=" " " "L"
+    | "L" " " "=" "=" " " "L"
+numexpr: "(" "L" "+" numexpr ")"
+    | "n"
+    | "(" "L" "+" "L" ")"
+    | "(" numexpr "+" "L" ")"
+    | "(" numexpr "+" numexpr ")"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 1.0, Precision: 1.0, F-1: 1.0
+**** Running search.py ****

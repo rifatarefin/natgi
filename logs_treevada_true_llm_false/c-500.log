@@ -1,0 +1,1794 @@
+**** Running search.py ****
+Using approximate pre-tokenization stage
+Average guide length in char: 514.0, max guide length: 593
+Average token length: 420.3, max token length: 483
+Guides with brackets: 10, quotes: 0
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 32.8
+Average lengths of brackets(not normalized): 13.835177468536102
+Average n: 420.3
+Beginning coalescing...                           
+LLM suggested label:   for   and   
+LLM suggested label: expr for ( q + w -( s )- r +4) and ( f = q = o + b < b )
+LLM suggested label: identifier for u and q
+LLM suggested label: addop for + and -
+LLM suggested label: num for 4 and 8
+max example size 483, node size: 65
+Number of bubbles:  141
+LLM suggested label: expr for +( f = m ) and +0
+ Next suggestion: arithmeticexpr
+
+[Group len 3] Bubbling iteration 1 (1/100)...     
+Successful grouping (double): [-, expr], [+, 4]
+     (aka ['-', '( s )'], ['+', '4']))
+coalesced into:  {'t404': 'arithmeticexpr', 't409': 'arithmeticexpr'}
+Number of bubbles:  140
+
+[Group len 3] Bubbling iteration 2 (1/100)...     
+Successful grouping (single): [ , arithmeticexpr]
+    (aka [' ', '-( s )']
+coalesced into:  {'t549': 'arithmeticexpr', 'arithmeticexpr': 'arithmeticexpr'}
+Number of bubbles:  140
+
+[Group len 3] Bubbling iteration 3 (1/100)...     
+Successful grouping (single): [w, arithmeticexpr]
+    (aka ['w', ' -( s )']
+coalesced into:  {'t694': 'num', 'num': 'num'}
+Number of bubbles:  142
+
+[Group len 3] Bubbling iteration 4 (1/100)...     
+Successful grouping (single): [ , num]
+    (aka [' ', 'w -( s )']
+coalesced into:  {'t839': 'num', 'num': 'num'}
+Number of bubbles:  144
+
+[Group len 3] Bubbling iteration 5 (1/100)...     
+Successful grouping (single): [+, num]
+    (aka ['+', ' w -( s )']
+coalesced into:  {'t986': 'arithmeticexpr', 'arithmeticexpr': 'arithmeticexpr'}
+Number of bubbles:  143
+
+[Group len 3] Bubbling iteration 6 (1/100)...     
+Successful grouping (single): [ , arithmeticexpr]
+    (aka [' ', '+ w -( s )']
+coalesced into:  {'t1134': 'arithmeticexpr', 'arithmeticexpr': 'arithmeticexpr'}
+Number of bubbles:  143
+
+[Group len 3] Bubbling iteration 7 (1/100)...     
+Successful grouping (single): [q, arithmeticexpr]
+    (aka ['q', ' + w -( s )']
+coalesced into:  {'t1284': 'num', 'num': 'num'}
+Number of bubbles:  143
+
+[Group len 3] Bubbling iteration 8 (1/100)...     
+Successful grouping (single): [ , num]
+    (aka [' ', 'q + w -( s )']
+coalesced into:  {'t1433': 'num', 'num': 'num'}
+Number of bubbles:  142
+
+[Group len 3] Bubbling iteration 9 (2/100)...     
+Successful grouping (single): [num, arithmeticexpr]
+    (aka [' q + w -( s )', '- r +4']
+coalesced into:  {'t1584': 'num', 'num': 'num'}
+Number of bubbles:  137
+LLM suggested label: stmtlist for ; ; and { ; };
+
+[Group len 3] Bubbling iteration 10 (4/100)...    
+Successful grouping (double): [;,  , ;], [stmt, ;]
+     (aka [';', ' ', ';'], ['{ ; }', ';']))
+coalesced into:  {'t1776': 'stmtlist', 't1774': 'stmtlist'}
+Number of bubbles:  145
+
+[Group len 3] Bubbling iteration 11 (3/100)...    
+Successful grouping (single): [stmtlist,  ]
+    (aka ['{ ; };', ' ']
+coalesced into:  {'t1922': 'stmtlist', 'stmtlist': 'stmtlist'}
+Number of bubbles:  144
+
+[Group len 3] Bubbling iteration 12 (3/100)...    
+Successful grouping (single): [ , stmtlist]
+    (aka [' ', '{ ; }; ']
+coalesced into:  {'t2074': 'stmtlist', 'stmtlist': 'stmtlist'}
+Number of bubbles:  145
+LLM suggested label: expr for < f -( v < y ) and <( a )
+ Next suggestion: relexpr2
+
+[Group len 3] Bubbling iteration 13 (3/100)...    
+Successful grouping (double): [<, num], [<, expr]
+     (aka ['<', ' f -( v < y )'], ['<', '( h )']))
+coalesced into:  {'t2208': 'relexpr2', 't2242': 'relexpr2'}
+Number of bubbles:  142
+
+[Group len 3] Bubbling iteration 14 (1/100)...    
+Successful grouping (single): [+, num]
+    (aka ['+', ' w -( s )']
+coalesced into:  {'t2355': 'arithmeticexpr', 'arithmeticexpr': 'arithmeticexpr'}
+Number of bubbles:  142
+
+[Group len 3] Bubbling iteration 15 (1/100)...    
+Successful grouping (single): [ , arithmeticexpr]
+    (aka [' ', '+ w -( s )']
+coalesced into:  {'t2510': 'arithmeticexpr', 'arithmeticexpr': 'arithmeticexpr'}
+Number of bubbles:  142
+LLM suggested label: expr for  h + z +( o )< f -( v < y ) and ( e )< u -4
+ Next suggestion: arithmeticexpr
+ Next suggestion: arithmeticstmt
+
+[Group len 3] Bubbling iteration 16 (4/100)...    
+Successful grouping (double): [num, relexpr2], [expr, relexpr2]
+     (aka [' h + z +( o )', '< f -( v < y )'], ['( s < l )', '< r - c -4-( n < p )']))
+coalesced into:  {'t2679': 'arithmeticstmt', 't2719': 'arithmeticstmt'}
+Number of bubbles:  142
+
+[Group len 3] Bubbling iteration 17 (2/100)...    
+Successful grouping (single): [ , relexpr2]
+    (aka [' ', '<( q < i )']
+coalesced into:  {'t2882': 'relexpr2', 'relexpr2': 'relexpr2'}
+Number of bubbles:  142
+
+[Group len 3] Bubbling iteration 18 (2/100)...    
+Successful grouping (single): [stmtlist, ;,  ]
+    (aka ['; ; ', ';', ' ']
+coalesced into:  {'t3032': 'stmtlist', 'stmtlist': 'stmtlist'}
+Number of bubbles:  139
+
+[Group len 3] Bubbling iteration 19 (1/100)...    
+Successful grouping (single): [stmtlist, ;]
+    (aka ['; ; ', ';']
+coalesced into:  {'t3191': 'stmtlist', 'stmtlist': 'stmtlist'}
+Number of bubbles:  138
+
+[Group len 3] Bubbling iteration 20 (2/100)...    
+Successful grouping (single): [ , e, relexpr2]
+    (aka [' ', 'e', ' <( q < i )']
+coalesced into:  {'t3359': 'arithmeticstmt', 'arithmeticstmt': 'arithmeticstmt'}
+Number of bubbles:  139
+
+[Group len 3] Bubbling iteration 21 (1/100)...    
+Successful grouping (single): [e, relexpr2]
+    (aka ['e', ' <( q < i )']
+coalesced into:  {'t3518': 'arithmeticstmt', 'arithmeticstmt': 'arithmeticstmt'}
+Number of bubbles:  138
+LLM suggested label: stmt for = h + z +( o )< f -( v < y ) and = a -( i < p )
+ Next suggestion: expr2
+
+[Group len 3] Bubbling iteration 22 (1/100)...    
+Successful grouping (double): [=, arithmeticstmt], [=, num]
+     (aka ['=', ' h + z +( o )< f -( v < y )'], ['=', ' a -( i < p )']))
+coalesced into:  {'t3633': 'expr2', 't3658': 'expr2'}
+Number of bubbles:  137
+
+[Group len 3] Bubbling iteration 23 (2/100)...    
+Successful grouping (single): [ , expr2]
+    (aka [' ', '= h + z +( o )< f -( v < y )']
+coalesced into:  {'t3794': 'expr2', 'expr2': 'expr2'}
+Number of bubbles:  137
+LLM suggested label: stmt for  h = h + z +( o )< f -( v < y ) and ( o < o )-7< k - j +( q < e )
+ Next suggestion: expr2
+ Next suggestion: expr3
+
+[Group len 3] Bubbling iteration 24 (4/100)...    
+Successful grouping (double): [ , h, expr2], [expr, arithmeticexpr, relexpr2]
+     (aka [' ', 'h', ' = h + z +( o )< f -( v < y )'], ['( o < o )', '-7', '< k - j +( q < e )']))
+coalesced into:  {'t3954': 'expr3', 't4005': 'expr3'}
+Number of bubbles:  136
+
+[Group len 3] Bubbling iteration 25 (1/100)...    
+Successful grouping (single): [h, expr2]
+    (aka ['h', ' = h + z +( o )< f -( v < y )']
+coalesced into:  {'t4120': 'expr3', 'expr3': 'expr3'}
+Number of bubbles:  135
+
+[Group len 3] Bubbling iteration 26 (1/100)...    
+Successful grouping (single): [expr, arithmeticexpr]
+    (aka ['( o < o )', '-7']
+coalesced into:  {'t4333': 'num', 'num': 'num'}
+Number of bubbles:  133
+
+[Group len 3] Bubbling iteration 27 (1/100)...    
+Successful grouping (single): [ , m, arithmeticexpr]
+    (aka [' ', 'm', ' + p - q -76+( l = r < z )']
+coalesced into:  {'t4487': 'num', 'num': 'num'}
+Number of bubbles:  134
+
+[Group len 3] Bubbling iteration 28 (1/100)...    
+Successful grouping (single): [q, arithmeticexpr]
+    (aka ['q', ' + w -( s )']
+coalesced into:  {'t4597': 'num', 'num': 'num'}
+Number of bubbles:  133
+
+[Group len 3] Bubbling iteration 29 (1/100)...    
+Successful grouping (single): [ , +, arithmeticstmt]
+    (aka [' ', '+', ' m < l - i -8-( s )']
+coalesced into:  {'t4827': 'relexpr2', 'relexpr2': 'relexpr2'}
+Number of bubbles:  134
+
+[Group len 3] Bubbling iteration 30 (1/100)...    
+Successful grouping (single): [+, arithmeticstmt]
+    (aka ['+', ' m < l - i -8-( s )']
+coalesced into:  {'t4991': 'relexpr2', 'relexpr2': 'relexpr2'}
+Number of bubbles:  133
+LLM suggested label: stmt for ( v < v )< and  s +( q )+( f = m )<
+ Next suggestion: exprstmt
+
+[Group len 3] Bubbling iteration 31 (3/100)...    
+Successful grouping (double): [expr, <], [num, <]
+     (aka ['( v < v )', '<'], [' s +( q )+( f = m )', '<']))
+coalesced into:  {'t5119': 'exprstmt', 't5150': 'exprstmt'}
+Number of bubbles:  131
+
+[Group len 3] Bubbling iteration 32 (1/100)...    
+Successful grouping (single): [exprstmt,  ]
+    (aka ['( v < v )<', ' ']
+coalesced into:  {'t5283': 'exprstmt', 'exprstmt': 'exprstmt'}
+Number of bubbles:  131
+
+[Group len 3] Bubbling iteration 33 (3/100)...    
+Successful grouping (single): [exprstmt, num]
+    (aka [' s +( q )+( f = m )<', ' j - i - z -( e < x )-( t )']
+coalesced into:  {'t5479': 'expr3', 'expr3': 'expr3'}
+Number of bubbles:  130
+
+[Group len 3] Bubbling iteration 34 (3/100)...    
+Successful grouping (single): [stmt, stmtlist]
+    (aka ['{ ; }', '; ; ']
+coalesced into:  {'t5654': 'stmtlist', 'stmtlist': 'stmtlist'}
+Number of bubbles:  129
+
+[Group len 3] Bubbling iteration 35 (1/100)...    
+Successful grouping (single): [ , stmtlist]
+    (aka [' ', '{ ; }; ']
+coalesced into:  {'t5786': 'stmtlist', 'stmtlist': 'stmtlist'}
+Number of bubbles:  128
+
+[Group len 3] Bubbling iteration 36 (36/100)...   
+Successful grouping (single): [;,  ]
+    (aka [';', ' ']
+coalesced into:  {'t5867': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  117
+
+[Group len 3] Bubbling iteration 37 (3/100)...    
+Successful grouping (single): [;, stmtlist]
+    (aka [';', ' { ; }; ']
+coalesced into:  {'t6102': 'stmtlist', 'stmtlist': 'stmtlist'}
+Number of bubbles:  115
+
+[Group len 3] Bubbling iteration 38 (92/100)...   
+Successful grouping (single): [q,  , <]
+    (aka ['q', ' ', '<']
+coalesced into:  {'t6164': 'exprstmt', 'exprstmt': 'exprstmt'}
+Number of bubbles:  120
+LLM suggested label: relop for  < and <
+
+[Group len 3] Bubbling iteration 39 (1/100)...    
+Successful grouping (single): [ , <]
+    (aka [' ', '<']
+coalesced into:  {'t6375': 'relop', '<': 'relop'}
+Number of bubbles:  119
+
+[Group len 3] Bubbling iteration 40 (18/100)...   
+Successful grouping (single): [exprstmt,  , u]
+    (aka ['q <', ' ', 'u']
+coalesced into:  {'t6471': 'arithmeticstmt', 'arithmeticstmt': 'arithmeticstmt'}
+Number of bubbles:  121
+LLM suggested label: boolexpr for a < e  and a - i <( q < q )
+
+[Group len 3] Bubbling iteration 41 (13/100)...   
+Successful grouping (double): [arithmeticstmt,  ], [e, relexpr2]
+     (aka ['q < u', ' '], ['e', ' <( q < i )']))
+coalesced into:  {'t6626': 'boolexpr', 't6738': 'boolexpr'}
+Number of bubbles:  123
+
+[Group len 3] Bubbling iteration 42 (14/100)...   
+Successful grouping (single): [q,  ]
+    (aka ['q', ' ']
+coalesced into:  {'t6818': 'identifier', 'identifier': 'identifier'}
+Number of bubbles:  121
+LLM suggested label: expr for = a < f  and + b < b 
+ Next suggestion: relexpr
+
+[Group len 3] Bubbling iteration 43 (71/100)...   
+Successful grouping (double): [=,  , boolexpr], [+,  , boolexpr]
+     (aka ['=', ' ', 'o < a '], ['+', ' ', 'b < b ']))
+coalesced into:  {'t6986': 'relexpr', 't7003': 'relexpr'}
+Number of bubbles:  129
+LLM suggested label: boolexpr for d - f < l - and a < e +
+ Next suggestion: expr2
+ Next suggestion: expr3
+ Next suggestion: expr4
+
+[Group len 3] Bubbling iteration 44 (3/100)...    
+Successful grouping (double): [identifier, relexpr, -], [boolexpr, -]
+     (aka ['r ', '- i < c ', '-'], ['g < e ', '-']))
+coalesced into:  {'t7220': 'expr4', 't7235': 'expr4'}
+Number of bubbles:  131
+
+[Group len 3] Bubbling iteration 45 (9/100)...    
+Successful grouping (single): [-,  , expr4]
+    (aka ['-', ' ', 'i - h < d -']
+coalesced into:  {'t7429': 'relop', 'relop': 'relop'}
+Number of bubbles:  135
+LLM suggested label: boolexpr for a <  and c - i - h < d -
+ Next suggestion: exprcomp
+
+[Group len 3] Bubbling iteration 46 (3/100)...    
+Successful grouping (double): [exprstmt,  ], [b, relop]
+     (aka ['b <', ' '], ['b', ' <']))
+coalesced into:  {'t7521': 'exprcomp', 't7523': 'exprcomp'}
+Number of bubbles:  135
+
+[Group len 3] Bubbling iteration 47 (5/100)...    
+Successful grouping (single): [expr4,  , identifier]
+    (aka ['r - i < c -', ' ', 'l ']
+coalesced into:  {'t7755': 'expr3', 'expr3': 'expr3'}
+Number of bubbles:  134
+
+[Group len 3] Bubbling iteration 48 (2/100)...    
+Successful grouping (single): [ , expr4]
+    (aka [' ', 'i - h < d -']
+coalesced into:  {'t7973': 'exprcomp', 'exprcomp': 'exprcomp', 'exprstmt': 'exprcomp'}
+Number of bubbles:  132
+LLM suggested label: boolexpr for ( v < v )< k  and  a < e + b 
+ Next suggestion: relexpr
+ Next suggestion: relexpr2
+ Next suggestion: relexpr3
+
+[Group len 3] Bubbling iteration 49 (6/100)...    
+Successful grouping (double): [exprcomp, b], [ , expr3]
+     (aka ['b < ', 'b'], [' ', 'h = h + z +( o )< f -( v < y )']))
+coalesced into:  {'t8065': 'relexpr3', 't8074': 'relexpr3'}
+Number of bubbles:  133
+
+[Group len 3] Bubbling iteration 50 (4/100)...    
+Successful grouping (single): [=, relexpr3]
+    (aka ['=', ' u = z < y + c ']
+coalesced into:  {'t8321': 'relexpr', 'relexpr': 'relexpr'}
+Number of bubbles:  131
+
+[Group len 3] Bubbling iteration 51 (5/100)...    
+Successful grouping (single): [relexpr3, -,  ]
+    (aka ['( v < v )< k ', '-', ' ']
+coalesced into:  {'t8452': 'exprcomp', 'exprcomp': 'exprcomp'}
+Number of bubbles:  132
+
+[Group len 3] Bubbling iteration 52 (3/100)...    
+Successful grouping (single): [relexpr3, -]
+    (aka ['( v < v )< k ', '-']
+coalesced into:  {'t8636': 'exprcomp', 'exprcomp': 'exprcomp'}
+Number of bubbles:  131
+
+[Group len 3] Bubbling iteration 53 (8/100)...    
+Successful grouping (single): [ , exprcomp,  ]
+    (aka [' ', 'c - i - h < d -', ' ']
+coalesced into:  {'t8875': 'expr4', 'expr4': 'expr4'}
+Number of bubbles:  132
+
+[Group len 3] Bubbling iteration 54 (2/100)...    
+Successful grouping (single): [expr4,  ]
+    (aka ['r - i < c -', ' ']
+coalesced into:  {'t9020': 'expr4', 'expr4': 'expr4'}
+Number of bubbles:  131
+
+[Group len 3] Bubbling iteration 55 (2/100)...    
+Successful grouping (single): [exprcomp,  ]
+    (aka ['b <', ' ']
+coalesced into:  {'t9154': 'expr4', 'expr4': 'expr4'}
+Number of bubbles:  129
+LLM suggested label: boolexpr for ( v < v )< k - a  and  c - i - h < d - k 
+ Next suggestion: boolexpr2
+
+[Group len 3] Bubbling iteration 56 (3/100)...    
+Successful grouping (double): [exprcomp, b], [expr4, identifier]
+     (aka ['b < ', 'b'], ['r - i < c - ', 'l ']))
+coalesced into:  {'t9335': 'boolexpr2', 't9385': 'boolexpr2'}
+Number of bubbles:  128
+
+[Group len 3] Bubbling iteration 57 (4/100)...    
+Successful grouping (single): [boolexpr2, +,  ]
+    (aka ['( v < v )< k - a ', '+', ' ']
+coalesced into:  {'t9542': 'expr4', 'expr4': 'expr4'}
+Number of bubbles:  129
+
+[Group len 3] Bubbling iteration 58 (2/100)...    
+Successful grouping (single): [boolexpr2, +]
+    (aka ['( v < v )< k - a ', '+']
+coalesced into:  {'t9724': 'expr4', 'expr4': 'expr4'}
+Number of bubbles:  128
+
+[Group len 3] Bubbling iteration 59 (3/100)...    
+Successful grouping (single): [expr4, identifier]
+    (aka ['( v < v )< k - a + ', 'n ']
+coalesced into:  {'t9904': 'expr3', 'expr3': 'expr3', 'boolexpr2': 'expr3', 'relexpr3': 'expr3'}
+Number of bubbles:  126
+
+[Group len 3] Bubbling iteration 60 (4/100)...    
+Successful grouping (single): [=, expr3]
+    (aka ['=', ' u = z < y + c ']
+coalesced into:  {'t10133': 'expr2', 'expr2': 'expr2'}
+Number of bubbles:  126
+
+[Group len 3] Bubbling iteration 61 (4/100)...    
+Successful grouping (single): [h, expr2]
+    (aka ['h', ' = h + z +( o )< f -( v < y )']
+coalesced into:  {'t10246': 'expr3', 'expr3': 'expr3'}
+Number of bubbles:  125
+
+[Group len 3] Bubbling iteration 62 (3/100)...    
+Successful grouping (single): [ , expr3]
+    (aka [' ', 'h = h + z +( o )< f -( v < y )']
+coalesced into:  {'t10421': 'expr3', 'expr3': 'expr3'}
+Number of bubbles:  124
+
+[Group len 3] Bubbling iteration 63 (5/100)...    
+Successful grouping (single): [expr3, -,  ]
+    (aka ['5-9< m + k + b ', '-', ' ']
+coalesced into:  {'t10662': 'expr4', 'expr4': 'expr4'}
+Number of bubbles:  124
+
+[Group len 3] Bubbling iteration 64 (2/100)...    
+Successful grouping (single): [expr3, +]
+    (aka ['( v < v )< k - a ', '+']
+coalesced into:  {'t10789': 'expr4', 'expr4': 'expr4'}
+Number of bubbles:  123
+
+[Group len 3] Bubbling iteration 65 (3/100)...    
+Successful grouping (single): [expr4, identifier]
+    (aka ['( v < v )< k - a + ', 'n ']
+coalesced into:  {'t10962': 'expr3', 'expr3': 'expr3'}
+Number of bubbles:  122
+
+[Group len 3] Bubbling iteration 66 (49/100)...   
+Successful grouping (single): [ , identifier, relexpr]
+    (aka [' ', 'j ', '= o < a ']
+coalesced into:  {'t11088': 'expr3', 'expr3': 'expr3'}
+Number of bubbles:  126
+LLM suggested label: stmt for   u < l ; and  ; 
+ Next suggestion: stmt2
+
+[Group len 3] Bubbling iteration 67 (53/100)...   
+Successful grouping (double): [ , boolexpr, ;], [ , stmt]
+     (aka [' ', 'q < u ', ';'], [' ', '; ']))
+coalesced into:  {'t11222': 'stmt2', 't11243': 'stmt2'}
+Number of bubbles:  132
+
+[Group len 3] Bubbling iteration 68 (5/100)...    
+Successful grouping (single): [boolexpr, ;]
+    (aka ['q < u ', ';']
+coalesced into:  {'t11476': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  131
+
+[Group len 3] Bubbling iteration 69 (2/100)...    
+Successful grouping (single): [ , boolexpr]
+    (aka [' ', 'b < b ']
+coalesced into:  {'t11652': 'arithmeticstmt', 'arithmeticstmt': 'arithmeticstmt', 'boolexpr': 'arithmeticstmt'}
+Number of bubbles:  129
+LLM suggested label: stmt for ( u = n = t < u ){ if ( y ); } u < l ; and ( g ); { ; }; 
+ Next suggestion: blockstmt
+
+[Group len 3] Bubbling iteration 70 (3/100)...    
+Successful grouping (double): [expr, stmt, stmt2], [expr, stmtlist]
+     (aka ['( u = n = t < u )', '{ if ( y ); }', ' u < l ;'], ['( g )', '; { ; }; ']))
+coalesced into:  {'t11916': 'blockstmt', 't11885': 'blockstmt'}
+Number of bubbles:  129
+LLM suggested label: stmt for while ( g ); { ; };  and k ;; 
+ Next suggestion: stmt2
+ Next suggestion: stmt3
+
+[Group len 3] Bubbling iteration 71 (2/100)...    
+Successful grouping (double): [while,  , blockstmt], [identifier, ;, stmt]
+     (aka ['while', ' ', '( g ); { ; }; '], ['k ', ';', '; ']))
+coalesced into:  {'t12067': 'stmt3', 't12108': 'stmt3'}
+Number of bubbles:  133
+
+[Group len 3] Bubbling iteration 72 (4/100)...    
+Successful grouping (single): [stmt, stmt2]
+    (aka ['{ if ( y ); }', ' u < l ;']
+coalesced into:  {'t12293': 'stmtlist', 'stmtlist': 'stmtlist'}
+Number of bubbles:  132
+
+[Group len 3] Bubbling iteration 73 (4/100)...    
+Successful grouping (single): [stmt, stmt3]
+    (aka ['; ', 'while ( m < t ); ; ; ']
+coalesced into:  {'t12465': 'stmtlist', 'stmtlist': 'stmtlist'}
+Number of bubbles:  132
+
+[Group len 3] Bubbling iteration 74 (6/100)...    
+Successful grouping (single): [ , stmt3]
+    (aka [' ', 'while ( s < p ); ; ; ']
+coalesced into:  {'t12645': 'stmtlist', 'stmtlist': 'stmtlist'}
+Number of bubbles:  131
+LLM suggested label: stmt for ( b = y < h ) a < p ; and ( a ){ ; }
+ Next suggestion: exprstmt
+
+[Group len 3] Bubbling iteration 75 (49/100)...   
+Successful grouping (double): [expr, stmt2], [expr, stmt]
+     (aka ['( g )', ' q < u ;'], ['( e )', '; ']))
+coalesced into:  {'t12707': 'exprstmt', 't12716': 'exprstmt'}
+Number of bubbles:  130
+LLM suggested label: stmt for do  d = j < i ; and do  u < l ;
+ Next suggestion: loopstmt
+
+[Group len 3] Bubbling iteration 76 (67/100)...   
+Successful grouping (double): [do, expr3, ;], [do, stmt2]
+     (aka ['do', '  d = j < i ', ';'], ['do', ' ; ']))
+coalesced into:  {'t13042': 'loopstmt', 't12910': 'loopstmt'}
+Number of bubbles:  134
+
+[Group len 3] Bubbling iteration 77 (41/100)...   
+Successful grouping (single): [identifier, =, expr3]
+    (aka ['q ', '=', ' j = o < a ']
+coalesced into:  {'t13121': 'expr3', 'expr3': 'expr3'}
+Number of bubbles:  136
+
+[Group len 3] Bubbling iteration 78 (12/100)...   
+Successful grouping (single): [=, expr3]
+    (aka ['=', ' o + b < b ']
+coalesced into:  {'t13342': 'expr2', 'expr2': 'expr2'}
+Number of bubbles:  135
+
+[Group len 3] Bubbling iteration 79 (32/100)...   
+Successful grouping (single): [ , expr3]
+    (aka [' ', 'q = j = o < a ']
+coalesced into:  {'t13511': 'expr3', 'expr3': 'expr3'}
+Number of bubbles:  137
+
+[Group len 3] Bubbling iteration 80 (63/100)...   
+Successful grouping (single): [while,  , exprstmt]
+    (aka ['while', ' ', '( d ); ']
+coalesced into:  {'t13711': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  150
+
+[Group len 3] Bubbling iteration 81 (20/100)...   
+Successful grouping (single): [ , stmt]
+    (aka [' ', 'q < u ;']
+coalesced into:  {'t13956': 'stmt2', 'stmt2': 'stmt2'}
+Number of bubbles:  149
+
+[Group len 3] Bubbling iteration 82 (24/100)...   
+Successful grouping (single): [expr, stmt]
+    (aka ['( b = o = v )', 'while ( d ); ']
+coalesced into:  {'t14122': 'exprstmt', 'exprstmt': 'exprstmt'}
+Number of bubbles:  141
+
+[Group len 3] Bubbling iteration 83 (81/100)...   
+Successful grouping (single): [expr, expr3, ;]
+    (aka ['( p = c = z < q )', ' q = j = o < a ', ';']
+coalesced into:  {'t14327': 'exprstmt', 'exprstmt': 'exprstmt'}
+Number of bubbles:  138
+LLM suggested label: stmt for ( m )while ( g ); { ; };  and ( i ); while ( m < t ); ; ; 
+ Next suggestion: stmt2
+ Next suggestion: stmt3
+ Next suggestion: stmt4
+
+[Group len 3] Bubbling iteration 84 (82/100)...   
+Successful grouping (double): [expr, stmt3], [expr, stmtlist]
+     (aka ['( m )', 'while ( g ); { ; }; '], ['( g )', '; { ; }; ']))
+coalesced into:  {'t14618': 'stmt4', 't14623': 'stmt4'}
+Number of bubbles:  137
+Number of bubbles:  251
+
+[Group len 4] Bubbling iteration 86 (7/100)...    
+Successful grouping (single): [ , while,  , stmt4]
+    (aka [' ', 'while', ' ', '( m )while ( g ); { ; }; ']
+coalesced into:  {'t15089': 'stmtlist', 'stmtlist': 'stmtlist'}
+Number of bubbles:  250
+
+[Group len 4] Bubbling iteration 87 (4/100)...    
+Successful grouping (single): [while,  , stmt4]
+    (aka ['while', ' ', '( m )while ( g ); { ; }; ']
+coalesced into:  {'t15408': 'stmt3', 'stmt3': 'stmt3'}
+Number of bubbles:  249
+LLM suggested label: stmt for  ( i ); while ( m < t ); ; ;  and  ( g ); { ; }; 
+ Next suggestion: stmt2
+ Next suggestion: stmt3
+ Next suggestion: stmt4
+ Next suggestion: stmt5
+
+[Group len 4] Bubbling iteration 88 (4/100)...    
+Successful grouping (double): [ , stmt4], [ , blockstmt]
+     (aka [' ', '( m )while ( g ); { ; }; '], [' ', '( g ); { ; }; ']))
+coalesced into:  {'t15726': 'stmt5', 't15730': 'stmt5'}
+Number of bubbles:  248
+LLM suggested label: expr for + e + and = k -
+ Next suggestion: arithmeticexpr
+ Next suggestion: arithmeticexpr2
+
+[Group len 4] Bubbling iteration 89 (18/100)...   
+Successful grouping (double): [-,  , identifier, -], [=,  , identifier, -]
+     (aka ['-', ' ', 'z ', '-'], ['=', ' ', 'q ', '-']))
+coalesced into:  {'t16073': 'arithmeticexpr2', 't16080': 'arithmeticexpr2'}
+Number of bubbles:  255
+
+[Group len 4] Bubbling iteration 90 (20/100)...   
+Successful grouping (single): [ , identifier, arithmeticexpr2,  ]
+    (aka [' ', 'l ', '- z -', ' ']
+coalesced into:  {'t16383': 'expr4', 'expr4': 'expr4'}
+Number of bubbles:  257
+
+[Group len 4] Bubbling iteration 91 (6/100)...    
+Successful grouping (single): [arithmeticexpr2,  ]
+    (aka ['- z -', ' ']
+coalesced into:  {'t16712': 'arithmeticexpr2', 'arithmeticexpr2': 'arithmeticexpr2'}
+Number of bubbles:  254
+
+[Group len 4] Bubbling iteration 92 (6/100)...    
+Successful grouping (single): [identifier, arithmeticexpr2]
+    (aka ['l ', '- z - ']
+coalesced into:  {'t17035': 'expr4', 'expr4': 'expr4'}
+Number of bubbles:  253
+
+[Group len 4] Bubbling iteration 93 (3/100)...    
+Successful grouping (single): [relexpr, -]
+    (aka ['- i < c ', '-']
+coalesced into:  {'t17346': 'arithmeticexpr2', 'arithmeticexpr2': 'arithmeticexpr2'}
+Number of bubbles:  252
+
+[Group len 4] Bubbling iteration 94 (10/100)...   
+Successful grouping (single): [expr4, identifier]
+    (aka ['( v < v )< k - a + ', 'n ']
+coalesced into:  {'t17618': 'expr3', 'expr3': 'expr3'}
+Number of bubbles:  246
+
+[Group len 4] Bubbling iteration 95 (35/100)...   
+Successful grouping (single): [ , exprstmt]
+    (aka [' ', '( g ) q < u ;']
+coalesced into:  {'t17803': 'exprstmt', 'exprstmt': 'exprstmt'}
+Number of bubbles:  255
+LLM suggested label: assignexpr for = d = and =
+
+[Group len 4] Bubbling iteration 96 (79/100)...   
+Successful grouping (single): [=,  , identifier, =]
+    (aka ['=', ' ', 'o ', '=']
+coalesced into:  {'t18226': 'assignexpr', '=': 'assignexpr'}
+Reapply: 1
+
+[Group len 4] Bubbling iteration 96 (79/100)...   
+Successful grouping (single): [=,  , identifier, =]
+    (aka ['=', ' ', 'o ', '=']
+coalesced into:  {'t18408': 'assignexpr', 'assignexpr': 'assignexpr'}
+Number of bubbles:  254
+LLM suggested label: assignstmt for a = n = f  and b = e = f = h = u = b < n 
+
+[Group len 4] Bubbling iteration 97 (80/100)...   
+Successful grouping (double): [identifier, =,  , identifier], [identifier, =, expr3]
+     (aka ['e ', '=', ' ', 's '], ['f ', '=', ' q = o + b < b ']))
+coalesced into:  {'t18537': 'assignstmt', 't18515': 'assignstmt'}
+Number of bubbles:  258
+
+[Group len 4] Bubbling iteration 98 (4/100)...    
+Successful grouping (single): [identifier, relexpr]
+    (aka ['o ', '+ b < b ']
+coalesced into:  {'t18852': 'assignstmt', 'assignstmt': 'assignstmt'}
+Number of bubbles:  257
+
+[Group len 4] Bubbling iteration 99 (19/100)...   
+Successful grouping (single): [identifier, =,  ]
+    (aka ['e ', '=', ' ']
+coalesced into:  {'t19197': 'expr4', 'expr4': 'expr4'}
+Number of bubbles:  256
+
+[Group len 4] Bubbling iteration 100 (6/100)...   
+Successful grouping (single): [=,  ]
+    (aka ['=', ' ']
+coalesced into:  {'t19533': 'assignexpr', 'assignexpr': 'assignexpr'}
+Number of bubbles:  254
+
+[Group len 4] Bubbling iteration 101 (18/100)...  
+Successful grouping (single): [=, expr3]
+    (aka ['=', ' q = o + b < b ']
+coalesced into:  {'t19845': 'expr2', 'expr2': 'expr2'}
+Number of bubbles:  253
+
+[Group len 4] Bubbling iteration 102 (21/100)...  
+Successful grouping (single): [expr3, ;]
+    (aka [' q = j = o < a ', ';']
+coalesced into:  {'t20207': 'stmt2', 'stmt2': 'stmt2'}
+Number of bubbles:  250
+
+[Group len 4] Bubbling iteration 103 (19/100)...  
+Successful grouping (single): [ , assignstmt]
+    (aka [' ', 'f = q = o + b < b ']
+coalesced into:  {'t20499': 'expr3', 'expr3': 'expr3'}
+Number of bubbles:  258
+
+[Group len 4] Bubbling iteration 104 (23/100)...  
+Successful grouping (single): [ , identifier]
+    (aka [' ', 's ']
+coalesced into:  {'t20821': 'arithmeticstmt', 'arithmeticstmt': 'arithmeticstmt'}
+Number of bubbles:  258
+
+[Group len 4] Bubbling iteration 105 (1/100)...   
+Successful grouping (single): [identifier, ;]
+    (aka ['k ', ';']
+coalesced into:  {'t21368': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  256
+
+[Group len 4] Bubbling iteration 106 (1/100)...   
+Successful grouping (single): [identifier, -]
+    (aka ['q ', '-']
+coalesced into:  {'t21637': 'expr4', 'expr4': 'expr4'}
+Number of bubbles:  255
+Number of bubbles:  422
+LLM suggested label: stmt for  while ( l ); while ( q < j )do ;  and  do  e ;
+ Next suggestion: loopstmt
+ Next suggestion: loopstmt2
+
+[Group len 5] Bubbling iteration 108 (3/100)...   
+Successful grouping (double): [stmt2, while,  , expr, loopstmt], [ , do, arithmeticstmt, ;]
+     (aka [' while ( l ); ', 'while', ' ', '( q < j )', 'do ; '], [' ', 'do', '  e ', ';']))
+coalesced into:  {'t22401': 'loopstmt2', 't22531': 'loopstmt2'}
+Number of bubbles:  424
+
+[Group len 5] Bubbling iteration 109 (4/100)...   
+Successful grouping (single): [loopstmt2, while,  , expr, ;]
+    (aka [' while ( l ); while ( q < j )do ; ', 'while', ' ', '( k < n )', ';']
+coalesced into:  {'t22903': 'stmtlist', 'stmtlist': 'stmtlist'}
+Number of bubbles:  423
+
+[Group len 5] Bubbling iteration 110 (6/100)...   
+Successful grouping (single): [stmt2, if,  , expr, loopstmt]
+    (aka [' { do ; while ( o );}', 'if', ' ', '( w = p )', 'do { ; }']
+coalesced into:  {'t23243': 'loopstmt2', 'loopstmt2': 'loopstmt2'}
+Number of bubbles:  428
+
+[Group len 5] Bubbling iteration 111 (7/100)...   
+Successful grouping (single): [loopstmt2, while,  , expr, ;]
+    (aka [' { do ; while ( o );}if ( w = p )do { ; }', 'while', ' ', '( h )', ';']
+coalesced into:  {'t23746': 'stmtlist', 'stmtlist': 'stmtlist'}
+Number of bubbles:  420
+
+[Group len 5] Bubbling iteration 112 (7/100)...   
+Successful grouping (single): [stmt2, if, exprstmt, else, stmt2]
+    (aka [' ; ', 'if', ' ( o < j ); ', 'else', ' ; ']
+coalesced into:  {'t24273': 'stmtlist', 'stmtlist': 'stmtlist'}
+Number of bubbles:  413
+
+[Group len 5] Bubbling iteration 113 (12/100)...  
+Successful grouping (single): [ , if, exprstmt, else, stmtlist]
+    (aka [' ', 'if', ' ( j < q ); ', 'else', ' ; if ( o < j ); else ; ']
+coalesced into:  {'t24762': 'stmtlist', 'stmtlist': 'stmtlist'}
+Number of bubbles:  415
+
+[Group len 5] Bubbling iteration 114 (7/100)...   
+Successful grouping (single): [if, exprstmt, else, stmtlist]
+    (aka ['if', ' ( j < q ); ', 'else', ' ; if ( o < j ); else ; ']
+coalesced into:  {'t25263': 'stmt3', 'stmt3': 'stmt3'}
+Number of bubbles:  414
+LLM suggested label: stmt for if ( c = f = i = s )while  and if 
+ Next suggestion: ifstmt
+
+[Group len 5] Bubbling iteration 115 (50/100)...  
+Successful grouping (double): [if,  , expr, while,  ], [if,  ]
+     (aka ['if', ' ', '( q + w -( s )- r +4)', 'while', ' '], ['if', ' ']))
+coalesced into:  {'t25535': 'ifstmt', 't25532': 'ifstmt'}
+Number of bubbles:  448
+LLM suggested label: stmt for while  and while
+ Next suggestion: loopstmt
+ Next suggestion: loopstmt1
+
+[Group len 5] Bubbling iteration 116 (42/100)...  
+Successful grouping (single): [while,  ]
+    (aka ['while', ' ']
+coalesced into:  {'t26106': 'loopstmt1', 'while': 'loopstmt1'}
+Number of bubbles:  445
+LLM suggested label: stmt for else while ( b = e = f = h = u = b < n ) and else 
+ Next suggestion: conditionalstmt
+
+[Group len 5] Bubbling iteration 117 (78/100)...  
+Successful grouping (double): [else,  , loopstmt1, expr], [else,  ]
+     (aka ['else', ' ', 'while ', '( d < s )'], ['else', ' ']))
+coalesced into:  {'t26899': 'conditionalstmt', 't26606': 'conditionalstmt'}
+Number of bubbles:  505
+LLM suggested label: stmt for if ( a )if ( g ) q < u ;else  and if ( a )
+ Next suggestion: ifstmt
+ Next suggestion: ifstmt2
+
+[Group len 5] Bubbling iteration 118 (43/100)...  
+Successful grouping (double): [ifstmt, expr, if, exprstmt, conditionalstmt], [ifstmt, expr]
+     (aka ['if ', '( a )', 'if', ' ( g ) q < u ;', 'else '], ['if ( q + w -( s )- r +4)while ', '( f = q = o + b < b )']))
+coalesced into:  {'t27119': 'ifstmt2', 't27088': 'ifstmt2'}
+Number of bubbles:  550
+LLM suggested label: stmt for if ( b )if ( m ); else { while ( m )while ( g ); { ; }; } and if ( a ){ ; }
+ Next suggestion: ifstmt
+ Next suggestion: ifstmt2
+ Next suggestion: ifstmt3
+
+[Group len 5] Bubbling iteration 119 (58/100)...  
+Successful grouping (double): [ifstmt2, if, exprstmt, else, stmt2], [if, exprstmt]
+     (aka ['if (( v < v )< k - a + n )', 'if', ' ( b = o = v )while ( d ); ', 'else', ' ; '], ['if', ' ( e ); ']))
+coalesced into:  {'t27783': 'ifstmt3', 't27704': 'ifstmt3'}
+Number of bubbles:  563
+
+[Group len 5] Bubbling iteration 120 (57/100)...  
+Successful grouping (single): [ifstmt3, else, stmt2]
+    (aka ['if ( n ); ', 'else', ' ; ']
+coalesced into:  {'t28510': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  588
+LLM suggested label: stmt for  if ( q < z ); else ;  and   a = n = f ;
+ Next suggestion: assignstmt
+ Next suggestion: condstmt
+
+[Group len 5] Bubbling iteration 121 (45/100)...  
+Successful grouping (double): [ , stmt], [expr3, ;]
+     (aka [' ', 'q < u ;'], [' q = j = o < a ', ';']))
+coalesced into:  {'t29103': 'condstmt', 't29112': 'condstmt'}
+Number of bubbles:  587
+LLM suggested label: stmt for ( l )if ( m < n ); else ;  and ( z = y = d < l )if ( a ){ ; }
+ Next suggestion: ifstmt
+ Next suggestion: ifstmt2
+ Next suggestion: ifstmt3
+ Next suggestion: ifstmt4
+
+[Group len 5] Bubbling iteration 122 (51/100)...  
+Successful grouping (double): [expr, stmt], [expr, ifstmt3]
+     (aka ['( e )', '; '], ['( z = y = d < l )', 'if ( a ){ ; }']))
+coalesced into:  {'t29781': 'ifstmt4', 't30149': 'ifstmt4'}
+Number of bubbles:  580
+
+[Group len 5] Bubbling iteration 123 (49/100)...  
+Successful grouping (single): [do, stmt2]
+    (aka ['do', ' ; ']
+coalesced into:  {'t30457': 'loopstmt', 'loopstmt': 'loopstmt'}
+Number of bubbles:  570
+LLM suggested label: stmt for if ( l )if ( n < j )if ( t = g ); else if ( k = i ) a < w ;else  and if ( a + n -( c < b )-( r ))if ( o = w = w < v )while ( u = r )
+ Next suggestion: nestedstmt
+
+[Group len 5] Bubbling iteration 124 (50/100)...  
+Successful grouping (double): [ifstmt2, ifstmt2, ifstmt3, conditionalstmt], [ifstmt2, ifstmt2]
+     (aka ['if ( m = i = j < x )', 'if ( k = b < k )', 'if ( m = r < g )while ( v )if ( y < e ); else ; ', 'else '], ['if ( q + w -( s )- r +4)while ( f = q = o + b < b )', 'if ( s - w +( j ))']))
+coalesced into:  {'t31420': 'nestedstmt', 't30977': 'nestedstmt'}
+Number of bubbles:  609
+
+[Group len 5] Bubbling iteration 125 (45/100)...  
+Successful grouping (single): [loopstmt, loopstmt1, expr, ;]
+    (aka ['do ; ', 'while ', '( r )', ';']
+coalesced into:  {'t31680': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  601
+
+[Group len 5] Bubbling iteration 126 (4/100)...   
+Successful grouping (single): [ifstmt2, loopstmt]
+    (aka ['if ( w = p )', 'do { ; }']
+coalesced into:  {'t32523': 'loopstmt', 'loopstmt': 'loopstmt'}
+Number of bubbles:  599
+
+[Group len 5] Bubbling iteration 127 (4/100)...   
+Successful grouping (single): [loopstmt1, expr, loopstmt]
+    (aka ['while ', '( q < j )', 'do ; ']
+coalesced into:  {'t33409': 'loopstmt', 'loopstmt': 'loopstmt'}
+Number of bubbles:  598
+
+[Group len 5] Bubbling iteration 128 (34/100)...  
+Successful grouping (single): [ , stmt]
+    (aka [' ', 'do ; while ( r );']
+coalesced into:  {'t33756': 'condstmt', 'condstmt': 'condstmt', 'stmt2': 'condstmt'}
+Number of bubbles:  567
+
+[Group len 5] Bubbling iteration 129 (47/100)...  
+Successful grouping (single): [do, condstmt]
+    (aka ['do', ' do ; while ( r );']
+coalesced into:  {'t34443': 'loopstmt', 'loopstmt': 'loopstmt'}
+Number of bubbles:  580
+
+[Group len 5] Bubbling iteration 130 (52/100)...  
+Successful grouping (single): [loopstmt, loopstmt1, expr, ;]
+    (aka ['do do ; while ( r );', 'while ', '( k < g )', ';']
+coalesced into:  {'t35104': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  560
+
+[Group len 5] Bubbling iteration 131 (60/100)...  
+Successful grouping (single): [+, arithmeticstmt]
+    (aka ['+', ' b < b ']
+coalesced into:  {'t35848': 'expr2', 'expr2': 'expr2', 'relexpr': 'expr2'}
+Number of bubbles:  556
+LLM suggested label: stmt for  do  o = r ;while ( d = m ); and   e ;
+ Next suggestion: stmt2
+
+[Group len 5] Bubbling iteration 132 (34/100)...  
+Successful grouping (double): [ , stmt], [arithmeticstmt, ;]
+     (aka [' ', 'q < u ;'], ['q < u ', ';']))
+coalesced into:  {'t36515': 'stmt2', 't36516': 'stmt2'}
+Number of bubbles:  554
+LLM suggested label: stmt for if ( g = c - i - h < d - k )while ( y + z -1)if ( z = z ){ do  e ;while ( y );}else do do { ; ; }while ( a = u < u );while ( v = v < y );else if ( q = v = h = l = i < a ){ if ( e = m )while ( b ); } and if ( a )do ; while ( i = k < x );
+ Next suggestion: complexstmt
+
+[Group len 5] Bubbling iteration 133 (39/100)...  
+Successful grouping (double): [ifstmt2, stmt, conditionalstmt, ifstmt3], [ifstmt2, stmt]
+     (aka ['if ( m = m )', 'do do ; while ( f );while ( k < p );', 'else ', 'if ( c = o = e = g ); '], ['if ( m = m )', 'do do ; while ( f );while ( k < p );']))
+coalesced into:  {'t37103': 'complexstmt', 't37101': 'complexstmt'}
+Number of bubbles:  565
+LLM suggested label: stmt for if ( m = m )do do ; while ( f );while ( k < p );else if ( c = o = e = g ); else if ( h = h + z +( o )< f -( v < y )){ if ( h )while ( u < e )if ( k )do ; while ( l );else { do ; while ( o );}if ( w = p )do { ; }while ( h );if ( q )if ( n ); else ; else if ( j < q ); else ; if ( o < j ); else ; } and while ( g = u = n < z )while ( q < f ); 
+ Next suggestion: complexstmt
+ Next suggestion: complexstmt2
+
+[Group len 5] Bubbling iteration 134 (38/100)...  
+Successful grouping (double): [complexstmt, conditionalstmt, ifstmt3], [while, exprstmt]
+     (aka ['if ( m = m )do do ; while ( f );while ( k < p );else if ( c = o = e = g ); ', 'else ', 'if ( h = h + z +( o )< f -( v < y )){ if ( h )while ( u < e )if ( k )do ; while ( l );else { do ; while ( o );}if ( w = p )do { ; }while ( h );if ( q )if ( n ); else ; else if ( j < q ); else ; if ( o < j ); else ; }'], ['while', ' ( d ); ']))
+coalesced into:  {'t37751': 'complexstmt2', 't37862': 'complexstmt2'}
+Number of bubbles:  563
+LLM suggested label: stmt for if ( a )if ( g ) q < u ; and if ( l )if ( n < j )if ( t = g ); else if ( k = i ) a < w ;
+ Next suggestion: nestedifstmt
+
+[Group len 5] Bubbling iteration 135 (30/100)...  
+Successful grouping (double): [ifstmt2, ifstmt3], [nestedstmt, ifstmt3]
+     (aka ['if ( a )if ( g ) q < u ;else ', 'if ( e ); '], ['if ( m = i = j < x )if ( k = b < k )', 'if ( m = r < g )while ( v )if ( y < e ); else ; ']))
+coalesced into:  {'t38364': 'nestedifstmt', 't38821': 'nestedifstmt'}
+Number of bubbles:  566
+
+[Group len 5] Bubbling iteration 136 (31/100)...  
+Successful grouping (single): [do, stmt2]
+    (aka ['do', ' do do ; while ( m );while ( p );']
+coalesced into:  {'t39246': 'loopstmt', 'loopstmt': 'loopstmt'}
+Number of bubbles:  569
+
+[Group len 5] Bubbling iteration 137 (46/100)...  
+Successful grouping (single): [arithmeticstmt, expr2]
+    (aka [' d ', '+ o ']
+coalesced into:  {'t40007': 'assignstmt', 'assignstmt': 'assignstmt'}
+Number of bubbles:  565
+LLM suggested label: stmt for if ( d = y )do { ; }while ( g );else if ( i < t ){ ; }else { ; }while  and if ( l < b ); while 
+ Next suggestion: controlstmt
+
+[Group len 5] Bubbling iteration 138 (49/100)...  
+Successful grouping (double): [complexstmt, conditionalstmt, stmt, loopstmt1], [ifstmt3, loopstmt1]
+     (aka ['if ( r < v )if ( o ); else do ; while ( p < e );', 'else ', 'do while ( i ); while ( v );', 'while '], ['if ( o = n )while ( j < o ){ ; }', 'while ']))
+coalesced into:  {'t40728': 'controlstmt', 't40788': 'controlstmt'}
+Number of bubbles:  558
+
+[Group len 5] Bubbling iteration 139 (21/100)...  
+Successful grouping (single): [complexstmt, conditionalstmt, stmt]
+    (aka ['if ( r < v )if ( o ); else do ; while ( p < e );', 'else ', 'do while ( i ); while ( v );']
+coalesced into:  {'t41417': 'stmt', 'stmt': 'stmt', 'complexstmt2': 'stmt'}
+Number of bubbles:  544
+LLM suggested label: stmt for if ( a )if ( g ) q < u ;else if ( e ); else do do ; while ( r );while ( k < g ); and while ( l )if ( m < n ); else ; 
+ Next suggestion: controlstmt
+ Next suggestion: controlstmt2
+
+[Group len 5] Bubbling iteration 140 (58/100)...  
+Successful grouping (double): [nestedifstmt, conditionalstmt, stmt], [loopstmt1, ifstmt4]
+     (aka ['if ( a )if ( g ) q < u ;else if ( e ); ', 'else ', 'do do ; while ( r );while ( k < g );'], ['while ', '( l )if ( m < n ); else ; ']))
+coalesced into:  {'t41678': 'controlstmt2', 't41848': 'controlstmt2'}
+Number of bubbles:  532
+
+[Group len 5] Bubbling iteration 141 (42/100)...  
+Successful grouping (single): [nestedifstmt, conditionalstmt]
+    (aka ['if ( a )if ( g ) q < u ;else if ( e ); ', 'else ']
+coalesced into:  {'t42402': 'ifstmt2', 'ifstmt2': 'ifstmt2'}
+Number of bubbles:  529
+LLM suggested label: stmt for do  r ;while ( y < y ); and if ( l )if ( n < j )if ( t = g ); else if ( k = i ) a < w ;else if ( j = v < q ); else if ( o = v = g = f ); 
+ Next suggestion: compoundstmt
+
+[Group len 5] Bubbling iteration 142 (36/100)...  
+Successful grouping (double): [loopstmt, loopstmt1, expr, ;], [ifstmt2, ifstmt3]
+     (aka ['do do ; while ( r );', 'while ', '( k < g )', ';'], ['if ( a )if ( g ) q < u ;else ', 'if ( e ); ']))
+coalesced into:  {'t43053': 'compoundstmt', 't43038': 'compoundstmt'}
+Number of bubbles:  530
+
+[Group len 5] Bubbling iteration 143 (30/100)...  
+Successful grouping (single): [nestedstmt, ifstmt2]
+    (aka ['if ( q + w -( s )- r +4)while ( f = q = o + b < b )if ( s - w +( j ))', 'if ( e = s )']
+coalesced into:  {'t43566': 'nestedstmt', 'nestedstmt': 'nestedstmt'}
+Number of bubbles:  517
+LLM suggested label: stmt for if ( w )if ( y = b = r < m )if ( m = a )if ( f )while ( e < v ); else { ; }else if ( m = m )while ( k = c )if ( e < n )if ( k ); else ; else if ( b = c = d - f < l - r )do ; while ( l +7<( a ));else if ( y = o = p = i )if ( l )if ( n < j )if ( t = g ); else if ( k = i ) a < w ;else if ( j = v < q ); else if ( o = v = g = f );  and if ( d + o )if ( l )if ( l < v ) n < l ;else do ; while ( f < d );
+ Next suggestion: complexstmt
+ Next suggestion: complexstmt2
+
+[Group len 5] Bubbling iteration 144 (28/100)...  
+Successful grouping (double): [nestedstmt, complexstmt, conditionalstmt, ifstmt2, compoundstmt], [nestedstmt, stmt]
+     (aka ['if ( w )if ( y = b = r < m )if ( m = a )if ( f )while ( e < v ); else { ; }else if ( m = m )while ( k = c )if ( e < n )if ( k ); else ; else ', 'if ( b = c = d - f < l - r )do ; while ( l +7<( a ));', 'else ', 'if ( y = o = p = i )', 'if ( l )if ( n < j )if ( t = g ); else if ( k = i ) a < w ;else if ( j = v < q ); else if ( o = v = g = f ); '], ['if ( h )while ( u < e )if ( k )', 'do ; while ( l );']))
+coalesced into:  {'t44693': 'complexstmt2', 't44331': 'complexstmt2'}
+Number of bubbles:  507
+
+[Group len 5] Bubbling iteration 145 (18/100)...  
+Successful grouping (single): [complexstmt, conditionalstmt, ifstmt2, compoundstmt]
+    (aka ['if ( b = c = d - f < l - r )do ; while ( l +7<( a ));', 'else ', 'if ( y = o = p = i )', 'if ( l )if ( n < j )if ( t = g ); else if ( k = i ) a < w ;else if ( j = v < q ); else if ( o = v = g = f ); ']
+coalesced into:  {'t45320': 'stmt', 'stmt': 'stmt', 'controlstmt2': 'stmt', 'compoundstmt': 'stmt'}
+Number of bubbles:  489
+
+[Group len 5] Bubbling iteration 146 (24/100)...  
+Successful grouping (single): [complexstmt, conditionalstmt, ifstmt2]
+    (aka ['if ( b = c = d - f < l - r )do ; while ( l +7<( a ));', 'else ', 'if ( y = o = p = i )']
+coalesced into:  {'t45912': 'ifstmt2', 'ifstmt2': 'ifstmt2'}
+Number of bubbles:  486
+LLM suggested label: stmt for  if ( t = y < y ) j = s = s = o < f ; and  if ( a )if ( g ) q < u ;else if ( e ); else do do ; while ( r );while ( k < g );
+ Next suggestion: conditionalstmt
+ Next suggestion: conditionalstmt2
+
+[Group len 5] Bubbling iteration 147 (30/100)...  
+Successful grouping (double): [ , ifstmt2, condstmt], [ , stmt]
+     (aka [' ', 'if ( t = y < y )', ' j = s = s = o < f ;'], [' ', 'if ( a )if ( g ) q < u ;else if ( e ); else do do ; while ( r );while ( k < g );']))
+coalesced into:  {'t46575': 'conditionalstmt2', 't46039': 'conditionalstmt2'}
+Number of bubbles:  478
+
+[Group len 5] Bubbling iteration 148 (24/100)...  
+Successful grouping (single): [ifstmt2, condstmt]
+    (aka ['if ( t = y < y )', ' j = s = s = o < f ;']
+coalesced into:  {'t47199': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  476
+LLM suggested label: stmt for while ( i - m )if ( v )if ( t < x )do { ; }while ( h );else do and do
+ Next suggestion: controlstmt
+ Next suggestion: controlstmt2
+
+[Group len 5] Bubbling iteration 149 (55/100)...  
+Successful grouping (single): [loopstmt1, expr, complexstmt2, conditionalstmt, do]
+    (aka ['while ', '( i - m )', 'if ( v )if ( t < x )do { ; }while ( h );', 'else ', 'do']
+coalesced into:  {'t47754': 'controlstmt2', 'do': 'controlstmt2'}
+Number of bubbles:  468
+
+[Group len 5] Bubbling iteration 150 (23/100)...  
+Successful grouping (single): [complexstmt2, conditionalstmt, do]
+    (aka ['if ( v )if ( t < x )do { ; }while ( h );', 'else ', 'do']
+coalesced into:  {'t48356': 'controlstmt2', 'controlstmt2': 'controlstmt2'}
+Number of bubbles:  463
+LLM suggested label: stmt for else  a = n = f ; and else if ( g < a )if ( r < n ); 
+ Next suggestion: conditionalstmt
+ Next suggestion: conditionalstmt2
+ Next suggestion: conditionalstmt3
+
+[Group len 5] Bubbling iteration 151 (62/100)...  
+Successful grouping (double): [else, condstmt], [conditionalstmt, nestedifstmt]
+     (aka ['else', ' ; '], ['else ', 'if ( k = y < y )if ( b )if ( m ); else { while ( m )while ( g ); { ; }; }']))
+coalesced into:  {'t48512': 'conditionalstmt3', 't48538': 'conditionalstmt3'}
+Number of bubbles:  453
+LLM suggested label: stmt for if ( c = l )while ( t = p )do if ( q < z ); else ; while ( z < p );else do do do ; while ( m );while ( p );while ( b = p ); and if ( p = o < j )while ( r < l )if ( e < s ); else ; else if ( g < a )if ( r < n ); 
+ Next suggestion: controlstmt
+ Next suggestion: controlflow
+
+[Group len 5] Bubbling iteration 152 (37/100)...  
+Successful grouping (double): [complexstmt, conditionalstmt, stmt], [ifstmt3, conditionalstmt3]
+     (aka ['if ( c = l )while ( t = p )do if ( q < z ); else ; while ( z < p );', 'else ', 'do do do ; while ( m );while ( p );while ( b = p );'], ['if ( n ); ', 'else ; ']))
+coalesced into:  {'t49138': 'controlflow', 't49083': 'controlflow'}
+Number of bubbles:  461
+LLM suggested label: stmt for if ( i +( x < z )< w +8)if ( r - i < c - l )if ( c = l )while ( t = p )do if ( q < z ); else ; while ( z < p );else do do do ; while ( m );while ( p );while ( b = p );else while ( y ){ while ( s < p ); ; ; }else do  f = z = z = o ;while ( m = u = i = z ); and if ( m = i = j < x )if ( k = b < k )if ( m = r < g )while ( v )if ( y < e ); else ; else if ( z < v ); else  x < u ;else { { ; }}
+ Next suggestion: complexstmt
+ Next suggestion: complexstmt2
+ Next suggestion: complexstmt3
+
+[Group len 5] Bubbling iteration 153 (43/100)...  
+Successful grouping (double): [nestedstmt, controlflow, conditionalstmt3, conditionalstmt, stmt], [complexstmt2, conditionalstmt3]
+     (aka ['if ( i +( x < z )< w +8)if ( r - i < c - l )', 'if ( c = l )while ( t = p )do if ( q < z ); else ; while ( z < p );else do do do ; while ( m );while ( p );while ( b = p );', 'else while ( y ){ while ( s < p ); ; ; }', 'else ', 'do  f = z = z = o ;while ( m = u = i = z );'], ['if ( m = i = j < x )if ( k = b < k )if ( m = r < g )while ( v )if ( y < e ); else ; else if ( z < v ); else  x < u ;', 'else { { ; }}']))
+coalesced into:  {'t49700': 'complexstmt3', 't49872': 'complexstmt3'}
+Number of bubbles:  451
+
+[Group len 5] Bubbling iteration 154 (21/100)...  
+Successful grouping (single): [nestedstmt, controlflow, conditionalstmt3]
+    (aka ['if ( i +( x < z )< w +8)if ( r - i < c - l )', 'if ( c = l )while ( t = p )do if ( q < z ); else ; while ( z < p );else do do do ; while ( m );while ( p );while ( b = p );', 'else while ( y ){ while ( s < p ); ; ; }']
+coalesced into:  {'t50294': 'complexstmt', 'complexstmt': 'complexstmt', 'ifstmt3': 'complexstmt', 'complexstmt2': 'complexstmt'}
+Number of bubbles:  419
+
+[Group len 5] Bubbling iteration 155 (35/100)...  
+Successful grouping (single): [nestedstmt, controlflow]
+    (aka ['if ( i +( x < z )< w +8)if ( r - i < c - l )', 'if ( c = l )while ( t = p )do if ( q < z ); else ; while ( z < p );else do do do ; while ( m );while ( p );while ( b = p );']
+coalesced into:  {'t50852': 'nestedifstmt', 'nestedifstmt': 'nestedifstmt'}
+Number of bubbles:  417
+LLM suggested label: stmt for if ( i = z )if ( s )if ( r < m ); else ; else { ; ; }else if ( q = k )if ( f )do ; while ( a < y ); and if ( f )do ; while ( f < s );else while ( o ); 
+ Next suggestion: nestedstmt
+ Next suggestion: nestedstmt2
+
+[Group len 5] Bubbling iteration 156 (53/100)...  
+Successful grouping (double): [complexstmt, conditionalstmt, complexstmt], [complexstmt, conditionalstmt3]
+     (aka ['if ( m = m )do do ; while ( f );while ( k < p );else if ( c = o = e = g ); ', 'else ', 'if ( h = h + z +( o )< f -( v < y )){ if ( h )while ( u < e )if ( k )do ; while ( l );else { do ; while ( o );}if ( w = p )do { ; }while ( h );if ( q )if ( n ); else ; else if ( j < q ); else ; if ( o < j ); else ; }'], ['if ( n ); ', 'else ; ']))
+coalesced into:  {'t51272': 'nestedstmt2', 't51303': 'nestedstmt2'}
+Number of bubbles:  409
+
+[Group len 5] Bubbling iteration 157 (50/100)...  
+Successful grouping (single): [conditionalstmt, stmt]
+    (aka ['else ', 'if ( m = m )do do ; while ( f );while ( k < p );else if ( c = o = e = g ); else if ( h = h + z +( o )< f -( v < y )){ if ( h )while ( u < e )if ( k )do ; while ( l );else { do ; while ( o );}if ( w = p )do { ; }while ( h );if ( q )if ( n ); else ; else if ( j < q ); else ; if ( o < j ); else ; }']
+coalesced into:  {'t51722': 'conditionalstmt3', 'conditionalstmt3': 'conditionalstmt3'}
+Number of bubbles:  392
+LLM suggested label: stmt for if ( g = c - i - h < d - k )while ( y + z -1)if ( z = z ){ do  e ;while ( y );}else do do { ; ; }while ( a = u < u );while ( v = v < y );else if ( q = v = h = l = i < a ){ if ( e = m )while ( b ); }else do if ( u < g )if ( d )while ( t < n ){ ; } and do if ( i +( x < z )< w +8)if ( r - i < c - l )if ( c = l )while ( t = p )do if ( q < z ); else ; while ( z < p );else do do do ; while ( m );while ( p );while ( b = p );else while ( y ){ while ( s < p ); ; ; }else do  f = z = z = o ;while ( m = u = i = z );
+ Next suggestion: complexstmt
+ Next suggestion: complexstmt2
+
+[Group len 5] Bubbling iteration 158 (76/100)...  
+Successful grouping (double): [complexstmt, conditionalstmt, do,  , nestedifstmt], [do,  , complexstmt3]
+     (aka ['if ( g = c - i - h < d - k )while ( y + z -1)if ( z = z ){ do  e ;while ( y );}else do do { ; ; }while ( a = u < u );while ( v = v < y );else if ( q = v = h = l = i < a ){ if ( e = m )while ( b ); }', 'else ', 'do', ' ', 'if ( u < g )if ( d )while ( t < n ){ ; }'], ['do', ' ', 'if ( i +( x < z )< w +8)if ( r - i < c - l )if ( c = l )while ( t = p )do if ( q < z ); else ; while ( z < p );else do do do ; while ( m );while ( p );while ( b = p );else while ( y ){ while ( s < p ); ; ; }else do  f = z = z = o ;while ( m = u = i = z );']))
+coalesced into:  {'t52682': 'complexstmt2', 't52389': 'complexstmt2'}
+Number of bubbles:  379
+
+[Group len 5] Bubbling iteration 159 (32/100)...  
+Successful grouping (single): [ , complexstmt3]
+    (aka [' ', 'if ( i +( x < z )< w +8)if ( r - i < c - l )if ( c = l )while ( t = p )do if ( q < z ); else ; while ( z < p );else do do do ; while ( m );while ( p );while ( b = p );else while ( y ){ while ( s < p ); ; ; }else do  f = z = z = o ;while ( m = u = i = z );']
+coalesced into:  {'t52913': 'conditionalstmt2', 'conditionalstmt2': 'conditionalstmt2', 'stmt2': 'conditionalstmt2', 'condstmt': 'conditionalstmt2'}
+Number of bubbles:  376
+
+[Group len 5] Bubbling iteration 160 (35/100)...  
+Successful grouping (single): [do,  , nestedifstmt]
+    (aka ['do', ' ', 'if ( u < g )if ( d )while ( t < n ){ ; }']
+coalesced into:  {'t53672': 'complexstmt2', 'complexstmt2': 'complexstmt2', 'loopstmt': 'complexstmt2'}
+Number of bubbles:  371
+
+[Group len 5] Bubbling iteration 161 (35/100)...  
+Successful grouping (single): [ , nestedifstmt]
+    (aka [' ', 'if ( u < g )if ( d )while ( t < n ){ ; }']
+coalesced into:  {'t54155': 'conditionalstmt2', 'conditionalstmt2': 'conditionalstmt2'}
+Number of bubbles:  370
+LLM suggested label: stmt for do if ( i +( x < z )< w +8)if ( r - i < c - l )if ( c = l )while ( t = p )do if ( q < z ); else ; while ( z < p );else do do do ; while ( m );while ( p );while ( b = p );else while ( y ){ while ( s < p ); ; ; }else do  f = z = z = o ;while ( m = u = i = z );while (47); and if ( p = c = z < q ) q = j = o < a ;else if ( m = m )do do ; while ( f );while ( k < p );else if ( c = o = e = g ); else if ( h = h + z +( o )< f -( v < y )){ if ( h )while ( u < e )if ( k )do ; while ( l );else { do ; while ( o );}if ( w = p )do { ; }while ( h );if ( q )if ( n ); else ; else if ( j < q ); else ; if ( o < j ); else ; }
+ Next suggestion: compoundstmt
+
+[Group len 5] Bubbling iteration 162 (45/100)...  
+Successful grouping (double): [complexstmt2, loopstmt1, expr, ;], [complexstmt, conditionalstmt3]
+     (aka ['do do ; while ( r );', 'while ', '( k < g )', ';'], ['if ( p = c = z < q ) q = j = o < a ;', 'else if ( m = m )do do ; while ( f );while ( k < p );else if ( c = o = e = g ); else if ( h = h + z +( o )< f -( v < y )){ if ( h )while ( u < e )if ( k )do ; while ( l );else { do ; while ( o );}if ( w = p )do { ; }while ( h );if ( q )if ( n ); else ; else if ( j < q ); else ; if ( o < j ); else ; }']))
+coalesced into:  {'t54264': 'compoundstmt', 't54193': 'compoundstmt'}
+Number of bubbles:  363
+
+[Group len 5] Bubbling iteration 163 (68/100)...  
+Successful grouping (single): [conditionalstmt, compoundstmt]
+    (aka ['else ', 'if ( p = c = z < q ) q = j = o < a ;else if ( m = m )do do ; while ( f );while ( k < p );else if ( c = o = e = g ); else if ( h = h + z +( o )< f -( v < y )){ if ( h )while ( u < e )if ( k )do ; while ( l );else { do ; while ( o );}if ( w = p )do { ; }while ( h );if ( q )if ( n ); else ; else if ( j < q ); else ; if ( o < j ); else ; }']
+coalesced into:  {'t54668': 'conditionalstmt3', 'conditionalstmt3': 'conditionalstmt3'}
+Number of bubbles:  352
+
+[Group len 5] Bubbling iteration 164 (87/100)...  
+Successful grouping (single): [ , complexstmt, else, stmtlist]
+    (aka [' ', 'if ( h )while ( u < e )if ( k )do ; while ( l );', 'else', ' { do ; while ( o );}if ( w = p )do { ; }while ( h );']
+coalesced into:  {'t55228': 'stmtlist', 'stmtlist': 'stmtlist'}
+Number of bubbles:  345
+LLM suggested label: stmt for  if ( h )while ( u < e )if ( k )do ; while ( l );else and if ( d ); else
+ Next suggestion: conditionalstmt
+ Next suggestion: conditionalstmt2
+ Next suggestion: conditionalstmt3
+ Next suggestion: conditionalstmt4
+
+[Group len 5] Bubbling iteration 165 (2/100)...   
+Successful grouping (double): [ , complexstmt, else], [complexstmt, else]
+     (aka [' ', 'if ( h )while ( u < e )if ( k )do ; while ( l );', 'else'], ['if ( q )if ( n ); else ; ', 'else']))
+coalesced into:  {'t55698': 'conditionalstmt4', 't55694': 'conditionalstmt4'}
+Number of bubbles:  342
+
+[Group len 5] Bubbling iteration 166 (2/100)...   
+Successful grouping (single): [stmtlist, conditionalstmt4, stmtlist]
+    (aka [' if ( h )while ( u < e )if ( k )do ; while ( l );else { do ; while ( o );}if ( w = p )do { ; }while ( h );', 'if ( q )if ( n ); else ; else', ' if ( j < q ); else ; if ( o < j ); else ; ']
+coalesced into:  {'t56152': 'stmtlist', 'stmtlist': 'stmtlist'}
+Number of bubbles:  341
+
+[Group len 5] Bubbling iteration 167 (1/100)...   
+Successful grouping (single): [stmtlist, conditionalstmt4]
+    (aka [' if ( h )while ( u < e )if ( k )do ; while ( l );else { do ; while ( o );}if ( w = p )do { ; }while ( h );', 'if ( q )if ( n ); else ; else']
+coalesced into:  {'t56608': 'conditionalstmt4', 'conditionalstmt4': 'conditionalstmt4'}
+Number of bubbles:  339
+LLM suggested label: stmt for do if ( d = y )do { ; }while ( g );else if ( i < t ){ ; }else { ; }while ( r ); and while ( i = s < p )do ; while ( r = c < w );
+ Next suggestion: compoundstmt
+ Next suggestion: compoundstmt2
+
+[Group len 5] Bubbling iteration 168 (89/100)...  
+Successful grouping (double): [do,  , controlstmt, expr, ;], [loopstmt1, expr, stmt]
+     (aka ['do', ' ', 'if ( r < v )if ( o ); else do ; while ( p < e );else do while ( i ); while ( v );while ', '( h < j )', ';'], ['while ', '( m )', 'do ; while ( r );']))
+coalesced into:  {'t57219': 'compoundstmt2', 't57318': 'compoundstmt2'}
+Number of bubbles:  324
+
+[Group len 5] Bubbling iteration 169 (24/100)...  
+Successful grouping (single): [expr, stmt]
+    (aka ['( e )', '; ']
+coalesced into:  {'t57498': 'ifstmt4', 'ifstmt4': 'ifstmt4', 'exprstmt': 'ifstmt4'}
+Number of bubbles:  322
+LLM suggested label: stmt for do if ( d = y )do { ; }while ( g );else if ( i < t ){ ; }else { ; }while  and do  d = j < i ;while 
+ Next suggestion: controlstmt
+ Next suggestion: controlstmt2
+ Next suggestion: controlstmt3
+
+[Group len 5] Bubbling iteration 170 (22/100)...  
+Successful grouping (double): [do,  , controlstmt], [complexstmt2, loopstmt1]
+     (aka ['do', ' ', 'if ( r < v )if ( o ); else do ; while ( p < e );else do while ( i ); while ( v );while '], ['do do ; while ( r );', 'while ']))
+coalesced into:  {'t58136': 'controlstmt3', 't57944': 'controlstmt3'}
+Number of bubbles:  316
+LLM suggested label: stmt for if ( a )do ; while ( i = k < x );else do while ( m )do ; while ( r ); and do if ( a )if ( g ) q < u ;else if ( e ); else do do ; while ( r );while ( k < g );
+ Next suggestion: controlstmt
+ Next suggestion: controlstmt2
+ Next suggestion: controlstmt3
+ Next suggestion: controlstmt4
+
+[Group len 5] Bubbling iteration 171 (61/100)...  
+Successful grouping (double): [complexstmt, conditionalstmt, do,  , compoundstmt2], [do, conditionalstmt2]
+     (aka ['if ( a )do ; while ( i = k < x );', 'else ', 'do', ' ', 'while ( m )do ; while ( r );'], ['do', ' if ( a )if ( g ) q < u ;else if ( e ); else do do ; while ( r );while ( k < g );']))
+coalesced into:  {'t58633': 'controlstmt4', 't58293': 'controlstmt4'}
+Number of bubbles:  305
+LLM suggested label: stmt for else do do if ( d = y )do { ; }while ( g );else if ( i < t ){ ; }else { ; }while ( r ); and else do if ( u < g )if ( d )while ( t < n ){ ; }
+ Next suggestion: controlflow
+ Next suggestion: controlflow2
+
+[Group len 5] Bubbling iteration 172 (18/100)...  
+Successful grouping (double): [conditionalstmt, do,  , compoundstmt2], [conditionalstmt, complexstmt2]
+     (aka ['else ', 'do', ' ', 'do if ( d = y )do { ; }while ( g );else if ( i < t ){ ; }else { ; }while ( r );'], ['else ', 'do if ( u < g )if ( d )while ( t < n ){ ; }']))
+coalesced into:  {'t58998': 'controlflow2', 't59144': 'controlflow2'}
+Number of bubbles:  316
+
+[Group len 5] Bubbling iteration 173 (15/100)...  
+Successful grouping (single): [do,  , compoundstmt2]
+    (aka ['do', ' ', 'do if ( d = y )do { ; }while ( g );else if ( i < t ){ ; }else { ; }while ( r );']
+coalesced into:  {'t59436': 'controlstmt4', 'controlstmt4': 'controlstmt4', 'complexstmt2': 'controlstmt4'}
+Number of bubbles:  306
+
+[Group len 5] Bubbling iteration 174 (10/100)...  
+Successful grouping (single): [ , controlstmt4, loopstmt1, expr, ;]
+    (aka [' ', 'do do if ( l < b ); while ( a < k );', 'while ', '( c = c )', ';']
+coalesced into:  {'t59945': 'nestedstmt2', 'nestedstmt2': 'stmt', 'compoundstmt': 'nestedstmt2', 'stmt': 'stmt', 'compoundstmt2': 'stmt', 'complexstmt3': 'stmt', 'controlflow': 'stmt'}
+Number of bubbles:  284
+LLM suggested label: stmt for  do do if ( l < b ); while ( a < k );while  and  do  e ;while 
+ Next suggestion: loopstmt
+
+[Group len 5] Bubbling iteration 175 (6/100)...   
+Successful grouping (double): [ , controlstmt4, loopstmt1], [loopstmt2, loopstmt1]
+     (aka [' ', 'do do if ( l < b ); while ( a < k );', 'while '], [' { do ; while ( o );}if ( w = p )do { ; }', 'while ']))
+coalesced into:  {'t60352': 'loopstmt', 't60135': 'loopstmt'}
+Number of bubbles:  282
+
+[Group len 5] Bubbling iteration 176 (4/100)...   
+Successful grouping (single): [ , controlstmt4]
+    (aka [' ', 'do do if ( l < b ); while ( a < k );']
+coalesced into:  {'t60753': 'controlstmt4', 'controlstmt4': 'controlstmt4'}
+Number of bubbles:  281
+
+[Group len 5] Bubbling iteration 177 (20/100)...  
+Successful grouping (single): [ , stmt]
+    (aka [' ', 'if ( a )if ( g ) q < u ;else if ( e ); else do do ; while ( r );while ( k < g );']
+coalesced into:  {'t60896': 'conditionalstmt2', 'conditionalstmt2': 'conditionalstmt2'}
+Number of bubbles:  279
+LLM suggested label: stmt for if ( a + n -( c < b )-( r ))if ( o = w = w < v )while ( u = r )do if ( r < v )if ( o ); else do ; while ( p < e );else do while ( i ); while ( v );while ( h < j ); and if ( s +( q )+( f = m )< j - i - z -( e < x )-( t ))while ( g = u = z < y + c )if ( n = k - v )if ( w )if ( y = b = r < m )if ( m = a )if ( f )while ( e < v ); else { ; }else if ( m = m )while ( k = c )if ( e < n )if ( k ); else ; else if ( b = c = d - f < l - r )do ; while ( l +7<( a ));else if ( y = o = p = i )if ( l )if ( n < j )if ( t = g ); else if ( k = i ) a < w ;else if ( j = v < q ); else if ( o = v = g = f ); 
+ Next suggestion: complexstmt
+ Next suggestion: complexstmt2
+
+[Group len 5] Bubbling iteration 178 (36/100)...  
+Successful grouping (double): [nestedstmt, stmt], [nestedstmt, complexstmt]
+     (aka ['if ( h )while ( u < e )if ( k )', 'do ; while ( l );'], ['if (4)if (( s < l )< r - c -4-( n < p ))', 'if (( e )< u -4)if ( g < e - i )do  d = j < i ;while ( t = a < x );']))
+coalesced into:  {'t61331': 'complexstmt2', 't61484': 'complexstmt2'}
+Number of bubbles:  266
+LLM suggested label: stmt for else do do if ( d = y )do { ; }while ( g );else if ( i < t ){ ; }else { ; }while ( r );while ( e = q = p < u );else ;  and else if ( p = c = z < q ) q = j = o < a ;else if ( m = m )do do ; while ( f );while ( k < p );else if ( c = o = e = g ); else if ( h = h + z +( o )< f -( v < y )){ if ( h )while ( u < e )if ( k )do ; while ( l );else { do ; while ( o );}if ( w = p )do { ; }while ( h );if ( q )if ( n ); else ; else if ( j < q ); else ; if ( o < j ); else ; }else if (( v < v )< k - a + n )if ( b = o = v )while ( d ); else ; 
+ Next suggestion: complexstmt
+ Next suggestion: complexstmt2
+ Next suggestion: complexstmt3
+
+[Group len 5] Bubbling iteration 179 (47/100)...  
+Successful grouping (double): [controlflow2, loopstmt1, expr, ;, conditionalstmt3], [conditionalstmt3, conditionalstmt, complexstmt]
+     (aka ['else do do if ( d = y )do { ; }while ( g );else if ( i < t ){ ; }else { ; }while ( r );', 'while ', '( e = q = p < u )', ';', 'else ; '], ['else if ( p = c = z < q ) q = j = o < a ;else if ( m = m )do do ; while ( f );while ( k < p );else if ( c = o = e = g ); else if ( h = h + z +( o )< f -( v < y )){ if ( h )while ( u < e )if ( k )do ; while ( l );else { do ; while ( o );}if ( w = p )do { ; }while ( h );if ( q )if ( n ); else ; else if ( j < q ); else ; if ( o < j ); else ; }', 'else ', 'if (( v < v )< k - a + n )if ( b = o = v )while ( d ); else ; ']))
+coalesced into:  {'t61870': 'complexstmt3', 't61638': 'complexstmt3'}
+Number of bubbles:  251
+LLM suggested label: stmt for ;else if ( a + n -( c < b )-( r ))if ( o = w = w < v )while ( u = r )do if ( r < v )if ( o ); else do ; while ( p < e );else do while ( i ); while ( v );while ( h < j );else do do if ( d = y )do { ; }while ( g );else if ( i < t ){ ; }else { ; }while ( r );while ( e = q = p < u );else ;  and ;else ; 
+ Next suggestion: stmt2
+
+[Group len 5] Bubbling iteration 180 (33/100)...  
+Successful grouping (double): [;, conditionalstmt, complexstmt2, complexstmt3], [;, conditionalstmt3]
+     (aka [';', 'else ', 'if ( a + n -( c < b )-( r ))if ( o = w = w < v )while ( u = r )do if ( r < v )if ( o ); else do ; while ( p < e );else do while ( i ); while ( v );while ( h < j );', 'else do do if ( d = y )do { ; }while ( g );else if ( i < t ){ ; }else { ; }while ( r );while ( e = q = p < u );else ; '], [';', 'else if ( k = y < y )if ( b )if ( m ); else { while ( m )while ( g ); { ; }; }']))
+coalesced into:  {'t62244': 'stmt2', 't62148': 'stmt2'}
+Number of bubbles:  248
+
+[Group len 5] Bubbling iteration 181 (15/100)...  
+Successful grouping (single): [conditionalstmt, complexstmt2, complexstmt3]
+    (aka ['else ', 'if ( a + n -( c < b )-( r ))if ( o = w = w < v )while ( u = r )do if ( r < v )if ( o ); else do ; while ( p < e );else do while ( i ); while ( v );while ( h < j );', 'else do do if ( d = y )do { ; }while ( g );else if ( i < t ){ ; }else { ; }while ( r );while ( e = q = p < u );else ; ']
+coalesced into:  {'t62617': 'conditionalstmt3', 'conditionalstmt3': 'conditionalstmt3'}
+Number of bubbles:  246
+
+[Group len 5] Bubbling iteration 182 (14/100)...  
+Successful grouping (single): [complexstmt2, complexstmt3]
+    (aka ['if ( a + n -( c < b )-( r ))if ( o = w = w < v )while ( u = r )do if ( r < v )if ( o ); else do ; while ( p < e );else do while ( i ); while ( v );while ( h < j );', 'else do do if ( d = y )do { ; }while ( g );else if ( i < t ){ ; }else { ; }while ( r );while ( e = q = p < u );else ; ']
+coalesced into:  {'t62988': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  245
+
+[Group len 5] Bubbling iteration 183 (41/100)...  
+Successful grouping (single): [nestedstmt, complexstmt2, conditionalstmt3, conditionalstmt3, conditionalstmt3]
+    (aka ['if ( m + p - q -76+( l = r < z ))if ( l - z - g )', 'if ( o +9<( h ))while ( u = t )if ( s = b < a )if ( z = d < z )do  r ;while ( y < y );', 'else while ( d < s )if ( w < y ); else ; ', 'else do { if ( z < l ); else while ( i ); while ( m < t ); ; ; }while ( q = h < x );', 'else ; ']
+coalesced into:  {'t63298': 'complexstmt2', 'complexstmt2': 'complexstmt2', 'nestedifstmt': 'complexstmt2'}
+Number of bubbles:  235
+
+[Group len 5] Bubbling iteration 184 (18/100)...  
+Successful grouping (single): [complexstmt2, conditionalstmt3, conditionalstmt3, conditionalstmt3]
+    (aka ['if ( o +9<( h ))while ( u = t )if ( s = b < a )if ( z = d < z )do  r ;while ( y < y );', 'else while ( d < s )if ( w < y ); else ; ', 'else do { if ( z < l ); else while ( i ); while ( m < t ); ; ; }while ( q = h < x );', 'else ; ']
+coalesced into:  {'t63677': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  233
+
+[Group len 5] Bubbling iteration 185 (17/100)...  
+Successful grouping (single): [complexstmt2, conditionalstmt3, conditionalstmt3]
+    (aka ['if ( o +9<( h ))while ( u = t )if ( s = b < a )if ( z = d < z )do  r ;while ( y < y );', 'else while ( d < s )if ( w < y ); else ; ', 'else do { if ( z < l ); else while ( i ); while ( m < t ); ; ; }while ( q = h < x );']
+coalesced into:  {'t64032': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  231
+
+[Group len 5] Bubbling iteration 186 (8/100)...   
+Successful grouping (single): [conditionalstmt3, conditionalstmt3]
+    (aka ['else while ( d < s )if ( w < y ); else ; ', 'else do { if ( z < l ); else while ( i ); while ( m < t ); ; ; }while ( q = h < x );']
+coalesced into:  {'t64390': 'complexstmt3', 'complexstmt3': 'complexstmt3'}
+Number of bubbles:  230
+LLM suggested label: stmt for else do if ( o = n )while ( j < o ){ ; }while ( r = u ); and else if ( c = f = i = s )while ( s = p = o < c )if ( g < f ){ ; ; }else if ( t = t = z )if ( i = z )if ( s )if ( r < m ); else ; else { ; ; }else if ( q = k )if ( f )do ; while ( a < y );
+ Next suggestion: stmt2
+ Next suggestion: stmt3
+ Next suggestion: stmt4
+ Next suggestion: stmt5
+ Next suggestion: stmt6
+
+[Group len 5] Bubbling iteration 187 (38/100)...  
+Successful grouping (double): [conditionalstmt, stmt], [conditionalstmt, complexstmt2]
+     (aka ['else ', 'if ( p = c = z < q ) q = j = o < a ;else if ( m = m )do do ; while ( f );while ( k < p );else if ( c = o = e = g ); else if ( h = h + z +( o )< f -( v < y )){ if ( h )while ( u < e )if ( k )do ; while ( l );else { do ; while ( o );}if ( w = p )do { ; }while ( h );if ( q )if ( n ); else ; else if ( j < q ); else ; if ( o < j ); else ; }'], ['else ', 'if ( k = y < y )if ( b )if ( m ); else { while ( m )while ( g ); { ; }; }']))
+coalesced into:  {'t64652': 'stmt6', 't64715': 'stmt6'}
+Number of bubbles:  217
+
+[Group len 5] Bubbling iteration 188 (15/100)...  
+Successful grouping (single): [conditionalstmt3, conditionalstmt]
+    (aka ['else if ( p = c = z < q ) q = j = o < a ;else if ( m = m )do do ; while ( f );while ( k < p );else if ( c = o = e = g ); else if ( h = h + z +( o )< f -( v < y )){ if ( h )while ( u < e )if ( k )do ; while ( l );else { do ; while ( o );}if ( w = p )do { ; }while ( h );if ( q )if ( n ); else ; else if ( j < q ); else ; if ( o < j ); else ; }', 'else ']
+coalesced into:  {'t65003': 'conditionalstmt', 'conditionalstmt': 'conditionalstmt'}
+Number of bubbles:  216
+
+[Group len 5] Bubbling iteration 189 (53/100)...  
+Successful grouping (single): [loopstmt1, expr, complexstmt2]
+    (aka ['while ', '( g + h +1)', 'if ( v = n = d = d < a )if ( v ){ if ( d ); else ; ; ; }']
+coalesced into:  {'t65564': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  210
+
+[Group len 5] Bubbling iteration 190 (19/100)...  
+Successful grouping (single): [expr, complexstmt2]
+    (aka ['( g + h +1)', 'if ( v = n = d = d < a )if ( v ){ if ( d ); else ; ; ; }']
+coalesced into:  {'t65904': 'ifstmt4', 'ifstmt4': 'ifstmt4'}
+Number of bubbles:  209
+LLM suggested label: stmt for do if ( a )if ( g ) q < u ;else if ( e ); else do do ; while ( r );while ( k < g );while ( i = y < m );else if ( p = c = z < q ) q = j = o < a ;else if ( m = m )do do ; while ( f );while ( k < p );else if ( c = o = e = g ); else if ( h = h + z +( o )< f -( v < y )){ if ( h )while ( u < e )if ( k )do ; while ( l );else { do ; while ( o );}if ( w = p )do { ; }while ( h );if ( q )if ( n ); else ; else if ( j < q ); else ; if ( o < j ); else ; }else if (( v < v )< k - a + n )if ( b = o = v )while ( d ); else ;  and if ( v + e + p )if ( y = j )while ( o = e = o < d )if ( q = m )if ( o )if ( s < p ); else ; else ; else if ( l )while ( h )do while ( j < e ); while ( u );else if ( c = f = i = s )while ( s = p = o < c )if ( g < f ){ ; ; }else if ( t = t = z )if ( i = z )if ( s )if ( r < m ); else ; else { ; ; }else if ( q = k )if ( f )do ; while ( a < y );else while ( b = e = f = h = u = b < n )while ( g + h +1)if ( v = n = d = d < a )if ( v ){ if ( d ); else ; ; ; }
+ Next suggestion: complexstmt
+ Next suggestion: complexstmt2
+ Next suggestion: complexstmt3
+ Next suggestion: complexstmt4
+
+[Group len 5] Bubbling iteration 191 (44/100)...  
+Successful grouping (double): [controlstmt4, loopstmt1, expr, ;, complexstmt3], [complexstmt2, stmt6, conditionalstmt, stmt]
+     (aka ['do if ( a )if ( g ) q < u ;else if ( e ); else do do ; while ( r );while ( k < g );', 'while ', '( i = y < m )', ';', 'else if ( p = c = z < q ) q = j = o < a ;else if ( m = m )do do ; while ( f );while ( k < p );else if ( c = o = e = g ); else if ( h = h + z +( o )< f -( v < y )){ if ( h )while ( u < e )if ( k )do ; while ( l );else { do ; while ( o );}if ( w = p )do { ; }while ( h );if ( q )if ( n ); else ; else if ( j < q ); else ; if ( o < j ); else ; }else if (( v < v )< k - a + n )if ( b = o = v )while ( d ); else ; '], ['if ( v + e + p )if ( y = j )while ( o = e = o < d )if ( q = m )if ( o )if ( s < p ); else ; else ; else if ( l )while ( h )do while ( j < e ); while ( u );', 'else if ( c = f = i = s )while ( s = p = o < c )if ( g < f ){ ; ; }else if ( t = t = z )if ( i = z )if ( s )if ( r < m ); else ; else { ; ; }else if ( q = k )if ( f )do ; while ( a < y );', 'else while ( b = e = f = h = u = b < n )', 'while ( g + h +1)if ( v = n = d = d < a )if ( v ){ if ( d ); else ; ; ; }']))
+coalesced into:  {'t65946': 'complexstmt4', 't66240': 'complexstmt4'}
+Number of bubbles:  205
+
+[Group len 5] Bubbling iteration 192 (17/100)...  
+Successful grouping (single): [controlstmt4, loopstmt1, expr, ;]
+    (aka ['do if ( a )if ( g ) q < u ;else if ( e ); else do do ; while ( r );while ( k < g );', 'while ', '( i = y < m )', ';']
+coalesced into:  {'t66331': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  201
+LLM suggested label: stmt for do if ( a )if ( g ) q < u ;else if ( e ); else do do ; while ( r );while ( k < g );while ( i = y < m ) and do  d = j < i ;while ( t = a < x )
+ Next suggestion: stmt2
+ Next suggestion: stmt3
+ Next suggestion: stmt4
+ Next suggestion: stmt5
+ Next suggestion: stmt6
+ Next suggestion: stmt8
+
+[Group len 5] Bubbling iteration 193 (17/100)...  
+Successful grouping (double): [controlstmt4, loopstmt1, expr], [controlstmt3, expr]
+     (aka ['do if ( a )if ( g ) q < u ;else if ( e ); else do do ; while ( r );while ( k < g );', 'while ', '( i = y < m )'], ['do do ; while ( r );while ', '( k < g )']))
+coalesced into:  {'t66669': 'stmt8', 't66695': 'stmt8'}
+Number of bubbles:  201
+
+[Group len 5] Bubbling iteration 194 (14/100)...  
+Successful grouping (single): [controlstmt4, loopstmt1]
+    (aka ['do if ( a )if ( g ) q < u ;else if ( e ); else do do ; while ( r );while ( k < g );', 'while ']
+coalesced into:  {'t67005': 'controlstmt3', 'controlstmt3': 'controlstmt3'}
+Number of bubbles:  200
+
+[Group len 5] Bubbling iteration 195 (14/100)...  
+Successful grouping (single): [stmt6, conditionalstmt, stmt]
+    (aka ['else if ( c = f = i = s )while ( s = p = o < c )if ( g < f ){ ; ; }else if ( t = t = z )if ( i = z )if ( s )if ( r < m ); else ; else { ; ; }else if ( q = k )if ( f )do ; while ( a < y );', 'else while ( b = e = f = h = u = b < n )', 'while ( g + h +1)if ( v = n = d = d < a )if ( v ){ if ( d ); else ; ; ; }']
+coalesced into:  {'t67578': 'conditionalstmt3', 'conditionalstmt3': 'conditionalstmt3', 'stmt6': 'conditionalstmt3'}
+Number of bubbles:  196
+
+[Group len 5] Bubbling iteration 196 (16/100)...  
+Successful grouping (single): [conditionalstmt, stmt]
+    (aka ['else ', 'if ( p = c = z < q ) q = j = o < a ;else if ( m = m )do do ; while ( f );while ( k < p );else if ( c = o = e = g ); else if ( h = h + z +( o )< f -( v < y )){ if ( h )while ( u < e )if ( k )do ; while ( l );else { do ; while ( o );}if ( w = p )do { ; }while ( h );if ( q )if ( n ); else ; else if ( j < q ); else ; if ( o < j ); else ; }']
+coalesced into:  {'t67698': 'conditionalstmt3', 'conditionalstmt3': 'conditionalstmt3'}
+Number of bubbles:  195
+
+[Group len 5] Bubbling iteration 197 (49/100)...  
+Successful grouping (single): [ifstmt2, assignstmt, ;, conditionalstmt3, conditionalstmt3]
+    (aka ['if ( f = l = n )', ' j + z ', ';', 'else do if ( o = n )while ( j < o ){ ; }while ( r = u );', 'else do if ( q = x = x = n = n )if ( u = r = k = x < m )while ( g = u = n < z )while ( q < f ); else  a = n = f ;while ( j = z + f - c );']
+coalesced into:  {'t68177': 'complexstmt4', 'complexstmt4': 'complexstmt4'}
+Number of bubbles:  188
+
+[Group len 5] Bubbling iteration 198 (16/100)...  
+Successful grouping (single): [ifstmt2, assignstmt, ;, conditionalstmt3]
+    (aka ['if ( f = l = n )', ' j + z ', ';', 'else do if ( o = n )while ( j < o ){ ; }while ( r = u );']
+coalesced into:  {'t68499': 'complexstmt4', 'complexstmt4': 'complexstmt4'}
+Number of bubbles:  185
+
+[Group len 5] Bubbling iteration 199 (15/100)...  
+Successful grouping (single): [ifstmt2, assignstmt, ;]
+    (aka ['if ( f = l = n )', ' j + z ', ';']
+coalesced into:  {'t68819': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  182
+
+[Group len 5] Bubbling iteration 200 (9/100)...   
+Successful grouping (single): [ifstmt2, assignstmt]
+    (aka ['if ( f = l = n )', ' j + z ']
+coalesced into:  {'t69136': 'stmt8', 'stmt8': 'stmt8'}
+Number of bubbles:  180
+
+[Group len 5] Bubbling iteration 201 (39/100)...  
+Successful grouping (single): [complexstmt2, conditionalstmt3, conditionalstmt]
+    (aka ['if ( m + p - q -76+( l = r < z ))if ( l - z - g )if ( o +9<( h ))while ( u = t )if ( s = b < a )if ( z = d < z )do  r ;while ( y < y );else while ( d < s )if ( w < y ); else ; else do { if ( z < l ); else while ( i ); while ( m < t ); ; ; }while ( q = h < x );else ; ', 'else if ( l + j -( z < z )+( s )){ while ( l ); while ( q < j )do ; while ( k < n );}else while ( u = q - x )if ( d + o )if ( l )if ( l < v ) n < l ;else do ; while ( f < d );', 'else ']
+coalesced into:  {'t69386': 'nestedstmt', 'nestedstmt': 'nestedstmt'}
+Number of bubbles:  176
+
+[Group len 5] Bubbling iteration 202 (23/100)...  
+Successful grouping (single): [conditionalstmt3, conditionalstmt]
+    (aka ['else if ( p = c = z < q ) q = j = o < a ;else if ( m = m )do do ; while ( f );while ( k < p );else if ( c = o = e = g ); else if ( h = h + z +( o )< f -( v < y )){ if ( h )while ( u < e )if ( k )do ; while ( l );else { do ; while ( o );}if ( w = p )do { ; }while ( h );if ( q )if ( n ); else ; else if ( j < q ); else ; if ( o < j ); else ; }', 'else ']
+coalesced into:  {'t69616': 'conditionalstmt', 'conditionalstmt': 'conditionalstmt'}
+Number of bubbles:  175
+
+[Group len 5] Bubbling iteration 203 (41/100)...  
+Successful grouping (single): [controlflow2, loopstmt1, expr, ;]
+    (aka ['else do while ( i = s < p )do ; while ( r = c < w );', 'while ', '( o = w = p )', ';']
+coalesced into:  {'t70094': 'conditionalstmt3', 'conditionalstmt3': 'conditionalstmt3'}
+Number of bubbles:  165
+LLM suggested label: stmt for if ( i = m = f )if ( f = o )if ( f )do ; while ( f < s );else while ( o ); else if ( u < t )while ( c ); else ; else if ( v )if ( v )if ( n < o )while ( j < v ); else { ; }else ; else  t = h = u ; and do while ( l )if ( m < n ); else ; while ( r < v );else if ( k = y < y )if ( b )if ( m ); else { while ( m )while ( g ); { ; }; }
+ Next suggestion: complexstmt
+ Next suggestion: complexstmt2
+ Next suggestion: complexstmt3
+ Next suggestion: complexstmt4
+ Next suggestion: complexstmt5
+
+[Group len 5] Bubbling iteration 204 (39/100)...  
+Successful grouping (double): [complexstmt2, conditionalstmt3, conditionalstmt3], [stmt8, stmt2]
+     (aka ['if ( i = m = f )if ( f = o )if ( f )do ; while ( f < s );else while ( o ); ', 'else if ( u < t )while ( c ); else ; ', 'else if ( v )if ( v )if ( n < o )while ( j < v ); else { ; }else ; else  t = h = u ;'], ['do while ( l )if ( m < n ); else ; while ( r < v )', ';else if ( k = y < y )if ( b )if ( m ); else { while ( m )while ( g ); { ; }; }']))
+coalesced into:  {'t70429': 'complexstmt5', 't70286': 'complexstmt5'}
+Number of bubbles:  144
+
+[Group len 5] Bubbling iteration 205 (23/100)...  
+Successful grouping (single): [complexstmt2, conditionalstmt3]
+    (aka ['if ( i +( x < z )< w +8)if ( r - i < c - l )if ( c = l )while ( t = p )do if ( q < z ); else ; while ( z < p );else do do do ; while ( m );while ( p );while ( b = p );', 'else while ( y ){ while ( s < p ); ; ; }']
+coalesced into:  {'t70610': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  142
+
+[Group len 5] Bubbling iteration 206 (43/100)...  
+Successful grouping (single): [complexstmt5, conditionalstmt3]
+    (aka ['if ( a )do ; while ( i = k < x );else do while ( m )do ; while ( r );while ( s < a );else do do  o = r ;while ( d = m );while ( g = d = i );', 'else do while ( i = s < p )do ; while ( r = c < w );while ( o = w = p );']
+coalesced into:  {'t70977': 'complexstmt4', 'complexstmt4': 'complexstmt4'}
+Number of bubbles:  141
+
+[Group len 5] Bubbling iteration 207 (43/100)...  
+Successful grouping (single): [ , nestedstmt, complexstmt5]
+    (aka [' ', 'if ( m = z = k = s < a )if ( g = n = d )if ( c = w = n )', 'do while ( l )if ( m < n ); else ; while ( r < v );else if ( k = y < y )if ( b )if ( m ); else { while ( m )while ( g ); { ; }; }']
+coalesced into:  {'t71138': 'conditionalstmt2', 'conditionalstmt2': 'conditionalstmt2'}
+Number of bubbles:  128
+
+[Group len 5] Bubbling iteration 208 (26/100)...  
+Successful grouping (single): [nestedstmt, complexstmt5]
+    (aka ['if ( m = z = k = s < a )if ( g = n = d )if ( c = w = n )', 'do while ( l )if ( m < n ); else ; while ( r < v );else if ( k = y < y )if ( b )if ( m ); else { while ( m )while ( g ); { ; }; }']
+coalesced into:  {'t71424': 'complexstmt', 'complexstmt': 'complexstmt'}
+Number of bubbles:  123
+
+[Group len 5] Bubbling iteration 209 (58/100)...  
+Successful grouping (single): [complexstmt, conditionalstmt, do]
+    (aka ['if ( e <( q < i ))if (( o < o )-7< k - j +( q < e )){ while ( u = n = t < u ){ if ( y ); } u < l ;}else if ( r - p +0)do while ( z = y = d < l )if ( a ){ ; }while ( g = u );else { do do if ( l < b ); while ( a < k );while ( c = c );}', 'else ', 'do']
+coalesced into:  {'t71768': 'controlstmt2', 'controlstmt2': 'controlstmt2'}
+Number of bubbles:  117
+
+[Group len 5] Bubbling iteration 210 (57/100)...  
+Successful grouping (single): [controlstmt2,  , nestedstmt, complexstmt4]
+    (aka ['if ( e <( q < i ))if (( o < o )-7< k - j +( q < e )){ while ( u = n = t < u ){ if ( y ); } u < l ;}else if ( r - p +0)do while ( z = y = d < l )if ( a ){ ; }while ( g = u );else { do do if ( l < b ); while ( a < k );while ( c = c );}else do', ' ', 'if ( p - q -1)if ( b = i )', 'if ( a )do ; while ( i = k < x );else do while ( m )do ; while ( r );while ( s < a );else do do  o = r ;while ( d = m );while ( g = d = i );else do while ( i = s < p )do ; while ( r = c < w );while ( o = w = p );']
+coalesced into:  {'t72029': 'controlstmt4', 'controlstmt4': 'controlstmt4'}
+Number of bubbles:  109
+
+[Group len 5] Bubbling iteration 211 (46/100)...  
+Successful grouping (single): [nestedstmt, complexstmt4]
+    (aka ['if ( q + w -( s )- r +4)while ( f = q = o + b < b )if ( s - w +( j ))if ( e = s )', 'do if ( a )if ( g ) q < u ;else if ( e ); else do do ; while ( r );while ( k < g );while ( i = y < m );else if ( p = c = z < q ) q = j = o < a ;else if ( m = m )do do ; while ( f );while ( k < p );else if ( c = o = e = g ); else if ( h = h + z +( o )< f -( v < y )){ if ( h )while ( u < e )if ( k )do ; while ( l );else { do ; while ( o );}if ( w = p )do { ; }while ( h );if ( q )if ( n ); else ; else if ( j < q ); else ; if ( o < j ); else ; }else if (( v < v )< k - a + n )if ( b = o = v )while ( d ); else ; ']
+coalesced into:  {'t72068': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  106
+
+[Group len 5] Bubbling iteration 212 (56/100)...  
+Successful grouping (single): [ , stmt]
+    (aka [' ', 'if ( a )if ( g ) q < u ;else if ( e ); else do do ; while ( r );while ( k < g );']
+coalesced into:  {'t72380': 'conditionalstmt2', 'conditionalstmt2': 'conditionalstmt2'}
+Number of bubbles:  105
+
+[Group len 5] Bubbling iteration 213 (56/100)...  
+Successful grouping (single): [controlstmt4, loopstmt1]
+    (aka ['do if ( a )if ( g ) q < u ;else if ( e ); else do do ; while ( r );while ( k < g );', 'while ']
+coalesced into:  {'t72621': 'controlstmt3', 'controlstmt3': 'controlstmt3'}
+Number of bubbles:  104
+
+[Group len 5] Bubbling iteration 214 (60/100)...  
+Successful grouping (single): [controlstmt3, expr]
+    (aka ['do if ( a )if ( g ) q < u ;else if ( e ); else do do ; while ( r );while ( k < g );while ', '( i = y < m )']
+coalesced into:  {'t72863': 'stmt8', 'stmt8': 'stmt8'}
+Number of bubbles:  103
+
+[Group len 5] Bubbling iteration 215 (56/100)...  
+Successful grouping (single): [do, conditionalstmt2, loopstmt1, expr]
+    (aka ['do', ' if ( m = z = k = s < a )if ( g = n = d )if ( c = w = n )do while ( l )if ( m < n ); else ; while ( r < v );else if ( k = y < y )if ( b )if ( m ); else { while ( m )while ( g ); { ; }; }', 'while ', '( d = x = o )']
+coalesced into:  {'t73173': 'stmt8', 'stmt8': 'stmt8'}
+Number of bubbles:  99
+
+[Group len 5] Bubbling iteration 216 (26/100)...  
+Successful grouping (single): [do, conditionalstmt2]
+    (aka ['do', ' if ( a )if ( g ) q < u ;else if ( e ); else do do ; while ( r );while ( k < g );']
+coalesced into:  {'t73352': 'controlstmt4', 'controlstmt4': 'controlstmt4'}
+Number of bubbles:  96
+
+[Group len 5] Bubbling iteration 217 (25/100)...  
+Successful grouping (single): [controlstmt4, loopstmt1]
+    (aka ['do if ( a )if ( g ) q < u ;else if ( e ); else do do ; while ( r );while ( k < g );', 'while ']
+coalesced into:  {'t73588': 'controlstmt3', 'controlstmt3': 'controlstmt3'}
+Number of bubbles:  95
+
+[Group len 5] Bubbling iteration 218 (49/100)...  
+Successful grouping (single): [stmt8, stmt2]
+    (aka ['do if ( m = z = k = s < a )if ( g = n = d )if ( c = w = n )do while ( l )if ( m < n ); else ; while ( r < v );else if ( k = y < y )if ( b )if ( m ); else { while ( m )while ( g ); { ; }; }while ( d = x = o )', ';else do if ( i +( x < z )< w +8)if ( r - i < c - l )if ( c = l )while ( t = p )do if ( q < z ); else ; while ( z < p );else do do do ; while ( m );while ( p );while ( b = p );else while ( y ){ while ( s < p ); ; ; }else do  f = z = z = o ;while ( m = u = i = z );while (47);']
+coalesced into:  {'t73885': 'complexstmt5', 'complexstmt5': 'complexstmt5'}
+Number of bubbles:  91
+Number of bubbles:  96
+
+[Group len 6] Bubbling iteration 220 (43/100)...  
+Successful grouping (single): [do,  , complexstmt, conditionalstmt, ifstmt2, complexstmt5]
+    (aka ['do', ' ', 'if (( i < x )) l = s - g < b ;', 'else ', 'if ( c = c = r < l )', 'do if ( p = o < j )while ( r < l )if ( e < s ); else ; else if ( g < a )if ( r < n ); while ( y = a < f );else ; ']
+coalesced into:  {'t74399': 'controlstmt4', 'controlstmt4': 'controlstmt4'}
+Number of bubbles:  84
+
+[Group len 6] Bubbling iteration 221 (33/100)...  
+Successful grouping (single): [complexstmt, conditionalstmt, ifstmt2, complexstmt5]
+    (aka ['if (( i < x )) l = s - g < b ;', 'else ', 'if ( c = c = r < l )', 'do if ( p = o < j )while ( r < l )if ( e < s ); else ; else if ( g < a )if ( r < n ); while ( y = a < f );else ; ']
+coalesced into:  {'t74642': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  78
+
+[Group len 6] Bubbling iteration 222 (10/100)...  
+Successful grouping (single): [ , complexstmt]
+    (aka [' ', 'if ( m = z = k = s < a )if ( g = n = d )if ( c = w = n )do while ( l )if ( m < n ); else ; while ( r < v );else if ( k = y < y )if ( b )if ( m ); else { while ( m )while ( g ); { ; }; }']
+coalesced into:  {'t74812': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  77
+
+[Group len 6] Bubbling iteration 223 (30/100)...  
+Successful grouping (single): [complexstmt, conditionalstmt, ifstmt2]
+    (aka ['if (( i < x )) l = s - g < b ;', 'else ', 'if ( c = c = r < l )']
+coalesced into:  {'t75077': 'ifstmt2', 'ifstmt2': 'ifstmt2'}
+Number of bubbles:  74
+
+[Group len 6] Bubbling iteration 224 (28/100)...  
+Successful grouping (single): [ , stmt]
+    (aka [' ', 'if ( a )if ( g ) q < u ;else if ( e ); else do do ; while ( r );while ( k < g );']
+coalesced into:  {'t75186': 'conditionalstmt2', 'conditionalstmt2': 'conditionalstmt2'}
+Number of bubbles:  73
+
+[Group len 6] Bubbling iteration 225 (29/100)...  
+Successful grouping (single): [controlstmt4, loopstmt1, expr, stmt2]
+    (aka ['do if (( i < x )) l = s - g < b ;else if ( c = c = r < l )do if ( p = o < j )while ( r < l )if ( e < s ); else ; else if ( g < a )if ( r < n ); while ( y = a < f );else ; ', 'while ', '( v = m -2< s +2)', ';else if ( a + n -( c < b )-( r ))if ( o = w = w < v )while ( u = r )do if ( r < v )if ( o ); else do ; while ( p < e );else do while ( i ); while ( v );while ( h < j );else do do if ( d = y )do { ; }while ( g );else if ( i < t ){ ; }else { ; }while ( r );while ( e = q = p < u );else ; ']
+coalesced into:  {'t75504': 'complexstmt5', 'complexstmt5': 'complexstmt5'}
+Number of bubbles:  69
+
+[Group len 6] Bubbling iteration 226 (29/100)...  
+Successful grouping (single): [controlstmt4, loopstmt1, expr]
+    (aka ['do if (( i < x )) l = s - g < b ;else if ( c = c = r < l )do if ( p = o < j )while ( r < l )if ( e < s ); else ; else if ( g < a )if ( r < n ); while ( y = a < f );else ; ', 'while ', '( v = m -2< s +2)']
+coalesced into:  {'t75714': 'stmt8', 'stmt8': 'stmt8'}
+Number of bubbles:  68
+
+[Group len 6] Bubbling iteration 227 (22/100)...  
+Successful grouping (single): [controlstmt4, loopstmt1]
+    (aka ['do if ( a )if ( g ) q < u ;else if ( e ); else do do ; while ( r );while ( k < g );', 'while ']
+coalesced into:  {'t75822': 'controlstmt3', 'controlstmt3': 'controlstmt3'}
+Number of bubbles:  67
+Number of bubbles:  67
+Number of bubbles:  67
+Number of bubbles:  67
+Number of bubbles:  67
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-24 16:47:55
+Time spent in oracle calls: 116.32822012901306
+Time spent building grammar: 6844.697703123093s
+Time breakdown: {'FIRST_COALESCE': 36.23131799697876, 'BUILD': 6790.171801328659, 'LAST_COALESCE': 17.01461911201477, 'EXPAND': 0.2548339366912842, 'MINIMIZE': 0.0004940032958984375, 'OVERALL_EXAMPLE_GEN': 2218.4013226032257, 'OVERALL_GROUPING': 0, 'REAPPLY_COUNT': 1}
+Parse calls: 231349, 183116
+LLM calls for bubble finding: 0
+**** Running eval.py ****
+start: stmt
+stmt: nestedstmt complexstmt4
+    | stmt8 ";"
+    | ifstmt2 stmt
+    | arithmeticstmt ";"
+    | ";" ws
+    | complexstmt conditionalstmt3
+    | complexstmt conditionalstmt complexstmt
+    | "{" stmtlist "}"
+    | "{" conditionalstmt2 "}"
+    | loopstmt1 ifstmt4
+    | ifstmt2 complexstmt5
+    | nestedstmt complexstmt
+    | stmt conditionalstmt3
+    | complexstmt2 complexstmt3
+    | "{" stmt "}"
+    | ws complexstmt
+    | loopstmt expr ";"
+    | ifstmt2 complexstmt
+    | identifier ";"
+    | complexstmt2 conditionalstmt3
+    | ifstmt2 conditionalstmt2
+    | ";"
+    | conditionalstmt2
+    | complexstmt
+    | ifstmt4
+    | complexstmt2
+    | complexstmt4
+    | expr ";"
+    | complexstmt5
+nestedstmt: nestedstmt ifstmt2
+    | ifstmt2 ifstmt2
+    | complexstmt2 conditionalstmt
+ifstmt2: ifstmt expr
+    | complexstmt2 conditionalstmt
+    | complexstmt conditionalstmt ifstmt2
+ws: " "
+    | "  "
+expr: "(" num ")"
+    | "(" arithmeticstmt ")"
+    | "(" expr3 ")"
+    | "(" assignstmt ")"
+    | "(" expr ")"
+num: num arithmeticexpr
+    | ws num
+    | identifier arithmeticexpr
+    | expr arithmeticexpr
+    | tdigits
+identifier: "q"
+    | "w"
+    | identifier ws
+    | "s"
+    | "r"
+    | "f"
+    | "o"
+    | "b"
+    | "j"
+    | "e"
+    | "a"
+    | "g"
+    | "u"
+    | "k"
+    | "i"
+    | "y"
+    | "m"
+    | "p"
+    | "c"
+    | "z"
+    | "h"
+    | "v"
+    | "l"
+    | "n"
+    | "d"
+    | "t"
+    | "x"
+arithmeticexpr: ws arithmeticexpr
+    | addop num
+    | addop expr
+addop: "+"
+    | "-"
+arithmeticstmt: ws identifier
+    | ws arithmeticstmt
+    | arithmeticstmt ws
+    | exprcomp identifier
+    | num relexpr2
+    | expr relexpr2
+    | identifier relexpr2
+loopstmt1: loopstmt1 ws
+    | "while"
+expr3: ws assignstmt
+    | ws expr3
+    | identifier expr2
+    | expr4 identifier
+    | exprcomp identifier
+    | num relexpr2
+    | exprcomp num
+assignstmt: identifier expr2
+    | expr4 identifier
+    | arithmeticstmt expr2
+expr2: assignexpr expr3
+    | addop arithmeticstmt
+    | assignexpr arithmeticstmt
+    | ws expr2
+    | assignexpr num
+assignexpr: "="
+    | assignexpr ws
+    | assignexpr identifier assignexpr
+exprcomp: exprcomp ws
+    | identifier relop
+    | expr3 addop
+    | expr relop
+    | num relop
+    | ws expr4
+relop: ws relop
+    | "<"
+    | addop exprcomp
+expr4: identifier assignexpr
+    | expr4 ws
+    | expr3 addop
+    | identifier arithmeticexpr2
+    | ws expr4
+    | identifier addop
+    | arithmeticstmt addop
+    | exprcomp ws
+complexstmt4: stmt complexstmt3
+    | complexstmt4 conditionalstmt3
+    | stmt conditionalstmt3
+    | complexstmt5 conditionalstmt3
+    | complexstmt2 conditionalstmt3
+stmt8: controlstmt3 expr
+    | ifstmt2 assignstmt
+controlstmt3: controlstmt4 loopstmt1
+    | controlstmt2 ws controlstmt
+controlstmt4: controlstmt2 conditionalstmt2
+    | ifstmt2 controlstmt4
+    | loopstmt1 expr controlstmt4
+    | ws controlstmt4
+    | complexstmt controlflow2
+controlstmt2: "do"
+    | complexstmt conditionalstmt controlstmt2
+    | loopstmt1 expr controlstmt2
+conditionalstmt2: ws stmt
+    | expr3 ";"
+    | ws complexstmt
+    | arithmeticstmt ";"
+    | ws complexstmt2
+complexstmt2: ifstmt2 complexstmt
+    | nestedstmt stmt
+    | nestedstmt complexstmt
+complexstmt: ifstmt ifstmt4
+    | complexstmt conditionalstmt complexstmt
+    | ifstmt2 stmt
+    | nestedstmt stmt
+    | nestedstmt complexstmt5
+    | complexstmt2 conditionalstmt3
+ifstmt4: ws ifstmt4
+    | expr conditionalstmt2
+    | expr stmt
+    | expr complexstmt
+    | expr complexstmt2
+conditionalstmt: "else" ws
+    | conditionalstmt3 conditionalstmt
+    | conditionalstmt loopstmt1 expr
+complexstmt3: conditionalstmt complexstmt
+    | conditionalstmt3 conditionalstmt3
+    | controlflow2 loopstmt1 expr stmt2
+conditionalstmt3: conditionalstmt stmt
+    | "else" conditionalstmt2
+    | conditionalstmt complexstmt2
+    | controlflow2 loopstmt1 expr ";"
+    | conditionalstmt3 conditionalstmt3
+relexpr2: relop num
+    | relop expr
+    | ws relexpr2
+    | addop arithmeticstmt
+stmtlist: conditionalstmt4 stmtlist
+    | loopstmt expr ";"
+    | ws stmt3
+    | conditionalstmt2 stmt
+    | ";" stmtlist
+    | ws stmtlist
+    | stmtlist ws
+    | stmt ";"
+    | stmtlist ";"
+    | stmt stmt3
+    | stmt conditionalstmt2
+    | stmt stmtlist
+conditionalstmt4: stmtlist conditionalstmt4
+    | ws conditionalstmt4
+    | complexstmt "else"
+loopstmt: loopstmt2 loopstmt1
+    | controlstmt4 loopstmt1
+loopstmt2: conditionalstmt2 controlstmt4
+    | ws controlstmt4
+stmt3: conditionalstmt4 stmtlist
+    | loopstmt1 stmt4
+    | stmt stmt
+complexstmt5: stmt8 stmt2
+    | stmt conditionalstmt3
+stmt2: ";" conditionalstmt3
+arithmeticexpr2: expr2 addop
+    | arithmeticexpr2 ws
+    | assignexpr expr4
+controlstmt: stmt loopstmt1
+    | complexstmt loopstmt1
+controlflow2: conditionalstmt controlstmt4
+ifstmt: ifstmt2 loopstmt1
+    | ifstmt ws
+    | "if"
+stmt4: expr stmt3
+    | expr stmtlist
+    | ws stmt4
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.961, Precision: 0.865, F-1: 0.9104764512595837
+**** Running search.py ****

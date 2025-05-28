@@ -1,0 +1,354 @@
+**** Running search.py ****
+python3 search.py external Seed_Programs/micro-benchmarks/xml/parse_xml Seed_Programs/micro-benchmarks/xml/guides-r1 Seed_Programs/xml-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 27.8, max guide length: 78
+Average token length: 23.2, max token length: 60
+Guides with brackets: 0, quotes: 14
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 1.0
+Average lengths of brackets(not normalized): 23.2
+Average n: 23.2
+Beginning coalescing...                           
+LLM suggested label: identifier for ac and w
+max example size 60, node size: 1
+Number of bubbles:  49
+LLM suggested label: idivexpr for a/ and c/
+
+[Group len 2] Bubbling iteration 1 (33/100)...    
+Successful grouping (double): [a, /], [c, /]
+     (aka ['a', '/'], ['c', '/']))
+coalesced into:  {'t30': 'idivexpr', 't48': 'idivexpr'}
+Number of bubbles:  50
+
+[Group len 2] Bubbling iteration 2 (36/100)...    
+Successful grouping (single): [d, /]
+    (aka ['d', '/']
+coalesced into:  {'t97': 'idivexpr', 'idivexpr': 'idivexpr'}
+Number of bubbles:  49
+
+[Group len 2] Bubbling iteration 3 (39/100)...    
+Successful grouping (single): [b, /]
+    (aka ['b', '/']
+coalesced into:  {'t154': 'idivexpr', 'idivexpr': 'idivexpr'}
+Number of bubbles:  48
+
+[Group len 2] Bubbling iteration 4 (45/100)...    
+Successful grouping (single): [e, /]
+    (aka ['e', '/']
+coalesced into:  {'t193': 'idivexpr', 'idivexpr': 'idivexpr'}
+Number of bubbles:  46
+Number of bubbles:  97
+
+[Group len 3] Bubbling iteration 6 (10/100)...    
+Successful grouping (single): [<, idivexpr, >]
+    (aka ['<', 'a/', '>']
+coalesced into:  {'t310': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  101
+LLM suggested label: tag for >Lmeb and ><a/>
+
+[Group len 3] Bubbling iteration 7 (3/100)...     
+Successful grouping (double): [>, ac], [>, stmt]
+     (aka ['>', 'ac'], ['>', '<a/>']))
+coalesced into:  {'t372': 'tag', 't411': 'tag'}
+Number of bubbles:  104
+Number of bubbles:  173
+Number of bubbles:  257
+Number of bubbles:  350
+Number of bubbles:  442
+LLM suggested label: stmt for  C="pB"  and  
+ Next suggestion: assignstmt
+
+[Group len 7] Bubbling iteration 12 (30/100)...   
+Successful grouping (single): [ , F, =, ", AT, ",  ]
+    (aka [' ', 'F', '=', '"', 'AT', '"', ' ']
+coalesced into:  {'t1567': 'assignstmt', ' ': 'assignstmt'}
+Reapply: 1
+
+[Group len 7] Bubbling iteration 12 (30/100)...   
+Successful grouping (single): [ , F, =, ", AT, ",  ]
+    (aka [' ', 'F', '=', '"', 'AT', '"', ' ']
+coalesced into:  {'t1843': 'assignstmt', 'assignstmt': 'assignstmt'}
+Number of bubbles:  426
+
+[Group len 7] Bubbling iteration 13 (11/100)...   
+Successful grouping (single): [ , w, =, ", K, ", tag]
+    (aka [' ', 'w', '=', '"', 'K', '"', '><a/>']
+coalesced into:  {'t1926': 'tag', 'tag': 'tag'}
+Number of bubbles:  369
+LLM suggested label: element for d C="pB" f="x">pRXH</d and a MAATNW="N">Ug</a
+
+[Group len 7] Bubbling iteration 14 (24/100)...   
+Successful grouping (double): [d, tag, <, /, d], [a, tag, <, /, a]
+     (aka ['d', ' w="K"><a/>', '<', '/', 'd'], ['a', ' Wqw="g" SAgu="K">R', '<', '/', 'a']))
+coalesced into:  {'t2356': 'element', 't2473': 'element'}
+Number of bubbles:  316
+LLM suggested label: htmltag for ><a Wqw="g" SAgu="K">R</a>< and  C="pB" f="x">pRXH<
+
+[Group len 7] Bubbling iteration 15 (9/100)...    
+Successful grouping (double): [>, <, element, >, <], [tag, <]
+     (aka ['>', '<', 'd w="K"><a/></d', '>', '<'], ['>ac', '<']))
+coalesced into:  {'t2726': 'htmltag', 't2681': 'htmltag'}
+Number of bubbles:  303
+
+[Group len 7] Bubbling iteration 16 (6/100)...    
+Successful grouping (single): [>, <, element, >]
+    (aka ['>', '<', 'd w="K"><a/></d', '>']
+coalesced into:  {'t3075': 'tag', 'tag': 'tag'}
+Number of bubbles:  300
+
+[Group len 7] Bubbling iteration 17 (8/100)...    
+Successful grouping (single): [<, element, >]
+    (aka ['<', 'd w="K"><a/></d', '>']
+coalesced into:  {'t3396': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  298
+LLM suggested label: tag for <a MAATNW="N">Ug</a and <a/
+ Next suggestion: tagexpr
+
+[Group len 7] Bubbling iteration 18 (6/100)...    
+Successful grouping (double): [<, element], [<, idivexpr]
+     (aka ['<', 'd w="K"><a/></d'], ['<', 'a/']))
+coalesced into:  {'t3711': 'tagexpr', 't3745': 'tagexpr'}
+Number of bubbles:  295
+LLM suggested label: element for c nk="qHFY" M="S" wAQ="nJ"><c/></c and a><d>O</d></a
+ Next suggestion: element2
+
+[Group len 7] Bubbling iteration 19 (14/100)...   
+Successful grouping (double): [c, htmltag, /, c], [a, htmltag, /, a]
+     (aka ['c', '><d w="K"><a/></d><', '/', 'c'], ['a', ' Wqw="g" SAgu="K">R<', '/', 'a']))
+coalesced into:  {'t3998': 'element2', 't4073': 'element2'}
+Number of bubbles:  289
+LLM suggested label: element for ><c><d w="K"><a/></d></c></ and  C="pB" f="x">pRXH</
+ Next suggestion: xmltag
+
+[Group len 7] Bubbling iteration 20 (6/100)...    
+Successful grouping (double): [>, <, element2, >, <, /], [htmltag, /]
+     (aka ['>', '<', 'c><d w="K"><a/></d></c', '>', '<', '/'], ['>ac<', '/']))
+coalesced into:  {'t4300': 'xmltag', 't4274': 'xmltag'}
+Number of bubbles:  258
+
+[Group len 7] Bubbling iteration 21 (6/100)...    
+Successful grouping (single): [>, <, element2, >, <]
+    (aka ['>', '<', 'c><d w="K"><a/></d></c', '>', '<']
+coalesced into:  {'t4594': 'htmltag', 'htmltag': 'htmltag'}
+Number of bubbles:  255
+
+[Group len 7] Bubbling iteration 22 (6/100)...    
+Successful grouping (single): [>, <, element2, >]
+    (aka ['>', '<', 'c><d w="K"><a/></d></c', '>']
+coalesced into:  {'t4871': 'tag', 'tag': 'tag'}
+Number of bubbles:  252
+
+[Group len 7] Bubbling iteration 23 (10/100)...   
+Successful grouping (single): [<, element2]
+    (aka ['<', 'c><d w="K"><a/></d></c']
+coalesced into:  {'t5147': 'tagexpr', 'tagexpr': 'tagexpr'}
+Number of bubbles:  250
+
+[Group len 7] Bubbling iteration 24 (7/100)...    
+Successful grouping (single): [tagexpr, >]
+    (aka ['<c><d w="K"><a/></d></c', '>']
+coalesced into:  {'t5419': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  248
+
+[Group len 7] Bubbling iteration 25 (12/100)...   
+Successful grouping (single): [<, e, xmltag, e]
+    (aka ['<', 'e', '>ac</', 'e']
+coalesced into:  {'t5668': 'tagexpr', 'tagexpr': 'tagexpr'}
+Number of bubbles:  244
+
+[Group len 7] Bubbling iteration 26 (6/100)...    
+Successful grouping (single): [e, xmltag, e]
+    (aka ['e', '>ac</', 'e']
+coalesced into:  {'t5942': 'element2', 'element2': 'element2', 'idivexpr': 'element2', 'element': 'element2'}
+Number of bubbles:  239
+
+[Group len 7] Bubbling iteration 27 (13/100)...   
+Successful grouping (single): [<, b, xmltag, b]
+    (aka ['<', 'b', ' Pgd="Lw" N="WM" FTGH="qy" nxP="nt"><d/></', 'b']
+coalesced into:  {'t6331': 'tagexpr', 'tagexpr': 'tagexpr'}
+Number of bubbles:  232
+
+[Group len 7] Bubbling iteration 28 (7/100)...    
+Successful grouping (single): [b, xmltag, b]
+    (aka ['b', ' Pgd="Lw" N="WM" FTGH="qy" nxP="nt"><d/></', 'b']
+coalesced into:  {'t6605': 'element2', 'element2': 'element2'}
+Number of bubbles:  229
+LLM suggested label: element for ><b Pgd="Lw" N="WM" FTGH="qy" nxP="nt"><d/></b></d and  C="pB" f="x">pRXH</d
+
+[Group len 7] Bubbling iteration 29 (12/100)...   
+Successful grouping (double): [>, tagexpr, >, <, /, d], [xmltag, d]
+     (aka ['>', '<b Pgd="Lw" N="WM" FTGH="qy" nxP="nt"><d/></b', '>', '<', '/', 'd'], [' w="K"><a/></', 'd']))
+coalesced into:  {'t6834': 'element', 't6731': 'element'}
+Number of bubbles:  208
+
+[Group len 7] Bubbling iteration 30 (17/100)...   
+Successful grouping (single): [>, tagexpr, >, <, /]
+    (aka ['>', '<b Pgd="Lw" N="WM" FTGH="qy" nxP="nt"><d/></b', '>', '<', '/']
+coalesced into:  {'t7072': 'xmltag', 'xmltag': 'xmltag'}
+Number of bubbles:  187
+
+[Group len 7] Bubbling iteration 31 (8/100)...    
+Successful grouping (single): [>, tagexpr, >, <]
+    (aka ['>', '<b Pgd="Lw" N="WM" FTGH="qy" nxP="nt"><d/></b', '>', '<']
+coalesced into:  {'t7299': 'htmltag', 'htmltag': 'htmltag'}
+Number of bubbles:  185
+
+[Group len 7] Bubbling iteration 32 (8/100)...    
+Successful grouping (single): [>, tagexpr, >]
+    (aka ['>', '<b Pgd="Lw" N="WM" FTGH="qy" nxP="nt"><d/></b', '>']
+coalesced into:  {'t7505': 'tag', 'tag': 'tag'}
+Number of bubbles:  183
+
+[Group len 7] Bubbling iteration 33 (9/100)...    
+Successful grouping (single): [tagexpr, >]
+    (aka ['<e>ac</e', '>']
+coalesced into:  {'t7593': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  181
+
+[Group len 7] Bubbling iteration 34 (26/100)...   
+Successful grouping (single): [<, c, xmltag, c]
+    (aka ['<', 'c', '><b Jb="L">NB</b></', 'c']
+coalesced into:  {'t7992': 'tagexpr', 'tagexpr': 'tagexpr'}
+Number of bubbles:  179
+
+[Group len 7] Bubbling iteration 35 (8/100)...    
+Successful grouping (single): [c, xmltag, c]
+    (aka ['c', '><d w="K"><a/></d></', 'c']
+coalesced into:  {'t8018': 'element2', 'element2': 'element2'}
+Number of bubbles:  177
+Number of bubbles:  200
+Number of bubbles:  221
+
+[Group len 9] Bubbling iteration 38 (16/100)...   
+Successful grouping (single): [<, d, assignstmt, j, =, ", R, ", element]
+    (aka ['<', 'd', ' TK="nE" n="VwcSFC" ', 'j', '=', '"', 'R', '"', '><b Pgd="Lw" N="WM" FTGH="qy" nxP="nt"><d/></b></d']
+coalesced into:  {'t8717': 'tagexpr', 'tagexpr': 'tagexpr'}
+Number of bubbles:  212
+
+[Group len 9] Bubbling iteration 39 (12/100)...   
+Successful grouping (single): [d, assignstmt, j, =, ", R, ", element]
+    (aka ['d', ' TK="nE" n="VwcSFC" ', 'j', '=', '"', 'R', '"', '><b Pgd="Lw" N="WM" FTGH="qy" nxP="nt"><d/></b></d']
+coalesced into:  {'t8965': 'element2', 'element2': 'element2'}
+Number of bubbles:  204
+
+[Group len 9] Bubbling iteration 40 (14/100)...   
+Successful grouping (single): [assignstmt, j, =, ", R, ", element]
+    (aka [' TK="nE" n="VwcSFC" ', 'j', '=', '"', 'R', '"', '><b Pgd="Lw" N="WM" FTGH="qy" nxP="nt"><d/></b></d']
+coalesced into:  {'t9191': 'element', 'element': 'element'}
+Number of bubbles:  197
+Number of bubbles:  214
+
+[Group len 10] Bubbling iteration 42 (32/100)...  
+Successful grouping (single): [<, a,  , o, =, ", ESa, ", xmltag, a]
+    (aka ['<', 'a', ' ', 'o', '=', '"', 'ESa', '"', '><d>Mo</d></', 'a']
+coalesced into:  {'t9598': 'tagexpr', 'tagexpr': 'tagexpr'}
+Number of bubbles:  205
+
+[Group len 10] Bubbling iteration 43 (25/100)...  
+Successful grouping (single): [a,  , o, =, ", ESa, ", xmltag, a]
+    (aka ['a', ' ', 'o', '=', '"', 'ESa', '"', '><d>Mo</d></', 'a']
+coalesced into:  {'t9841': 'element2', 'element2': 'element2'}
+Number of bubbles:  203
+LLM suggested label: tagattr for  o="ESa"><d>Mo</d></a and  MAATNW="N">Ug</a
+
+[Group len 10] Bubbling iteration 44 (24/100)...  
+Successful grouping (double): [ , o, =, ", ESa, ", xmltag, a], [xmltag, a]
+     (aka [' ', 'o', '=', '"', 'ESa', '"', '><d>Mo</d></', 'a'], [' Wqw="g" SAgu="K">R</', 'a']))
+coalesced into:  {'t10061': 'tagattr', 't10051': 'tagattr'}
+Number of bubbles:  200
+Number of bubbles:  214
+Number of bubbles:  227
+Number of bubbles:  239
+Number of bubbles:  250
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-24 14:39:42
+Time spent in oracle calls: 20.90799593925476
+Time spent building grammar: 125.16871237754822s
+Time breakdown: {'FIRST_COALESCE': 6.912161350250244, 'BUILD': 113.60703468322754, 'LAST_COALESCE': 0.5992801189422607, 'EXPAND': 2.7343122959136963, 'MINIMIZE': 0.00023126602172851562, 'OVERALL_EXAMPLE_GEN': 38.311705350875854, 'OVERALL_GROUPING': 0, 'REAPPLY_COUNT': 1}
+Parse calls: 19888, 14729
+LLM calls for bubble finding: 0
+**** Running eval.py ****
+start: stmt
+stmt: "<" element2 ">"
+    | "<" "a" assignstmt identifier "=" "\"" identifier "\"" ">" "<" "c" assignstmt identifier "=" "\"" identifier "\"" xmltag "c" ">" "<" "/" "a" ">"
+element2: "e" xmltag "e"
+    | "c" xmltag "c"
+    | "d" element
+    | "a" "/"
+    | "e" "/"
+    | "a" tagattr
+    | "b" xmltag "b"
+    | "d" "/"
+    | "b" "/"
+    | "c" "/"
+xmltag: tag "<" "/"
+tag: ">" identifier
+    | ">" stmt
+    | assignstmt identifier "=" "\"" identifier "\"" tag
+identifier: tletters
+element: xmltag "d"
+    | assignstmt identifier "=" "\"" identifier "\"" element
+assignstmt: " "
+    | assignstmt identifier "=" "\"" identifier "\"" assignstmt
+tagattr: xmltag "a"
+    | assignstmt identifier "=" "\"" identifier "\"" tagattr
+tletters: tletter
+    | tletter tletters
+tletter: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 1.0, Precision: 1.0, F-1: 1.0
+**** Running search.py ****
