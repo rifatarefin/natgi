@@ -55,7 +55,7 @@ TIME_GROUPING = 0
 REAPPLY = 0
 LLM_CALLS = 0
 USE_LLM = True
-TREEVADA = True
+TREEVADA = False
 HDD = True
 
 def get_times():
@@ -483,7 +483,7 @@ def get_longest_layer(best_trees, layers):
     for layer in all_layers_dedup:
         top_layers.append(layer)
         sum_len += len(layer)
-        if sum_len > 500:
+        if sum_len > 500 and len(top_layers) >20:
             break
     return top_layers
 
@@ -758,7 +758,7 @@ def build_trees(oracle, leaves):
 
         # one_bubbles = sorted(all_bubbles.values(), key=lambda x: len(x.bubbled_elems))
         # keep last added 100 bubbles
-        all_bubbles = dict(list(all_bubbles.items())[-100:])
+        all_bubbles = dict(list(all_bubbles.items())[-60:])
         one_bubbles = list(reversed(all_bubbles.values()))
         TIME_GROUPING += time.time() - group_start
 
