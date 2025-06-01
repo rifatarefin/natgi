@@ -1,0 +1,2350 @@
+<production-rules>
+<stmt> ::= <expr> | <identifier> | <number>
+<expr> ::= "(" <expr> <whitespace> "." <whitespace> <expr> ")" | "(" <expr> <whitespace> <expr> ")" | "(" <expr> ")"
+<identifier> ::= <letter> | <letter> <identifier> | <letter> <number> | <letter> <number> <identifier>
+<number> ::= <digit> | <digit> <number>
+<letter> ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<whitespace> ::= " "
+</production-rules>
+<re.Match object; span=(0, 600), match='<production-rules>\n<stmt> ::= <expr> | <identifi>
+HI
+Production Rules saved to results/gpt_grammar_microbench-lisp-r1-1.txt
+start: stmt
+stmt: expr
+    | identifier
+    | number
+expr: "(" expr whitespace "." whitespace expr ")"
+    | "(" expr whitespace expr ")"
+    | "(" expr ")"
+identifier: letter
+    | letter identifier
+    | letter number
+    | letter number identifier
+number: digit
+    | digit number
+letter: tlowers
+digit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+whitespace: talphanums
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: expr
+    | identifier
+    | number
+expr: "(" expr whitespace "." whitespace expr ")"
+    | "(" expr whitespace expr ")"
+    | "(" expr ")"
+identifier: letter
+    | letter identifier
+    | letter number
+    | letter number identifier
+number: digit
+    | digit number
+letter: tlowers
+digit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+whitespace: talphanums
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.2, Precision: 0.709, F-1: 0.311991199119912
+<production-rules>
+<stmt> ::= <expr> | <atom>
+<expr> ::= "(" <expr> <dot> <expr> ")" | "(" <expr> <expr> ")" | "(" <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> <expr> <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> <expr> <expr> <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> <expr> <expr> <expr> <expr> <expr> <expr> ")"
+<dot> ::= "." <expr>
+<atom> ::= <letter> | <letter> <digit> | <letter> <digit> <letter> | <letter> <digit> <digit> | <letter> <digit> <digit> <letter> | <letter> <digit> <digit> <digit> | <letter> <digit> <digit> <digit> <letter> | <letter> <digit> <digit> <digit> <digit> | <letter> <digit> <digit> <digit> <digit> <letter> | <letter> <digit> <digit> <digit> <digit> <digit> | <letter> <digit> <digit> <digit> <digit> <digit> <letter> | <letter> <digit> <digit> <digit> <digit> <digit> <digit> | <letter> <digit> <digit> <digit> <digit> <digit> <digit> <letter> | <letter> <digit> <digit> <digit> <digit> <digit> <digit> <digit> | <letter> <digit> <digit> <digit> <digit> <digit> <digit> <digit> <letter> | <letter> <digit> <digit> <digit> <digit> <digit> <digit> <digit> <digit> | <letter> <digit> <digit> <digit> <digit> <digit> <digit> <digit> <digit> <letter>
+<letter> ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+</production-rules>
+<re.Match object; span=(0, 1674), match='<production-rules>\n<stmt> ::= <expr> | <atom>\n<>
+HI
+Production Rules saved to results/gpt_grammar_microbench-lisp-r1-2.txt
+start: stmt
+stmt: expr
+    | atom
+expr: "(" expr dot expr ")"
+    | "(" expr expr ")"
+    | "(" expr expr expr ")"
+    | "(" expr expr expr expr ")"
+    | "(" expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr expr expr expr ")"
+dot: "." expr
+atom: letter
+    | letter digit
+    | letter digit letter
+    | letter digit digit
+    | letter digit digit letter
+    | letter digit digit digit
+    | letter digit digit digit letter
+    | letter digit digit digit digit
+    | letter digit digit digit digit letter
+    | letter digit digit digit digit digit
+    | letter digit digit digit digit digit letter
+    | letter digit digit digit digit digit digit
+    | letter digit digit digit digit digit digit letter
+    | letter digit digit digit digit digit digit digit
+    | letter digit digit digit digit digit digit digit letter
+    | letter digit digit digit digit digit digit digit digit
+    | letter digit digit digit digit digit digit digit digit letter
+letter: tlowers
+digit: tdigits
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: expr
+    | atom
+expr: "(" expr dot expr ")"
+    | "(" expr expr ")"
+    | "(" expr expr expr ")"
+    | "(" expr expr expr expr ")"
+    | "(" expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr expr expr expr ")"
+dot: "." expr
+atom: letter
+    | letter digit
+    | letter digit letter
+    | letter digit digit
+    | letter digit digit letter
+    | letter digit digit digit
+    | letter digit digit digit letter
+    | letter digit digit digit digit
+    | letter digit digit digit digit letter
+    | letter digit digit digit digit digit
+    | letter digit digit digit digit digit letter
+    | letter digit digit digit digit digit digit
+    | letter digit digit digit digit digit digit letter
+    | letter digit digit digit digit digit digit digit
+    | letter digit digit digit digit digit digit digit letter
+    | letter digit digit digit digit digit digit digit digit
+    | letter digit digit digit digit digit digit digit digit letter
+letter: tlowers
+digit: tdigits
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.186, Precision: 1.0, F-1: 0.3136593591905565
+<production-rules>
+<stmt> ::= <expr> | <atom>
+<expr> ::= "(" <expr> <whitespace> <expr> ")" | "(" <expr> <whitespace> <atom> ")" | "(" <atom> <whitespace> <expr> ")" | "(" <atom> <whitespace> <atom> ")"
+<atom> ::= <identifier> | <number>
+<identifier> ::= <letter> | <letter> <identifier>
+<number> ::= <digit> | <digit> <number>
+<letter> ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<whitespace> ::= " "
+</production-rules>
+<re.Match object; span=(0, 605), match='<production-rules>\n<stmt> ::= <expr> | <atom>\n<>
+HI
+Production Rules saved to results/gpt_grammar_microbench-lisp-r1-3.txt
+start: stmt
+stmt: expr
+    | atom
+expr: "(" expr whitespace expr ")"
+    | "(" expr whitespace atom ")"
+    | "(" atom whitespace expr ")"
+    | "(" atom whitespace atom ")"
+atom: identifier
+    | number
+identifier: letter
+    | letter identifier
+number: digit
+    | digit number
+letter: tlowers
+digit: talphanums
+whitespace: " "
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: expr
+    | atom
+expr: "(" expr whitespace expr ")"
+    | "(" expr whitespace atom ")"
+    | "(" atom whitespace expr ")"
+    | "(" atom whitespace atom ")"
+atom: identifier
+    | number
+identifier: letter
+    | letter identifier
+number: digit
+    | digit number
+letter: tlowers
+digit: talphanums
+whitespace: " "
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.224, Precision: 0.314, F-1: 0.26147211895910777
+<production-rules>
+<stmt> ::= <expr> | <atom>
+<expr> ::= "(" <expr> <dot> <expr> ")" | "(" <expr> <expr> ")" | "(" <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> <expr> <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> <expr> <expr> <expr> <expr> <expr> ")"
+<dot> ::= "." <whitespace>
+<atom> ::= <letter> | <letter> <number> | <letter> <letter> | <letter> <number> <letter> | <letter> <number> <number> | <letter> <number> <letter> <number> | <letter> <number> <number> <letter> | <letter> <number> <number> <number> | <letter> <number> <number> <number> <letter> | <letter> <number> <number> <number> <number> | <letter> <number> <number> <number> <number> <letter> | <letter> <number> <number> <number> <number> <number> | <letter> <number> <number> <number> <number> <number> <letter> | <letter> <number> <number> <number> <number> <number> <number> | <letter> <number> <number> <number> <number> <number> <number> <letter> | <letter> <number> <number> <number> <number> <number> <number> <number> | <letter> <number> <number> <number> <number> <number> <number> <number> <letter>
+<whitespace> ::= " "
+<letter> ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
+<number> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+</production-rules>
+<re.Match object; span=(0, 1577), match='<production-rules>\n<stmt> ::= <expr> | <atom>\n<>
+HI
+Production Rules saved to results/gpt_grammar_microbench-lisp-r1-4.txt
+start: stmt
+stmt: expr
+    | atom
+expr: "(" expr dot expr ")"
+    | "(" expr expr ")"
+    | "(" expr expr expr ")"
+    | "(" expr expr expr expr ")"
+    | "(" expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr expr expr ")"
+dot: "." whitespace
+atom: letter
+    | letter number
+    | letter letter
+    | letter number letter
+    | letter number number
+    | letter number letter number
+    | letter number number letter
+    | letter number number number
+    | letter number number number letter
+    | letter number number number number
+    | letter number number number number letter
+    | letter number number number number number
+    | letter number number number number number letter
+    | letter number number number number number number
+    | letter number number number number number number letter
+    | letter number number number number number number number
+    | letter number number number number number number number letter
+whitespace: talphanums
+letter: tlowers
+number: tdigits
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: expr
+    | atom
+expr: "(" expr dot expr ")"
+    | "(" expr expr ")"
+    | "(" expr expr expr ")"
+    | "(" expr expr expr expr ")"
+    | "(" expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr expr expr ")"
+dot: "." whitespace
+atom: letter
+    | letter number
+    | letter letter
+    | letter number letter
+    | letter number number
+    | letter number letter number
+    | letter number number letter
+    | letter number number number
+    | letter number number number letter
+    | letter number number number number
+    | letter number number number number letter
+    | letter number number number number number
+    | letter number number number number number letter
+    | letter number number number number number number
+    | letter number number number number number number letter
+    | letter number number number number number number number
+    | letter number number number number number number number letter
+whitespace: talphanums
+letter: tlowers
+number: tdigits
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.194, Precision: 1.0, F-1: 0.32495812395309887
+<production-rules>
+<stmt> ::= <expr> | <atom>
+<expr> ::= "(" <expr> <dot> <expr> ")" | "(" <expr> <expr> ")" | "(" <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> <expr> <expr> <expr> <expr> ")"
+<dot> ::= " " "." " "
+<atom> ::= <identifier> | <number>
+<identifier> ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" | <identifier> <identifier>
+<number> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | <number> <number>
+</production-rules>
+<re.Match object; span=(0, 766), match='<production-rules>\n<stmt> ::= <expr> | <atom>\n<>
+HI
+Production Rules saved to results/gpt_grammar_microbench-lisp-r1-5.txt
+start: stmt
+stmt: expr
+    | atom
+expr: "(" expr dot expr ")"
+    | "(" expr expr ")"
+    | "(" expr expr expr ")"
+    | "(" expr expr expr expr ")"
+    | "(" expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr expr ")"
+dot: " " "." " "
+atom: identifier
+    | number
+identifier: identifier identifier
+    | tlowers
+number: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+    | number number
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+start: stmt
+stmt: expr
+    | atom
+expr: "(" expr dot expr ")"
+    | "(" expr expr ")"
+    | "(" expr expr expr ")"
+    | "(" expr expr expr expr ")"
+    | "(" expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr expr ")"
+dot: " " "." " "
+atom: identifier
+    | number
+identifier: identifier identifier
+    | tlowers
+number: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+    | number number
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.086, Precision: 0.92, F-1: 0.15729622266401588
+<production-rules>
+<stmt> ::= <expr> | <atom>
+<expr> ::= "(" <expr> <whitespace> <expr> ")" | "(" <expr> <dot> <whitespace> <expr> ")" | "(" <expr> <whitespace> <expr> <whitespace> <expr> ")" | "(" <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> ")" | "(" <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> ")" | "(" <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> ")"
+<atom> ::= <identifier> | <number>
+<identifier> ::= <letter> | <letter> <identifier>
+<number> ::= <digit> | <digit> <number>
+<dot> ::= "."
+<whitespace> ::= " "
+<letter> ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+</production-rules>
+<re.Match object; span=(0, 899), match='<production-rules>\n<stmt> ::= <expr> | <atom>\n<>
+HI
+Production Rules saved to results/gpt_grammar_microbench-lisp-r1-6.txt
+start: stmt
+stmt: expr
+    | atom
+expr: "(" expr whitespace expr ")"
+    | "(" expr dot whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr whitespace expr whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr whitespace expr whitespace expr whitespace expr ")"
+atom: identifier
+    | number
+identifier: letter
+    | letter identifier
+number: digit
+    | digit number
+dot: "."
+whitespace: talphanums
+letter: tlowers
+digit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+start: stmt
+stmt: expr
+    | atom
+expr: "(" expr whitespace expr ")"
+    | "(" expr dot whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr whitespace expr whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr whitespace expr whitespace expr whitespace expr ")"
+atom: identifier
+    | number
+identifier: letter
+    | letter identifier
+number: digit
+    | digit number
+dot: "."
+whitespace: talphanums
+letter: tlowers
+digit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.086, Precision: 0.678, F-1: 0.15263874345549738
+<production-rules>
+<stmt> ::= <expr> | <atom>
+<expr> ::= "(" <expr> <whitespace> <expr> ")" | "(" <expr> <dot> <whitespace> <expr> ")" | "(" <expr> <whitespace> <expr> <whitespace> <expr> ")" | "(" <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> ")" | "(" <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> ")" | "(" <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> ")" | "(" <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> ")"
+<atom> ::= <identifier> | <number>
+<identifier> ::= <letter> | <letter> <identifier>
+<number> ::= <digit> | <digit> <number>
+<dot> ::= "."
+<whitespace> ::= " "
+<letter> ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+</production-rules>
+<re.Match object; span=(0, 1036), match='<production-rules>\n<stmt> ::= <expr> | <atom>\n<>
+HI
+Production Rules saved to results/gpt_grammar_microbench-lisp-r1-7.txt
+start: stmt
+stmt: expr
+    | atom
+expr: "(" expr whitespace expr ")"
+    | "(" expr dot whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr whitespace expr whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr whitespace expr whitespace expr whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr whitespace expr whitespace expr whitespace expr whitespace expr ")"
+atom: identifier
+    | number
+identifier: letter
+    | letter identifier
+number: digit
+    | digit number
+dot: "."
+whitespace: talphanums
+letter: tlowers
+digit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+start: stmt
+stmt: expr
+    | atom
+expr: "(" expr whitespace expr ")"
+    | "(" expr dot whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr whitespace expr whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr whitespace expr whitespace expr whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr whitespace expr whitespace expr whitespace expr whitespace expr ")"
+atom: identifier
+    | number
+identifier: letter
+    | letter identifier
+number: digit
+    | digit number
+dot: "."
+whitespace: talphanums
+letter: tlowers
+digit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.086, Precision: 0.672, F-1: 0.15248548812664905
+<production-rules>
+<stmt> ::= <expr> | <atom>
+<expr> ::= "(" <expr> <dot> <expr> ")" | "(" <expr> <expr> ")" | "(" <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> <expr> <expr> <expr> ")" | "(" <expr> <expr> <expr> <expr> <expr> <expr> <expr> <expr> ")"
+<dot> ::= "." <whitespace>
+<atom> ::= <identifier> | <number>
+<identifier> ::= <letter> | <letter> <identifier>
+<number> ::= <digit> | <digit> <number>
+<letter> ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<whitespace> ::= " "
+</production-rules>
+<re.Match object; span=(0, 829), match='<production-rules>\n<stmt> ::= <expr> | <atom>\n<>
+HI
+Production Rules saved to results/gpt_grammar_microbench-lisp-r1-8.txt
+start: stmt
+stmt: expr
+    | atom
+expr: "(" expr dot expr ")"
+    | "(" expr expr ")"
+    | "(" expr expr expr ")"
+    | "(" expr expr expr expr ")"
+    | "(" expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr expr ")"
+dot: "." whitespace
+atom: identifier
+    | number
+identifier: letter
+    | letter identifier
+number: digit
+    | digit number
+letter: tlowers
+digit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+whitespace: talphanums
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: expr
+    | atom
+expr: "(" expr dot expr ")"
+    | "(" expr expr ")"
+    | "(" expr expr expr ")"
+    | "(" expr expr expr expr ")"
+    | "(" expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr ")"
+    | "(" expr expr expr expr expr expr expr expr ")"
+dot: "." whitespace
+atom: identifier
+    | number
+identifier: letter
+    | letter identifier
+number: digit
+    | digit number
+letter: tlowers
+digit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+whitespace: talphanums
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.086, Precision: 0.673, F-1: 0.15251119894598156
+<production-rules>
+<stmt> ::= <expr> | <atom>
+<expr> ::= "(" <expr> <whitespace> <expr> ")" | "(" <expr> <whitespace> <atom> ")" | "(" <atom> <whitespace> <expr> ")" | "(" <atom> <whitespace> <atom> ")"
+<atom> ::= <identifier> | <number>
+<identifier> ::= <letter> | <letter> <identifier>
+<number> ::= <digit> | <digit> <number>
+<letter> ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<whitespace> ::= " "
+</production-rules>
+<re.Match object; span=(0, 605), match='<production-rules>\n<stmt> ::= <expr> | <atom>\n<>
+HI
+Production Rules saved to results/gpt_grammar_microbench-lisp-r1-9.txt
+start: stmt
+stmt: expr
+    | atom
+expr: "(" expr whitespace expr ")"
+    | "(" expr whitespace atom ")"
+    | "(" atom whitespace expr ")"
+    | "(" atom whitespace atom ")"
+atom: identifier
+    | number
+identifier: letter
+    | letter identifier
+number: digit
+    | digit number
+letter: tlowers
+digit: talphanums
+whitespace: " "
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: expr
+    | atom
+expr: "(" expr whitespace expr ")"
+    | "(" expr whitespace atom ")"
+    | "(" atom whitespace expr ")"
+    | "(" atom whitespace atom ")"
+atom: identifier
+    | number
+identifier: letter
+    | letter identifier
+number: digit
+    | digit number
+letter: tlowers
+digit: talphanums
+whitespace: " "
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.224, Precision: 0.314, F-1: 0.26147211895910777
+<production-rules>
+<stmt> ::= <expr> | <atom>
+<expr> ::= "(" <expr> <whitespace> <expr> ")" | "(" <expr> <dot> <expr> ")" | "(" <expr> <whitespace> <expr> <whitespace> <expr> ")" | "(" <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> ")" | "(" <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> ")" | "(" <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> <whitespace> <expr> ")"
+<atom> ::= <identifier> | <number>
+<identifier> ::= <letter> | <letter> <identifier>
+<number> ::= <digit> | <digit> <number>
+<dot> ::= "." 
+<whitespace> ::= " "
+<letter> ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
+<digit> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+</production-rules>
+<re.Match object; span=(0, 887), match='<production-rules>\n<stmt> ::= <expr> | <atom>\n<>
+HI
+Production Rules saved to results/gpt_grammar_microbench-lisp-r1-10.txt
+start: stmt
+stmt: expr
+    | atom
+expr: "(" expr whitespace expr ")"
+    | "(" expr dot expr ")"
+    | "(" expr whitespace expr whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr whitespace expr whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr whitespace expr whitespace expr whitespace expr ")"
+atom: identifier
+    | number
+identifier: letter
+    | letter identifier
+number: digit
+    | digit number
+dot: "."
+whitespace: talphanums
+letter: tlowers
+digit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+start: stmt
+stmt: expr
+    | atom
+expr: "(" expr whitespace expr ")"
+    | "(" expr dot expr ")"
+    | "(" expr whitespace expr whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr whitespace expr whitespace expr ")"
+    | "(" expr whitespace expr whitespace expr whitespace expr whitespace expr whitespace expr ")"
+atom: identifier
+    | number
+identifier: letter
+    | letter identifier
+number: digit
+    | digit number
+dot: "."
+whitespace: talphanums
+letter: tlowers
+digit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tlowers: tlower
+    | tlower tlowers
+tlower: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.086, Precision: 0.678, F-1: 0.15263874345549738

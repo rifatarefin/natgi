@@ -1,0 +1,2140 @@
+<production-rules>
+<stmt> ::= <type> " " <id> " " "(" <params> ")" " " "{" <block> "}" | <type> " " <id> ";" | <type> " " <id> "," <id> ";"
+<type> ::= "void" | "char" | "float" | "int" | "bool"
+<id> ::= "a" | "b"
+<params> ::= <param> | <param> "," <params>
+<param> ::= <type> " " <id>
+<block> ::= <stmt> <block> | <stmt> | <empty>
+<empty> ::= ""
+<expr> ::= <id> | <number> | <expr> " " <op> " " <expr> | <id> "(" <args> ")" | "(" <expr> ")"
+<op> ::= "+" | "-" | "*" | "/" | "=" | "<"
+<args> ::= <expr> | <expr> "," <args> | <empty>
+<number> ::= "0" | "3"
+</production-rules>
+<re.Match object; span=(0, 574), match='<production-rules>\n<stmt> ::= <type> " " <id> " >
+HI
+Production Rules saved to results/gpt_grammar_minic-r1-1.txt
+start: stmt
+stmt: type " " id " " "(" params ")" " " "{" block "}"
+    | type " " id ";"
+    | type " " id "," id ";"
+type: "void"
+    | "char"
+    | "float"
+    | "int"
+    | "bool"
+id: "a"
+    | "b"
+params: param
+    | param "," params
+param: type " " id
+block: stmt block
+    | stmt
+    | empty
+empty: 
+expr: id
+    | number
+    | expr " " op " " expr
+    | id "(" args ")"
+    | "(" expr ")"
+op: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "="
+    | "<"
+args: expr
+    | expr "," args
+    | empty
+number: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: type " " id " " "(" params ")" " " "{" block "}"
+    | type " " id ";"
+    | type " " id "," id ";"
+type: "void"
+    | "char"
+    | "float"
+    | "int"
+    | "bool"
+id: "a"
+    | "b"
+params: param
+    | param "," params
+param: type " " id
+block: stmt block
+    | stmt
+    | empty
+empty: 
+expr: id
+    | number
+    | expr " " op " " expr
+    | id "(" args ")"
+    | "(" expr ")"
+op: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "="
+    | "<"
+args: expr
+    | expr "," args
+    | empty
+number: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.042, Precision: 0.402, F-1: 0.07605405405405406
+<production-rules>
+<stmt> ::= <type> " " <id> " " "(" <params> ")" " " "{" <block> "}" | <type> " " <id> ";" | <type> " " <id> "," <id> ";"
+<type> ::= "void" | "char" | "float" | "int" | "bool"
+<id> ::= "a" | "b"
+<params> ::= <param> | <param> "," <params>
+<param> ::= <type> " " <id>
+<block> ::= <stmt> <block> | <stmt> | <empty>
+<empty> ::= ""
+<expr> ::= <id> | <number> | <expr> " " <op> " " <expr> | <id> "(" <args> ")" | "(" <expr> ")"
+<op> ::= "+" | "-" | "*" | "/" | "=" | "<"
+<args> ::= <expr> | <expr> "," <args> | <empty>
+<number> ::= "0" | "3"
+</production-rules>
+<re.Match object; span=(0, 574), match='<production-rules>\n<stmt> ::= <type> " " <id> " >
+HI
+Production Rules saved to results/gpt_grammar_minic-r1-2.txt
+start: stmt
+stmt: type " " id " " "(" params ")" " " "{" block "}"
+    | type " " id ";"
+    | type " " id "," id ";"
+type: "void"
+    | "char"
+    | "float"
+    | "int"
+    | "bool"
+id: "a"
+    | "b"
+params: param
+    | param "," params
+param: type " " id
+block: stmt block
+    | stmt
+    | empty
+empty: 
+expr: id
+    | number
+    | expr " " op " " expr
+    | id "(" args ")"
+    | "(" expr ")"
+op: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "="
+    | "<"
+args: expr
+    | expr "," args
+    | empty
+number: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: type " " id " " "(" params ")" " " "{" block "}"
+    | type " " id ";"
+    | type " " id "," id ";"
+type: "void"
+    | "char"
+    | "float"
+    | "int"
+    | "bool"
+id: "a"
+    | "b"
+params: param
+    | param "," params
+param: type " " id
+block: stmt block
+    | stmt
+    | empty
+empty: 
+expr: id
+    | number
+    | expr " " op " " expr
+    | id "(" args ")"
+    | "(" expr ")"
+op: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "="
+    | "<"
+args: expr
+    | expr "," args
+    | empty
+number: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.042, Precision: 0.402, F-1: 0.07605405405405406
+<production-rules>
+<stmt> ::= <type> " " <id> " " "(" <params> ")" " " "{" <block> "}" | <type> " " <id> ";" | <type> " " <id> "," <id> ";"
+<type> ::= "void" | "char" | "float" | "int" | "bool"
+<id> ::= "a" | "b"
+<params> ::= <param> | <param> "," <params>
+<param> ::= <type> " " <id>
+<block> ::= <stmt> <block> | <stmt> | <empty>
+<empty> ::= ""
+<expr> ::= <id> | <number> | <expr> " " <op> " " <expr> | <id> "(" <args> ")" | "(" <expr> ")"
+<op> ::= "+" | "-" | "*" | "/" | "=" | "<"
+<args> ::= <expr> | <expr> "," <args> | <empty>
+<number> ::= "0" | "3"
+</production-rules>
+<re.Match object; span=(0, 574), match='<production-rules>\n<stmt> ::= <type> " " <id> " >
+HI
+Production Rules saved to results/gpt_grammar_minic-r1-3.txt
+start: stmt
+stmt: type " " id " " "(" params ")" " " "{" block "}"
+    | type " " id ";"
+    | type " " id "," id ";"
+type: "void"
+    | "char"
+    | "float"
+    | "int"
+    | "bool"
+id: "a"
+    | "b"
+params: param
+    | param "," params
+param: type " " id
+block: stmt block
+    | stmt
+    | empty
+empty: 
+expr: id
+    | number
+    | expr " " op " " expr
+    | id "(" args ")"
+    | "(" expr ")"
+op: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "="
+    | "<"
+args: expr
+    | expr "," args
+    | empty
+number: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: type " " id " " "(" params ")" " " "{" block "}"
+    | type " " id ";"
+    | type " " id "," id ";"
+type: "void"
+    | "char"
+    | "float"
+    | "int"
+    | "bool"
+id: "a"
+    | "b"
+params: param
+    | param "," params
+param: type " " id
+block: stmt block
+    | stmt
+    | empty
+empty: 
+expr: id
+    | number
+    | expr " " op " " expr
+    | id "(" args ")"
+    | "(" expr ")"
+op: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "="
+    | "<"
+args: expr
+    | expr "," args
+    | empty
+number: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.042, Precision: 0.402, F-1: 0.07605405405405406
+<production-rules>
+<stmt> ::= <type> " " <id> " " "(" <params> ")" " " "{" <block> "}" | <type> " " <id> ";" | <type> " " <id> "," <id> ";"
+<type> ::= "void" | "char" | "float" | "int" | "bool"
+<id> ::= "a" | "b"
+<params> ::= <param> | <param> "," <params>
+<param> ::= <type> " " <id>
+<block> ::= <stmt> <block> | <stmt> | <empty>
+<empty> ::= ""
+<expr> ::= <id> | <number> | <expr> " " <op> " " <expr> | <id> "(" <args> ")" | "(" <expr> ")"
+<op> ::= "+" | "-" | "*" | "/" | "=" | "<"
+<args> ::= <expr> | <expr> "," <args> | <empty>
+<number> ::= "0" | "3"
+</production-rules>
+<re.Match object; span=(0, 574), match='<production-rules>\n<stmt> ::= <type> " " <id> " >
+HI
+Production Rules saved to results/gpt_grammar_minic-r1-4.txt
+start: stmt
+stmt: type " " id " " "(" params ")" " " "{" block "}"
+    | type " " id ";"
+    | type " " id "," id ";"
+type: "void"
+    | "char"
+    | "float"
+    | "int"
+    | "bool"
+id: "a"
+    | "b"
+params: param
+    | param "," params
+param: type " " id
+block: stmt block
+    | stmt
+    | empty
+empty: 
+expr: id
+    | number
+    | expr " " op " " expr
+    | id "(" args ")"
+    | "(" expr ")"
+op: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "="
+    | "<"
+args: expr
+    | expr "," args
+    | empty
+number: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: type " " id " " "(" params ")" " " "{" block "}"
+    | type " " id ";"
+    | type " " id "," id ";"
+type: "void"
+    | "char"
+    | "float"
+    | "int"
+    | "bool"
+id: "a"
+    | "b"
+params: param
+    | param "," params
+param: type " " id
+block: stmt block
+    | stmt
+    | empty
+empty: 
+expr: id
+    | number
+    | expr " " op " " expr
+    | id "(" args ")"
+    | "(" expr ")"
+op: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "="
+    | "<"
+args: expr
+    | expr "," args
+    | empty
+number: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.042, Precision: 0.402, F-1: 0.07605405405405406
+<production-rules>
+<stmt> ::= <type> " " <id> " " "(" <params> ")" " " "{" <block> "}" | <type> " " <id> ";" | <type> " " <id> "," <id> ";"
+<type> ::= "void" | "char" | "float" | "int" | "bool"
+<id> ::= "a" | "b"
+<params> ::= <type> " " <id> | <type> " " <id> "," <params>
+<block> ::= <stmt> | <stmt> <block> | <stmt> <block> <stmt>
+<stmt> ::= "if" " " "(" <expr> ")" " " <stmt> | "if" " " "(" <expr> ")" " " <stmt> "else" " " <stmt> | "do" " " <stmt> "while" " " "(" <expr> ")" ";" | "while" " " "(" <expr> ")" " " <stmt> | <expr> ";" | "{" <block> "}" | ";"
+<expr> ::= <id> | <id> "=" <expr> | <expr> "<" <expr> | <expr> "+" <expr> | <expr> "-" <expr> | <expr> "(" <expr> ")" | <expr> "," <expr> | "(" <expr> ")" | "0"
+</production-rules>
+<re.Match object; span=(0, 740), match='<production-rules>\n<stmt> ::= <type> " " <id> " >
+HI
+Production Rules saved to results/gpt_grammar_minic-r1-5.txt
+start: stmt
+stmt: "if" " " "(" expr ")" " " stmt
+    | "if" " " "(" expr ")" " " stmt "else" " " stmt
+    | "do" " " stmt "while" " " "(" expr ")" ";"
+    | "while" " " "(" expr ")" " " stmt
+    | expr ";"
+    | "{" block "}"
+    | ";"
+type: talphanums
+id: "a"
+    | "b"
+params: type " " id
+    | type " " id "," params
+block: stmt
+    | stmt block
+    | stmt block stmt
+expr: id
+    | id "=" expr
+    | expr "<" expr
+    | expr "+" expr
+    | expr "-" expr
+    | expr "(" expr ")"
+    | expr "," expr
+    | "(" expr ")"
+    | "0"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: "if" " " "(" expr ")" " " stmt
+    | "if" " " "(" expr ")" " " stmt "else" " " stmt
+    | "do" " " stmt "while" " " "(" expr ")" ";"
+    | "while" " " "(" expr ")" " " stmt
+    | expr ";"
+    | "{" block "}"
+    | ";"
+type: talphanums
+id: "a"
+    | "b"
+params: type " " id
+    | type " " id "," params
+block: stmt
+    | stmt block
+    | stmt block stmt
+expr: id
+    | id "=" expr
+    | expr "<" expr
+    | expr "+" expr
+    | expr "-" expr
+    | expr "(" expr ")"
+    | expr "," expr
+    | "(" expr ")"
+    | "0"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.0, Precision: 0.0, F-1: 0
+<production-rules>
+<stmt> ::= <type> " " <id> " " "(" <params> ")" " " "{" <block> "}" | <type> " " <id> ";" | <type> " " <id> "," <id> ";"
+<type> ::= "void" | "char" | "float" | "int" | "bool"
+<id> ::= "a" | "b"
+<params> ::= <param> | <param> "," <params>
+<param> ::= <type> " " <id>
+<block> ::= <stmt> <block> | <stmt> | <empty>
+<empty> ::= ""
+<expr> ::= <id> | <number> | <expr> " " <op> " " <expr> | <id> "(" <args> ")" | "(" <expr> ")"
+<op> ::= "+" | "-" | "*" | "/" | "=" | "<"
+<args> ::= <expr> | <expr> "," <args> | <empty>
+<number> ::= "0" | "3"
+</production-rules>
+<re.Match object; span=(0, 574), match='<production-rules>\n<stmt> ::= <type> " " <id> " >
+HI
+Production Rules saved to results/gpt_grammar_minic-r1-6.txt
+start: stmt
+stmt: type " " id " " "(" params ")" " " "{" block "}"
+    | type " " id ";"
+    | type " " id "," id ";"
+type: "void"
+    | "char"
+    | "float"
+    | "int"
+    | "bool"
+id: "a"
+    | "b"
+params: param
+    | param "," params
+param: type " " id
+block: stmt block
+    | stmt
+    | empty
+empty: 
+expr: id
+    | number
+    | expr " " op " " expr
+    | id "(" args ")"
+    | "(" expr ")"
+op: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "="
+    | "<"
+args: expr
+    | expr "," args
+    | empty
+number: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: type " " id " " "(" params ")" " " "{" block "}"
+    | type " " id ";"
+    | type " " id "," id ";"
+type: "void"
+    | "char"
+    | "float"
+    | "int"
+    | "bool"
+id: "a"
+    | "b"
+params: param
+    | param "," params
+param: type " " id
+block: stmt block
+    | stmt
+    | empty
+empty: 
+expr: id
+    | number
+    | expr " " op " " expr
+    | id "(" args ")"
+    | "(" expr ")"
+op: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "="
+    | "<"
+args: expr
+    | expr "," args
+    | empty
+number: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.042, Precision: 0.402, F-1: 0.07605405405405406
+<production-rules>
+<stmt> ::= <type> " " <id> " " "(" <params> ")" " " "{" <block> "}" | <type> " " <id> ";" | <type> " " <id> "," <id> ";"
+<type> ::= "void" | "char" | "float" | "int" | "bool"
+<id> ::= "a" | "b"
+<params> ::= <param> | <param> "," <params>
+<param> ::= <type> " " <id>
+<block> ::= <stmt> <block> | <stmt> | <empty>
+<empty> ::= ""
+<expr> ::= <id> | <number> | <expr> " " <op> " " <expr> | <id> "(" <args> ")" | "(" <expr> ")"
+<op> ::= "+" | "-" | "*" | "/" | "=" | "<"
+<args> ::= <expr> | <expr> "," <args> | <empty>
+<number> ::= "0" | "3"
+</production-rules>
+<re.Match object; span=(0, 574), match='<production-rules>\n<stmt> ::= <type> " " <id> " >
+HI
+Production Rules saved to results/gpt_grammar_minic-r1-7.txt
+start: stmt
+stmt: type " " id " " "(" params ")" " " "{" block "}"
+    | type " " id ";"
+    | type " " id "," id ";"
+type: "void"
+    | "char"
+    | "float"
+    | "int"
+    | "bool"
+id: "a"
+    | "b"
+params: param
+    | param "," params
+param: type " " id
+block: stmt block
+    | stmt
+    | empty
+empty: 
+expr: id
+    | number
+    | expr " " op " " expr
+    | id "(" args ")"
+    | "(" expr ")"
+op: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "="
+    | "<"
+args: expr
+    | expr "," args
+    | empty
+number: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: type " " id " " "(" params ")" " " "{" block "}"
+    | type " " id ";"
+    | type " " id "," id ";"
+type: "void"
+    | "char"
+    | "float"
+    | "int"
+    | "bool"
+id: "a"
+    | "b"
+params: param
+    | param "," params
+param: type " " id
+block: stmt block
+    | stmt
+    | empty
+empty: 
+expr: id
+    | number
+    | expr " " op " " expr
+    | id "(" args ")"
+    | "(" expr ")"
+op: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "="
+    | "<"
+args: expr
+    | expr "," args
+    | empty
+number: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.042, Precision: 0.402, F-1: 0.07605405405405406
+<production-rules>
+<stmt> ::= <type> " " <id> " " "(" <params> ")" " " "{" <block> "}" | <type> " " <id> ";" | <type> " " <id> "," <id> ";"
+<type> ::= "void" | "char" | "float" | "int" | "bool"
+<id> ::= "a" | "b"
+<params> ::= <param> | <param> "," <params>
+<param> ::= <type> " " <id>
+<block> ::= <stmt> <block> | <stmt> | <empty>
+<empty> ::= ""
+<expr> ::= <id> | <number> | <expr> " " <op> " " <expr> | <id> "(" <args> ")" | "(" <expr> ")"
+<args> ::= <expr> | <expr> "," <args> | <empty>
+<op> ::= "+" | "-" | "*" | "/" | "<" | "="
+<number> ::= "0" | "3"
+</production-rules>
+<re.Match object; span=(0, 574), match='<production-rules>\n<stmt> ::= <type> " " <id> " >
+HI
+Production Rules saved to results/gpt_grammar_minic-r1-8.txt
+start: stmt
+stmt: type " " id " " "(" params ")" " " "{" block "}"
+    | type " " id ";"
+    | type " " id "," id ";"
+type: "void"
+    | "char"
+    | "float"
+    | "int"
+    | "bool"
+id: "a"
+    | "b"
+params: param
+    | param "," params
+param: type " " id
+block: stmt block
+    | stmt
+    | empty
+empty: 
+expr: id
+    | number
+    | expr " " op " " expr
+    | id "(" args ")"
+    | "(" expr ")"
+args: expr
+    | expr "," args
+    | empty
+op: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "<"
+    | "="
+number: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: type " " id " " "(" params ")" " " "{" block "}"
+    | type " " id ";"
+    | type " " id "," id ";"
+type: "void"
+    | "char"
+    | "float"
+    | "int"
+    | "bool"
+id: "a"
+    | "b"
+params: param
+    | param "," params
+param: type " " id
+block: stmt block
+    | stmt
+    | empty
+empty: 
+expr: id
+    | number
+    | expr " " op " " expr
+    | id "(" args ")"
+    | "(" expr ")"
+args: expr
+    | expr "," args
+    | empty
+op: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "<"
+    | "="
+number: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.042, Precision: 0.402, F-1: 0.07605405405405406
+<production-rules>
+<stmt> ::= <type> " " <id> " " "(" <params> ")" " " "{" <block> "}" | <type> " " <id> ";" | <type> " " <id> "," <id> ";"
+<type> ::= "void" | "char" | "float" | "int" | "bool"
+<id> ::= "a" | "b"
+<params> ::= <param> | <param> "," <params>
+<param> ::= <type> " " <id>
+<block> ::= <stmt> <block> | <stmt> | <empty>
+<empty> ::= ""
+<expr> ::= <id> | <number> | <expr> " " <op> " " <expr> | <id> "(" <args> ")" | "(" <expr> ")"
+<op> ::= "+" | "-" | "*" | "/" | "=" | "<"
+<args> ::= <expr> | <expr> "," <args> | <empty>
+<number> ::= "0" | "3"
+</production-rules>
+<re.Match object; span=(0, 574), match='<production-rules>\n<stmt> ::= <type> " " <id> " >
+HI
+Production Rules saved to results/gpt_grammar_minic-r1-9.txt
+start: stmt
+stmt: type " " id " " "(" params ")" " " "{" block "}"
+    | type " " id ";"
+    | type " " id "," id ";"
+type: "void"
+    | "char"
+    | "float"
+    | "int"
+    | "bool"
+id: "a"
+    | "b"
+params: param
+    | param "," params
+param: type " " id
+block: stmt block
+    | stmt
+    | empty
+empty: 
+expr: id
+    | number
+    | expr " " op " " expr
+    | id "(" args ")"
+    | "(" expr ")"
+op: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "="
+    | "<"
+args: expr
+    | expr "," args
+    | empty
+number: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: type " " id " " "(" params ")" " " "{" block "}"
+    | type " " id ";"
+    | type " " id "," id ";"
+type: "void"
+    | "char"
+    | "float"
+    | "int"
+    | "bool"
+id: "a"
+    | "b"
+params: param
+    | param "," params
+param: type " " id
+block: stmt block
+    | stmt
+    | empty
+empty: 
+expr: id
+    | number
+    | expr " " op " " expr
+    | id "(" args ")"
+    | "(" expr ")"
+op: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "="
+    | "<"
+args: expr
+    | expr "," args
+    | empty
+number: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.042, Precision: 0.402, F-1: 0.07605405405405406
+<production-rules>
+<stmt> ::= <type> " " <id> " " "(" <params> ")" " " "{" <block> "}" | <type> " " <id> ";" | <type> " " <id> "," <id> ";"
+<type> ::= "void" | "char" | "float" | "int" | "bool"
+<id> ::= "a" | "b"
+<params> ::= <param> | <param> "," <params>
+<param> ::= <type> " " <id>
+<block> ::= <stmt> <block> | <stmt> | <empty>
+<empty> ::= ""
+<expr> ::= <id> | <number> | <expr> " " <op> " " <expr> | <id> "(" <args> ")" | "(" <expr> ")"
+<op> ::= "+" | "-" | "*" | "/" | "=" | "<"
+<args> ::= <expr> | <expr> "," <args> | <empty>
+<number> ::= "0" | "3"
+</production-rules>
+<re.Match object; span=(0, 574), match='<production-rules>\n<stmt> ::= <type> " " <id> " >
+HI
+Production Rules saved to results/gpt_grammar_minic-r1-10.txt
+start: stmt
+stmt: type " " id " " "(" params ")" " " "{" block "}"
+    | type " " id ";"
+    | type " " id "," id ";"
+type: "void"
+    | "char"
+    | "float"
+    | "int"
+    | "bool"
+id: "a"
+    | "b"
+params: param
+    | param "," params
+param: type " " id
+block: stmt block
+    | stmt
+    | empty
+empty: 
+expr: id
+    | number
+    | expr " " op " " expr
+    | id "(" args ")"
+    | "(" expr ")"
+op: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "="
+    | "<"
+args: expr
+    | expr "," args
+    | empty
+number: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+start: stmt
+stmt: type " " id " " "(" params ")" " " "{" block "}"
+    | type " " id ";"
+    | type " " id "," id ";"
+type: "void"
+    | "char"
+    | "float"
+    | "int"
+    | "bool"
+id: "a"
+    | "b"
+params: param
+    | param "," params
+param: type " " id
+block: stmt block
+    | stmt
+    | empty
+empty: 
+expr: id
+    | number
+    | expr " " op " " expr
+    | id "(" args ")"
+    | "(" expr ")"
+op: "+"
+    | "-"
+    | "*"
+    | "/"
+    | "="
+    | "<"
+args: expr
+    | expr "," args
+    | empty
+number: talphanums
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.042, Precision: 0.402, F-1: 0.07605405405405406
