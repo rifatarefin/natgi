@@ -374,9 +374,460 @@ Successful grouping (single): [uE, 5]
     (aka ['uE', '5']
 coalesced into:  {'t8116': 'identifier', 'udB': 'identifier'}
 Number of bubbles:  138
-LLM suggested label: expr for 6*854-8>>5894/47&4%3%0/1*771*8*1>>86*5982/655<<0027-27-8201<<96244!=73%5&5>>1%75752/9-189332/0-8*9<83%80>>6<<17/02/653-9088>>2/3*0+002+698%903*1/42*64<<612%9*15/77032>>69%6==7* and 6*854-8>>5894/47&4%3%0/1*771*8*1>>86*5982/655<<0027-27-8201<<96244!=73%5&5>>1%75752/9-189332/0-8*9<83%80>>6<<17/02/653-9088>>2/3*0+
- Next suggestion: arithmeticexpr
- Next suggestion: arithmeticexpr2
- Next suggestion: arithmeticexpr3
- Next suggestion: arithmeticexpr4
+LLM suggested label: expr for 6*854-8>>5894/47&4%3%0/1*771*8*1>>86*5982/655<<0027-27-8201<<96244!=73%5&5>>1%75752/9-189332/0-8*9<83%80>>6<<17/02/653-9088>>2/3*0+002+698%903*1/42*64<<612%9*15/77032>>69%6==7* and 6*854-8>>5894/47&4%3%0/1*771*8*1>>86*5982/655<<0027-27-8201<<96244!=73%5&5>>1%75752/9-189332/0-8*9Successful grouping (double): [arithmeticexpr, arithmeticexpr2, arithmeticexpr], [arithmeticexpr, arithmeticexpr2]
+     (aka ['6*854-8>>5894/47&4%3%0/1*771*8*1>>86*5982/6[Group len 3] Bubbling iteration 37 (4/100)...    
+Successful grouping (double): [arithmeticexpr2, arithmeticexpr3, arithmeticexpr2], [arithmeticexpr2, arithmeticexpr3]
+     (aka ['6*854-8>>5894/47&4%3%0/1*771*8*1>>86*5982/655<<0027-27-8201<<96244!=73%5&5>>1%75752/9-189332/', '0-8*9<83%80>>6<<17/02/653-9088>>2/3*0+', '002+698%903*1/42*64<<612%9*15/77032>>69%6==7*'], ['652-0-0|4535%7>>1099%254*6-4*947+1/9==', '28-077>04*5345/4+43<<26-3*40>>0%59>>2!=54&6*86>>50*0/4/7+3-2*5<']))
+coalesced into:  {'t8230': 'arithmeticexpr4', 't8204': 'arithmeticexpr4'}
+Number of bubbles:  137
 
+[Group len 3] Bubbling iteration 38 (7/100)...    
+Successful grouping (single): [arithmeticexpr4, arithmeticexpr2]
+    (aka ['6*854-8>>5894/47&4%3%0/1*771*8*1>>86*5982/655<<0027-27-8201<<96244!=73%5&5>>1%75752/9-189332/0-8*9<83%80>>6<<17/02/653-9088>>2/3*0+002+698%903*1/42*64<<612%9*15/77032>>69%6==7*', '5==54/3+5>97+499*6+9*8137>>3201>>35*12-0*66/0/2<0*6*6<<2283*79&5*02+94184<<54/1>4%19/2*33/4+51*642644-1%39-04+37<<976<=25822*0*21>5*2/6&03+872/41*21%63<90/5%80/']
+coalesced into:  {'t8403': 'arithmeticexpr2', 'arithmeticexpr2': 'arithmeticexpr2', 'arithmeticexpr3': 'arithmeticexpr2', 'arithmeticexpr4': 'arithmeticexpr2', 'boolexpr': 'arithmeticexpr2'}
+Number of bubbles:  123
+LLM suggested label: expr for 743/8*1+8<<7>>35%16>>4-2%0/6212*64-70/4/36/77*76+14-801%6>>6/7*536%9437<<7/30%9%4313695/468001/4%5*84+6!=7%92/97+7025%016*71-0/4584<3/98-23941%888-0>>94-98-1/9/8*49%827349&69/66%5/3/1+3<<9-21/2%8+4866/7*9-4+3%4/764<8757/78/2-209<<6%9>909880<<7==9%296%539*999&0>>330%1<<802> and 0>>3-2>>7>>7!=88|59%1>>87/8<<68<<9>
+ Next suggestion: complexexpr
+
+[Group len 3] Bubbling iteration 39 (7/100)...    
+Successful grouping (double): [arithmeticexpr2, stmt, >], [stmt, >]
+     (aka ['743/8*1+8<<7>>35%16>>4-2%0/6212*64-70/4/36/77*76+14-801%6>>6/7*536%9437<<7/30%9%4313695/468001/4%5*84+6!=7%92/97+7025%016*71-0/4584<3/98-23941%888-0>>94-98-1/9/8*49%827349&69/66%5/3/1+3<<9-21/2%8+4866/7*9-4+3%4/764<8757/78/2-209<<6%9>909880<<7==', '9%296%539*999&0>>330%1<<802', '>'], ['9%296%539*999&0>>330%1<<802', '>']))
+coalesced into:  {'t8548': 'complexexpr', 't8549': 'complexexpr'}
+Number of bubbles:  122
+LLM suggested label: expr for 743/8*1+8<<7>>35%16>>4-2%0/6212*64-70/4/36/77*76+14-801%6>>6/7*536%9437<<7/30%9%4313695/468001/4%5*84+6!=7%92/97+7025%016*71-0/4584<3/98-23941%888-0>>94-98-1/9/8*49%827349&69/66%5/3/1+3<<9-21/2%8+4866/7*9-4+3%4/764<8757/78/2-209<<6%9>909880<<7==9%296%539*999&0>>330%1<<802>=1-4*03%8<=7&8<<2== and 743/8*1+8<<7>>35%16>>4-2%0/6212*64-70/4/36/77*76+14-801%6>>6/7*536%9437<<7/30%9%4313695/468001/4%5*84+6!=7%92/97+7025%016*71-0/4584<3/98-23941%888-0>>94-98-1/9/8*49%827349&69/66%5/3/1+3<<9-21/2%8+4866/7*9-4+3%4/764<8757/78/2-209<<6%9>909880<<7==9%296%539*999&0>>330%1<<802>=
+ Next suggestion: expr2
+
+[Group len 3] Bubbling iteration 40 (8/100)...    
+Successful grouping (double): [complexexpr, =, arithmeticexpr2], [complexexpr, =]
+     (aka ['743/8*1+8<<7>>35%16>>4-2%0/6212*64-70/4/36/77*76+14-801%6>>6/7*536%9437<<7/30%9%4313695/468001/4%5*84+6!=7%92/97+7025%016*71-0/4584<3/98-23941%888-0>>94-98-1/9/8*49%827349&69/66%5/3/1+3<<9-21/2%8+4866/7*9-4+3%4/764<8757/78/2-209<<6%9>909880<<7==9%296%539*999&0>>330%1<<802>', '=', '1-4*03%8<=7&8<<2=='], ['743/8*1+8<<7>>35%16>>4-2%0/6212*64-70/4/36/77*76+14-801%6>>6/7*536%9437<<7/30%9%4313695/468001/4%5*84+6!=7%92/97+7025%016*71-0/4584<3/98-23941%888-0>>94-98-1/9/8*49%827349&69/66%5/3/1+3<<9-21/2%8+4866/7*9-4+3%4/764<8757/78/2-209<<6%9>909880<<7==9%296%539*999&0>>330%1<<802>', '=']))
+coalesced into:  {'t8706': 'expr2', 't8705': 'expr2'}
+Number of bubbles:  119
+LLM suggested label: numexpr for -5< and <
+
+[Group len 3] Bubbling iteration 41 (5/100)...    
+Successful grouping (single): [-, 5, <]
+    (aka ['-', '5', '<']
+coalesced into:  {'t8852': 'numexpr', '<': 'numexpr'}
+Number of bubbles:  116
+
+[Group len 3] Bubbling iteration 42 (2/100)...    
+Successful grouping (single): [2, numexpr]
+    (aka ['2', '-5<']
+coalesced into:  {'t9004': 'expr2', 'expr2': 'expr2', 'arithmeticexpr2': 'expr2'}
+Number of bubbles:  109
+
+[Group len 3] Bubbling iteration 43 (3/100)...    
+Successful grouping (single): [expr2, 09]
+    (aka ['2-03<<18%1%5544488-', '09']
+coalesced into:  {'t9160': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  107
+LLM suggested label: expr for 2-5<652-0-0|4535%7>>1099%254*6-4*947+1/9==28-077>04*5345/4+43<<26-3*40>>0%59>>2!=54&6*86>>50*0/4/7+3-2*5< and 2-03<<18%1%5544488-09+
+ Next suggestion: arithmeticexpr
+ Next suggestion: complexexpr
+ Next suggestion: complexexpr2
+
+[Group len 3] Bubbling iteration 44 (1/100)...    
+Successful grouping (double): [expr2, expr2], [stmt, +]
+     (aka ['2-5<', '652-0-0|4535%7>>1099%254*6-4*947+1/9==28-077>04*5345/4+43<<26-3*40>>0%59>>2!=54&6*86>>50*0/4/7+3-2*5<'], ['2-03<<18%1%5544488-09', '+']))
+coalesced into:  {'t9302': 'complexexpr2', 't9306': 'complexexpr2'}
+Number of bubbles:  106
+
+[Group len 3] Bubbling iteration 45 (4/100)...    
+Successful grouping (single): [expr2, complexexpr2]
+    (aka ['743/8*1+8<<7>>35%16>>4-2%0/6212*64-70/4/36/77*76+14-801%6>>6/7*536%9437<<7/30%9%4313695/468001/4%5*84+6!=7%92/97+7025%016*71-0/4584<3/98-23941%888-0>>94-98-1/9/8*49%827349&69/66%5/3/1+3<<9-21/2%8+4866/7*9-4+3%4/764<8757/78/2-209<<6%9>909880<<7==9%296%539*999&0>>330%1<<802>=1-4*03%8<=7&8<<2==', '2-03<<18%1%5544488-09+']
+coalesced into:  {'t9449': 'complexexpr2', 'complexexpr2': 'complexexpr2'}
+Number of bubbles:  103
+
+[Group len 3] Bubbling iteration 46 (2/100)...    
+Successful grouping (single): [complexexpr2, stmt]
+    (aka ['9/7/2+0>>3-2>>7>>7!=88|59%1>>87/8<<68<<9>=6*854-8>>5894/47&4%3%0/1*771*8*1>>86*5982/655<<0027-27-8201<<96244!=73%5&5>>1%75752/9-189332/0-8*9<83%80>>6<<17/02/653-9088>>2/3*0+002+698%903*1/42*64<<612%9*15/77032>>69%6==7*5==54/3+5>97+499*6+9*8137>>3201>>35*12-0*66/0/2<0*6*6<<2283*79&5*02+94184<<54/1>4%19/2*33/4+51*642644-1%39-04+37<<976<=25822*0*21>5*2/6&03+872/41*21%63<90/5%80/0-39+7*40+6>>2-', '4*5/3%939%7-671/9/1%6303*1%61/48-27>2%0<<4*767/1+99+4%037*4<<747%51<8*786*93%7']
+coalesced into:  {'t9595': 'stmt', 'stmt': 'stmt'}
+Reapply: 20
+
+[Group len 3] Bubbling iteration 46 (2/100)...    
+Successful grouping (single): [complexexpr2, stmt]
+    (aka ['9/7/2+0>>3-2>>7>>7!=88|59%1>>87/8<<68<<9>=6*854-8>>5894/47&4%3%0/1*771*8*1>>86*5982/655<<0027-27-8201<<96244!=73%5&5>>1%75752/9-189332/0-8*9<83%80>>6<<17/02/653-9088>>2/3*0+002+698%903*1/42*64<<612%9*15/77032>>69%6==7*5==54/3+5>97+499*6+9*8137>>3201>>35*12-0*66/0/2<0*6*6<<2283*79&5*02+94184<<54/1>4%19/2*33/4+51*642644-1%39-04+37<<976<=25822*0*21>5*2/6&03+872/41*21%63<90/5%80/0-39+7*40+6>>2-', '4*5/3%939%7-671/9/1%6303*1%61/48-27>2%0<<4*767/1+99+4%037*4<<747%51<8*786*93%7']
+coalesced into:  {'t9661': 'stmt', 'stmt': 'stmt'}
+Reapply: 21
+
+[Group len 3] Bubbling iteration 46 (2/100)...    
+Successful grouping (single): [complexexpr2, stmt]
+    (aka ['9/7/2+0>>3-2>>7>>7!=88|59%1>>87/8<<68<<9>=6*854-8>>5894/47&4%3%0/1*771*8*1>>86*5982/655<<0027-27-8201<<96244!=73%5&5>>1%75752/9-189332/0-8*9<83%80>>6<<17/02/653-9088>>2/3*0+002+698%903*1/42*64<<612%9*15/77032>>69%6==7*5==54/3+5>97+499*6+9*8137>>3201>>35*12-0*66/0/2<0*6*6<<2283*79&5*02+94184<<54/1>4%19/2*33/4+51*642644-1%39-04+37<<976<=25822*0*21>5*2/6&03+872/41*21%63<90/5%80/0-39+7*40+6>>2-', '4*5/3%939%7-671/9/1%6303*1%61/48-27>2%0<<4*767/1+99+4%037*4<<747%51<8*786*93%7']
+coalesced into:  {'t9662': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  99
+LLM suggested label: num for 0ec and 416
+
+[Group len 3] Bubbling iteration 47 (8/100)...    
+Successful grouping (single): [0, ec]
+    (aka ['0', 'ec']
+coalesced into:  {'t9687': 'num', '416': 'num'}
+Number of bubbles:  98
+
+[Group len 3] Bubbling iteration 48 (7/100)...    
+Successful grouping (single): [enumjc, 5]
+    (aka ['enumjc', '5']
+coalesced into:  {'t9834': 'type', 'type': 'type'}
+Number of bubbles:  96
+LLM suggested label: unaryexpr for +sizeof andLLM suggested label: expr for ^restrict[2-5<652-0-0|4535%7>>1099%254*6-4*947+1/9==28-077>04*5345/4+43<<26-3*40>>0%59>>2!=54&6*86>>50*0/4/7+3-2*5<743/8*1+8<<7>>35%16>>4-2%0/6212*64-70/4/36/77*76+14-801%6>>6/7*536%94LLM suggested label: expr for ^restrict[2-5<652-0-0|4535%7>>1099%254*6-4*947+1/9==28-077>04*5345/4+43<<26-3*40>>0%59>>2!=54&6*86>>50*0/4/7+3-2*5<743/8*1+8<<7>>35%16>>4-2%0/6212*64-70/4/36/77*76+14-801%6>>6/7*536%9437<<7/30%9%4313695/468001/4%5*84+6!=7%92/97+7025%016*71-0/4584<3/98-23941%888-0>>94-98-1/9/8*49%827349&69/66%5/3/1+3<<9-21/2%8+4866/7*9-4+3%4/764<8757/78/2-209<<6%9>909880<<7==9%296%539*999&0>>330%1<<802>=1-4*03%8<=7&8<<2==2-03<<18%1%5544488-09+9/7/2+0>>3-2>>7>>7!=88|59%1>>87/8<<68<<9>=6*854-8>>5894/47&4%3%0/1*771*8*1>>86*5982/655<<0027-27-8201<<96244!=73%5&5>>1%75752/9-189332/0-8*9<83%80>>6<<17/02/653-9088>>2/3*0+002+698%903*1/42*64<<612%9*15/77032>>69%6==7*5==54/3+5>97+499*6+9*8137>>3201>>35*12-0*66/0/2<0*6*6<<2283*79&5*02+94184<<54/1>4%19/2*33/4+51*642644-1%39-04+37<<976<=25822*0*21>5*2/6&03+872/41*21%63<90/5%80/0-39+7*40+6>>2-4*5/3%939%7-671/9/1%6303*1%61/48-27>2%0<<4*767/1+99+4%037*4<<747%51<8*786*93%7] and ^restrict
+ Next suggestion: restrictexpr
+ Next suggestion: restrictexpr6
+
+[Group len 3] Bubbling iteration 50 (11/100)...   
+Successful grouping (double): [^, restrict, arithmeticexpr], [^, restrict]
+     (aka ['^', 'restrict', '[2-5<652-0-0|4535%7>>1099%254*6-4*947+1/9==28-077>04*5345/4+43<<26-3*40>>0%59>>2!=54&6*86>>50*0/4/7+3-2*5<743/8*1+8<<7>>35%16>>4-2%0/6212*64-70/4/36/77*76+14-801%6>>6/7*536%9437<<7/30%9%4313695/468001/4%5*84+6!=7%92/97+7025%016*71-0/4584<3/98-23941%888-0>>94-98-1/9/8*49%827349&69/66%5/3/1+3<<9-21/2%8+4866/7*9-4+3%4/764<8757/78/2-209<<6%9>909880<<7==9%296%539*999&0>>330%1<<802>=1-4*03%8<=7&8<<2==2-03<<18%1%5544488-09+9/7/2+0>>3-2>>7>>7!=88|59%1>>87/8<<68<<9>=6*854-8>>5894/47&4%3%0/1*771*8*1>>86*5982/655<<0027-27-8201<<96244!=73%5&5>>1%75752/9-189332/0-8*9<83%80>>6<<17/02/653-9088>>2/3*0+002+698%903*1/42*64<<612%9*15/77032>>69%6==7*5==54/3+5>97+499*6+9*8137>>3201>>35*12-0*66/0/2<0*6*6<<2283*79&5*02+94184<<54/1>4%19/2*33/4+51*642644-1%39-04+37<<976<=25822*0*21>5*2/6&03+872/41*21%63<90/5%80/0-39+7*40+6>>2-4*5/3%939%7-671/9/1%6303*1%61/48-27>2%0<<4*767/1+99+4%037*4<<747%51<8*786*93%7]'], ['^', 'restrict']))
+coalesced into:  {'t10129': 'restrictexpr6', 't10128': 'restrictexpr6'}
+Number of bubbles:  91
+LLM suggested label: identifier for UD416e and uE
+ Next suggestion: identifier2
+ Next suggestion: identifier3
+
+[Group len 3] Bubbling iteration 51 (10/100)...   
+Successful grouping (single): [UD, 416, e]
+    (aka ['UD', '416', 'e']
+coalesced into:  {'t10241': 'identifier3', 'uE': 'identifier3'}
+Number of bubbles:  89
+
+[Group len 3] Bubbling iteration 52 (36/100)...   
+Successful grouping (single): [a, 2]
+    (aka ['a', '2']
+coalesced into:  {'t10491': 'identifier2', 'identifier2': 'identifier2'}
+Number of bubbles:  86
+
+[Group len 3] Bubbling iteration 53 (52/100)...   
+Successful grouping (single): [restrictexpr6, arithmeticexpr]
+    (aka ['^restrict[2-5<652-0-0|4535%7>>1099%254*6-4*947+1/9==28-077>04*5345/4+43<<26-3*40>>0%59>>2!=54&6*86>>50*0/4/7+3-2*5<743/8*1+8<<7>>35%16>>4-2%0/6212*64-70/4/36/77*76+14-801%6>>6/7*536%9437<<7/30%9%4313695/468001/4%5*84+6!=7%92/97+7025%016*71-0/4584<3/98-23941%888-0>>94-98-1/9/8*49%827349&69/66%5/3/1+3<<9-21/2%8+4866/7*9-4+3%4/764<8757/78/2-209<<6%9>909880<<7==9%296%539*999&0>>330%1<<802>=1-4*03%8<=7&8<<2==2-03<<18%1%5544488-09+9/7/2+0>>3-2>>7>>7!=88|59%1>>87/8<<68<<9>=6*854-8>>5894/47&4%3%0/1*771*8*1>>86*5982/655<<0027-27-8201<<96244!=73%5&5>>1%75752/9-189332/0-8*9<83%80>>6<<17/02/653-9088>>2/3*0+002+698%903*1/42*64<<612%9*15/77032>>69%6==7*5==54/3+5>97+499*6+9*8137>>3201>>35*12-0*66/0/2<0*6*6<<2283*79&5*02+94184<<54/1>4%19/2*33/4+51*642644-1%39-04+37<<976<=25822*0*21>5*2/6&03+872/41*21%63<90/5%80/0-39+7*40+6>>2-4*5/3%939%7-671/9/1%6303*1%61/48-27>2%0<<4*767/1+99+4%037*4<<747%51<8*786*93%7]', '[*]']
+coalesced into:  {'t10538': 'restrictexpr6', 'restrictexpr6': 'restrictexpr6'}
+Number of bubbles:  84
+LLM suggested label: expr for (()),! and (()),
+ Next suggestion: tupleexpr
+
+[Group len 3] Bubbling iteration 54 (98/100)...   
+Successful grouping (double): [t6, ,, !], [t6, ,]
+     (aka ['(())', ',', '!'], ['(())', ',']))
+coalesced into:  {'t10681': 'tupleexpr', 't10680': 'tupleexpr'}
+Number of bubbles:  81
+LLM suggested label: expr for (()),!_Alignof and (()),!_
+ Next suggestion: expr2
+ Next suggestion: expr3
+
+[Group len 3] Bubbling iteration 55 (96/100)...   
+Successful grouping (double): [tupleexpr, _, Alignof], [tupleexpr, _]
+     (aka ['(()),!', '_', 'Alignof'], ['(()),!', '_']))
+coalesced into:  {'t10813': 'expr3', 't10812': 'expr3'}
+Number of bubbles:  78
+Number of bubbles:  92
+LLM suggested label: unaryexpr for ++sizeof(enum{\uE5a2,}), and (enum{\uE5a2,}),
+ Next suggestion: unaryexpr2
+
+[Group len 4] Bubbling iteration 57 (9/100)...    
+Successful grouping (double): [+, unaryexpr, restrictexpr, ,], [restrictexpr, ,]
+     (aka ['+', '+sizeof', '(enum{\\uE5a2,})', ','], ['(enum{\\uE5a2,})', ',']))
+coalesced into:  {'t11148': 'unaryexpr2', 't11152': 'unaryexpr2'}
+Number of bubbles:  86
+Number of bubbles:  94
+
+[Group len 5] Bubbling iteration 59 (19/100)...   
+Successful grouping (single): [&, \, identifier3, num, ,]
+    (aka ['&', '\\', 'UD416e', '0ec', ',']
+coalesced into:  {'t11317': 'unaryexpr2', 'unaryexpr2': 'unaryexpr2'}
+Number of bubbles:  87
+LLM suggested label: expr for &&\UD416e0ec, and +sizeof(enum{\uE5a2,}),
+ Next suggestion: binexpr
+
+[Group len 5] Bubbling iteration 60 (8/100)...    
+Successful grouping (double): [&, unaryexpr2], [sizeof, unaryexpr2]
+     (aka ['&', '&\\UD416e0ec,'], ['sizeof', '++sizeof(enum{\\uE5a2,}),']))
+coalesced into:  {'t11460': 'binexpr', 't11582': 'binexpr'}
+Number of bubbles:  83
+LLM suggested label: identifier for UD416e0ec and uE5a2
+ Next suggestion: identifier2
+ Next suggestion: identifier3
+ Next suggestion: identifier4
+
+[Group len 5] Bubbling iteration 61 (26/100)...   
+Successful grouping (double): [identifier3, num], [udB, 57]
+     (aka ['UD416e', '0ec'], ['udB', '57']))
+coalesced into:  {'t11619': 'identifier4', 't11724': 'identifier4'}
+Number of bubbles:  74
+Number of bubbles:  78
+Number of bubbles:  81
+Number of bubbles:  83
+Number of bubbles:  84
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-24 23:50:09
+Time spent in oracle calls: 3800.028801679611
+Time spent building grammar: 4071.872734069824s
+Time breakdown: {'FIRST_COALESCE': 790.759626865387, 'BUILD': 3010.4056663513184, 'LAST_COALESCE': 160.63228297233582, 'EXPAND': 107.30565214157104, 'MINIMIZE': 0.0006649494171142578, 'OVERALL_EXAMPLE_GEN': 35.73714590072632, 'OVERALL_GROUPING': 0, 'REAPPLY_COUNT': 21}
+Parse calls: 47904, 31101
+LLM calls for bubble finding: 0
+**** Running eval.py ****
+start: stmt
+stmt: expr2 "(" binexpr type ")"
+    | expr2 stmt
+    | "_"
+    | expr2 "(" stmt "Atomic" restrictexpr restrictexpr6 expr2 "attribute" expr2 expr3 restrictexpr ")"
+    | complexexpr2 stmt
+    | expr2 varnum
+    | expr2 identifier2
+    | varnum relop
+    | "(" "{" "}" ")"
+    | "(" stmt ")"
+    | "\\" identifier4
+    | stmt stmt
+    | type ")"
+    | type
+    | varnum
+    | "attribute" expr2 expr3 restrictexpr ")"
+    | "attribute" expr2
+    | expr2
+    | stmt ")"
+    | identifier4
+    | identifier2
+    | identifier4 "," "}"
+    | tinteger
+    | t12445
+    | tuppers
+expr2: expr2 stmt
+    | stmt stmt
+    | varnum numexpr
+    | expr2 expr2
+    | stmt op
+    | varnum relop
+    | stmt relop
+    | stmt "+"
+    | stmt "*"
+    | stmt numexpr
+    | varnum "*"
+    | complexexpr "="
+binexpr: op unaryexpr2
+    | unaryexpr unaryexpr2
+op: "&"
+    | "-"
+unaryexpr2: op "\\" identifier4 ","
+    | "+" binexpr
+    | restrictexpr ","
+identifier4: identifier3 num
+    | identifier identifier2
+identifier3: "UD" num varnum
+    | "uE"
+num: "416"
+    | varnum identifier2
+varnum: "e"
+    | "a"
+    | tinteger
+identifier2: "ec"
+    | varnum varnum
+    | tinteger
+type: type varnum
+    | t12445
+    | tletters
+restrictexpr: "(" type ")"
+    | "(" stmt ")"
+    | "(" restrictexpr "{" "\\" identifier4 "," "}" ")"
+    | "enum"
+restrictexpr6: restrictexpr6 arithmeticexpr
+    | "^" type
+arithmeticexpr: "[" stmt "]"
+    | "[" "*" "]"
+complexexpr2: expr2 expr2
+    | expr2 complexexpr2
+    | stmt "+"
+numexpr: op expr2
+    | "<"
+relop: op expr2
+    | "|"
+    | "%"
+    | ">" ">"
+    | "/"
+    | "=" "="
+    | ">" expr2
+    | numexpr numexpr
+    | "!" "="
+    | op complexexpr
+    | numexpr "="
+    | numexpr varnum
+    | relop "*"
+    | ">" varnum
+complexexpr: expr2 complexexpr
+    | stmt ">"
+expr3: expr3 type
+    | tupleexpr stmt
+tupleexpr: tupleexpr "!"
+    | "(" "(" ")" ")" ","
+identifier: "udB"
+    | identifier3 varnum
+unaryexpr: "sizeof"
+    | "+" unaryexpr
+tinteger: tdigit
+    | tnzdigit tdigits
+tnzdigit: "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tletter: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tuppers: tupper
+    | tupper tuppers
+tupper: "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "**** Running search.py ****
+ "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+tletters: tletter
+    | tletter tletters
+t12445: tletter talphanums
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:

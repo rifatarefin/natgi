@@ -1,0 +1,1090 @@
+python3 search.py external glade-2/lua/parse_lua glade-2/lua/lua-train glade-2/lua-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 111.7, max guide length: 407
+Average token length: 71.6, max token length: 257
+Guides with brackets: 5, quotes: 3
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 3.5
+Average lengths of brackets(not normalized): 16.443939393939395
+Average n: 71.6
+Beginning coalescing...                           
+LLM suggested label: stmt for sS and Zf
+ Next suggestion: varname
+LLM suggested label: logicalop for and and or
+LLM suggested label: identifier for X and x
+LLM suggested label: num for 2 and b
+LLM suggested label: emptyexpr for nil and { }
+LLM suggested label: listexpr for ( P , B , WR , H , J , UCEw , XS ) and ( Zw )
+LLM suggested label: unaryop for # and not
+LLM suggested label: expr for ( false ) and ( ... )
+LLM suggested label: expr for E and e
+ Next suggestion: charexpr
+max example size 257, node size: 45
+Number of bubbles:  315
+
+[Group len 3] Bubbling iteration 1 (15/100)...    
+Successful grouping (single): [nil,  , or]
+    (aka ['nil', ' ', 'or']
+coalesced into:  {'t71': 'unaryop', 'unaryop': 'unaryop'}
+Number of bubbles:  321
+
+[Group len 3] Bubbling iteration 2 (7/100)...     
+Successful grouping (single): [., ., .]
+    (aka ['.', '.', '.']
+coalesced into:  {'t463': 'charexpr', 'charexpr': 'charexpr'}
+Number of bubbles:  324
+LLM suggested label: stmtlist for  ;  and ;
+
+[Group len 3] Bubbling iteration 3 (16/100)...    
+Successful grouping (single): [ , ;,  ]
+    (aka [' ', ';', ' ']
+coalesced into:  {'t733': 'stmtlist', ';': 'stmtlist'}
+Number of bubbles:  337
+
+[Group len 3] Bubbling iteration 4 (18/100)...    
+Successful grouping (single): [and,  , unaryop]
+    (aka ['and', ' ', '{ true ^ true } &']
+coalesced into:  {'t1136': 'logicalop', 'logicalop': 'logicalop'}
+Reapply: 1
+
+[Group len 3] Bubbling iteration 4 (18/100)...    
+Successful grouping (single): [and,  , unaryop]
+    (aka ['and', ' ', '{ true ^ true } &']
+coalesced into:  {'t1344': 'logicalop', 'logicalop': 'logicalop'}
+Reapply: 2
+
+[Group len 3] Bubbling iteration 4 (18/100)...    
+Successful grouping (single): [and,  , unaryop]
+    (aka ['and', ' ', '{ true ^ true } &']
+coalesced into:  {'t1345': 'logicalop', 'logicalop': 'logicalop'}
+Number of bubbles:  335
+
+[Group len 3] Bubbling iteration 5 (17/100)...    
+Successful grouping (single): [true,  , /]
+    (aka ['true', ' ', '/']
+coalesced into:  {'t1483': 'unaryop', 'unaryop': 'unaryop'}
+Number of bubbles:  334
+
+[Group len 3] Bubbling iteration 6 (15/100)...    
+Successful grouping (single): [unaryop,  , unaryop]
+    (aka ['false +', ' ', 'nil ^']
+coalesced into:  {'t1894': 'unaryop', 'unaryop': 'unaryop'}
+Reapply: 3
+
+[Group len 3] Bubbling iteration 6 (15/100)...    
+Successful grouping (single): [unaryop,  , unaryop]
+    (aka ['false +', ' ', 'nil ^']
+coalesced into:  {'t2031': 'unaryop', 'unaryop': 'unaryop'}
+Reapply: 4
+
+[Group len 3] Bubbling iteration 6 (15/100)...    
+Successful grouping (single): [unaryop,  , unaryop]
+    (aka ['false +', ' ', 'nil ^']
+coalesced into:  {'t2032': 'unaryop', 'unaryop': 'unaryop'}
+Number of bubbles:  333
+LLM suggested label: identifier for X2b and Xf
+ Next suggestion: identifier2
+
+[Group len 3] Bubbling iteration 7 (16/100)...    
+Successful grouping (single): [X, 2, b]
+    (aka ['X', '2', 'b']
+coalesced into:  {'t2063': 'identifier2', 'Xf': 'identifier2'}
+Number of bubbles:  336
+
+[Group len 3] Bubbling iteration 8 (16/100)...    
+Successful grouping (single): [unaryop,  , nil]
+    (aka ['nil and', ' ', 'nil']
+coalesced into:  {'t2554': 'emptyexpr', 'emptyexpr': 'emptyexpr'}
+Number of bubbles:  335
+LLM suggested label: stmt for break return and return
+ Next suggestion: controlstmt
+
+[Group len 3] Bubbling iteration 9 (19/100)...    
+Successful grouping (single): [break,  , return]
+    (aka ['break', ' ', 'return']
+coalesced into:  {'t2968': 'controlstmt', 'return': 'controlstmt'}
+Number of bubbles:  334
+
+[Group len 3] Bubbling iteration 10 (29/100)...   
+Successful grouping (single): [logicalop,  , unaryop]
+    (aka ['and { true ^ true } & #', ' ', 'true /']
+coalesced into:  {'t3205': 'logicalop', 'logicalop': 'logicalop'}
+Number of bubbles:  333
+
+[Group len 3] Bubbling iteration 11 (29/100)...   
+Successful grouping (single): [charexpr,  , and]
+    (aka ['...', ' ', 'and']
+coalesced into:  {'t3552': 'unaryop', 'unaryop': 'unaryop'}
+Number of bubbles:  333
+
+[Group len 3] Bubbling iteration 12 (20/100)...   
+Successful grouping (single): [unaryop,  , true]
+    (aka ['... and', ' ', 'true']
+coalesced into:  {'t3908': 'emptyexpr', 'emptyexpr': 'emptyexpr'}
+Number of bubbles:  333
+
+[Group len 3] Bubbling iteration 13 (20/100)...   
+Successful grouping (single): [emptyexpr,  , -]
+    (aka ['true and true', ' ', '-']
+coalesced into:  {'t4415': 'unaryop', 'unaryop': 'unaryop'}
+Number of bubbles:  331
+LLM suggested label: op for  .. and  ==
+
+[Group len 3] Bubbling iteration 14 (30/100)...   
+Successful grouping (double): [ , ., .], [ , =, =]
+     (aka [' ', '.', '.'], [' ', '=', '=']))
+coalesced into:  {'t4590': 'op', 't4756': 'op'}
+Number of bubbles:  329
+
+[Group len 3] Bubbling iteration 15 (23/100)...   
+Successful grouping (single): [op,  , unaryop]
+    (aka [' ..', ' ', 'false ^']
+coalesced into:  {'t4938': 'op', 'op': 'op'}
+Reapply: 5
+
+[Group len 3] Bubbling iteration 15 (23/100)...   
+Successful grouping (single): [op,  , unaryop]
+    (aka [' ..', ' ', 'false ^']
+coalesced into:  {'t5137': 'op', 'op': 'op'}
+Number of bubbles:  331
+LLM suggested label: stringexpr for ... ..  and ... % 
+
+[Group len 3] Bubbling iteration 16 (28/100)...   
+Successful grouping (double): [charexpr, op,  ], [unaryop,  ]
+     (aka ['...', ' .. false ^', ' '], ['nil or', ' ']))
+coalesced into:  {'t5280': 'stringexpr', 't5182': 'stringexpr'}
+Number of bubbles:  339
+
+[Group len 3] Bubbling iteration 17 (4/100)...    
+Successful grouping (single): [ , ;]
+    (aka [' ', ';']
+coalesced into:  {'t5568': 'stmtlist', 'stmtlist': 'stmtlist'}
+Number of bubbles:  337
+
+[Group len 3] Bubbling iteration 18 (4/100)...    
+Successful grouping (single): [charexpr, op]
+    (aka ['...', ' .. false ^']
+coalesced into:  {'t6075': 'unaryop', 'unaryop': 'unaryop'}
+Number of bubbles:  336
+
+[Group len 3] Bubbling iteration 19 (4/100)...    
+Successful grouping (single): [=, =]
+    (aka ['=', '=']
+coalesced into:  {'t6547': 'op', 'op': 'op'}
+Number of bubbles:  334
+
+[Group len 3] Bubbling iteration 20 (3/100)...    
+Successful grouping (single): [ , and]
+    (aka [' ', 'and']
+coalesced into:  {'t6577': 'op', 'op': 'op'}
+Number of bubbles:  337
+LLM suggested label: listexpr for ... .. nil  and [[9e]] 
+ Next suggestion: listexpr2
+
+[Group len 3] Bubbling iteration 21 (18/100)...   
+Successful grouping (double): [stringexpr, nil,  ], [emptyexpr,  ]
+     (aka ['... .. ', 'nil', ' '], ['{ }', ' ']))
+coalesced into:  {'t7233': 'listexpr2', 't7008': 'listexpr2'}
+Number of bubbles:  346
+
+[Group len 3] Bubbling iteration 22 (25/100)...   
+Successful grouping (single): [expr,  ]
+    (aka ['( false )', ' ']
+coalesced into:  {'t7440': 'expr', 'expr': 'expr'}
+Number of bubbles:  346
+
+[Group len 3] Bubbling iteration 23 (26/100)...   
+Successful grouping (single): [stringexpr, listexpr2]
+    (aka ['... == true % true or ... ^ ', '... .. nil ']
+coalesced into:  {'t7969': 'listexpr2', 'listexpr2': 'listexpr2'}
+Reapply: 6
+
+[Group len 3] Bubbling iteration 23 (26/100)...   
+Successful grouping (single): [stringexpr, listexpr2]
+    (aka ['... == true % true or ... ^ ', '... .. nil ']
+coalesced into:  {'t8007': 'listexpr2', 'listexpr2': 'listexpr2'}
+Reapply: 7
+
+[Group len 3] Bubbling iteration 23 (26/100)...   
+Successful grouping (single): [stringexpr, listexpr2]
+    (aka ['... == true % true or ... ^ ', '... .. nil ']
+coalesced into:  {'t8008': 'listexpr2', 'listexpr2': 'listexpr2'}
+Reapply: 8
+
+[Group len 3] Bubbling iteration 23 (26/100)...   
+Successful grouping (single): [stringexpr, listexpr2]
+    (aka ['... == true % true or ... ^ ', '... .. nil ']
+coalesced into:  {'t8009': 'listexpr2', 'listexpr2': 'listexpr2'}
+Number of bubbles:  341
+
+[Group len 3] Bubbling iteration 24 (32/100)...   
+Successful grouping (single): [', ae27, ']
+    (aka ["'", 'ae27', "'"]
+coalesced into:  {'t8167': 'listexpr2', 'listexpr2': 'listexpr2'}
+Number of bubbles:  339
+LLM suggested label: stmt for  ; return ;  and return ; 
+ Next suggestion: returnstmt
+
+[Group len 3] Bubbling iteration 25 (36/100)...   
+Successful grouping (double): [stmtlist, return, stmtlist], [return, stmtlist]
+     (aka [' ; ', 'return', ' ; '], ['return', ' ; ']))
+coalesced into:  {'t8585': 'returnstmt', 't8430': 'returnstmt'}
+Number of bubbles:  342
+LLM suggested label: stmt for  ; ; and break
+ Next suggestion: stmt2
+
+[Group len 3] Bubbling iteration 26 (41/100)...   
+Successful grouping (single): [stmtlist, ;]
+    (aka [' ; ', ';']
+coalesced into:  {'t8947': 'stmt2', 'break': 'stmt2'}
+Number of bubbles:  340
+
+[Group len 3] Bubbling iteration 27 (42/100)...   
+Successful grouping (single): [stringexpr, 0, identifier2]
+    (aka ['... or ', '0', 'x4bD']
+coalesced into:  {'t9425': 'emptyexpr', 'emptyexpr': 'emptyexpr'}
+Number of bubbles:  341
+LLM suggested label: boolexpr for ... + nil & false % true .. ... ^ ... or not and 'ae27' ^ { } or
+
+[Group len 3] Bubbling iteration 28 (44/100)...   
+Successful grouping (double): [nil, op], [listexpr2, op]
+     (aka ['nil', ' or'], ["'ae27'", ' ^ { } or']))
+coalesced into:  {'t9551': 'boolexpr', 't9630': 'boolexpr'}
+Number of bubbles:  341
+LLM suggested label: boolexpr for ~ false == and /
+ Next suggestion: unaryexpr
+
+[Group len 3] Bubbling iteration 29 (20/100)...   
+Successful grouping (single): [~,  , boolexpr]
+    (aka ['~', ' ', 'false ==']
+coalesced into:  {'t10187': 'unaryexpr', '/': 'unaryexpr'}
+Number of bubbles:  343
+
+[Group len 3] Bubbling iteration 30 (22/100)...   
+Successful grouping (single): [boolexpr,  , boolexpr]
+    (aka ['... and true ..', ' ', "'ae27' ^ { } or"]
+coalesced into:  {'t10370': 'boolexpr', 'boolexpr': 'boolexpr', 'unaryop': 'boolexpr'}
+Reapply: 9
+
+[Group len 3] Bubbling iteration 30 (22/100)...   
+Successful grouping (single): [boolexpr,  , boolexpr]
+    (aka ['... and true ..', ' ', "'ae27' ^ { } or"]
+coalesced into:  {'t10590': 'boolexpr', 'boolexpr': 'boolexpr'}
+Number of bubbles:  340
+LLM suggested label: unaryop for +  and ~ 
+
+[Group len 3] Bubbling iteration 31 (3/100)...    
+Successful grouping (double): [logicalop,  ], [~,  ]
+     (aka ['and { true ^ true } & #', ' '], ['~', ' ']))
+coalesced into:  {'t10818': 'unaryop', 't10951': 'unaryop'}
+Number of bubbles:  339
+
+[Group len 3] Bubbling iteration 32 (3/100)...    
+Successful grouping (single): [boolexpr,  ]
+    (aka ['nil or', ' ']
+coalesced into:  {'t11035': 'stringexpr', 'stringexpr': 'stringexpr'}
+Number of bubbles:  337
+LLM suggested label: expr for nil .. ... + nil & false % true .. ... ^ ... or not 0X4CD and ... or 0x4bD 
+ Next suggestion: logexpr
+
+[Group len 3] Bubbling iteration 33 (13/100)...   
+Successful grouping (double): [stringexpr, 0, identifier2], [emptyexpr,  ]
+     (aka ['... or ', '0', 'x4bD'], ['{ }', ' ']))
+coalesced into:  {'t11653': 'logexpr', 't11553': 'logexpr'}
+Number of bubbles:  338
+
+[Group len 3] Bubbling iteration 34 (72/100)...   
+Successful grouping (single): [charexpr,  , -]
+    (aka ['...', ' ', '-']
+coalesced into:  {'t11825': 'stringexpr', 'stringexpr': 'stringexpr'}
+Number of bubbles:  337
+LLM suggested label: boolop for  and { true ^ true } & # true / ... and  and  + 
+
+[Group len 3] Bubbling iteration 35 (28/100)...   
+Successful grouping (double): [op,  , stringexpr], [op,  ]
+     (aka [' and { true ^ true } & # true /', ' ', '... and '], [' and', ' ']))
+coalesced into:  {'t12213': 'boolop', 't12091': 'boolop'}
+Number of bubbles:  338
+
+[Group len 3] Bubbling iteration 36 (46/100)...   
+Successful grouping (single): [stringexpr,  ]
+    (aka ['... -', ' ']
+coalesced into:  {'t12564': 'stringexpr', 'stringexpr': 'stringexpr'}
+Number of bubbles:  334
+
+[Group len 3] Bubbling iteration 37 (25/100)...   
+Successful grouping (single): [/,  ]
+    (aka ['/', ' ']
+coalesced into:  {'t12933': 'unaryexpr', 'unaryexpr': 'unaryexpr'}
+Number of bubbles:  334
+LLM suggested label: listseparator for ,  and ,
+
+[Group len 3] Bubbling iteration 38 (28/100)...   
+Successful grouping (single): [,,  ]
+    (aka [',', ' ']
+coalesced into:  {'t13218': 'listseparator', ',': 'listseparator'}
+Number of bubbles:  340
+
+[Group len 3] Bubbling iteration 39 (35/100)...   
+Successful grouping (single): [boolop, stringexpr]
+    (aka [' and { true ^ true } & # true / ... and ', '... .. false ^ ']
+coalesced into:  {'t13693': 'boolop', 'boolop': 'boolop'}
+Reapply: 10
+
+[Group len 3] Bubbling iteration 39 (35/100)...   
+Successful grouping (single): [boolop, stringexpr]
+    (aka [' and { true ^ true } & # true / ... and ', '... .. false ^ ']
+coalesced into:  {'t13929': 'boolop', 'boolop': 'boolop'}
+Reapply: 11
+
+[Group len 3] Bubbling iteration 39 (35/100)...   
+Successful grouping (single): [boolop, stringexpr]
+    (aka [' and { true ^ true } & # true / ... and ', '... .. false ^ ']
+coalesced into:  {'t13930': 'boolop', 'boolop': 'boolop'}
+Number of bubbles:  335
+
+[Group len 3] Bubbling iteration 40 (67/100)...   
+Successful grouping (single): [goto,  , uVY]
+    (aka ['goto', ' ', 'uVY']
+coalesced into:  {'t14235': 'stmt2', 'stmt2': 'stmt2'}
+Number of bubbles:  334
+
+[Group len 3] Bubbling iteration 41 (68/100)...   
+Successful grouping (single): [/, unaryexpr]
+    (aka ['/', '/ ']
+coalesced into:  {'t14491': 'boolop', 'boolop': 'boolop'}
+Number of bubbles:  335
+LLM suggested label: stmt for while - and while
+ Next suggestion: stmt2
+ Next suggestion: stmt1
+
+[Group len 3] Bubbling iteration 42 (72/100)...   
+Successful grouping (single): [while,  , -]
+    (aka ['while', ' ', '-']
+coalesced into:  {'t14785': 'stmt1', 'while': 'stmt1'}
+Number of bubbles:  332
+
+[Group len 3] Bubbling iteration 43 (73/100)...   
+Successful grouping (single): [1,  , unaryexpr]
+    (aka ['1', ' ', '/ ']
+coalesced into:  {'t15162': 'stringexpr', 'stringexpr': 'stringexpr'}
+Number of bubbles:  330
+
+[Group len 3] Bubbling iteration 44 (71/100)...   
+Successful grouping (single): [stmt1,  , stringexpr]
+    (aka ['while -', ' ', '1 / ']
+coalesced into:  {'t15531': 'stmt1', 'stmt1': 'stmt1'}
+Number of bubbles:  328
+
+[Group len 3] Bubbling iteration 45 (5/100)...    
+Successful grouping (single): [stmt1,  ]
+    (aka ['while -', ' ']
+coalesced into:  {'t15998': 'stmt1', 'stmt1': 'stmt1'}
+Number of bubbles:  327
+
+[Group len 3] Bubbling iteration 46 (2/100)...    
+Successful grouping (single): [ , -]
+    (aka [' ', '-']
+coalesced into:  {'t16376': 'boolop', 'boolop': 'boolop'}
+Number of bubbles:  326
+LLM suggested label: stmt for goto uVY repeat and repeat
+ Next suggestion: loopstmt
+
+[Group len 3] Bubbling iteration 47 (81/100)...   
+Successful grouping (single): [stmt2,  , repeat]
+    (aka ['goto uVY', ' ', 'repeat']
+coalesced into:  {'t16831': 'loopstmt', 'repeat': 'loopstmt'}
+Number of bubbles:  325
+LLM suggested label: stmt for  goto fY  and  return ; 
+ Next suggestion: controlstmt
+ Next suggestion: jumpstmt
+
+[Group len 3] Bubbling iteration 48 (55/100)...   
+Successful grouping (double): [ , stmt2,  ], [ , returnstmt]
+     (aka [' ', 'goto fY', ' '], [' ', 'return ; ']))
+coalesced into:  {'t17202': 'jumpstmt', 't16951': 'jumpstmt'}
+Number of bubbles:  329
+
+[Group len 3] Bubbling iteration 49 (5/100)...    
+Successful grouping (single): [ , stmt2]
+    (aka [' ', 'goto fY']
+coalesced into:  {'t17593': 'stmt', 'stmt': 'stmt', 'returnstmt': 'stmt'}
+Number of bubbles:  328
+
+[Group len 3] Bubbling iteration 50 (71/100)...   
+Successful grouping (single): [<, <]
+    (aka ['<', '<']
+coalesced into:  {'t18018': 'boolop', 'boolop': 'boolop'}
+Number of bubbles:  327
+LLM suggested label: stmt for  goto fY end and  end
+ Next suggestion: jumpstmt
+ Next suggestion: jumpstmt2
+
+[Group len 3] Bubbling iteration 51 (44/100)...   
+Successful grouping (double): [jumpstmt, end], [ , end]
+     (aka [' return ; ', 'end'], [' ', 'end']))
+coalesced into:  {'t18072': 'jumpstmt2', 't18082': 'jumpstmt2'}
+Number of bubbles:  328
+
+[Group len 3] Bubbling iteration 52 (11/100)...   
+Successful grouping (single): [charexpr,  ]
+    (aka ['...', ' ']
+coalesced into:  {'t18575': 'charexpr', 'charexpr': 'charexpr'}
+Number of bubbles:  328
+LLM suggested label: stmt for ... //  and nil ~ false == 
+ Next suggestion: expr2
+
+[Group len 3] Bubbling iteration 53 (13/100)...   
+Successful grouping (double): [charexpr, boolop], [listexpr2, /]
+     (aka ['... ', '// '], ['true ', '/']))
+coalesced into:  {'t18953': 'expr2', 't19001': 'expr2'}
+Number of bubbles:  325
+
+[Group len 3] Bubbling iteration 54 (63/100)...   
+Successful grouping (single): [boolop, 0, identifier2]
+    (aka [' and ', '0', 'X2b']
+coalesced into:  {'t19177': 'identifier2', 'identifier2': 'identifier2'}
+Number of bubbles:  322
+
+[Group len 3] Bubbling iteration 55 (76/100)...   
+Successful grouping (single): [ , unaryexpr]
+    (aka [' ', '/ ']
+coalesced into:  {'t19744': 'unaryop', 'unaryop': 'unaryop'}
+Number of bubbles:  321
+LLM suggested label: bitexpr for << ...  and , ... or 0x4bD 
+
+[Group len 3] Bubbling iteration 56 (76/100)...   
+Successful grouping (double): [boolop,  , charexpr], [listseparator, logexpr]
+     (aka ['<<', ' ', '... '], [', ', '... or 0x4bD ']))
+coalesced into:  {'t20281': 'bitexpr', 't20216': 'bitexpr'}
+Number of bubbles:  315
+
+[Group len 3] Bubbling iteration 57 (83/100)...   
+Successful grouping (single): [X, 2]
+    (aka ['X', '2']
+coalesced into:  {'t20346': 'identifier2', 'identifier2': 'identifier2'}
+Number of bubbles:  313
+
+[Group len 3] Bubbling iteration 58 (84/100)...   
+Successful grouping (single): [identifier2, 90]
+    (aka [' and 0X2b', '90']
+coalesced into:  {'t20679': 'identifier2', 'identifier2': 'identifier2'}
+Reapply: 12
+
+[Group len 3] Bubbling iteration 58 (84/100)...   
+Successful grouping (single): [identifier2, 90]
+    (aka [' and 0X2b', '90']
+coalesced into:  {'t21028': 'identifier2', 'identifier2': 'identifier2'}
+Number of bubbles:  308
+Number of bubbles:  475
+
+[Group len 4] Bubbling iteration 60 (6/100)...    
+Successful grouping (single): [listseparator, B,  , listseparator]
+    (aka [', ', 'B', ' ', ', ']
+coalesced into:  {'t21480': 'listseparator', 'listseparator': 'listseparator'}
+Reapply: 13
+
+[Group len 4] Bubbling iteration 60 (6/100)...    
+Successful grouping (single): [listseparator, B,  , listseparator]
+    (aka [', ', 'B', ' ', ', ']
+coalesced into:  {'t21931': 'listseparator', 'listseparator': 'listseparator'}
+Reapply: 14
+
+[Group len 4] Bubbling iteration 60 (6/100)...    
+Successful grouping (single): [listseparator, B,  , listseparator]
+    (aka [', ', 'B', ' ', ', ']
+coalesced into:  {'t21932': 'listseparator', 'listseparator': 'listseparator'}
+Number of bubbles:  474
+
+[Group len 4] Bubbling iteration 61 (40/100)...   
+Successful grouping (single): [function,  , listexpr, jumpstmt2]
+    (aka ['function', ' ', '( P , B , WR , H , J , UCEw , XS )', ' return ; end']
+coalesced into:  {'t21978': 'logexpr', 'logexpr': 'logexpr', 'emptyexpr': 'logexpr'}
+Number of bubbles:  475
+LLM suggested label: stmt for false .. true .. { } .. { } / { } and true and function ( ) end and function ( ) goto fY end 
+ Next suggestion: stmt2
+ Next suggestion: stmt3
+
+[Group len 4] Bubbling iteration 62 (9/100)...    
+Successful grouping (double): [stringexpr, logexpr], [logexpr,  ]
+     (aka ['nil or ', 'function ( P , B , WR , H , J , UCEw , XS ) return ; end'], ['function ( P , B , WR , H , J , UCEw , XS ) return ; end', ' ']))
+coalesced into:  {'t22509': 'stmt3', 't22513': 'stmt3'}
+Number of bubbles:  474
+Number of bubbles:  637
+LLM suggested label: funcdef for return { } , function and local function J
+
+[Group len 5] Bubbling iteration 64 (29/100)...   
+Successful grouping (double): [return,  , listexpr2, listseparator, function], [local,  , function,  , J]
+     (aka ['return', ' ', '{ } ', ', ', 'function'], ['local', ' ', 'function', ' ', 'J']))
+coalesced into:  {'t23675': 'funcdef', 't23990': 'funcdef'}
+Number of bubbles:  628
+LLM suggested label: boolexpr for 0e3406 ,  and false >= 
+ Next suggestion: numexpr2
+
+[Group len 5] Bubbling iteration 65 (44/100)...   
+Successful grouping (double): [0, e, 3406,  , listseparator], [listexpr2, >, =,  ]
+     (aka ['0', 'e', '3406', ' ', ', '], ['true ', '>', '=', ' ']))
+coalesced into:  {'t24658': 'numexpr2', 't24531': 'numexpr2'}
+Number of bubbles:  611
+
+[Group len 5] Bubbling iteration 66 (17/100)...   
+Successful grouping (single): [listexpr2, >, =]
+    (aka ['true ', '>', '=']
+coalesced into:  {'t25331': 'numexpr2', 'numexpr2': 'numexpr2', 'expr2': 'numexpr2'}
+Number of bubbles:  607
+
+[Group len 5] Bubbling iteration 67 (12/100)...   
+Successful grouping (single): [>, =]
+    (aka ['>', '=']
+coalesced into:  {'t26012': 'unaryop', 'unaryop': 'unaryop'}
+Number of bubbles:  606
+
+[Group len 5] Bubbling iteration 68 (26/100)...   
+Successful grouping (single): [0, identifier2]
+    (aka ['0', ' and 0X2b90A']
+coalesced into:  {'t26331': 'logexpr', 'logexpr': 'logexpr'}
+Number of bubbles:  592
+LLM suggested label: boolexpr for 0e3406 , 0x8 + false ;  and false >= 0Xf 
+ Next suggestion: boolexpr2
+
+[Group len 5] Bubbling iteration 69 (31/100)...   
+Successful grouping (double): [numexpr2, logexpr, boolop, false, stmtlist], [numexpr2, logexpr,  ]
+     (aka ['0e3406 , ', '0x8', ' + ', 'false', ' ; '], ['false >= ', '0Xf', ' ']))
+coalesced into:  {'t27375': 'boolexpr2', 't27537': 'boolexpr2'}
+Number of bubbles:  587
+
+[Group len 5] Bubbling iteration 70 (19/100)...   
+Successful grouping (single): [numexpr2, logexpr, boolop, false]
+    (aka ['0e3406 , ', '0x8', ' + ', 'false']
+coalesced into:  {'t28033': 'stmt3', 'stmt3': 'stmt3'}
+Number of bubbles:  583
+
+[Group len 5] Bubbling iteration 71 (13/100)...   
+Successful grouping (single): [boolop, logexpr]
+    (aka [' and ', '0X2b']
+coalesced into:  {'t28362': 'bitexpr', 'bitexpr': 'bitexpr'}
+Number of bubbles:  582
+
+[Group len 5] Bubbling iteration 72 (13/100)...   
+Successful grouping (single): [logexpr, bitexpr]
+    (aka ['0x8', ' + false']
+coalesced into:  {'t29349': 'stmt3', 'stmt3': 'stmt3'}
+Number of bubbles:  581
+
+[Group len 5] Bubbling iteration 73 (18/100)...   
+Successful grouping (single): [logexpr,  ]
+    (aka ['0 and 0X2b90A', ' ']
+coalesced into:  {'t29642': 'stmt3', 'stmt3': 'stmt3'}
+Number of bubbles:  577
+LLM suggested label: expr for 0 and 0X2b90A , nil or function ( P , B , WR , H , J , UCEw , XS ) return ; end  and 3406
+ Next suggestion: literalexpr
+
+[Group len 5] Bubbling iteration 74 (32/100)...   
+Successful grouping (single): [stmt3, listseparator, stmt3,  ]
+    (aka ['0 and 0X2b90A ', ', ', 'nil or function ( P , B , WR , H , J , UCEw , XS ) return ; end', ' ']
+coalesced into:  {'t30300': 'literalexpr', '3406': 'literalexpr'}
+Number of bubbles:  571
+
+[Group len 5] Bubbling iteration 75 (18/100)...   
+Successful grouping (single): [stmt3, listseparator, stmt3]
+    (aka ['0 and 0X2b90A ', ', ', 'nil or function ( P , B , WR , H , J , UCEw , XS ) return ; end']
+coalesced into:  {'t30960': 'stmt3', 'stmt3': 'stmt3'}
+Number of bubbles:  569
+
+[Group len 5] Bubbling iteration 76 (15/100)...   
+Successful grouping (single): [stmt3, listseparator]
+    (aka ['0 and 0X2b90A ', ', ']
+coalesced into:  {'t31607': 'numexpr2', 'numexpr2': 'numexpr2'}
+Number of bubbles:  567
+
+[Group len 5] Bubbling iteration 77 (12/100)...   
+Successful grouping (single): [0, e, 3406,  ]
+    (aka ['0', 'e', '3406', ' ']
+coalesced into:  {'t32595': 'listexpr2', 'listexpr2': 'listexpr2'}
+Number of bubbles:  564
+
+[Group len 5] Bubbling iteration 78 (7/100)...    
+Successful grouping (single): [0, e, 3406]
+    (aka ['0', 'e', '3406']
+coalesced into:  {'t33237': 'listexpr2', 'listexpr2': 'listexpr2'}
+Number of bubbles:  561
+LLM suggested label: stmt for in 0 and 0X2b90A , nil or function ( P , B , WR , H , J , UCEw , XS ) return ; end  and in ... % ... + false ^ { } % ... == true and true - true and ... == true % true or ... ^ ... .. nil 
+ Next suggestion: exprstmt
+
+[Group len 5] Bubbling iteration 79 (33/100)...   
+Successful grouping (double): [in,  , literalexpr], [in,  , listexpr2]
+     (aka ['in', ' ', '0 and 0X2b90A , nil or function ( P , B , WR , H , J , UCEw , XS ) return ; end '], ['in', ' ', '[[9e]] ']))
+coalesced into:  {'t33517': 'exprstmt', 't34028': 'exprstmt'}
+Number of bubbles:  550
+Number of bubbles:  675
+Number of bubbles:  795
+
+[Group len 7] Bubbling iteration 82 (53/100)...   
+Successful grouping (single): [ , return,  , stmt3, bitexpr, listseparator, listexpr2]
+    (aka [' ', 'return', ' ', 'function ( ) goto fY end ', ', ... or 0x4bD ', ', ', '{ } ']
+coalesced into:  {'t36180': 'jumpstmt', 'jumpstmt': 'jumpstmt'}
+Number of bubbles:  783
+
+[Group len 7] Bubbling iteration 83 (28/100)...   
+Successful grouping (single): [return,  , stmt3, bitexpr, listseparator, listexpr2]
+    (aka ['return', ' ', 'function ( ) goto fY end ', ', ... or 0x4bD ', ', ', '{ } ']
+coalesced into:  {'t37082': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  779
+
+[Group len 7] Bubbling iteration 84 (57/100)...   
+Successful grouping (single): [ , return,  ]
+    (aka [' ', 'return', ' ']
+coalesced into:  {'t38093': 'jumpstmt', 'jumpstmt': 'jumpstmt'}
+Number of bubbles:  771
+LLM suggested label: stmt for repeat  and goto uVY repeat return function ( ) goto fY end , ... or 0x4bD , { } 
+ Next suggestion: loopstmt
+ Next suggestion: loopstmt2
+
+[Group len 7] Bubbling iteration 85 (84/100)...   
+Successful grouping (double): [repeat,  ], [loopstmt, jumpstmt]
+     (aka ['repeat', ' '], ['goto uVY repeat', ' return function ( ) goto fY end , ... or 0x4bD , { } ']))
+coalesced into:  {'t38292': 'loopstmt2', 't38773': 'loopstmt2'}
+Number of bubbles:  749
+Number of bubbles:  854
+LLM suggested label: stmt for true or { false .. true .. { } .. { } / { } and true and function ( ) end << ... , } ^ "" > false do and false do
+ Next suggestion: boolstmt
+
+[Group len 8] Bubbling iteration 87 (94/100)...   
+Successful grouping (double): [stringexpr, ", ",  , >,  , listexpr2, do], [listexpr2, do]
+     (aka ['true or { false .. true .. { } .. { } / { } and true and function ( ) end << ... , } ^ ', '"', '"', ' ', '>', ' ', 'false ', 'do'], ['nil and nil ', 'do']))
+coalesced into:  {'t40690': 'boolstmt', 't40093': 'boolstmt'}
+Number of bubbles:  821
+
+[Group len 8] Bubbling iteration 88 (31/100)...   
+Successful grouping (single): [", ",  , >,  , boolstmt]
+    (aka ['"', '"', ' ', '>', ' ', 'false do']
+coalesced into:  {'t41631': 'boolstmt', 'boolstmt': 'boolstmt'}
+Number of bubbles:  815
+
+[Group len 8] Bubbling iteration 89 (23/100)...   
+Successful grouping (single): [", ",  , >,  ]
+    (aka ['"', '"', ' ', '>', ' ']
+coalesced into:  {'t42545': 'numexpr2', 'numexpr2': 'numexpr2'}
+Number of bubbles:  812
+
+[Group len 8] Bubbling iteration 90 (19/100)...   
+Successful grouping (single): [", ",  , >]
+    (aka ['"', '"', ' ', '>']
+coalesced into:  {'t43449': 'stringexpr', 'stringexpr': 'stringexpr'}
+Number of bubbles:  809
+Number of bubbles:  902
+LLM suggested label: stmt for for vm in [[9e]] do end for and for
+ Next suggestion: forstmt
+
+[Group len 9] Bubbling iteration 92 (42/100)...   
+Successful grouping (single): [for,  , vm,  , exprstmt, do, jumpstmt2,  , for]
+    (aka ['for', ' ', 'vm', ' ', 'in [[9e]] ', 'do', ' end', ' ', 'for']
+coalesced into:  {'t45188': 'forstmt', 'for': 'forstmt'}
+Number of bubbles:  873
+Number of bubbles:  954
+Number of bubbles:  1031
+LLM suggested label: stmt for local BV < jo_ > return ; end and goto uVY repeat return function ( ) goto fY end , ... or 0x4bD , { } until ... ; end
+ Next suggestion: stmt2
+ Next suggestion: stmt3
+ Next suggestion: stmt4
+
+[Group len 11] Bubbling iteration 95 (42/100)...  
+Successful grouping (double): [local,  , BV,  , <,  , jo, _,  , >, jumpstmt2], [loopstmt2, until,  , charexpr, stmtlist, end]
+     (aka ['local', ' ', 'BV', ' ', '<', ' ', 'jo', '_', ' ', '>', ' return ; end'], ['goto uVY repeat return function ( ) goto fY end , ... or 0x4bD , { } ', 'until', ' ', '...', ' ; ', 'end']))
+coalesced into:  {'t48106': 'stmt4', 't48294': 'stmt4'}
+Number of bubbles:  964
+
+[Group len 11] Bubbling iteration 96 (33/100)...  
+Successful grouping (single): [loopstmt2, until,  , charexpr, stmtlist]
+    (aka ['goto uVY repeat return function ( ) goto fY end , ... or 0x4bD , { } ', 'until', ' ', '...', ' ; ']
+coalesced into:  {'t49357': 'stmt', 'stmt': 'stmt'}
+Number of bubbles:  961
+
+[Group len 11] Bubbling iteration 97 (48/100)...  
+Successful grouping (single): [loopstmt2, until,  , charexpr]
+    (aka ['repeat ', 'until', ' ', '...']
+coalesced into:  {'t49756': 'stmt2', 'stmt2': 'stmt2'}
+Number of bubbles:  934
+Number of bubbles:  994
+Number of bubbles:  1051
+LLM suggested label: stmt for for vm in [[9e]] do end  and local function Q ( ... ) goto uVY repeat return function ( ) goto fY end , ... or 0x4bD , { } until ... ; end 
+ Next suggestion: loopstmt
+ Next suggestion: loopstmt2
+ Next suggestion: loopstmt3
+
+[Group len 13] Bubbling iteration 100 (56/100)... 
+Successful grouping (double): [for,  , sS,  , exprstmt, do, jumpstmt2,  ], [funcdef,  , listexpr,  , stmt4,  ]
+     (aka ['for', ' ', 'sS', ' ', 'in 0 and 0X2b90A , nil or function ( P , B , WR , H , J , UCEw , XS ) return ; end ', 'do', ' end', ' '], ['local function J', ' ', '( ... )', ' ', 'local BV < jo_ > return ; end', ' ']))
+coalesced into:  {'t52707': 'loopstmt3', 't53476': 'loopstmt3'}
+Number of bubbles:  997
+
+[Group len 13] Bubbling iteration 101 (56/100)... 
+Successful grouping (single): [funcdef,  , listexpr,  , stmt4]
+    (aka ['local function J', ' ', '( ... )', ' ', 'local BV < jo_ > return ; end']
+coalesced into:  {'t54620': 'stmt2', 'stmt2': 'stmt2'}
+Number of bubbles:  992
+
+[Group len 13] Bubbling iteration 102 (60/100)... 
+Successful grouping (single): [for,  , sS,  , exprstmt, do, jumpstmt2]
+    (aka ['for', ' ', 'sS', ' ', 'in 0 and 0X2b90A , nil or function ( P , B , WR , H , J , UCEw , XS ) return ; end ', 'do', ' end']
+coalesced into:  {'t54944': 'stmt2', 'stmt2': 'stmt2'}
+Number of bubbles:  986
+Number of bubbles:  1035
+Number of bubbles:  1082
+Number of bubbles:  1127
+Number of bubbles:  1170
+LLM suggested label: stmt for for vm in [[9e]] do end for q in ... % ... + false ^ { } % ... == true and true - true and ... == true % true or ... ^ ... .. nil ~= nil ~ false == nil .. ... + nil & false % true .. ... ^ ... or not 0X4CD and false >> true or { false .. true .. { } .. { } / { } and true and function ( ) end << ... , } ^ "" > false do end and :: NPL ::
+ Next suggestion: stmt2
+ Next suggestion: stmt3
+ Next suggestion: stmt4
+ Next suggestion: stmt5
+
+[Group len 17] Bubbling iteration 107 (60/100)... 
+Successful grouping (double): [forstmt,  , q,  , exprstmt, ~, =,  , numexpr2, logexpr, boolop, listexpr2, >, >,  , boolstmt, jumpstmt2], [:, :,  , Zf,  , :, :]
+     (aka ['for vm in [[9e]] do end for', ' ', 'q', ' ', 'in ... % ... + false ^ { } % ... == true and true - true and ... == true % true or ... ^ ... .. nil ', '~', '=', ' ', 'nil ~ false == ', 'nil .. ... + nil & false % true .. ... ^ ... or not 0X4CD', ' and ', 'false ', '>', '>', ' ', 'true or { false .. true .. { } .. { } / { } and true and function ( ) end << ... , } ^ "" > false do', ' end'], [':', ':', ' ', 'Zf', ' ', ':', ':']))
+coalesced into:  {'t61745': 'stmt5', 't60735': 'stmt5'}
+Number of bubbles:  1074
+LLM suggested label: stmt for in ... % ... + false ^ { } % ... == true and true - true and ... == true % true or ... ^ ... .. nil ~= nil ~ false == nil .. ... + nil & false % true .. ... ^ ... or not 0X4CD and false >> true or { false .. true .. { } .. { } / { } and true and function ( ) end << ... , } ^ "" > false do and in 0 and 0X2b90A , nil or function ( P , B , WR , H , J , UCEw , XS ) return ; end do
+ Next suggestion: complexstmt
+
+[Group len 17] Bubbling iteration 108 (46/100)... 
+Successful grouping (double): [exprstmt, ~, =,  , numexpr2, logexpr, boolop, listexpr2, >, >,  , boolstmt], [exprstmt, do]
+     (aka ['in ... % ... + false ^ { } % ... == true and true - true and ... == true % true or ... ^ ... .. nil ', '~', '=', ' ', 'nil ~ false == ', 'nil .. ... + nil & false % true .. ... ^ ... or not 0X4CD', ' and ', 'false ', '>', '>', ' ', 'true or { false .. true .. { } .. { } / { } and true and function ( ) end << ... , } ^ "" > false do'], ['in 0 and 0X2b90A , nil or function ( P , B , WR , H , J , UCEw , XS ) return ; end ', 'do']))
+coalesced into:  {'t62981': 'complexstmt', 't61927': 'complexstmt'}
+Number of bubbles:  1009
+LLM suggested label: stmt for ~= nil ~ false == nil .. ... + nil & false % true .. ... ^ ... or not 0X4CD and false >> true or { false .. true .. { } .. { } / { } and true and function ( ) end << ... , } ^ "" > false do and do
+ Next suggestion: controlstmt
+ Next suggestion: controlstmt2
+
+[Group len 17] Bubbling iteration 109 (36/100)... 
+Successful grouping (single): [~, =,  , numexpr2, logexpr, boolop, listexpr2, >, >,  , boolstmt]
+    (aka ['~', '=', ' ', 'nil ~ false == ', 'nil .. ... + nil & false % true .. ... ^ ... or not 0X4CD', ' and ', 'false ', '>', '>', ' ', 'true or { false .. true .. { } .. { } / { } and true and function ( ) end << ... , } ^ "" > false do']
+coalesced into:  {'t64118': 'controlstmt2', 'do': 'controlstmt2'}
+Number of bubbles:  998
+
+[Group len 17] Bubbling iteration 110 (26/100)... 
+Successful grouping (single): [~, =,  , numexpr2, logexpr, boolop, listexpr2, >, >,  ]
+    (aka ['~', '=', ' ', 'nil ~ false == ', 'nil .. ... + nil & false % true .. ... ^ ... or not 0X4CD', ' and ', 'false ', '>', '>', ' ']
+coalesced into:  {'t65218': 'unaryop', 'unaryop': 'unaryop'}
+Number of bubbles:  991
+
+[Group len 17] Bubbling iteration 111 (24/100)... 
+Successful grouping (single): [~, =,  , numexpr2, logexpr, boolop, listexpr2, >, >]
+    (aka ['~', '=', ' ', 'nil ~ false == ', 'nil .. ... + nil & false % true .. ... ^ ... or not 0X4CD', ' and ', 'false ', '>', '>']
+coalesced into:  {'t66315': 'logicalop', 'logicalop': 'logicalop'}
+Number of bubbles:  984
+Number of bubbles:  1018
+Number of bubbles:  1051
+Number of bubbles:  1083
+Number of bubbles:  1114
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-25 02:55:05
+Time spent in oracle calls: 8433.728169202805
+Time spent building grammar: 9098.421841144562s
+Time breakdown: {'FIRST_COALESCE': 259.4797818660736, 'BUILD': 8425.848520040512, 'LAST_COALESCE': 196.13218665122986, 'EXPAND': 196.29942965507507, 'MINIMIZE': 0.0009043216705322266, 'OVERALL_EXAMPLE_GEN': 196.81426215171814, 'OVERALL_GROUPING': 0, 'REAPPLY_COUNT': 14}
+Parse calls: 251001, 125451
+LLM calls for bubble finding: 0
+**** Running eval.py ****
+start: stmt
+stmt: stmt5 " "
+    | controlstmt stmtlist
+    | stmt5 jumpstmt
+    | funcdef " " listexpr " " stmt1 stringexpr "function" " " listexpr " " stmt5 jumpstmt2 boolop num boolop expr listexpr " " ">" ">" " " boolstmt " " stmt5 stmtlist controlstmt " " num charexpr "-" "0" boolop numexpr2 numexpr2 stringexpr "function" " " listexpr stmt5 stmt "end" boolop "'" "'" " " listseparator charexpr stmtlist "end" jumpstmt2 " "
+    | stmtlist stmt
+    | controlstmt " " boolexpr2
+    | expr ":" " " varname num " " listexpr " " "'" "\\u{9}" "'" " " loopstmt3
+    | stmt5 stmtlist
+    | controlstmt " " stmt3 bitexpr listseparator listexpr2
+    | " " stmt5
+    | " "
+    | stmt5
+    | funcdef " " listexpr " " stmt1 stringexpr "function" " " listexpr " " stmt5 jumpstmt2 boolop num boolop expr listexpr " " ">" ">" " " boolstmt " " stmt5 stmtlist controlstmt " " num charexpr "-" "0" boolop numexpr2 numexpr2 stringexpr "'" "'" " " listseparator charexpr stmtlist "end" jumpstmt2 " "
+    | funcdef " " listexpr " " stmt1 stringexpr "function" " " listexpr " " stmt5 jumpstmt2 ">" ">" " " boolstmt " " stmt5 stmtlist controlstmt " " num charexpr "-" "0" boolop numexpr2 numexpr2 stringexpr "'" "'" " " listseparator charexpr stmtlist "end" jumpstmt2 " "
+    | funcdef " " listexpr " " stmt1 stringexpr "function" " " listexpr " " stmt5 jumpstmt2 ">" ">" " " boolstmt " " stmt5 stmtlist controlstmt " " stringexpr "'" "'" " " listseparator charexpr stmtlist "end" jumpstmt2 " "
+    | stmtlist controlstmt " " stringexpr "'" "'"
+    | stmtlist controlstmt " "
+    | controlstmt " "
+    | stmtlist
+    | controlstmt
+    | "local" " " " " varname
+    | "local" " " varname
+    | expr ":" " " varname "'" "\\u{9}" "'" " " loopstmt3
+    | varname "'" "\\u{9}" "'" " " loopstmt3
+    | varname "'" "\\u{9}" "'"
+    | varname "'" "'"
+    | loopstmt3
+forstmt: "for"
+    | loopstmt3 forstmt
+varname: "ae27"
+    | "_"
+    | tletter talphanums
+    | tletters
+exprstmt: "in" " " literalexpr
+    | "in" " " listexpr2
+literalexpr: stmt3 " "
+    | tdigits
+stmt3: numexpr2 stmt3
+    | logexpr " "
+    | stringexpr logexpr
+    | logexpr bitexpr
+numexpr2: stmt3 listseparator
+    | numexpr2 " "
+    | listexpr2 unaryop
+    | charexpr boolop
+    | listexpr2 listseparator
+    | listexpr2 unaryexpr
+    | stringexpr " "
+logexpr: "0" identifier2
+    | "function" " " listexpr jumpstmt2
+    | "{" " " "}"
+    | "{" " " listexpr2 "}"
+    | stringexpr logexpr
+    | logexpr " "
+    | "[" "[" num charexpr "]" "]"
+    | "{" " " stmt3 " " bitexpr listseparator "}"
+    | talphanums
+identifier2: identifier2 num
+    | boolop logexpr
+    | identifier num
+    | "Xf"
+boolop: op " "
+    | " " "-"
+    | boolop stringexpr
+    | unaryexpr unaryexpr
+    | "<" "<"
+op: " " logicalop
+    | boolop boolexpr
+    | " " "." "."
+    | " " op
+    | "=" "="
+logicalop: "and"
+    | "or"
+    | unaryop boolexpr
+    | "^"
+    | "&"
+    | "|"
+    | "+"
+    | "%"
+    | "~" "=" " " numexpr2 logexpr boolop listexpr2 ">" ">"
+identifier: "X"
+    | "x"
+num: "b"
+    | "A"
+    | "bD"
+    | "CD"
+    | tdigits
+listseparator: listseparator " "
+    | ","
+    | listseparator varname " " listseparator
+stringexpr: boolexpr " "
+    | num unaryop
+    | stringexpr " "
+    | charexpr boolop
+    | "\"" "\"" " " ">"
+boolexpr: logexpr op
+    | "#"
+    | listexpr2 unaryexpr
+    | charexpr op
+    | stringexpr boolexpr
+    | listexpr2 op
+    | "not"
+    | listexpr2 "-"
+listexpr: "(" " " varname " " listseparator varname " " ")"
+    | "(" " " varname " " ")"
+    | "(" " " charexpr ")"
+    | "(" " " ")"
+jumpstmt2: jumpstmt "end"
+    | " " "end"
+jumpstmt: " " stmt
+    | stmt " "
+    | " " controlstmt " "
+controlstmt: "return"
+    | stmt5 " " controlstmt
+stmtlist: stmtlist " "
+    | " " stmtlist
+    | ";"
+controlstmt2: "do"
+    | unaryop boolstmt
+funcdef: controlstmt " " listexpr2 listseparator "function"
+    | "local" " " "function" " " varname
+listexpr2: logexpr " "
+    | "'" varname "'"
+    | listexpr2 " "
+    | "0" charexpr literalexpr
+    | stringexpr listexpr2
+stmt1: stmt1 stringexpr
+    | stmt1 " "
+    | stmt1 "-"
+    | "while"
+unaryop: " " unaryexpr
+    | logicalop " "
+    | ">" "="
+    | "~" " "
+unaryexpr: unaryexpr " "
+    | "/"
+    | unaryop boolexpr
+charexpr: "." "." "."
+    | charexpr " "
+    | "E"
+    | "e"
+loopstmt2: loopstmt " "
+    | loopstmt jumpstmt
+loopstmt: "repeat"
+    | stmt5 " " loopstmt
+expr: expr " "
+    | "(" " " listexpr2 ")"
+    | "(" " " charexpr ")"
+boolstmt: listexpr2 controlstmt2
+    | stringexpr boolstmt
+    | numexpr2 boolstmt
+boolexpr2: stmt3 stmtlist
+    | numexpr2 stmt3
+bitexpr: boolop logexpr
+    | listseparator logexpr
+    | boolop " " charexpr
+stmt4: "local" " " varname " " "<" " " varname varname " " ">" jumpstmt2
+    | stmt "end"
+loopstmt3: stmt5 " "
+stmt5: ":" ":" " " varname " " ":" ":"
+    | forstmt " " varname " " exprstmt controlstmt2 jumpstmt2
+    | loopstmt2 "until" " " charexpr
+    | stmtlist stmtlist
+    | "break"
+    | funcdef " " listexpr " " stmt4
+    | "goto" " " varname
+tletter: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+talphanums: talphanum
+    | talphanum talphanums
+talphanum: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+    | "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+tletters: tletter
+    | tletter tletters
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.555, Precision: 0.607, F-1: 0.5798364888123926
+**** Running search.py ****

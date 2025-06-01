@@ -15,7 +15,7 @@ if [[ $1 == "json" || $1 == "lisp" || $1 == "while"  || $1 == "xml" || $1 == "tu
     python3 search.py external Seed_Programs/$bench/parse_$1 Seed_Programs/$bench/guides-r1 Seed_Programs/$1-$seed-tv.log
 
     echo "**** Running eval.py ****"
-python3 eval.py external Seed_Programs/$bench/parse_$1 Seed_Programs/$bench/test_set Seed_Programs/$1-$seed-tv.log #json, lisp, while, xml, turtle
+    python3 eval.py external Seed_Programs/$bench/parse_$1 Seed_Programs/$bench/test_set Seed_Programs/$1-$seed-tv.log #json, lisp, while, xml, turtle
 
 elif  [[ $1 == "c-500" ]]; then
     bench="tinyc"
