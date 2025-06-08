@@ -1,0 +1,387 @@
+python3 search.py external glade-2/tiny/parse_tiny glade-2/tiny/tiny-train glade-2/tiny-r1-tv.log
+Using approximate pre-tokenization stage
+Average guide length in char: 39.7, max guide length: 76
+Average token length: 25.3, max token length: 51
+Guides with brackets: 0, quotes: 0
+Building the starting grammar...                  Building the starting trees...                    Average number of brackets(not normalized): 1.0
+Average lengths of brackets(not normalized): 25.3
+Average n: 25.3
+Beginning coalescing...                           
+LLM suggested label: identifier for Wt and XlSe
+LLM suggested label: num for 77 and 2
+max example size 51, node size: 1
+Number of bubbles:  32
+LLM suggested label: assignop for =  and =
+
+[Group len 2] Bubbling iteration 1 (43/100)...    
+Successful grouping (single): [=,  ]
+    (aka ['=', ' ']
+coalesced into:  {'t29': 'assignop', '=': 'assignop'}
+Number of bubbles:  33
+LLM suggested label: unaryop for -  and -
+
+[Group len 2] Bubbling iteration 2 (75/100)...    
+Successful grouping (single): [-,  ]
+    (aka ['-', ' ']
+coalesced into:  {'t48': 'unaryop', '-': 'unaryop'}
+Number of bubbles:  35
+LLM suggested label: addop for +  and +
+
+[Group len 2] Bubbling iteration 3 (7/100)...     
+Successful grouping (single): [+,  ]
+    (aka ['+', ' ']
+coalesced into:  {'t88': 'addop', '+': 'addop'}
+Number of bubbles:  36
+LLM suggested label: separator for ,  and ,
+
+[Group len 2] Bubbling iteration 4 (3/100)...     
+Successful grouping (single): [,,  ]
+    (aka [',', ' ']
+coalesced into:  {'t118': 'separator', ',': 'separator'}
+Number of bubbles:  38
+
+[Group len 2] Bubbling iteration 5 (7/100)...     
+Successful grouping (single): [ , unaryop]
+    (aka [' ', '- ']
+coalesced into:  {'t175': 'unaryop', 'unaryop': 'unaryop'}
+Number of bubbles:  40
+
+[Group len 2] Bubbling iteration 6 (15/100)...    
+Successful grouping (single): [ , separator]
+    (aka [' ', ', ']
+coalesced into:  {'t199': 'separator', 'separator': 'separator'}
+Number of bubbles:  41
+
+[Group len 2] Bubbling iteration 7 (3/100)...     
+Successful grouping (single): [ , addop]
+    (aka [' ', '+ ']
+coalesced into:  {'t251': 'addop', 'addop': 'addop'}
+Number of bubbles:  42
+LLM suggested label: term for  + Ppy and  - Ou
+
+[Group len 2] Bubbling iteration 8 (15/100)...    
+Successful grouping (double): [addop, XlSe], [unaryop, Q]
+     (aka [' + ', 'XlSe'], [' - ', 'Q']))
+coalesced into:  {'t300': 'term', 't316': 'term'}
+Number of bubbles:  46
+
+[Group len 2] Bubbling iteration 9 (2/100)...     
+Successful grouping (single): [77, term]
+    (aka ['77', ' + XlSe']
+coalesced into:  {'t349': 'num', 'num': 'num'}
+Reapply: 1
+
+[Group len 2] Bubbling iteration 9 (2/100)...     
+Successful grouping (single): [77, term]
+    (aka ['77', ' + XlSe']
+coalesced into:  {'t390': 'num', 'num': 'num'}
+Number of bubbles:  41
+LLM suggested label: numexpr for 5 ,  and 0 + o + Vg - 
+
+[Group len 2] Bubbling iteration 10 (16/100)...   
+Successful grouping (double): [num, separator], [9, unaryop]
+     (aka ['77 + XlSe + myEa', ' , '], ['9', ' - ']))
+coalesced into:  {'t406': 'numexpr', 't439': 'numexpr'}
+Number of bubbles:  44
+
+[Group len 2] Bubbling iteration 11 (3/100)...    
+Successful grouping (single): [numexpr, numexpr]
+    (aka ['9 - Ou - ', '9 , ']
+coalesced into:  {'t499': 'numexpr', 'numexpr': 'numexpr'}
+Number of bubbles:  43
+
+[Group len 2] Bubbling iteration 12 (7/100)...    
+Successful grouping (single): [ , numexpr]
+    (aka [' ', '9 - Ou - 9 , ']
+coalesced into:  {'t555': 'numexpr', 'numexpr': 'numexpr'}
+Number of bubbles:  43
+LLM suggested label: io_stmt for READ  and WRITE 9 - Ou - 9 , 
+
+[Group len 2] Bubbling iteration 13 (13/100)...   
+Successful grouping (double): [READ,  ], [WRITE, numexpr]
+     (aka ['READ', ' '], ['WRITE', ' 9 - Ou - 9 , ']))
+coalesced into:  {'t578': 'io_stmt', 't612': 'io_stmt'}
+Number of bubbles:  42
+
+[Group len 2] Bubbling iteration 14 (16/100)...   
+Successful grouping (single): [term, unaryop]
+    (aka [' + X', ' - ']
+coalesced into:  {'t646': 'addop', 'addop': 'addop'}
+Number of bubbles:  40
+
+[Group len 2] Bubbling iteration 15 (26/100)...   
+Successful grouping (single): [num, addop]
+    (aka ['1 - Pus', ' + ']
+coalesced into:  {'t726': 'numexpr', 'numexpr': 'numexpr'}
+Number of bubbles:  39
+LLM suggested label: stmt for END  and END
+ Next suggestion: endstmt
+
+[Group len 2] Bubbling iteration 16 (52/100)...   
+Successful grouping (single): [END,  ]
+    (aka ['END', ' ']
+coalesced into:  {'t767': 'endstmt', 'END': 'endstmt'}
+Number of bubbles:  38
+LLM suggested label: label for  : and :
+
+[Group len 2] Bubbling iteration 17 (77/100)...   
+Successful grouping (single): [ , :]
+    (aka [' ', ':']
+coalesced into:  {'t814': 'label', ':': 'label'}
+Number of bubbles:  38
+Number of bubbles:  75
+LLM suggested label: expr for  Wt ,  and  - 1 - Pus + 
+
+[Group len 3] Bubbling iteration 19 (3/100)...    
+Successful grouping (double): [ , Wt, separator], [unaryop, numexpr]
+     (aka [' ', 'Wt', ' , '], ['- ', '77 + XlSe + myEa , ']))
+coalesced into:  {'t919': 'expr', 't927': 'expr'}
+Number of bubbles:  78
+LLM suggested label: stmt for WRITE - 1 - Pus + - 9 -  and WRITE - 1 - Pus + 
+ Next suggestion: expr2
+
+[Group len 3] Bubbling iteration 20 (12/100)...   
+Successful grouping (double): [WRITE, expr, expr], [WRITE, expr]
+     (aka ['WRITE', ' Wt , ', '- 77 + XlSe + myEa , '], ['WRITE', ' Wt , ']))
+coalesced into:  {'t1014': 'expr2', 't1013': 'expr2'}
+Number of bubbles:  78
+LLM suggested label: outputstmt for WRITE p and WRITE - 1 - Pus + - 9 - 4
+
+[Group len 3] Bubbling iteration 21 (6/100)...    
+Successful grouping (double): [WRITE,  , tZhv], [expr2, 2]
+     (aka ['WRITE', ' ', 'tZhv'], ['WRITE Wt , - 77 + XlSe + myEa , ', '2']))
+coalesced into:  {'t1201': 'outputstmt', 't1115': 'outputstmt'}
+Number of bubbles:  76
+
+[Group len 3] Bubbling iteration 22 (1/100)...    
+Successful grouping (single): [WRITE,  ]
+    (aka ['WRITE', ' ']
+coalesced into:  {'t1305': 'io_stmt', 'io_stmt': 'io_stmt'}
+Number of bubbles:  75
+
+[Group len 3] Bubbling iteration 23 (7/100)...    
+Successful grouping (single): [io_stmt, r, separator]
+    (aka ['READ ', 'r', ' , ']
+coalesced into:  {'t1405': 'io_stmt', 'io_stmt': 'io_stmt'}
+Reapply: 2
+
+[Group len 3] Bubbling iteration 23 (7/100)...    
+Successful grouping (single): [io_stmt, r, separator]
+    (aka ['READ ', 'r', ' , ']
+coalesced into:  {'t1416': 'io_stmt', 'io_stmt': 'io_stmt'}
+Reapply: 3
+
+[Group len 3] Bubbling iteration 23 (7/100)...    
+Successful grouping (single): [io_stmt, r, separator]
+    (aka ['READ ', 'r', ' , ']
+coalesced into:  {'t1417': 'io_stmt', 'io_stmt': 'io_stmt'}
+Number of bubbles:  73
+
+[Group len 3] Bubbling iteration 24 (1/100)...    
+Successful grouping (single): [io_stmt, rSx]
+    (aka ['READ ', 'rSx']
+coalesced into:  {'t1431': 'outputstmt', 'outputstmt': 'outputstmt'}
+Number of bubbles:  66
+
+[Group len 3] Bubbling iteration 25 (7/100)...    
+Successful grouping (single): [outputstmt,  , outputstmt]
+    (aka ['WRITE Wt , - 77 + XlSe + myEa , 2', ' ', 'READ rSx']
+coalesced into:  {'t1528': 'outputstmt', 'outputstmt': 'outputstmt'}
+Number of bubbles:  65
+
+[Group len 3] Bubbling iteration 26 (10/100)...   
+Successful grouping (single): [assignop, TuL, addop]
+    (aka ['= ', 'TuL', ' + X - ']
+coalesced into:  {'t1634': 'assignop', 'assignop': 'assignop'}
+Number of bubbles:  60
+
+[Group len 3] Bubbling iteration 27 (12/100)...   
+Successful grouping (single): [expr2, c, separator]
+    (aka ['WRITE i , ', 'c', ' , ']
+coalesced into:  {'t1780': 'expr2', 'expr2': 'expr2'}
+Reapply: 4
+
+[Group len 3] Bubbling iteration 27 (12/100)...   
+Successful grouping (single): [expr2, c, separator]
+    (aka ['WRITE i , ', 'c', ' , ']
+coalesced into:  {'t1800': 'expr2', 'expr2': 'expr2'}
+Number of bubbles:  55
+LLM suggested label: stmt for SLf :=  and WRITE i , c , M , - 7 - 
+ Next suggestion: assignstmt
+
+[Group len 3] Bubbling iteration 28 (11/100)...   
+Successful grouping (double): [X, label, assignop], [expr2, expr]
+     (aka ['X', ' :', '= TuL + X - '], ['WRITE Wt , ', '- 77 + XlSe + myEa , ']))
+coalesced into:  {'t1815': 'assignstmt', 't1833': 'assignstmt'}
+Number of bubbles:  49
+LLM suggested label: stmt for  SLf :=  and  WRITE - 3 + 
+ Next suggestion: assignstmt
+ Next suggestion: assignstmt2
+
+[Group len 3] Bubbling iteration 29 (12/100)...   
+Successful grouping (double): [ , assignstmt], [ , expr2]
+     (aka [' ', 'X := TuL + X - '], [' ', 'WRITE - 3 + ']))
+coalesced into:  {'t1898': 'assignstmt2', 't1963': 'assignstmt2'}
+Number of bubbles:  46
+LLM suggested label: stmt for  SLf := - 6 and  READ Hxd , sPm
+ Next suggestion: assignstmt
+ Next suggestion: assignstmt2
+ Next suggestion: assignstmt3
+
+[Group len 3] Bubbling iteration 30 (8/100)...    
+Successful grouping (double): [assignstmt2, unaryop, num], [ , outputstmt]
+     (aka [' X := TuL + X - ', '- ', '3 - Q'], [' ', 'WRITE Wt , - 77 + XlSe + myEa , 2 READ rSx']))
+coalesced into:  {'t1983': 'assignstmt3', 't1976': 'assignstmt3'}
+Number of bubbles:  38
+LLM suggested label: stmt for BEGIN READ TP WRITE i , c , M , - 7 - - 7 and BEGIN READ TP
+ Next suggestion: progstmt
+
+[Group len 3] Bubbling iteration 31 (11/100)...   
+Successful grouping (double): [BEGIN, assignstmt3, assignstmt3], [BEGIN, assignstmt3]
+     (aka ['BEGIN', ' WRITE Wt , - 77 + XlSe + myEa , 2 READ rSx', ' X := TuL + X - - 3 - Q'], ['BEGIN', ' WRITE Wt , - 77 + XlSe + myEa , 2 READ rSx']))
+coalesced into:  {'t2056': 'progstmt', 't2055': 'progstmt'}
+Number of bubbles:  33
+LLM suggested label: term for  Wt and - 2
+ Next suggestion: term2
+
+[Group len 3] Bubbling iteration 32 (40/62)...    
+Successful grouping (double): [ , Wt], [unaryop, num]
+     (aka [' ', 'Wt'], ['- ', '3 - Q']))
+coalesced into:  {'t2150': 'term2', 't2175': 'term2'}
+Number of bubbles:  31
+Number of bubbles:  31
+Number of bubbles:  31
+Number of bubbles:  31
+Number of bubbles:  31
+Building initial grammar...                       Coalescing nonterminals...                        Minimizing initial grammar...                     Pickling grammar...
+Date: 2025-05-25 00:22:39
+Time spent in oracle calls: 494.8201048374176
+Time spent building grammar: 525.0225472450256s
+Time breakdown: {'FIRST_COALESCE': 61.1753990650177, 'BUILD': 396.4978744983673, 'LAST_COALESCE': 19.3033344745636, 'EXPAND': 43.12147378921509, 'MINIMIZE': 0.00035953521728515625, 'OVERALL_EXAMPLE_GEN': 5.408798694610596, 'OVERALL_GROUPING': 0, 'REAPPLY_COUNT': 4}
+Parse calls: 20697, 13316
+LLM calls for bubble finding: 0
+**** Running eval.py ****
+start: stmt
+stmt: progstmt " " endstmt
+progstmt: progstmt assignstmt3
+    | "BEGIN" assignstmt3
+assignstmt3: " " outputstmt
+    | assignstmt2 term2
+outputstmt: outputstmt assignstmt3
+    | expr2 num
+    | t2564 identifier
+expr2: expr2 expr
+    | "WRITE" expr
+    | expr2 identifier separator
+expr: term2 separator
+    | unaryop numexpr
+term2: " " identifier
+    | unaryop num
+identifier: tletters
+separator: " " separator
+    | separator " "
+    | ","
+unaryop: unaryop " "
+    | "-"
+    | " " unaryop
+numexpr: num separator
+    | num addop
+    | num unaryop
+    | " " numexpr
+    | numexpr numexpr
+num: num term
+    | tdigits
+term: addop identifier
+    | unaryop identifier
+addop: " " addop
+    | addop " "
+    | "+"
+    | term unaryop
+assignstmt2: " " assignstmt
+    | " " expr2
+assignstmt: identifier label assignop
+    | expr2 expr
+label: " " label
+    | ":"
+assignop: assignop identifier addop
+    | assignop " "
+    | "="
+endstmt: endstmt " "
+    | "END"
+tletters: tletter
+    | tletter tletters
+tletter: "a"
+    | "b"
+    | "c"
+    | "d"
+    | "e"
+    | "f"
+    | "g"
+    | "h"
+    | "i"
+    | "j"
+    | "k"
+    | "l"
+    | "m"
+    | "n"
+    | "o"
+    | "p"
+    | "q"
+    | "r"
+    | "s"
+    | "t"
+    | "u"
+    | "v"
+    | "w"
+    | "x"
+    | "y"
+    | "z"
+    | "A"
+    | "B"
+    | "C"
+    | "D"
+    | "E"
+    | "F"
+    | "G"
+    | "H"
+    | "I"
+    | "J"
+    | "K"
+    | "L"
+    | "M"
+    | "N"
+    | "O"
+    | "P"
+    | "Q"
+    | "R"
+    | "S"
+    | "T"
+    | "U"
+    | "V"
+    | "W"
+    | "X"
+    | "Y"
+    | "Z"
+tdigits: tdigit
+    | tdigit tdigits
+tdigit: "0"
+    | "1"
+    | "2"
+    | "3"
+    | "4"
+    | "5"
+    | "6"
+    | "7"
+    | "8"
+    | "9"
+t2564: "READ" " "
+    | outputstmt separator
+    | "WRITE" " "
+    | "WRITE" numexpr
+Loading grammar
+Precision set (size 1000):
+Eval of precision:
+Recall set (size 1000):
+Recall eval:
+Recall: 0.447, Precision: 1.0, F-1: 0.61782999308915
+**** Running search.py ****
