@@ -64,7 +64,7 @@ def approx_tokenize(oracle, guide_raw:str):
     #     guide_raw = trim
     # except:
     #     print(f"Invalid: {guide_raw}")
-    #     pass
+
     for i, c in enumerate(guide_raw):
         cur_category = get_category(c, i)
         if cur_category is not None and cur_category == prev_category:
@@ -79,7 +79,20 @@ def approx_tokenize(oracle, guide_raw:str):
     if cur_token != "":
         
         tokens.append(ParseNode(cur_token, True, []))
-    return tokens
+    # try to delete ws tokens without hurting the oracle
+    tkn_so_far = []
+    for i in range(len(tokens)):
+        if tokens[i].payload and tokens[i].payload[0] in string.whitespace:
+            new_tokens = tkn_so_far + tokens[i+1:]
+            try:
+                oracle.parse("".join([t.payload for t in new_tokens]))
+            except:
+                tkn_so_far.append(tokens[i])
+        else:
+            tkn_so_far.append(tokens[i])
+        
+        
+    return tkn_so_far
 
 
 def main_internal(external_folder, log_file, random_guides=False):

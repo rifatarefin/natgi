@@ -3,12 +3,13 @@ client = OpenAI()
 
 
 
-system_prompt = ["""You are an AI assistant. You will be given a list of tree levels. Each level is a list of nodes.
-                 You will find out which level pairs are derived from the same AST node.
+system_prompt = ["""You are an AI assistant. You will be given a list of tree levels.
+                 You will find out segment pairs from these levels in a way that a segment pair can be derived from the same AST node.
                  Input: A list of tree levels separated by square brackets, the nodes in a level are separated by commas.
                  Output: A list of pairs as json, the format should be json[siblings]:[[pair1], [pair2],...[pair_n]]. Each pair should be two list of sibling nodes.
-                 - Think which level pairs represent same language construct (e.g. similar expressions). Suggest those pairs.
-                 - Don't suggest same list of nodes in a pair.
+                 - Each pair should contain two **different** lists of nodes, these nodes should represent identical AST parents.
+                 - Remeber there could be recursive structure, suggest the smallest recursion free units.
+                 - Discard if two lists in a pair are exactly the same.
                  - Limit the list to best 20 suggestions."""]
 
     
