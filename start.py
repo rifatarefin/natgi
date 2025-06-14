@@ -102,10 +102,14 @@ def build_start_grammar(oracle, leaves, bbl_bounds = (3,10)):
     # grammar, new_trees, partial_coalesces = coalesce_partial(oracle, new_trees, grammar)
     LAST_COALESCE_TIME += time.time() - s
     if HDD:
+        # print(str(grammar))
         augmented = {t.derived_string().replace(" ",""): t for t in new_trees}
         reduced_trees = hdd_decompose(new_trees, oracle, augmented)
         grammar_reduced = build_grammar(reduced_trees)
+        # print(str(grammar_reduced))
         new_trees += reduced_trees
+        grammar = minimize(grammar)
+        grammar_reduced = minimize(grammar_reduced)
         grammar.merge(grammar_reduced)
 
     s = time.time()
@@ -487,7 +491,7 @@ def get_tree_layers(best_trees, for_llm = True):
     for layer in long:
         top_layers.append(layer)
         sum_len += len(layer)
-        if sum_len > 500 and len(top_layers) >20:
+        if sum_len > 500 and len(top_layers) >10:
             break
     return top_layers
 
@@ -779,7 +783,7 @@ def build_trees(oracle, leaves):
             bubble_list = get_llm_bubble(best_trees, False)
 
             # doesn't contain any 2-bubbles
-            if bubble_list and not isinstance(bubble_list[0], list):
+            if bubble_list and not(isinstance(bubble_list[0], list) and len(bubble_list[0]) == 2) :
                 break
             for first, second in bubble_list:
                 cand1 = ''.join(first)
