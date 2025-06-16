@@ -171,7 +171,7 @@ def main(oracle_cmd, guide_examples_folder,  log_file_name):
         # Build the starting grammars and test them for compilation
         print('Building the starting grammar...'.ljust(50), end='\r')
         start_time = time.time()
-        start_grammar: Grammar = build_start_grammar(oracle, guide_examples, bbl_bounds)
+        start_grammar, hdd_grammar = build_start_grammar(oracle, guide_examples, bbl_bounds)
         build_time = time.time() - start_time
 
         oracle_time_spent = oracle.time_spent
@@ -181,6 +181,8 @@ def main(oracle_cmd, guide_examples_folder,  log_file_name):
         print(f'Pickling grammar...')
         import pickle
         pickle.dump(start_grammar.rules, open(log_file_name + ".gramdict", "wb"))
+        if hdd_grammar:
+            pickle.dump(hdd_grammar.rules, open(log_file_name + "_hdd.gramdict", "wb"))
 
         print(f'Date: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}', file=f)
         print(f'Date: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')

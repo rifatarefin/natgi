@@ -55,7 +55,7 @@ TIME_GROUPING = 0
 REAPPLY = 0
 LLM_CALLS = 0
 USE_LLM = True
-TREEVADA = False
+TREEVADA = True
 HDD = True
 
 def get_times():
@@ -102,15 +102,18 @@ def build_start_grammar(oracle, leaves, bbl_bounds = (3,10)):
     # grammar, new_trees, partial_coalesces = coalesce_partial(oracle, new_trees, grammar)
     LAST_COALESCE_TIME += time.time() - s
     if HDD:
-        # print(str(grammar))
         augmented = {t.derived_string().replace(" ",""): t for t in new_trees}
         reduced_trees = hdd_decompose(new_trees, oracle, augmented)
         grammar_reduced = build_grammar(reduced_trees)
-        # print(str(grammar_reduced))
         new_trees += reduced_trees
         grammar = minimize(grammar)
         grammar_reduced = minimize(grammar_reduced)
-        grammar.merge(grammar_reduced)
+        # print(str(grammar))
+        # print(str(grammar_reduced))
+        hdd_grammar = grammar.copy()
+        hdd_grammar.merge(grammar_reduced)
+        hdd_grammar = expand_tokens(oracle, hdd_grammar, new_trees)
+        hdd_grammar = minimize(hdd_grammar)
 
     s = time.time()
     grammar = expand_tokens(oracle, grammar, new_trees)
@@ -118,8 +121,12 @@ def build_start_grammar(oracle, leaves, bbl_bounds = (3,10)):
     print('Minimizing initial grammar...'.ljust(50), end='\r')
     s = time.time()
     grammar = minimize(grammar)
+    
     MINIMIZE_TIME += time.time() - s
-    return grammar
+    if HDD:
+        return grammar, hdd_grammar
+    else:
+        return grammar, None
 
 
 def build_naive_parse_trees(leaves: List[List[ParseNode]], bracket_items: List, oracle: ExternalOracle):
@@ -295,8 +302,22 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
         
     # Pick newly added stmt
     decomposed = list(new_trees.items())[size:]
-    tree_values = [x[1] for x in decomposed]
-    return tree_values
+    decomposed_trees = [x[1] for x in decomposed]
+    results = []
+    for dt in decomposed_trees:
+        tree_list = trees + [dt]
+        parsed = True
+        tree_strs = lvl_n_derivable(tree_list, START, 1)
+        for s in tree_strs:
+            try:
+                oracle.parse(s)
+            except:
+                print("Parse FAILED")
+                parsed = False
+                break
+        if parsed:
+            results.append(dt)
+    return results
 
 def build_naive_parse_trees_2(leaves: List[List[ParseNode]]):
     """
@@ -726,6 +747,7 @@ def build_trees(oracle, leaves):
     # have to keep a list of accepted bubbles
     accepted_bubbles = {}
     
+    all_bubbles = {}
     while threshold > 0:
         group_start = time.time()
 
@@ -737,7 +759,6 @@ def build_trees(oracle, leaves):
             pre_bubbles = [b for b in pre_bubbles if b]
             best_trees, updated = bubble_loop(best_trees, count, pre_bubbles, accepted_bubbles)
 
-        all_bubbles = {}
         updated = True
         while updated:
             print(f"1-BUBBLES")
@@ -788,6 +809,8 @@ def build_trees(oracle, leaves):
             for first, second in bubble_list:
                 cand1 = ''.join(first)
                 cand2 = ''.join(second)
+                if cand1 == cand2:
+                    continue
                 if not is_balanced(cand1) or not is_balanced(cand2):
                     continue
                 grp1 = all_bubbles.get(cand1, to_bubble(best_trees, first))
@@ -1515,9 +1538,9 @@ def minimize(grammar):
     grammar = update(grammar, Y)
 
     remove_repeated_rules(grammar)
-    # check for special characters in the nonterminal names
+    # check for special characters in the nonterminal names, underscores are allowed
     for rule in list(grammar.rules.values()):
-        if any(c in rule.start for c in string.punctuation) or (rule.start and rule.start[0].isdigit()):
+        if any(c in rule.start for c in string.punctuation.replace('_','')) or (rule.start and rule.start[0].isdigit()):
             handle_special_nonterminals(grammar, rule.start, allocate_tid())
 
     remove_inf_recursion(grammar)
