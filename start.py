@@ -55,7 +55,7 @@ TIME_GROUPING = 0
 REAPPLY = 0
 LLM_CALLS = 0
 USE_LLM = True
-TREEVADA = True
+TREEVADA = False
 HDD = True
 
 def get_times():
@@ -305,9 +305,9 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
     decomposed_trees = [x[1] for x in decomposed]
     results = []
     for dt in decomposed_trees:
-        tree_list = trees + [dt]
+        
         parsed = True
-        tree_strs = lvl_n_derivable(tree_list, START, 1)
+        tree_strs = lvl_n_derivable([dt], START, 1)
         for s in tree_strs:
             try:
                 oracle.parse(s)
