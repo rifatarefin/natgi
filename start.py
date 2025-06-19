@@ -107,7 +107,7 @@ def build_start_grammar(oracle, leaves, bbl_bounds = (3,10)):
         augmented = {t.derived_string().replace(" ",""): t for t in new_trees}
         reduced_trees = hdd_decompose(new_trees, oracle, augmented)
         grammar_reduced = build_grammar(reduced_trees)
-        new_trees += reduced_trees
+        # new_trees += reduced_trees
         grammar_reduced = minimize(grammar_reduced)
         # print(str(grammar))
         # print(str(grammar_reduced))
