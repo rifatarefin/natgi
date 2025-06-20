@@ -107,6 +107,7 @@ def build_start_grammar(oracle, leaves, bbl_bounds = (3,10)):
         augmented = {t.derived_string().replace(" ",""): t for t in new_trees}
         reduced_trees = hdd_decompose(new_trees, oracle, augmented)
         grammar_reduced = build_grammar(reduced_trees)
+        grammar_reduced = expand_tokens(oracle, grammar_reduced, reduced_trees)
         # new_trees += reduced_trees
         grammar_reduced = minimize(grammar_reduced)
         # print(str(grammar))
@@ -250,6 +251,7 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
             return False
     
     def ddmin(node: ParseNode):
+        reduced = []
         n = len(node.children)
         granularity = 2
 
@@ -264,7 +266,7 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
                 trial_node.update_cache_info()
 
                 if try_parse(trial_node):
-                    return ddmin(trial_node.copy())
+                    reduced.append(trial_node.copy())
                 
             for i in range(granularity):
                 start = i * chunk_size
@@ -273,26 +275,30 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
                 trial_node.children = node.children[start:end]
                 trial_node.update_cache_info()
                 if try_parse(trial_node):
-                    return ddmin(trial_node.copy())
-
+                    reduced.append(trial_node.copy())
+            if reduced:
+                return reduced
             granularity += 1
                  
 
-        return node
+        return [node.copy()]
                     
                 
     
     def hdd(node: ParseNode):
         if node.is_terminal:
-            return node
+            return [node]
         
-        node = ddmin(node)
-        for index in range(len(node.children)):
-            node.children[index] = hdd(node.children[index])
-        node.update_cache_info()
-        try_parse(node)
+        nodes = ddmin(node)
+        for node in nodes:
+            for index in range(len(node.children)):
+                idx_children = hdd(node.children[index])
+                for child in idx_children:
+                    node.children[index] = child
+            node.update_cache_info()
+            try_parse(node)
 
-        return node
+        return nodes
     
     size = len(trees)   # initial size
     for tree in trees:
