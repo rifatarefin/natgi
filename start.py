@@ -295,8 +295,8 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
                 idx_children = hdd(node.children[index])
                 for child in idx_children:
                     node.children[index] = child
-            node.update_cache_info()
-            try_parse(node)
+                    node.update_cache_info()
+                    try_parse(node)
 
         return nodes
     
