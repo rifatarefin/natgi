@@ -809,26 +809,27 @@ def build_trees(oracle, leaves):
             count += 1
             bubble_list = get_llm_bubble(best_trees, False)
 
-            # doesn't contain any 2-bubbles
-            if bubble_list and not(isinstance(bubble_list[0], list) and len(bubble_list[0]) == 2) :
+            # break if not valid 2-bubbles
+            try:
+                for first, second in bubble_list:
+                    cand1 = ''.join(first)
+                    cand2 = ''.join(second)
+                    if cand1 == cand2:
+                        continue
+                    if not is_balanced(cand1) or not is_balanced(cand2):
+                        continue
+                    grp1 = all_bubbles.get(cand1, to_bubble(best_trees, first))
+                    if grp1:
+                        all_bubbles[cand1] = grp1
+                    grp2 = all_bubbles.get(cand2, to_bubble(best_trees, second))
+                    if grp2:
+                        all_bubbles[cand2] = grp2
+                    if cand1 == cand2:
+                        continue
+                    if grp1 and grp2:
+                        two_bubbles.append((grp1, grp2))
+            except:
                 break
-            for first, second in bubble_list:
-                cand1 = ''.join(first)
-                cand2 = ''.join(second)
-                if cand1 == cand2:
-                    continue
-                if not is_balanced(cand1) or not is_balanced(cand2):
-                    continue
-                grp1 = all_bubbles.get(cand1, to_bubble(best_trees, first))
-                if grp1:
-                    all_bubbles[cand1] = grp1
-                grp2 = all_bubbles.get(cand2, to_bubble(best_trees, second))
-                if grp2:
-                    all_bubbles[cand2] = grp2
-                if cand1 == cand2:
-                    continue
-                if grp1 and grp2:
-                    two_bubbles.append((grp1, grp2))
 
             best_trees, updated = bubble_loop(best_trees, count, two_bubbles, accepted_bubbles)
             if updated:

@@ -33,7 +33,7 @@ def generate_label_api(str_pair):
         temperature=0
     )
     messages.pop()
-    return response.choices[0].message.content.split()[0].replace('whitespace', ' ')
+    return response.choices[0].message.content.split()[0].replace('whitespace', ' ').lower()
 
 def regenerate_label(str_pair, old_labels):
     messages.append({'role': 'system', 'name': 'feedback', 'content': f"These labels '{old_labels}' are already in use. Suggest a different label \
@@ -53,7 +53,7 @@ def regenerate_label(str_pair, old_labels):
     messages.pop()
     messages.pop()
 
-    return response.choices[0].message.content.split()[0].replace('whitespace', ' ')
+    return response.choices[0].message.content.split()[0].replace('whitespace', ' ').lower()
 
 if __name__ == '__main__':
     print("Welcome to the interactive GPT chat. Type 'quit' to exit.")
