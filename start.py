@@ -1444,6 +1444,10 @@ def minimize(grammar):
             for body in bodies[:]:
                 if body == [rule.start]:
                     bodies.remove(body)
+                else:
+                    inf = all(rule.start == b for b in body) #Remove rules with all items in RHS equal LHS
+                    if inf:
+                        bodies.remove(body)
 
     def handle_special_nonterminals(grammar: Grammar, old_nt, new_nt):
         """
