@@ -1403,10 +1403,11 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
                         old_labels[class_nt] = 1
                         attempts += 1
                         if attempts > 5:
-                            if class_nt and class_nt[-1].isdigit():
+                            while class_nt in old_labels:
+                                if not class_nt[-1].isdigit():
+                                    class_nt += "1"
                                 class_nt = class_nt[:-1] + str(int(class_nt[-1]) + 1)   #increment the last digit
-                            else:
-                                class_nt += "1"
+                            
                             old_labels[class_nt] = 1
                         print(f" Next suggestion: {class_nt}")
                     # class_nt = allocate_tid()
@@ -1444,10 +1445,7 @@ def minimize(grammar):
             for body in bodies[:]:
                 if body == [rule.start]:
                     bodies.remove(body)
-                else:
-                    inf = all(rule.start == b for b in body) #Remove rules with all items in RHS equal LHS
-                    if inf:
-                        bodies.remove(body)
+
 
     def handle_special_nonterminals(grammar: Grammar, old_nt, new_nt):
         """
