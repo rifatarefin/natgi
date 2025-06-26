@@ -1,10 +1,15 @@
 log_file=$1
-
+log_file_to_get_time=$2
+program_name=$3
+result_file="Result.csv"
 recall_sum=0
 precision_sum=0
 f1_sum=0
 count=0
 echo "$log_file"
+if [ ! -f "$result_file" ]; then
+    echo "program_name,recall,precision,f1,build_time,queries(oracle calls),llm_calls" > $result_file  
+fi
 while IFS= read -r line; do
     recall=$(echo "$line" | grep -oP "Recall: \K[0-9.]+" )
     precision=$(echo "$line" | grep -oP "Precision: \K[0-9.]+" )
@@ -41,7 +46,7 @@ while read -r line; do
     value=$(echo "$line" | grep -oP "Time spent building grammar: \K[0-9.]+" )
     grammar_sum=$(echo "$grammar_sum + $value" | bc -l)
     grammar_count=$((grammar_count + 1))
-done < <(grep "Time spent building grammar:" "$log_file")
+done < <(grep "Time spent building grammar:" "$log_file_to_get_time")
 
 # === LLM calls for bubble finding ===
 llm_sum=0
@@ -50,7 +55,7 @@ while read -r line; do
     value=$(echo "$line" | grep -oP "LLM calls for bubble finding: \K[0-9]+")
     llm_sum=$(echo "$llm_sum + $value" | bc)
     llm_count=$((llm_count + 1))
-done < <(grep "LLM calls for bubble finding:" "$log_file")
+done < <(grep "LLM calls for bubble finding:" "$log_file_to_get_time")
 
 # === Parse calls (only first number) ===
 parse_sum=0
@@ -59,7 +64,7 @@ while read -r line; do
     value=$(echo "$line" | grep -oP "Parse calls: \K[0-9]+")
     parse_sum=$(echo "$parse_sum + $value" | bc)
     parse_count=$((parse_count + 1))
-done < <(grep "Parse calls:" "$log_file")
+done < <(grep "Parse calls:" "$log_file_to_get_time")
 
 # === Compute Averages ===
 avg_grammar=$(echo "$grammar_count > 0" | bc -l) && [ "$avg_grammar" -eq 1 ] && avg_grammar=$(echo "$grammar_sum / $grammar_count" | bc -l) || avg_grammar=0
@@ -113,3 +118,6 @@ avg_parse=$(echo "$parse_count > 0" | bc -l) && [ "$avg_parse" -eq 1 ] && avg_pa
 
 # Output in one line
 printf "Avg Grammar Time:,Avg Parse Calls:,Avg LLM Calls:   %.3f,%.2f,%.2f\n" "$avg_grammar" "$avg_parse" "$avg_llm" 
+
+echo "$program_name,$avg_recall,$avg_precision,$avg_f1,$avg_grammar,$avg_parse,$avg_llm" >> $result_file  
+#echo -n ",$avg_grammar,$avg_parse,$avg_llm >> $result_file
