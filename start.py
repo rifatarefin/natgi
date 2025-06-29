@@ -135,6 +135,7 @@ def build_naive_parse_trees(leaves: List[List[ParseNode]], bracket_items: List, 
     Builds naive parse trees for each leaf in `leaves`, assigning each unique
     character to its own nonterminal, and uniting them all under the START
     nonterminal.
+    bracket_items is a list of bracket enclosed sequence lengths.
     """
     terminals = list(dict.fromkeys([leaf.payload for leaf_lst in leaves for leaf in leaf_lst]))
     get_class = {t: t for t in terminals}
@@ -212,16 +213,16 @@ def build_naive_parse_trees(leaves: List[List[ParseNode]], bracket_items: List, 
 
         # new_tree = ParseNode(START, False, new_children)
         trees.append(new_children)
-        norm_brackets.append(len(brackets))
+        norm_brackets.append(len(brackets))             #brackets = per tree bracket lengths
         norm_bracket_lengths.append(sum(brackets)/len(brackets))
         str_lengths.append(len(leaf_list))
 
-    avg_brackets = sum(norm_brackets)/len(norm_brackets)
+    avg_brackets = sum(norm_brackets)/len(norm_brackets)    #bracket count across all trees
     avg_bracket_lengths = sum(norm_bracket_lengths)/len(norm_bracket_lengths)
     avg_n = sum(str_lengths)/len(str_lengths)
     print(f"Average number of brackets(not normalized): {avg_brackets}")
     print(f"Average lengths of brackets(not normalized): {avg_bracket_lengths}")
-    print(f"Average n: {avg_n}")
+    print(f"Average tokens: {avg_n}")
 
 
     return trees
@@ -714,9 +715,7 @@ def build_trees(oracle, leaves):
         return bubble_list[:25]
 
     best_trees = build_naive_parse_trees(leaves, [], oracle)
-    # augmented = {t.derived_string().replace(" ",""): t for t in best_trees}
-    # best_trees += hdd_decompose(best_trees, oracle, augmented)
-    # best_trees = best_trees[:100]
+    print(f"Branching factor: {branching_factor(best_trees)}")
     grammar = build_grammar(best_trees)
 
     # pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
@@ -740,9 +739,6 @@ def build_trees(oracle, leaves):
     ORIGINAL_COALESCE_TIME += time.time() - s
 
 
-    max_example_size = max([len(leaf_lst) for leaf_lst in leaves])          #largest seed input
-    max_node_size = max([len(child.children) for tree in best_trees for child in tree.children])            #maximum number of children node in a seed input
-    print(f"max example size {max_example_size}, node size: {max_node_size}")
     s = time.time()
     # Main algorithm loop. Iteratively increase the length of groups allowed from MIN_GROUP_LEN to MAX_GROUP_LEN
     # break the group_size loop if no valid merge after increasing group size by threshold
@@ -1096,6 +1092,28 @@ def coalesce_partial(oracle, trees: List[ParseNode], grammar: Grammar,
 
     trees = trees.inner_list
     return grammar, trees, replacement_happened
+
+def branching_factor(trees: List[ParseNode]) -> float:
+    """
+    Returns the average branching factor of the tree.
+    """
+
+    def single_branching_factor(tree: ParseNode) -> float:
+        if tree.is_terminal:
+            return 0.0
+        queue = [tree]
+        internal_nodes = 0
+        total_children = 0
+        while queue:
+            node = queue.pop(0)
+            internal_nodes += 1
+            total_children += len(node.children)
+            queue.extend([child for child in node.children if not child.is_terminal])
+        return total_children / internal_nodes if internal_nodes > 0 else 0.0
+    
+    return sum(single_branching_factor(tree) for tree in trees) / len(trees) if trees else 0.0
+
+
 
 def check_epsilon(oracle, trees: List[ParseNode], grammar: Grammar):
     """
@@ -1551,6 +1569,8 @@ def minimize(grammar):
     for rule in list(grammar.rules.values()):
         if any(c in rule.start for c in string.punctuation.replace('_','')) or (rule.start and rule.start[0].isdigit()):
             handle_special_nonterminals(grammar, rule.start, allocate_tid())
+        if any(c.isupper() for c in rule.start):
+            handle_special_nonterminals(grammar, rule.start, rule.start.lower())
 
     remove_inf_recursion(grammar)
 
