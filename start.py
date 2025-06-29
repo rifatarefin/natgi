@@ -213,16 +213,16 @@ def build_naive_parse_trees(leaves: List[List[ParseNode]], bracket_items: List, 
 
         # new_tree = ParseNode(START, False, new_children)
         trees.append(new_children)
-        norm_brackets.append(len(brackets))
+        norm_brackets.append(len(brackets))             #brackets = per tree bracket lengths
         norm_bracket_lengths.append(sum(brackets)/len(brackets))
         str_lengths.append(len(leaf_list))
 
-    avg_brackets = sum(norm_brackets)/len(norm_brackets)
+    avg_brackets = sum(norm_brackets)/len(norm_brackets)    #bracket count across all trees
     avg_bracket_lengths = sum(norm_bracket_lengths)/len(norm_bracket_lengths)
     avg_n = sum(str_lengths)/len(str_lengths)
     print(f"Average number of brackets(not normalized): {avg_brackets}")
     print(f"Average lengths of brackets(not normalized): {avg_bracket_lengths}")
-    print(f"Average n: {avg_n}")
+    print(f"Average tokens: {avg_n}")
 
 
     return trees
@@ -716,7 +716,6 @@ def build_trees(oracle, leaves):
 
     best_trees = build_naive_parse_trees(leaves, [], oracle)
     print(f"Branching factor: {branching_factor(best_trees)}")
-    exit(0)
     grammar = build_grammar(best_trees)
 
     # pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
