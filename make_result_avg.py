@@ -1,7 +1,7 @@
 import pandas as pd
-
+import sys
 # Read the CSV file
-csv_file_path = "Result_cp.csv"  # Replace with your actual file path
+csv_file_path = sys.argv[1] #"Result_cp.csv"  # Replace with your actual file path
 df = pd.read_csv(csv_file_path)
 
 # Group by 'program_name' and compute the average of numeric columns
