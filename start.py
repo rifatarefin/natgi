@@ -55,7 +55,7 @@ TIME_GROUPING = 0
 REAPPLY = 0
 LLM_CALLS = 0
 USE_LLM = True
-TREEVADA = False
+TREEVADA = True
 HDD = True
 
 def get_times():
@@ -191,8 +191,8 @@ def build_naive_parse_trees(leaves: List[List[ParseNode]], bracket_items: List, 
         return ParseNode(START, False, children), bracket_items.copy()
 
     trees=[]
-    norm_brackets=[]
-    norm_bracket_lengths=[]
+    bracket_counts=[]
+    avg_bracket_lengths_all_trees=[]
     str_lengths = []
     for leaf_list in leaves:
         leaf_str = ''.join([leaf.payload for leaf in leaf_list])
@@ -213,15 +213,15 @@ def build_naive_parse_trees(leaves: List[List[ParseNode]], bracket_items: List, 
 
         # new_tree = ParseNode(START, False, new_children)
         trees.append(new_children)
-        norm_brackets.append(len(brackets))             #brackets = per tree bracket lengths
-        norm_bracket_lengths.append(sum(brackets)/len(brackets))
+        bracket_counts.append(len(brackets))             #brackets = per tree bracket lengths
+        avg_bracket_lengths_all_trees.append(sum(brackets)/len(brackets))
         str_lengths.append(len(leaf_list))
 
-    avg_brackets = sum(norm_brackets)/len(norm_brackets)    #bracket count across all trees
-    avg_bracket_lengths = sum(norm_bracket_lengths)/len(norm_bracket_lengths)
+    avg_bracket_count = sum(bracket_counts)/len(bracket_counts)    #bracket count across all trees
+    avg_bracket_lengths = sum(avg_bracket_lengths_all_trees)/len(avg_bracket_lengths_all_trees)
     avg_n = sum(str_lengths)/len(str_lengths)
-    print(f"Average number of brackets(not normalized): {avg_brackets}")
-    print(f"Average lengths of brackets(not normalized): {avg_bracket_lengths}")
+    print(f"Average number of brackets: {avg_bracket_count}")
+    print(f"Average lengths of brackets: {avg_bracket_lengths}")
     print(f"Average tokens: {avg_n}")
 
 
@@ -1108,7 +1108,7 @@ def branching_factor(trees: List[ParseNode]) -> float:
             node = queue.pop(0)
             internal_nodes += 1
             total_children += len(node.children)
-            queue.extend([child for child in node.children if not child.is_terminal])
+            queue.extend([child for child in node.children if not (child.is_terminal or (len(child.children) == 1 and child.children[0].is_terminal))])
         return total_children / internal_nodes if internal_nodes > 0 else 0.0
     
     return sum(single_branching_factor(tree) for tree in trees) / len(trees) if trees else 0.0
