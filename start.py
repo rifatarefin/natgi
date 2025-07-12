@@ -50,6 +50,7 @@ LAST_COALESCE_TIME = 0
 EXPAND_TIME = 0
 MINIMIZE_TIME = 0
 
+HDD_TIME = 0
 TIME_GENERATING_EXAMPLES = 0
 TIME_GROUPING = 0
 REAPPLY = 0
@@ -63,7 +64,7 @@ def get_times():
     return {'FIRST_COALESCE' : ORIGINAL_COALESCE_TIME, 'BUILD': BUILD_TIME,
             'LAST_COALESCE' : LAST_COALESCE_TIME, 'EXPAND': EXPAND_TIME, 'MINIMIZE': MINIMIZE_TIME,
             'OVERALL_EXAMPLE_GEN': TIME_GENERATING_EXAMPLES + TIME_GENERATING_EXAMPLES_INTERNAL,
-            'OVERALL_GROUPING': TIME_GROUPING, 'REAPPLY_COUNT': REAPPLY}
+            'OVERALL_GROUPING': TIME_GROUPING, 'REAPPLY_COUNT': REAPPLY, 'HDD_TIME': HDD_TIME}
 
 def check_recall(oracle, grammar: Grammar):
     """
@@ -91,6 +92,7 @@ def build_start_grammar(oracle, leaves, bbl_bounds = (3,10)):
     global MINIMIZE_TIME
     global MIN_GROUP_LEN 
     global MAX_GROUP_LEN
+    global HDD_TIME
     MIN_GROUP_LEN, MAX_GROUP_LEN = bbl_bounds
     print('Building the starting trees...'.ljust(50), end='\r')
     trees, classes = build_trees(oracle, leaves)
@@ -100,30 +102,27 @@ def build_start_grammar(oracle, leaves, bbl_bounds = (3,10)):
     s = time.time()
     grammar, new_trees, coalesce_caused, _ = coalesce(oracle, trees, grammar)
     # grammar, new_trees, partial_coalesces = coalesce_partial(oracle, new_trees, grammar)
-    grammar = expand_tokens(oracle, grammar, new_trees)
-    grammar = minimize(grammar)
     LAST_COALESCE_TIME += time.time() - s
+    s = time.time()
+    grammar = expand_tokens(oracle, grammar, new_trees)
+    EXPAND_TIME += time.time() - s
+    print('Minimizing initial grammar...'.ljust(50), end='\r')
+    s = time.time()
+    grammar = minimize(grammar)
+    MINIMIZE_TIME += time.time() - s
     if HDD:
+        s = time.time()
         augmented = {t.derived_string().replace(" ",""): t for t in new_trees}
         reduced_trees = hdd_decompose(new_trees, oracle, augmented)
         grammar_reduced = build_grammar(reduced_trees)
         grammar_reduced = expand_tokens(oracle, grammar_reduced, reduced_trees)
-        # new_trees += reduced_trees
+        
         grammar_reduced = minimize(grammar_reduced)
-        # print(str(grammar))
-        # print(str(grammar_reduced))
         hdd_grammar = grammar.copy()
         hdd_grammar.merge(grammar_reduced)
-        # hdd_grammar = expand_tokens(oracle, hdd_grammar, new_trees)
         hdd_grammar = minimize(hdd_grammar)
+        HDD_TIME += time.time() - s
 
-    s = time.time()
-    
-    EXPAND_TIME += time.time() - s
-    print('Minimizing initial grammar...'.ljust(50), end='\r')
-    s = time.time()
-    
-    MINIMIZE_TIME += time.time() - s
     if HDD:
         return grammar, hdd_grammar
     else:
@@ -1405,30 +1404,7 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
                 elif second in label_set:
                     class_nt = second
                 else:
-                    # ask llm for label suggestion, expand to terminals from the nonterminal nodes
-                    s1 = min(tree_list.derivable_in_trees(first))
-                    s2 = min(tree_list.derivable_in_trees(second))
-                    class_nt = generate_label_api((s1, s2))
-                    print(f"LLM suggested label: {class_nt} for {s1} and {s2}")
-
-                    # keep old labels in order to avoid them
-                    old_labels = {class_nt: 1}
-                    attempts = 0
-                    while (class_nt != first and class_nt != second) and \
-                        (class_nt in grammar.rules.keys()):
-
-                        class_nt = regenerate_label((s1, s2), list(old_labels.keys()))
-                        old_labels[class_nt] = 1
-                        attempts += 1
-                        if attempts > 5:
-                            while class_nt in old_labels:
-                                if not class_nt[-1].isdigit():
-                                    class_nt += "1"
-                                class_nt = class_nt[:-1] + str(int(class_nt[-1]) + 1)   #increment the last digit
-                            
-                            old_labels[class_nt] = 1
-                        print(f" Next suggestion: {class_nt}")
-                    # class_nt = allocate_tid()
+                    class_nt = allocate_tid()
                 # temporary way-around
                 # if re.search(r'[^a-zA-Z0-9]', class_nt) or re.match(r'^\d+$', class_nt):
                 #     class_nt = allocate_tid()
