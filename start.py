@@ -755,14 +755,6 @@ def build_trees(oracle, leaves):
 
         updated = True
         while updated:
-            print(f"PRE-BUBBLES")
-            pre_bubble_layers = get_tree_layers(best_trees, False)
-            pre_bubbles = [to_bubble(best_trees, b) for b in pre_bubble_layers]
-            pre_bubbles = [b for b in pre_bubbles if b]
-            best_trees, updated = bubble_loop(best_trees, count, pre_bubbles, accepted_bubbles)
-
-        updated = True
-        while updated:
             print(f"1-BUBBLES")
             count += 1
             bubble_list = get_llm_bubble(best_trees)
@@ -832,8 +824,6 @@ def build_trees(oracle, leaves):
                 threshold = 5
         
 
-
-    # layer = get_longest_layer(best_trees, [])
     if TREEVADA:
         updated = True
         threshold = 5
