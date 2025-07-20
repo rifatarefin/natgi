@@ -49,6 +49,7 @@ system_message = [{'role': 'system', 'content': system_prompt[0]}]
 # messages.append({'role': 'system', 'content': 'Given some flat tree levels, suggest unique groups to build the parse trees. Discard long groups (len>10) from output, do not show too many groups (limit output within 10 groups). Refine your suggestions based on the feedback after each iteration. \
 #                  Only show list of siblings as json output. The format should be json[siblings]:[[node1, node2, ...],...]'})
 chat_log = []
+old_trees = []
 def bubble_api(trees, old_bubbles):
     # global chat_log
     # if feedback:
@@ -71,7 +72,10 @@ def bubble_api(trees, old_bubbles):
                                'content': f"Here are some groups that were already applied to the trees:\n{old_bubble_str}"}]
     
     chat_log = [{'role': 'user', 'content': f'{trees}'}]
-    prompt = system_message + old_examples + chat_log
+    global old_trees
+    old_trees.append({'role': 'system', 'name': 'tree_transformation_history',
+                               'content': f'{trees}'})
+    prompt = system_message + old_trees + chat_log
     gpt = client.chat.completions.create(
         model="gpt-4o",
         messages=prompt,
@@ -82,8 +86,7 @@ def bubble_api(trees, old_bubbles):
     response = gpt.choices[0].message.content
     print(response)
     chat_log.append({'role': 'assistant', 'content': response})
-    if len(chat_log) > 3:
-        chat_log = chat_log[3:]
+    old_trees = old_trees[-10:]  # Keep only the last 10 tree transformations
     return response
 
 if __name__ == '__main__':

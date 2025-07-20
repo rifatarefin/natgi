@@ -784,8 +784,8 @@ def build_trees(oracle, leaves):
                     all_bubbles[cand] = grp
 
             # one_bubbles = sorted(all_bubbles.values(), key=lambda x: len(x.bubbled_elems))
-            # keep last added 100 bubbles
-            all_bubbles = dict(list(all_bubbles.items())[-100:])
+            # keep last added 50 bubbles
+            all_bubbles = dict(list(all_bubbles.items())[-50:])
             one_bubbles = list(reversed(all_bubbles.values()))
             TIME_GROUPING += time.time() - group_start
 
