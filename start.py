@@ -55,7 +55,7 @@ TIME_GROUPING = 0
 REAPPLY = 0
 LLM_CALLS = 0
 USE_LLM = True
-TREEVADA = True
+TREEVADA = False
 HDD = True
 
 def get_times():
@@ -508,12 +508,12 @@ def get_tree_layers(best_trees, for_llm = True):
     # delete duplicates
     all_layers_dedup = remove_dup(all_layers)
     
-    long = [x for x in all_layers_dedup if len(x) >= 5]
+    long = [x for x in all_layers_dedup if len(x) >= 3]
     short = [x for x in all_layers_dedup if len(x) < 10 and len(x) > 1]
 
     if not for_llm:
         return reversed(short)
-    # return layers that sums up 400 characters
+    # return layers that sums up 500 characters
     top_layers = []
     sum_len = 0
     for layer in long:
@@ -696,7 +696,7 @@ def build_trees(oracle, leaves):
         
         return best_trees, updated
 
-    def get_llm_bubble(best_trees, one_bubble = True):
+    def get_llm_bubble(best_trees, accepted_bubbles, one_bubble = True):
         """
         Get list of bubbles from LLM
         """
@@ -704,13 +704,13 @@ def build_trees(oracle, leaves):
         LLM_CALLS += 1
         layer = get_tree_layers(best_trees)
         prompt = '\n'.join([str(i) for i in layer])
-        bubble_list = bubble_api(prompt) if one_bubble else bubble_pair_api(prompt)       # llm call here
+        bubble_list = bubble_api(prompt, accepted_bubbles) if one_bubble else bubble_pair_api(prompt, accepted_bubbles)       # llm call here
         try:
             bubble_list = json.loads(bubble_list)['siblings']
 
         except:
             print("LLM failed to generate bubbles")
-            return get_llm_bubble(best_trees, one_bubble)
+            return get_llm_bubble(best_trees, accepted_bubbles, one_bubble)
 
         return bubble_list[:25]
 
@@ -765,7 +765,7 @@ def build_trees(oracle, leaves):
         while updated:
             print(f"1-BUBBLES")
             count += 1
-            bubble_list = get_llm_bubble(best_trees)
+            bubble_list = get_llm_bubble(best_trees, list(accepted_bubbles.values()))
             # remove duplicates
             bubble_dedup = remove_dup(bubble_list)
             # sort by length, shorter bubbles should be applied first
@@ -803,7 +803,7 @@ def build_trees(oracle, leaves):
 
             two_bubbles = []
             count += 1
-            bubble_list = get_llm_bubble(best_trees, False)
+            bubble_list = get_llm_bubble(best_trees, list(accepted_bubbles.values()), False)
 
             # break if not valid 2-bubbles
             try:
@@ -830,7 +830,9 @@ def build_trees(oracle, leaves):
             best_trees, updated = bubble_loop(best_trees, count, two_bubbles, accepted_bubbles)
             if updated:
                 threshold = 5
-        
+        # Keep only the last 100 entries in accepted_bubbles
+        if len(accepted_bubbles) > 100:
+            accepted_bubbles = dict(list(accepted_bubbles.items())[-100:])
 
 
     # layer = get_longest_layer(best_trees, [])

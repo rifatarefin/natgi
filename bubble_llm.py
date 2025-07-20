@@ -49,7 +49,7 @@ system_message = [{'role': 'system', 'content': system_prompt[0]}]
 # messages.append({'role': 'system', 'content': 'Given some flat tree levels, suggest unique groups to build the parse trees. Discard long groups (len>10) from output, do not show too many groups (limit output within 10 groups). Refine your suggestions based on the feedback after each iteration. \
 #                  Only show list of siblings as json output. The format should be json[siblings]:[[node1, node2, ...],...]'})
 chat_log = []
-def bubble_api(trees):
+def bubble_api(trees, old_bubbles):
     # global chat_log
     # if feedback:
     #     chat_log.append({'role': 'system', 'name': 'feedback', 'content': f"Following suggestions were applied to the trees. Get hint from these groups to find similar patterns. \
@@ -59,8 +59,19 @@ def bubble_api(trees):
     #     chat_log.append({'role': 'system', 'name': 'feedback', 'content': f"None of the suggested group at last turn is valid. Don't repeat those. \
     #                      Look for common language concepts, considering diverse lengths within 2-10 tokens, don't output an entire level from input."})
     # chat_log.append({'role': 'user', 'content': f'{trees}'})
+    # example groupings
+    old_examples = []
+    if old_bubbles:
+
+        old_bubble_str = '\n'.join(
+            str([elem.payload for elem in bubble.bubbled_elems])
+            for bubble in old_bubbles
+        )
+        old_examples = [{'role': 'system', 'name': 'example_groups', 
+                               'content': f"Here are some groups that were already applied to the trees:\n{old_bubble_str}"}]
+    
     chat_log = [{'role': 'user', 'content': f'{trees}'}]
-    prompt = system_message + chat_log
+    prompt = system_message + old_examples + chat_log
     gpt = client.chat.completions.create(
         model="gpt-4o",
         messages=prompt,
