@@ -51,6 +51,7 @@ system_message = [{'role': 'system', 'content': system_prompt[0]}]
 #                  Only show list of siblings as json output. The format should be json[siblings]:[[node1, node2, ...],...]'})
 chat_log = []
 old_trees = []
+old_examples = []
 def bubble_api(trees, old_bubbles):
     # global chat_log
     # if feedback:
@@ -62,7 +63,7 @@ def bubble_api(trees, old_bubbles):
     #                      Look for common language concepts, considering diverse lengths within 2-10 tokens, don't output an entire level from input."})
     # chat_log.append({'role': 'user', 'content': f'{trees}'})
     # example groupings
-    old_examples = []
+
     # if old_bubbles:
 
     #     old_bubble_str = '\n'.join(
@@ -76,6 +77,7 @@ def bubble_api(trees, old_bubbles):
     global old_trees
     old_trees.append({'role': 'system', 'name': 'tree_transformation_history',
                                'content': f'{trees}'})
+    global old_examples
     prompt = system_message + old_examples + chat_log
     gpt = client.chat.completions.create(
         model="gpt-4o",
