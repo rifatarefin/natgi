@@ -16,6 +16,7 @@ system_prompt = ["""You are an AI assistant. You will help to build parse trees 
     - Remember recursive expansion makes the tree level long, don't suggest long groups. 
     - A group can be as small as two tokens only.
     - A level can be concatenation of multiple statments, suggest groups that represent a single statement.
+    - Suggestions should be different from suggestion history.
     - Limit the group list to best **20** suggestions. Never more than that."""]
 
     # - Look for the diverse parts among similar inputs. E.g. for two similar inputs (ab cd ef, ab cd gh), possible group could be (ef, gh).
@@ -62,20 +63,20 @@ def bubble_api(trees, old_bubbles):
     # chat_log.append({'role': 'user', 'content': f'{trees}'})
     # example groupings
     old_examples = []
-    if old_bubbles:
+    # if old_bubbles:
 
-        old_bubble_str = '\n'.join(
-            str([elem.payload for elem in bubble.bubbled_elems])
-            for bubble in old_bubbles
-        )
-        old_examples = [{'role': 'system', 'name': 'example_groups', 
-                               'content': f"Here are some groups that were already applied to the trees:\n{old_bubble_str}"}]
+    #     old_bubble_str = '\n'.join(
+    #         str([elem.payload for elem in bubble.bubbled_elems])
+    #         for bubble in old_bubbles
+    #     )
+    #     old_examples = [{'role': 'system', 'name': 'example_groups', 
+    #                            'content': f"Here are some groups that were already applied to the trees:\n{old_bubble_str}"}]
     
     chat_log = [{'role': 'user', 'content': f'{trees}'}]
     global old_trees
     old_trees.append({'role': 'system', 'name': 'tree_transformation_history',
                                'content': f'{trees}'})
-    prompt = system_message + chat_log
+    prompt = system_message + old_examples + chat_log
     gpt = client.chat.completions.create(
         model="gpt-4o",
         messages=prompt,
@@ -85,7 +86,7 @@ def bubble_api(trees, old_bubbles):
     )
     response = gpt.choices[0].message.content
     print(response)
-    chat_log.append({'role': 'assistant', 'content': response})
+    old_examples = [({'role': 'assistant_history', 'content': response})]
     old_trees = old_trees[-10:]  # Keep only the last 10 tree transformations
     return response
 

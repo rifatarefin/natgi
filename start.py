@@ -508,7 +508,7 @@ def get_tree_layers(best_trees, for_llm = True):
     # delete duplicates
     all_layers_dedup = remove_dup(all_layers)
     
-    long = [x for x in all_layers_dedup if len(x) >= 3]
+    long = [x for x in all_layers_dedup if len(x) >= 2]
     short = [x for x in all_layers_dedup if len(x) < 10 and len(x) > 1]
 
     if not for_llm:
