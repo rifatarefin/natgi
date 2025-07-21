@@ -15,10 +15,24 @@ system_prompt = ["""You are an AI assistant. You will be given a list of tree le
     
 
 system_message = [{'role': 'system', 'content': system_prompt[0]}]
-
-def bubble_pair_api(trees, feedback=""):
+old_trees = []
+def bubble_pair_api(trees, old_bubbles=""):
     
+    old_examples = []
+    if old_bubbles:
+
+        old_bubble_str = '\n'.join(
+            str([elem.payload for elem in bubble.bubbled_elems])
+            for bubble in old_bubbles
+        )
+        old_examples = [{'role': 'system', 'name': 'example_groups', 
+                               'content': f"Here are some groups that were already applied to the trees:\n{old_bubble_str}"}]
+
     chat_log = [{'role': 'user', 'content': f'{trees}'}]
+    global old_trees
+    old_trees.append({'role': 'system', 'name': 'tree_transformation_history',
+                               'content': f'{trees}'})
+    
     prompt = system_message + chat_log
     gpt = client.chat.completions.create(
         model="gpt-4o",
@@ -29,6 +43,7 @@ def bubble_pair_api(trees, feedback=""):
     )
     response = gpt.choices[0].message.content
     print(response)
+    old_trees = old_trees[-10:]  # Keep only the last 10 tree transformations
     return response
 
 if __name__ == '__main__':

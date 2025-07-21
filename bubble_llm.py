@@ -75,7 +75,7 @@ def bubble_api(trees, old_bubbles):
     global old_trees
     old_trees.append({'role': 'system', 'name': 'tree_transformation_history',
                                'content': f'{trees}'})
-    prompt = system_message + old_trees + chat_log
+    prompt = system_message + chat_log
     gpt = client.chat.completions.create(
         model="gpt-4o",
         messages=prompt,
