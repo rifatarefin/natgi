@@ -508,7 +508,7 @@ def get_tree_layers(best_trees, for_llm = True):
     # delete duplicates
     all_layers_dedup = remove_dup(all_layers)
     
-    long = [x for x in all_layers_dedup if len(x) >= 2]
+    long = [x for x in all_layers_dedup if len(x) >= 3]
     short = [x for x in all_layers_dedup if len(x) < 10 and len(x) > 1]
 
     if not for_llm:
@@ -785,7 +785,7 @@ def build_trees(oracle, leaves):
 
             # one_bubbles = sorted(all_bubbles.values(), key=lambda x: len(x.bubbled_elems))
             # keep last added 60 bubbles
-            all_bubbles = dict(list(all_bubbles.items())[-60:])
+            all_bubbles = dict(list(all_bubbles.items())[-50:])
             one_bubbles = list(reversed(all_bubbles.values()))
             TIME_GROUPING += time.time() - group_start
 

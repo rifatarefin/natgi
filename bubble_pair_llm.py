@@ -10,7 +10,6 @@ system_prompt = ["""You are an AI assistant. You will be given a list of tree le
                  - Each pair should contain two **different** lists of nodes, these nodes should represent identical AST parents.
                  - Remeber there could be recursive structure, suggest the smallest recursion free units.
                  - Discard if two lists in a pair are exactly the same.
-                 - Suggestions should be different from suggestion history.
                  - Limit the list to best 20 suggestions."""]
 
     
@@ -31,11 +30,9 @@ def bubble_pair_api(trees, old_bubbles=""):
     #                            'content': f"Here are some groups that were already applied to the trees:\n{old_bubble_str}"}]
 
     chat_log = [{'role': 'user', 'content': f'{trees}'}]
+    
     global old_trees
-    old_trees.append({'role': 'system', 'name': 'tree_transformation_history',
-                               'content': f'{trees}'})
-    global old_examples
-    prompt = system_message + old_examples + chat_log
+    prompt = system_message + old_trees + chat_log
     gpt = client.chat.completions.create(
         model="gpt-4o",
         messages=prompt,
@@ -45,8 +42,9 @@ def bubble_pair_api(trees, old_bubbles=""):
     )
     response = gpt.choices[0].message.content
     print(response)
-    old_examples = [({'role': 'assistant_history', 'content': response})]
-    old_trees = old_trees[-10:]  # Keep only the last 10 tree transformations
+    
+    old_trees = [{'role': 'system', 'name': 'tree_transformation_history',
+                               'content': f'{trees}'}]
     return response
 
 if __name__ == '__main__':
