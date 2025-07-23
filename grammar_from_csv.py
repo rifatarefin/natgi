@@ -80,6 +80,7 @@ if __name__ == '__main__':
         print(value)
     try:
         gpt_grammar.parser()
+        print(f"Parse calls: {oracle.parse_calls}")
     
     except Exception as e:
         print('\n\nLoaded grammar does not compile! %s' % str(e))
