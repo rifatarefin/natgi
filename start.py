@@ -104,7 +104,7 @@ def build_start_grammar(oracle, leaves, bbl_bounds = (3,10)):
     grammar = minimize(grammar)
     LAST_COALESCE_TIME += time.time() - s
     if HDD:
-        augmented = {t.derived_string().replace(" ",""): t for t in new_trees}
+        augmented = {t.derived_string(): t for t in new_trees}
         reduced_trees = hdd_decompose(new_trees, oracle, augmented)
         grammar_reduced = build_grammar(reduced_trees)
         grammar_reduced = expand_tokens(oracle, grammar_reduced, reduced_trees)
