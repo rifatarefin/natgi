@@ -59,9 +59,10 @@ def gpt_grammar_generation(seed_dir, seed_name):
     user_prompt = "Example programs:\n" + "".join(programs)
     
     completion = client.chat.completions.create(
-      model="gpt-4o",
+      #model="gpt-4o",
+      model="o4-mini",
       seed=101,
-      temperature=0,
+      #temperature=0,
       messages=[
         {"role": "system", "content": system_prompt},
         {"role": "user", "content": user_prompt}

@@ -10,6 +10,7 @@ import re
 import sys
 import string
 from next_tid import allocate_tid
+import os
 
 def format_nt(tag: str) -> str:
     """ remove surrounding <> tags
@@ -63,7 +64,10 @@ def split_whitespace(s: str) -> List[str]:
 
 if __name__ == '__main__':
 
-    file_path = '/home/sr53282/grammar-inference/treevada-gpt/results/gpt_grammar_' + sys.argv[1] + '.txt'     #argv[1] = while-r1
+    current_dir = os.getcwd()
+    #file_path = '/home/sr53282/grammar-inference/treevada-gpt/results/gpt_grammar_' + sys.argv[1] + '.txt'     #argv[1] = while-r1
+
+    file_path = current_dir+'/results/gpt_grammar_' + sys.argv[1] + '.txt'     #argv[1] = while-r1
     csv_dict = read_grammar_from_csv(file_path)
     oracle = ExternalOracle(sys.argv[2])    #argv[2] = lang/parse_lang
     gpt_grammar = Grammar(START)
