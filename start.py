@@ -1439,6 +1439,21 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
 
     return grammar, trees, coalesce_caused, coalesced_into
 
+def handle_special_nonterminals(grammar: Grammar, old_nt, new_nt):
+    """
+    Lark doesn't allow special characters as nonterminal labels.
+    This function replaces all occurances of OLD_NT with NEW_NT
+    """
+    for rule in grammar.rules.values():
+        for body in rule.bodies:
+            for i in range(len(body)):
+                if body[i] == old_nt:
+                    body[i] = new_nt
+    # Remove the old rule
+    rule = grammar.rules.pop(old_nt)
+    rule.start = new_nt
+    # Add the new rule
+    grammar.add_rule(rule)
 
 def minimize(grammar):
     """
@@ -1457,21 +1472,6 @@ def minimize(grammar):
                     bodies.remove(body)
 
 
-    def handle_special_nonterminals(grammar: Grammar, old_nt, new_nt):
-        """
-        Lark doesn't allow special characters as nonterminal labels.
-        This function replaces all occurances of OLD_NT with NEW_NT
-        """
-        for rule in grammar.rules.values():
-            for body in rule.bodies:
-                for i in range(len(body)):
-                    if body[i] == old_nt:
-                        body[i] = new_nt
-        # Remove the old rule
-        rule = grammar.rules.pop(old_nt)
-        rule.start = new_nt
-        # Add the new rule
-        grammar.add_rule(rule)
 
 
     def remove_repeated_rules(grammar: Grammar):

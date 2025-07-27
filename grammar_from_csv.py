@@ -3,11 +3,13 @@ from grammar import Grammar, Rule
 from parse_tree import ParseNode
 from token_expansion import expand_tokens
 from oracle import ExternalOracle
-from start import START
+from start import START, handle_special_nonterminals
 import pickle
 from typing import Dict, List
 import re
 import sys
+import string
+from next_tid import allocate_tid
 
 def format_nt(tag: str) -> str:
     """ remove surrounding <> tags
@@ -74,6 +76,13 @@ if __name__ == '__main__':
     # create few dummy trees for token expansion
     trees: List[ParseNode] = gpt_grammar.sample_trees(10, 5)
     gpt_grammar = expand_tokens(oracle, gpt_grammar, trees)
+
+    # check for special characters in the nonterminal names, underscores are allowed
+    for rule in list(gpt_grammar.rules.values()):
+        if any(c in rule.start for c in string.punctuation.replace('_','')) or (rule.start and rule.start[0].isdigit()):
+            handle_special_nonterminals(gpt_grammar, rule.start, allocate_tid())
+        if any(c.isupper() for c in rule.start):
+            handle_special_nonterminals(gpt_grammar, rule.start, rule.start.lower())
 
     pickle.dump(gpt_grammar.rules, open("results/gpt_grammar_" + sys.argv[1] + ".gramdict", "wb"))
     for _, value in gpt_grammar.rules.items():
