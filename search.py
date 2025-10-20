@@ -203,33 +203,23 @@ def main(oracle_cmd, guide_examples_folder,  log_file_name):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    subparser = parser.add_subparsers(dest='mode', help='benchmark mode (probably external unless you match the internal format)')
-    internal_parser = subparser.add_parser('internal')
-    external_parser = subparser.add_parser('external')
-
-    internal_parser.add_argument('bench_folder', help='folder containing the benchmark', type=str)
-    internal_parser.add_argument('log_file', help='name of file to write output log to', type=str)
-
-    external_parser.add_argument('oracle_cmd', help='the oracle command; should be invocable on a filename via `oracle_cmd filename`, and return a non-zero exit code on invalid inputs', type=str)
-    external_parser.add_argument('examples_dir', help='folder containing the training examples', type=str)
-    external_parser.add_argument('log_file', help='name of file to write output log to', type=str)
-    external_parser.add_argument('--no-pretokenize',  help=f'assign each character to its own leaf node, rather than grouping characters of same lassc', action='store_true', dest='no_pretokenize')
-    external_parser.add_argument('--group_punctuation', help=f'group sequences of punctuation during pretokenization', action='store_true')
-    external_parser.add_argument('--group_upper_lower',
+    
+    parser.add_argument('oracle_cmd', help='the oracle command; should be invocable on a filename via `oracle_cmd filename`, and return a non-zero exit code on invalid inputs', type=str)
+    parser.add_argument('examples_dir', help='folder containing the training examples', type=str)
+    parser.add_argument('log_file', help='name of file to write output log to', type=str)
+    parser.add_argument('--no-pretokenize',  help=f'assign each character to its own leaf node, rather than grouping characters of same lassc', action='store_true', dest='no_pretokenize')
+    parser.add_argument('--group_punctuation', help=f'group sequences of punctuation during pretokenization', action='store_true')
+    parser.add_argument('--group_upper_lower',
                                  help=f'group uppercase characters with lowerchase characters during pretokenization', action='store_true')
     #TODO: what is this error?
     args = parser.parse_args()
-    if args.mode == 'internal':
-        main_internal(args.bench_folder, args.log_file, random_guides=False)
-    elif args.mode == 'external':
-        if args.no_pretokenize:
-            USE_PRETOKENIZATION = False
-        if args.group_punctuation:
-            GROUP_PUNCTUATION = True
-        if args.group_upper_lower:
-            SPLIT_UPPER_AND_LOWER = False
-        main(args.oracle_cmd, args.examples_dir, args.log_file)
-    else:
-        parser.print_help()
-        exit(1)
+    
+    if args.no_pretokenize:
+        USE_PRETOKENIZATION = False
+    if args.group_punctuation:
+        GROUP_PUNCTUATION = True
+    if args.group_upper_lower:
+        SPLIT_UPPER_AND_LOWER = False
+    main(args.oracle_cmd, args.examples_dir, args.log_file)
+    
 
