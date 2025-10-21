@@ -11,7 +11,7 @@ from token_expansion import expand_tokens
 from union import UnionFind
 from replacement_utils import get_strings_with_replacement, get_strings_with_replacement_in_rule, \
     lvl_n_derivable
-
+import config
 from next_tid import allocate_tid
 from PrettyPrint import PrettyPrintTree
 from label_llm import generate_label_api, regenerate_label
@@ -54,9 +54,9 @@ TIME_GENERATING_EXAMPLES = 0
 TIME_GROUPING = 0
 REAPPLY = 0
 LLM_CALLS = 0
-USE_LLM = True
-TREEVADA = False
-HDD = True
+USE_LLM = config.USE_LLM
+TREEVADA = config.TREEVADA
+HDD = config.HDD
 
 def get_times():
     from replacement_utils import TIME_GENERATING_EXAMPLES_INTERNAL
@@ -91,6 +91,7 @@ def build_start_grammar(oracle, leaves, bbl_bounds = (3,10)):
     global MINIMIZE_TIME
     global MIN_GROUP_LEN 
     global MAX_GROUP_LEN
+ 
     MIN_GROUP_LEN, MAX_GROUP_LEN = bbl_bounds
     print('Building the starting trees...'.ljust(50), end='\r')
     trees, classes = build_trees(oracle, leaves)

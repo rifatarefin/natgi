@@ -4,10 +4,9 @@ from typing import List
 from input import parse_input
 from parse_tree import ParseTree, ParseNode
 from grammar import Grammar, Rule
-from start import build_start_grammar, get_times
 from lark import Lark
 from oracle import CachingOracle, ExternalOracle
-import string
+import string, config
 from datetime import datetime
 
 """
@@ -16,10 +15,6 @@ High-level command line to launch Arvada search.
 See __main__ dispatch at the bottom for usage. 
 """
 
-USE_PRETOKENIZATION = True
-
-GROUP_PUNCTUATION = False
-SPLIT_UPPER_AND_LOWER = False
 quote = []
 def approx_tokenize(oracle, guide_raw:str):
 
@@ -36,15 +31,15 @@ def approx_tokenize(oracle, guide_raw:str):
             if idx+1 < len(guide_raw) and c in guide_raw[idx+1:]:
                 quote.append(c)
             return None
-        if not SPLIT_UPPER_AND_LOWER and c in string.ascii_letters:
+        if not config.SPLIT_UPPER_AND_LOWER and c in string.ascii_letters:
             return "LETTER"
-        if SPLIT_UPPER_AND_LOWER and c in string.ascii_uppercase:
+        if config.SPLIT_UPPER_AND_LOWER and c in string.ascii_uppercase:
             return "UPPER"
-        if SPLIT_UPPER_AND_LOWER and c in string.ascii_lowercase:
+        if config.SPLIT_UPPER_AND_LOWER and c in string.ascii_lowercase:
             return "LOWER"
         if c in string.digits:
             return "DIGIT"
-        if GROUP_PUNCTUATION and c in string.punctuation:
+        if config.GROUP_PUNCTUATION and c in string.punctuation:
             return "PUNCTUATION"
         if c in string.whitespace:
             return "WHITESPACE"
@@ -118,8 +113,10 @@ def main_internal(external_folder, log_file, random_guides=False):
 
 
 def main(oracle_cmd, guide_examples_folder,  log_file_name):
+    from start import build_start_grammar, get_times
+
     oracle = ExternalOracle(oracle_cmd)
-    if USE_PRETOKENIZATION:
+    if config.USE_PRETOKENIZATION:
        print("Using approximate pre-tokenization stage")
 
     guide_examples: List[ParseNode] = []
@@ -141,7 +138,7 @@ def main(oracle_cmd, guide_examples_folder,  log_file_name):
             print(guide_raw)
             print(e)
             exit(1)
-        if USE_PRETOKENIZATION:
+        if config.USE_PRETOKENIZATION:
             guide = approx_tokenize(oracle, guide_raw)
         else:
             guide = [ParseNode(c, True, []) for c in guide_raw]
@@ -207,6 +204,10 @@ if __name__ == '__main__':
     parser.add_argument('oracle_cmd', help='the oracle command; should be invocable on a filename via `oracle_cmd filename`, and return a non-zero exit code on invalid inputs', type=str)
     parser.add_argument('examples_dir', help='folder containing the training examples', type=str)
     parser.add_argument('log_file', help='name of file to write output log to', type=str)
+    
+    parser.add_argument('--use_llm', help='use LLM to assist in bubble finding', action='store_true')
+    parser.add_argument('--treevada', help='use TreeVada heuristics for more bubbles', action='store_true')
+    parser.add_argument('--hdd', help='use Hierarchical Delta-debugging for tree-pruning', action='store_true')
     parser.add_argument('--no-pretokenize',  help=f'assign each character to its own leaf node, rather than grouping characters of same lassc', action='store_true', dest='no_pretokenize')
     parser.add_argument('--group_punctuation', help=f'group sequences of punctuation during pretokenization', action='store_true')
     parser.add_argument('--group_upper_lower',
@@ -214,12 +215,13 @@ if __name__ == '__main__':
     #TODO: what is this error?
     args = parser.parse_args()
     
-    if args.no_pretokenize:
-        USE_PRETOKENIZATION = False
-    if args.group_punctuation:
-        GROUP_PUNCTUATION = True
-    if args.group_upper_lower:
-        SPLIT_UPPER_AND_LOWER = False
+    config.USE_LLM = args.use_llm or config.USE_LLM
+    config.TREEVADA = args.treevada or config.TREEVADA
+    config.HDD = args.hdd or config.HDD
+    config.USE_PRETOKENIZATION = not args.no_pretokenize or config.USE_PRETOKENIZATION
+    config.GROUP_PUNCTUATION = args.group_punctuation or config.GROUP_PUNCTUATION
+    config.SPLIT_UPPER_AND_LOWER = args.group_upper_lower or config.SPLIT_UPPER_AND_LOWER
+
     main(args.oracle_cmd, args.examples_dir, args.log_file)
     
 
