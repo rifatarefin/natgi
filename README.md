@@ -1,3 +1,6 @@
+## NatGI Overview
+![NatGI](LLM___TreeVada.jpg)
+
 **TreeVada** is a deterministic grammar inference tool. Given a black-box parser and example programs, TreeVada can infer high quality grammar. TreeVada adapts the *tree generalization via bubble and merge* technique from [Arvada](https://github.com/neil-kulkarni/arvada). 
 
 ## Reproducibility
@@ -76,6 +79,7 @@ Switch to the specific branch for a particular study
 | Re-apply learned rules   | `reapply-deterministic` |
 | Initial bracket-based trees   | `tree-all-bubble` |
 | No partial merge   | `reapply-tree` | -->
+
 
 
 
