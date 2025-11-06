@@ -1,12 +1,13 @@
 import argparse
 import random, sys, os, time
+from typing import List
 from input import parse_input
 from parse_tree import ParseTree, ParseNode
 from grammar import Grammar, Rule
-from start import build_start_grammar, get_times
 from lark import Lark
 from oracle import CachingOracle, ExternalOracle
-import string
+import string, config
+from datetime import datetime
 
 """
 High-level command line to launch Arvada search.
@@ -14,12 +15,9 @@ High-level command line to launch Arvada search.
 See __main__ dispatch at the bottom for usage. 
 """
 
-USE_PRETOKENIZATION = True
-
-GROUP_PUNCTUATION = False
-SPLIT_UPPER_AND_LOWER = True
 quote = []
-def approx_tokenize(guide_raw:str):
+def approx_tokenize(oracle, guide_raw:str):
+
     def get_category(c, idx):
         # everything surrounded by quote is grouped
         if len(quote)==1:
@@ -30,40 +28,66 @@ def approx_tokenize(guide_raw:str):
                 return "LETTER"
         if c=="\"" or c=="\'":
             # don't group if there is no matching quote
-            if c in guide_raw[idx+1:]:
+            if idx+1 < len(guide_raw) and c in guide_raw[idx+1:]:
                 quote.append(c)
             return None
-        if not SPLIT_UPPER_AND_LOWER and c in string.ascii_letters:
+        if not config.SPLIT_UPPER_AND_LOWER and c in string.ascii_letters:
             return "LETTER"
-        if SPLIT_UPPER_AND_LOWER and c in string.ascii_uppercase:
+        if config.SPLIT_UPPER_AND_LOWER and c in string.ascii_uppercase:
             return "UPPER"
-        if SPLIT_UPPER_AND_LOWER and c in string.ascii_lowercase:
+        if config.SPLIT_UPPER_AND_LOWER and c in string.ascii_lowercase:
             return "LOWER"
         if c in string.digits:
             return "DIGIT"
-        if GROUP_PUNCTUATION and c in string.punctuation:
+        if config.GROUP_PUNCTUATION and c in string.punctuation:
             return "PUNCTUATION"
         if c in string.whitespace:
             return "WHITESPACE"
         else:
             return None
+        
+
     prev_category = None
     cur_token = ""
     start = True
-    tokens = []
+    tokens: List[ParseNode] = []
+    # trim whitespaces... later remove whitespaces during LLM queries
+    # str_builder = ""
+    # try:
+    #     trim = " ".join(guide_raw.split())
+    #     oracle.parse(trim)
+    #     guide_raw = trim
+    # except:
+    #     print(f"Invalid: {guide_raw}")
+
     for i, c in enumerate(guide_raw):
         cur_category = get_category(c, i)
         if cur_category is not None and cur_category == prev_category:
             cur_token += c
         else:
             if not start:
+                
                 tokens.append(ParseNode(cur_token, True, []))
             cur_token = c
         prev_category = cur_category
         start = False
     if cur_token != "":
+        
         tokens.append(ParseNode(cur_token, True, []))
-    return tokens
+    # try to delete ws tokens without hurting the oracle
+    tkn_so_far = []
+    for i in range(len(tokens)):
+        if tokens[i].payload and tokens[i].payload[0] in string.whitespace:
+            new_tokens = tkn_so_far + tokens[i+1:]
+            try:
+                oracle.parse("".join([t.payload for t in new_tokens]))
+            except:
+                tkn_so_far.append(tokens[i])
+        else:
+            tkn_so_far.append(tokens[i])
+        
+        
+    return tkn_so_far
 
 
 def main_internal(external_folder, log_file, random_guides=False):
@@ -82,18 +106,20 @@ def main_internal(external_folder, log_file, random_guides=False):
     if random_guides:
         guide_folder = os.path.join(external_folder, "random-guides")
     else:
-        guide_folder = os.path.join(external_folder, "guides-debug")
+        guide_folder = os.path.join(external_folder, "guides-big")
     parser_command = os.path.join(external_folder, f"parse_{bench_name}")
 
     main(parser_command, guide_folder, log_file)
 
 
 def main(oracle_cmd, guide_examples_folder,  log_file_name):
+    from start import build_start_grammar, get_times
+
     oracle = ExternalOracle(oracle_cmd)
-    if USE_PRETOKENIZATION:
+    if config.USE_PRETOKENIZATION:
        print("Using approximate pre-tokenization stage")
 
-    guide_examples = []
+    guide_examples: List[ParseNode] = []
     raw_examples = []
     for filename in sorted(os.listdir(guide_examples_folder)):
         full_filename = os.path.join(guide_examples_folder, filename)
@@ -106,15 +132,19 @@ def main(oracle_cmd, guide_examples_folder,  log_file_name):
             
             oracle.parse(guide_raw)
 
-        except:
+        except Exception as e:
             print("\n xxxInvalid seed input")
             print(full_filename)
+            print(guide_raw)
+            print(e)
             exit(1)
-        if USE_PRETOKENIZATION:
-            guide = approx_tokenize(guide_raw)
+        if config.USE_PRETOKENIZATION:
+            guide = approx_tokenize(oracle, guide_raw)
         else:
             guide = [ParseNode(c, True, []) for c in guide_raw]
         guide_examples.append(guide)
+    # print('\n'.join([f"[{i}]" for i in raw_examples]))
+    # exit(1)
     has_bracket = sum([1 for g in raw_examples if "(" in g or ")" in g
                        or "[" in g or "]" in g 
                        or "{" in g or "}" in g])
@@ -138,7 +168,7 @@ def main(oracle_cmd, guide_examples_folder,  log_file_name):
         # Build the starting grammars and test them for compilation
         print('Building the starting grammar...'.ljust(50), end='\r')
         start_time = time.time()
-        start_grammar: Grammar = build_start_grammar(oracle, guide_examples, bbl_bounds)
+        start_grammar, hdd_grammar = build_start_grammar(oracle, guide_examples, bbl_bounds)    #start_grammar = no_hdd_grammar
         build_time = time.time() - start_time
 
         oracle_time_spent = oracle.time_spent
@@ -147,9 +177,14 @@ def main(oracle_cmd, guide_examples_folder,  log_file_name):
 
         print(f'Pickling grammar...')
         import pickle
-        pickle.dump(start_grammar.rules, open(log_file_name + ".gramdict", "wb"))
+        
+        if hdd_grammar:
+            pickle.dump(hdd_grammar.rules, open(log_file_name + ".gramdict", "wb"))
+        else:
+            pickle.dump(start_grammar.rules, open(log_file_name + "_no_hdd.gramdict", "wb"))
 
-
+        print(f'Date: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}', file=f)
+        print(f'Date: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
         print(f'Time spent in oracle calls: {oracle_time_spent}', file=f)
         print(f'Time spent in oracle calls: {oracle_time_spent}')
         print(f'Time spent building grammar: {build_time}s', file=f)
@@ -159,37 +194,36 @@ def main(oracle_cmd, guide_examples_folder,  log_file_name):
         print(f'Time breakdown: {get_times()}')
         print(f'Parse calls: {oracle_parse_calls}, {oracle_real_calls}')
         print(f'Parse calls: {oracle_parse_calls}, {oracle_real_calls}', file=f)
+        from start import LLM_CALLS
+        print(f'LLM calls for bubble finding: {LLM_CALLS}')
+        print(f'LLM calls for bubble finding: {LLM_CALLS}', file=f)
+
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    subparser = parser.add_subparsers(dest='mode', help='benchmark mode (probably external unless you match the internal format)')
-    internal_parser = subparser.add_parser('internal')
-    external_parser = subparser.add_parser('external')
-
-    internal_parser.add_argument('bench_folder', help='folder containing the benchmark', type=str)
-    internal_parser.add_argument('log_file', help='name of file to write output log to', type=str)
-
-    external_parser.add_argument('oracle_cmd', help='the oracle command; should be invocable on a filename via `oracle_cmd filename`, and return a non-zero exit code on invalid inputs', type=str)
-    external_parser.add_argument('examples_dir', help='folder containing the training examples', type=str)
-    external_parser.add_argument('log_file', help='name of file to write output log to', type=str)
-    external_parser.add_argument('--no-pretokenize',  help=f'assign each character to its own leaf node, rather than grouping characters of same lassc', action='store_true', dest='no_pretokenize')
-    external_parser.add_argument('--group_punctuation', help=f'group sequences of punctuation during pretokenization', action='store_true')
-    external_parser.add_argument('--group_upper_lower',
+    
+    parser.add_argument('oracle_cmd', help='the oracle command; should be invocable on a filename via `oracle_cmd filename`, and return a non-zero exit code on invalid inputs', type=str)
+    parser.add_argument('examples_dir', help='folder containing the training examples', type=str)
+    parser.add_argument('log_file', help='name of file to write output log to', type=str)
+    
+    parser.add_argument('--use_llm', help='use LLM to assist in bubble finding', action='store_true')
+    parser.add_argument('--treevada', help='use TreeVada heuristics for more bubbles', action='store_true')
+    parser.add_argument('--no-hdd', help='use Hierarchical Delta-debugging for tree-pruning (default)', action='store_true', dest='no_hdd')
+    parser.add_argument('--no-pretokenize',  help=f'assign each character to its own leaf node, rather than grouping characters of same class', action='store_true', dest='no_pretokenize')
+    parser.add_argument('--group_punctuation', help=f'group sequences of punctuation during pretokenization', action='store_true')
+    parser.add_argument('--group_upper_lower',
                                  help=f'group uppercase characters with lowerchase characters during pretokenization', action='store_true')
     #TODO: what is this error?
     args = parser.parse_args()
-    if args.mode == 'internal':
-        main_internal(args.bench_folder, args.log_file, random_guides=False)
-    elif args.mode == 'external':
-        if args.no_pretokenize:
-            USE_PRETOKENIZATION = False
-        if args.group_punctuation:
-            GROUP_PUNCTUATION = True
-        if args.group_upper_lower:
-            SPLIT_UPPER_AND_LOWER = False
-        main(args.oracle_cmd, args.examples_dir, args.log_file)
-    else:
-        parser.print_help()
-        exit(1)
+    
+    config.USE_LLM = args.use_llm if args.use_llm else config.USE_LLM
+    config.TREEVADA = args.treevada if args.treevada else config.TREEVADA
+    config.HDD = not args.no_hdd if args.no_hdd else config.HDD
+    config.USE_PRETOKENIZATION = not args.no_pretokenize if args.no_pretokenize else config.USE_PRETOKENIZATION
+    config.GROUP_PUNCTUATION = args.group_punctuation if args.group_punctuation else config.GROUP_PUNCTUATION
+    config.SPLIT_UPPER_AND_LOWER = args.group_upper_lower if args.group_upper_lower else config.SPLIT_UPPER_AND_LOWER
+
+    main(args.oracle_cmd, args.examples_dir, args.log_file)
+    
 

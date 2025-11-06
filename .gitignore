@@ -2,7 +2,6 @@ __pycache__/*
 logs/*
 .DS_Store
 venv/*
-*.log
 .idea/*
 external-examples/*
 fuzz/*
@@ -26,3 +25,8 @@ slog*
 tlog*
 runmicro*
 runls6*
+Seed_Programs/*
+grammarinator/*
+results/*
+logs*/*
+barebone_llm_logs/*

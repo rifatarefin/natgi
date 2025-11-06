@@ -87,7 +87,7 @@ class Bubble:
     the sequence, the context in which it occurs, and its overlap with other sequences.
     """
 
-    def __init__(self, new_nt: str, bubbled_elems: List[ParseNode], depth: int):
+    def __init__(self, new_nt: str, bubbled_elems: List[ParseNode], depth: int = 0):
         self.new_nt = new_nt
         self.bubbled_elems = bubbled_elems
         self.bubble_str = ''.join([e.payload for e  in bubbled_elems])
@@ -98,6 +98,13 @@ class Bubble:
         # sources is a map of (tree idx, (child_idxs)) -> range which allows us to map back
         # to the range that was bubbled
         self.sources = defaultdict(list)
+
+    def copy(self):
+        new_bubble = Bubble(self.new_nt, self.bubbled_elems, self.depth)
+        new_bubble.occ_count = self.occ_count
+        new_bubble.contexts = self.contexts.copy()
+        new_bubble.sources = self.sources.copy()
+        return new_bubble
 
     def add_source(self, tree_idx: int, child_idxs: List[int], seq_range: Tuple[int,int]):
         self.sources[(tree_idx, tuple(child_idxs))].append(seq_range)

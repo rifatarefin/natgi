@@ -1,6 +1,6 @@
 import argparse
-import random, sys, os, time
-from typing import Dict
+import random, sys, os, time, string
+from typing import Dict, List
 
 from tqdm import tqdm
 
@@ -9,14 +9,14 @@ from grammar import Grammar, Rule
 from start import get_times, START
 from lark import Lark
 from oracle import CachingOracle, ExternalOracle
-import string
-
+from token_expansion import expand_tokens
 """
 High-level command line to launch Arvada evaluation.
  
 See __main__ dispatch at the bottom for usage. 
 """
 PRECISION_SIZE=1000
+ANTLR4_OUTPUT=True
 
 def main_internal(external_folder, log_file, random_guides=False):
     """
@@ -46,7 +46,8 @@ def main(oracle_cmd, log_file_name, test_examples_folder ):
     for filename in os.listdir(test_examples_folder):
         full_filename = os.path.join(test_examples_folder, filename)
         test_raw = open(full_filename).read()
-        real_recall_set.append(test_raw)
+        if test_raw:
+            real_recall_set.append(test_raw)
         # TODO: make an option to try
 
 
@@ -58,16 +59,27 @@ def main(oracle_cmd, log_file_name, test_examples_folder ):
         learned_grammar = Grammar(START)
         grammar_dict : Dict[str, Rule] = pickle.load(open(log_file_name + ".gramdict", "rb"))
         for key, rule in grammar_dict.items():
+            print(rule)
             learned_grammar.add_rule(rule)
 
         try:
+            print("Loading grammar")
             learned_grammar.parser()
             print('\n\nInitial grammar loaded:\n%s' % str(learned_grammar), file=f)
+            if ANTLR4_OUTPUT:
+                dir_name = os.path.dirname(log_file_name)
+                bench_name = os.path.basename(log_file_name)
+                bench_name = ''.join(c for c in bench_name if c not in string.punctuation)
+                antlr_file = os.path.join(dir_name, bench_name + ".g4")
+                with open(antlr_file, 'w') as antlr_f:
+                    antlr_f.write(learned_grammar.to_antlr4(bench_name)) # todo: remove indirect left recursion
+                    antlr_f.close()
         except Exception as e:
             print('\n\nLoaded grammar does not compile! %s' % str(e), file=f)
             print(learned_grammar, file=f)
+            print(e)
             exit()
-
+        
         parser: Lark = learned_grammar.parser()
         precision_set = learned_grammar.sample_positives(PRECISION_SIZE, 5)
 
@@ -100,12 +112,11 @@ def main(oracle_cmd, log_file_name, test_examples_folder ):
                 except Exception as e:
                     print("   ", example, " <----- FAILURE", file=f)
                     continue
-
-            print(
-                f'Recall: {num_recall_parsed / len(real_recall_set)}, Precision: {num_precision_parsed / len(precision_set)}',
-                file=f)
-            print(
-                f'Recall: {num_recall_parsed / len(real_recall_set)}, Precision: {num_precision_parsed / len(precision_set)}')
+            recall = num_recall_parsed / len(real_recall_set)
+            precision = num_precision_parsed / len(precision_set)
+            f1 = 2 * (recall * precision) / (recall + precision) if (recall + precision) > 0 else 0
+            print(f'Recall: {recall}, Precision: {precision}, F-1: {f1}', file=f)
+            print(f'Recall: {recall}, Precision: {precision}, F-1: {f1}')
         else:
             print(
                 f'Recall: [no test set provided], Precision: {num_precision_parsed / len(precision_set)}',
@@ -119,24 +130,17 @@ def main(oracle_cmd, log_file_name, test_examples_folder ):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    subparser = parser.add_subparsers(dest='mode', help='benchmark mode (probably external unless you match the internal format)')
-    internal_parser = subparser.add_parser('internal')
-    external_parser = subparser.add_parser('external')
-
-    internal_parser.add_argument('bench_folder', help='folder containing the benchmark', type=str)
-    internal_parser.add_argument('log_file', help='log file output from search.py', type=str)
-    external_parser.add_argument('oracle_cmd', help='the oracle command; should be invocable on a filename via `oracle_cmd filename`, and return a non-zero exit code on invalid inputs', type=str)
-    external_parser.add_argument('examples_dir', help='folder containing the test (recall) examples', type=str)
-    external_parser.add_argument('log_file', help='log file output from search.py', type=str)
-    external_parser.add_argument('-n', '--precision_set_size', help='size of precision set to sample from learned grammar (default 1000)', type=int, default=1000)
+    
+    parser.add_argument('oracle_cmd', help='the oracle command; should be invocable on a filename via `oracle_cmd filename`, and return a non-zero exit code on invalid inputs', type=str)
+    parser.add_argument('examples_dir', help='folder containing the test (recall) examples', type=str)
+    parser.add_argument('log_file', help='log file output from search.py', type=str)
+    parser.add_argument('--no-antlr4', help='also output an ANTLR4 grammar file', action='store_true', dest='no_antlr4')
+    parser.add_argument('-n', '--precision_set_size', help='size of precision set to sample from learned grammar (default 1000)', type=int, default=1000)
 
     args = parser.parse_args()
-    if args.mode == 'internal':
-        main_internal(args.bench_folder, args.log_file)
-    elif args.mode == 'external':
-        if args.precision_set_size is not None:
-            PRECISION_SIZE = args.precision_set_size
-        main(args.oracle_cmd, args.log_file, args.examples_dir)
-    else:
-        parser.print_help()
-        exit(1)
+    
+    if args.precision_set_size is not None:
+        PRECISION_SIZE = args.precision_set_size
+    if args.no_antlr4:
+        ANTLR4_OUTPUT = False
+    main(args.oracle_cmd, args.log_file, args.examples_dir)

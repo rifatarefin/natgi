@@ -5,7 +5,7 @@ from typing import List, Iterable
 
 from grammar import Rule, Grammar
 from input import clean_terminal
-START = 't0'
+START = 'stmt'
 
 @functools.lru_cache(maxsize=None)
 def fixup_terminal(payload):
@@ -47,7 +47,7 @@ class ParseTreeList:
         self.inner_list.append(value)
 
     def represented_strings(self):
-        return self.derivable_in_trees('t0')
+        return self.derivable_in_trees('stmt')
 
     def derivable_in_trees(self, nt):
         if self.derivable_cache_hash != hash(tuple(self.inner_list)):
@@ -265,6 +265,13 @@ class ParseNode():
         else:
             return ''.join([c.derived_string() for c in self.children])
 
+    def to_newick(self):
+        if self.is_terminal:
+            return self.payload
+        else:
+            childre_str = ','.join([c.to_newick() for c in self.children if not c.is_terminal])
+            return f'({childre_str}){self.payload}' if childre_str else self.payload
+        
     def copy(self):
         """
         Produces a new object that is logically equal to this ParseNode, but
@@ -338,6 +345,14 @@ def build_grammar(trees):
     GrammarNode that is the disjunction of the parse trees, and returns it.
     """
 
+    def epsilon_rule():
+        """
+        Returns a rule that produces the empty string.
+        """
+        rule = Rule('epsilon')
+        rule.add_body([""])
+        return rule
+
     def build_rules(grammar_node, parse_node, rule_map, depth):
         """
         Adds the rules defined in PARSE_NODE and all of its subtrees to the
@@ -375,4 +390,5 @@ def build_grammar(trees):
     grammar, rule_map = Grammar(START), {}
     for tree in trees:
         build_rules(grammar, tree, rule_map, 0)
+    # grammar.add_rule(epsilon_rule())
     return grammar

@@ -25,7 +25,7 @@ def is_balanced(tokens: str):
                     quote.pop()
                 continue
 
-            if (i == "\"" or i == "\'") and i in tokens[idx+1:]:    #there is another matching quote following
+            if (i == "\"" or i == "\'") and idx+1 < len(tokens) and i in tokens[idx+1:]:    #there is another matching quote following
                 quote.append(i)
             elif i in open_list:
                 stack.append(i)
@@ -40,7 +40,7 @@ def is_balanced(tokens: str):
         return False
 
 imbalance = 0
-def group(trees, max_group_size, increment: bool, last_applied_bubble = None) -> List[Bubble]:
+def group(trees, max_group_size, last_applied_bubble = None) -> List[Bubble]:
     """
     TREES is a set of ParseNodes.
 
@@ -65,13 +65,14 @@ def group(trees, max_group_size, increment: bool, last_applied_bubble = None) ->
 
         for i in range(len(children_lst)):
             
-            inc = 1
-            if increment:
-                inc = max_group_size - 1
-            for j in range(i + 1, min(len(children_lst) + 1, i + max_group_size + 1), inc):
+            
+            for j in range(i + 1, min(len(children_lst) + 1, i + max_group_size + 1)):
                 # if j - i == 2:
                 #     continue
                 tree_sublist = children_lst[i:j]
+                # break if any terminal is in the sublist
+                if any([child.is_terminal for child in tree_sublist]):
+                    break
 
                 # discard a bubble if it's not bracket balanced
                 stream = ''.join([child.derived_string() for child in tree_sublist])
@@ -79,8 +80,11 @@ def group(trees, max_group_size, increment: bool, last_applied_bubble = None) ->
                     global imbalance
                     imbalance += 1
                     continue
+                # discard if a bubble starts or ends with whitespace
+                # if stream[0] == " " or stream[-1] == " ":
+                #     continue
 
-                tree_substr = ''.join([t.payload for t in tree_sublist])
+                tree_substr = ' '.join([t.payload for t in tree_sublist])
                 if i == 0 and j == len(children_lst):
                     # TODO: add direct parent to bubble
                     full_bubbles[tree_substr] += 1
@@ -93,6 +97,7 @@ def group(trees, max_group_size, increment: bool, last_applied_bubble = None) ->
                     bubble.add_context(lhs_context, rhs_context)
                     bubbles[tree_substr] = bubble
                     bubble.add_source(tree_idx, child_idxs, (i, j-1))
+                    bubble.set_depth(depth)
                 else:
                     bubble: Bubble = bubbles[tree_substr]
                     bubble.add_occurrence()
@@ -180,6 +185,8 @@ def score_and_sort_bubbles(bubbles: Dict[str, Bubble]) -> List[Union[Bubble, Tup
                 bubble_pairs.append(((similarity, bubble_depth, commonness, bubble_len), (first_bubble, second_bubble)))
 
     bubbles = {}
+    # debug
+    dbg_bubble_pairs = sorted(bubble_pairs, key=lambda x: x[0], reverse=True)
     # Sort primarily by similarity, secondarily by commonness
     for score, pair in list(sorted(bubble_pairs, key=lambda x: x[0], reverse=True)):
         # Turn bubbles that are paired w/ a nonterm into single bubbles
@@ -192,7 +199,7 @@ def score_and_sort_bubbles(bubbles: Dict[str, Bubble]) -> List[Union[Bubble, Tup
                 bubbles[pair[0]] = score
         else:
             bubbles[pair] = score
-    bubbles = list(bubbles.items())
+    bubbles = list(bubbles.keys())
     if len(bubbles) > 100:
         bubbles = bubbles[:100]
     # random.shuffle(bubbles)
