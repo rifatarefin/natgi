@@ -28,4 +28,5 @@ runls6*
 Seed_Programs/*
 grammarinator/*
 results/*
-logs*/
+logs*/*
+barebone_llm_logs/*
