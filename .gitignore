@@ -27,3 +27,5 @@ runmicro*
 runls6*
 Seed_Programs/*
 grammarinator/*
+results/*
+logs*/

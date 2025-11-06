@@ -168,7 +168,7 @@ def main(oracle_cmd, guide_examples_folder,  log_file_name):
         # Build the starting grammars and test them for compilation
         print('Building the starting grammar...'.ljust(50), end='\r')
         start_time = time.time()
-        start_grammar, hdd_grammar = build_start_grammar(oracle, guide_examples, bbl_bounds)
+        start_grammar, hdd_grammar = build_start_grammar(oracle, guide_examples, bbl_bounds)    #start_grammar = no_hdd_grammar
         build_time = time.time() - start_time
 
         oracle_time_spent = oracle.time_spent
@@ -177,9 +177,11 @@ def main(oracle_cmd, guide_examples_folder,  log_file_name):
 
         print(f'Pickling grammar...')
         import pickle
-        pickle.dump(start_grammar.rules, open(log_file_name + ".gramdict", "wb"))
+        
         if hdd_grammar:
-            pickle.dump(hdd_grammar.rules, open(log_file_name + "_hdd.gramdict", "wb"))
+            pickle.dump(hdd_grammar.rules, open(log_file_name + ".gramdict", "wb"))
+        else:
+            pickle.dump(start_grammar.rules, open(log_file_name + "_no_hdd.gramdict", "wb"))
 
         print(f'Date: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}', file=f)
         print(f'Date: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
@@ -207,20 +209,20 @@ if __name__ == '__main__':
     
     parser.add_argument('--use_llm', help='use LLM to assist in bubble finding', action='store_true')
     parser.add_argument('--treevada', help='use TreeVada heuristics for more bubbles', action='store_true')
-    parser.add_argument('--hdd', help='use Hierarchical Delta-debugging for tree-pruning', action='store_true')
-    parser.add_argument('--no-pretokenize',  help=f'assign each character to its own leaf node, rather than grouping characters of same lassc', action='store_true', dest='no_pretokenize')
+    parser.add_argument('--no-hdd', help='use Hierarchical Delta-debugging for tree-pruning (default)', action='store_true', dest='no_hdd')
+    parser.add_argument('--no-pretokenize',  help=f'assign each character to its own leaf node, rather than grouping characters of same class', action='store_true', dest='no_pretokenize')
     parser.add_argument('--group_punctuation', help=f'group sequences of punctuation during pretokenization', action='store_true')
     parser.add_argument('--group_upper_lower',
                                  help=f'group uppercase characters with lowerchase characters during pretokenization', action='store_true')
     #TODO: what is this error?
     args = parser.parse_args()
     
-    config.USE_LLM = args.use_llm or config.USE_LLM
-    config.TREEVADA = args.treevada or config.TREEVADA
-    config.HDD = args.hdd or config.HDD
-    config.USE_PRETOKENIZATION = not args.no_pretokenize or config.USE_PRETOKENIZATION
-    config.GROUP_PUNCTUATION = args.group_punctuation or config.GROUP_PUNCTUATION
-    config.SPLIT_UPPER_AND_LOWER = args.group_upper_lower or config.SPLIT_UPPER_AND_LOWER
+    config.USE_LLM = args.use_llm if args.use_llm else config.USE_LLM
+    config.TREEVADA = args.treevada if args.treevada else config.TREEVADA
+    config.HDD = not args.no_hdd if args.no_hdd else config.HDD
+    config.USE_PRETOKENIZATION = not args.no_pretokenize if args.no_pretokenize else config.USE_PRETOKENIZATION
+    config.GROUP_PUNCTUATION = args.group_punctuation if args.group_punctuation else config.GROUP_PUNCTUATION
+    config.SPLIT_UPPER_AND_LOWER = args.group_upper_lower if args.group_upper_lower else config.SPLIT_UPPER_AND_LOWER
 
     main(args.oracle_cmd, args.examples_dir, args.log_file)
     
