@@ -48,7 +48,7 @@ $ python3 eval.py external [--no-antlr4] [-n PRECISION_SET_SIZE] ORACLE_CMD TEST
 
 
 
-## Zero shot GPT-o4(mini) grammar
+## Zero shot GPT-o4 (mini) grammar
 
 Use a barebone LLM to infer grammar from the seeds.
 1. Run `gpt.py` to get a text grammar.
