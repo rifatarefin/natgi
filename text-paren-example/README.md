@@ -13,12 +13,12 @@ $ text-paren-example/parser.py text-paren-example/train_set/guide-0.ex
 
 Then, compare the results of
 ```
-$ python3 search.py external --no-pretokenize text-paren-example/parser.py text-paren-example/train_set p-nopretok.log
-$ python3 eval.py external text-paren-example/parser.py text-paren-example/test_set p-noprentok.log
+$ python3 search.py --no-pretokenize text-paren-example/parser.py text-paren-example/train_set p-nopretok.log
+$ python3 eval.py text-paren-example/parser.py text-paren-example/test_set p-noprentok.log
 ```
 and
 ```
-$ python3 search.py external text-paren-example/parser.py text-paren-example/train_set p-pretok.log
-$ python3 eval.py external text-paren-example/parser.py text-paren-example/test_set p-pretok.log
+$ python3 search.py text-paren-example/parser.py text-paren-example/train_set p-pretok.log
+$ python3 eval.py text-paren-example/parser.py text-paren-example/test_set p-pretok.log
 ```
 The `--no-pretokenize` case should generalize properly on some runs, while the other case should have zero recall. 
