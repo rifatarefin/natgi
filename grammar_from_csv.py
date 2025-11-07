@@ -18,7 +18,14 @@ def format_nt(tag: str) -> str:
     e.g. <a> => a
     """
     pattern = re.compile(r'(?<!")<([^<>]+)>(?!")')
-    return pattern.sub(r'\1', tag)
+    def repl(m):
+        # add spaces around the captured content
+        return ' ' + m.group(1) + ' '
+
+    out = pattern.sub(repl, tag)
+    # collapse runs of whitespace to a single space and trim
+    out = re.sub(r'\s+', ' ', out).strip()
+    return out
 
 def remove_empty_quotes(s: str) -> str:
     """ remove empty double quotes except when escaped 
