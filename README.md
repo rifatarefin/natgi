@@ -1,6 +1,6 @@
 # NatGI Overview
 
-NatGI infers context-free grammars from example programs. It has only black‑box access to the language parser (an oracle) during the learning process. NatGI follows the parse tree recovery principle from Arvada/TreeVada for grammar inference. NatGI's tree building technique is more powerful with GPT-4o and it produces human‑readable grammars with semantically meaningful nonterminal names.
+NatGI infers context-free grammar from example programs. While learning the grammar, it has only black‑box access to the language parser (an oracle) during the learning process. NatGI follows the parse tree recovery principle from Arvada/TreeVada for grammar inference. NatGI's tree building technique is more powerful with GPT-4o and it produces human‑readable grammars with semantically meaningful nonterminal names.
 
 ![NatGI](NatGI.jpg)
 
@@ -69,7 +69,7 @@ python3 eval.py external ORACLE_CMD TEST_DIR LOG_FILE   #python3 eval.py externa
 ```
 Here, `LOG_FILE` is the base name used for the .gramdict produced by step 2.
 
-Note that if the LLM generated grammar has errors (i.e. some non-terminals used in rules but never defined), step 2 and 3 will fail.
+Note that `grammar_from_csv.py` expects the text grammar in a format instructed in the prompt. if the LLM cannot follow the specific format or the grammar has errors (i.e. some non-terminals used in rules but never defined), step 2 and 3 will fail.
 <!-- ## Acknowledgements
 
 
