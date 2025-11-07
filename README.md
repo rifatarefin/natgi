@@ -8,7 +8,6 @@ NatGI infers context-free grammars from example programs. It has only black‑bo
 Key features
 - Needs few example programs and an oracle, the oracle is a command that accepts a filename and returns 0 for valid inputs.
 - Relies on LLM to build parse-trees of the example programs.
-- Reads off the inferred grammar once the parse-tree recovery process has converged.
 - Produces human-readable grammars with meaningful non-terminals and (optionally) ANTLR4 output for downstream use.
 
 This repository is built on the Arvada/TreeVada approach to grammar inference and aims to make inferred grammars easier to inspect and use in downstream tooling.
