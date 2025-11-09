@@ -2,15 +2,85 @@
 
 NatGI infers context-free grammar from example programs. While learning the grammar, it has only black‑box access to the language parser (an oracle) during the learning process. NatGI follows the parse tree recovery principle from Arvada/TreeVada for grammar inference. NatGI's tree building technique is more powerful with GPT-4o and it produces human‑readable grammars with semantically meaningful nonterminal names.
 
-![NatGI](NatGI.jpg)
+<table>
+<tr>
+<th>Ground Truth <i>while</i> Grammar</th>
+<th>NatGI<sub>Base</sub> Inferred <i>while</i> Grammar</th>
+</tr>
+<tr>
+<td>
 
+```antlr
+grammar whileLang;
+
+start
+    : stmt
+    ;
+stmt
+    : stmt ';' stmt
+    | 'skip'
+    ;
+boolexpr
+    : '~' boolexpr
+    | boolexpr '&' boolexpr
+    | numexpr '==' numexpr
+    | 'true'
+    | 'false'
+    ;
+numexpr
+    : '(' numexpr '+' numexpr ')'
+    | 'L'
+    | 'n'
+    ;
+```
+</td>
+<td>
+ 
+```antlr
+grammar whileLang;
+
+start
+    : stmt
+    ;
+stmt
+    : stmt ';' stmt
+    | 'L' '=' numexpr
+    | 'L' '=' 'L'
+    | 'while' boolexpr 'do' stmt
+    | 'if' boolexpr 'then' stmt 'else' stmt
+    | 'skip'
+    ;
+boolexpr
+    : '~' boolexpr
+    | boolexpr '&' boolexpr
+    | 'L' '==' numexpr
+    | numexpr '==' numexpr
+    | numexpr '==' 'L'
+    | 'L' '==' 'L'
+    | 'true'
+    | 'false'
+    ;
+numexpr
+    : '(' 'L' '+' 'L' ')'
+    | '(' 'L' '+' numexpr ')'
+    | '(' numexpr '+' 'L' ')'
+    | '(' numexpr '+' numexpr ')'
+    | 'n'
+    ;
+```
+</td>
+</tr> </table>
 
 Key features
 - Needs few example programs and an oracle, the oracle is a command that accepts a filename and returns 0 for valid inputs.
 - Relies on LLM to build parse-trees of the example programs.
-- Produces human-readable grammars with meaningful non-terminals and (optionally) ANTLR4 output for downstream use.
+- Produces human-readable grammars with meaningful non-terminals.
+- Generates grammar in ANTLR4 format, which is directly compatible with popular grammar-based fuzzers (i.e. [Grammarinator](https://github.com/renatahodovan/grammarinator))
 
-This repository is built on the Arvada/TreeVada approach to grammar inference and aims to make inferred grammars easier to inspect and use in downstream tooling.
+![NatGI](NatGI.jpg)
+
+
+NatGI is built on the Arvada/TreeVada approach to grammar inference and aims to make inferred grammars easier to inspect and use in downstream tooling.
 
 ## Requirements
 
@@ -45,11 +115,9 @@ $ python3 eval.py [--no-antlr4] [-n PRECISION_SET_SIZE] ORACLE_CMD TEST_DIR LOG_
 - `TEST_DIR` is a directory of held-out valid programs. 
 - `--no-antlr4` flag doesn't generate antlr4 grammar. Otherwise antlr4 grammar is written into a `.g4` file.
 
-
-
 ## Zero shot GPT-o4 (mini) grammar
 
-Use a barebone LLM to infer grammar from the seeds.
+Compare how NatGI performs against zero shot grammar inference, even with powerful reasoning models like GPT-o4. 
 1. Run `gpt.py` to get a text grammar.
 
 ```
