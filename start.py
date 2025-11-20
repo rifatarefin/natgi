@@ -712,6 +712,9 @@ def build_trees(oracle, leaves):
         except:
             print("LLM failed to generate bubbles")
             return get_llm_bubble(best_trees, accepted_bubbles, one_bubble)
+        # if bubble_list and all(len(b)==2 for b in bubble_list):
+        #     # two-bubble
+        #     bubble_list = [b for b in bubble_list if len(b[0])>3 or len(b[1])>3]
 
         return bubble_list[:25]
 

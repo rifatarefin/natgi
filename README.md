@@ -1,6 +1,6 @@
 # NatGI Overview
 
-NatGI infers context-free grammar from example programs. While learning the grammar, it has only black‑box access to the language parser (an oracle) during the learning process. NatGI follows the parse tree recovery principle from Arvada/TreeVada for grammar inference. NatGI's tree building technique is more powerful with GPT-4o and it produces human‑readable grammars with semantically meaningful nonterminal names.
+NatGI infers context-free grammar from example programs. It has only black‑box access to the language parser (an oracle) during the learning process. NatGI follows the parse tree recovery principle from Arvada/TreeVada for grammar inference. NatGI's tree building technique is more powerful with GPT-4o and it produces human‑readable grammars with semantically meaningful nonterminal names.
 
 <table>
 <tr>
@@ -53,8 +53,8 @@ stmt
 boolexpr
     : '~' boolexpr
     | boolexpr '&' boolexpr
-    | 'L' '==' numexpr
     | numexpr '==' numexpr
+    | 'L' '==' numexpr
     | numexpr '==' 'L'
     | 'L' '==' 'L'
     | 'true'
@@ -80,7 +80,7 @@ Key features
 ![NatGI](NatGI.jpg)
 
 
-NatGI is built on the Arvada/TreeVada approach to grammar inference and aims to make inferred grammars easier to inspect and use in downstream tooling.
+NatGI is built on Arvada/TreeVada's approach for grammar inference and aims to make inferred grammars easier to inspect and use in downstream tooling.
 
 ## Requirements
 
