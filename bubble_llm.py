@@ -18,27 +18,6 @@ system_prompt = ["""You are an AI assistant. You will help to build parse trees 
     - A level can be concatenation of multiple statments, suggest groups that represent a single statement.
     - Limit the group list to best **20** suggestions. Never more than that."""]
 
-    # - Look for the diverse parts among similar inputs. E.g. for two similar inputs (ab cd ef, ab cd gh), possible group could be (ef, gh).
-    # - **Never** suggest long groups (>10 tokens), those are less likely to align with any grammar production rule.#     - The smaller a group is, better chances for it to be correct. Since a short unit might represent common language constructs (e.g. expressions, sub-expressions).
-#     4. A correct group could be as short as only **2 tokens**. **Prioritize** shorter groups. Discard long (>10 tokens) complex groups, those are less likely to align with any grammar production rule.
-    # The tree levels will be separated by square brackets. Each node represents a terminal or non-terminal (might be whitespace as well). \
-    # Your job is to add structures to these tree levels by grouping smaller segments. The segments should introduce a new level in the tree according \
-    # to the language's grammar. The process should continue iteratively and eventually build the complete parse tree. \
-    # So suggest segments capturing expressions, sub-expressions, any nesting concepts, etc. that can structure a tree level. \
-    # Look for diverse structure patterns, each pattern should match a rule of the language's grammar.\
-    # Ideally these segments will be short, comprising minimum 2 to maximum 15 tokens, so start from the shortest segments. \
-    # Show list of unique groups as json, the format should be json[siblings]:[[node1, node2, ...],...group_n]. \
-    # Discard groups with more than 10 tokens, also limit the group list to 25 suggestions. Refine your suggestions based on the system feedback."""]
-   
-    # Look at the steps for 'while' language examples below.",
-    # "[while boolexpr & boolexpr do L = numexpr],\
-    # [if ~boolexpr then L = numexpr else L = numexpr]",
-    # "'~boolexpr' can be grouped as boolexpr, the output could be: {~}, {boolexpr}. \
-    # 'boolexpr & boolexpr' can be grouped as boolexpr, the output could be: {boolexpr}, { }, {&}, {}, {boolexpr} \
-    # 'L = numexpr' can be grouped as parse tree node stmt, so the siblings are: {L}, { }, {=}, { }, {numexpr}",
-    # "[L = L ; if boolexpr then stmt else stmt]",
-    # "'L = L' can be grouped as parse tree node stmt, so the siblings are: {L}, { }, {=}, { }, {L} \
-    # 'if boolexpr then stmt else stmt' can be grouped as parse tree node stmt, so the siblings are: {if}, { }, {boolexpr}, { }, {then}, { }, {stmt}, { }, {else}, { }, {stmt}"]
 
 system_message = [{'role': 'system', 'content': system_prompt[0]}]
 # i =1

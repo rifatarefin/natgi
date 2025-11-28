@@ -30,3 +30,6 @@ grammarinator/*
 results/*
 logs*/*
 barebone_llm_logs/*
+natgi_base/
+natgi/
+ablation4/

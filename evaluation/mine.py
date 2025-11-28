@@ -60,12 +60,14 @@ def compute_stats(grammar):
 	# print('Rules:', rule_count - 1)
 	# print('Terms:', len(terminals))
 	# print('---')
-	print(len(nonterminals) - 1, rule_count - 1, (rule_length - 1) / (rule_count - 1), rule_length - 1, len(terminals))
+	print(f"{len(nonterminals) - 1:10d} {rule_count - 1:10d} {((rule_length - 1) / (rule_count - 1)):10.2f} {rule_length - 1:10d} {len(terminals):10d}")
 	# print((rule_length - 1) / rule_stats)#average rule length
 
 def print_stats(file_name):
 	f = open(file_name, 'r')
-	gram_str = get_grammar_str(f)
+	# gram_str = get_grammar_str(f)
+	gram_str = ''.join(f.readlines())
+	gram_str.strip()
 	rules = split_rules(gram_str)
 	rules = [create_rule_obj(rule) for rule in rules]
 	start_rule, rules = rules[0], rules[1:]
@@ -76,6 +78,7 @@ def print_stats(file_name):
 	# print(file_name)
 	compute_stats(grammar)
 
+print(f"{'Nonterms':>10} {'Rules':>10} {'AvgLen':>10} {'TotLen':>10} {'Terms':>10}")
 for file_name in sys.argv[1:]:
 	print_stats(file_name)
 

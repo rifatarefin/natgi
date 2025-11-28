@@ -1,4 +1,5 @@
 import argparse
+from pathlib import Path
 import random, sys, os, time, string
 from typing import Dict, List
 
@@ -70,16 +71,20 @@ def main(oracle_cmd, log_file_name, test_examples_folder ):
                 dir_name = os.path.dirname(log_file_name)
                 bench_name = os.path.basename(log_file_name)
                 bench_name = ''.join(c for c in bench_name if c not in string.punctuation)
-                antlr_file = os.path.join(dir_name, bench_name + ".g4")
+                lan = Path(dir_name)
+                root_dir = lan.parent.parent
+                antlr_file = os.path.join(root_dir, "antlr_grammars", lan.name, bench_name + ".g4")
+                antlr_dir = os.path.dirname(antlr_file)
+                os.makedirs(antlr_dir, exist_ok=True)
                 with open(antlr_file, 'w') as antlr_f:
                     antlr_f.write(learned_grammar.to_antlr4(bench_name)) # todo: remove indirect left recursion
                     antlr_f.close()
+                print(f"ANTLR4 grammar written to {antlr_file}")
         except Exception as e:
             print('\n\nLoaded grammar does not compile! %s' % str(e), file=f)
             print(learned_grammar, file=f)
             print(e)
             exit()
-        
         parser: Lark = learned_grammar.parser()
         precision_set = learned_grammar.sample_positives(PRECISION_SIZE, 5)
 
