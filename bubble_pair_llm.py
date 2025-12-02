@@ -1,16 +1,49 @@
 from openai import OpenAI
 client = OpenAI()
 
+# You are an AI assistant. You will be given a list of tree levels.
+# You will find out segment pairs from these levels in a way that a segment pair can be derived from the same AST node.
+# Input: A list of tree levels separated by square brackets, the nodes in a level are separated by commas.
+# Output: A list of pairs as json, the format should be json[siblings]:[[pair1], [pair2],...[pair_n]]. Each pair should be two list of sibling nodes.
+# - Each pair should contain two **different** lists of nodes, these nodes should represent identical AST parents.
+# - Remeber there could be recursive structure, suggest the smallest recursion free units.
+# - Discard if two lists in a pair are exactly the same.
+# - Limit the list to best 20 suggestions.
 
+system_prompt = ["""You are assisting a grammar inference system. 
+                Your task is to identify *pairs of sibling-node segments* across the given 
+                tree levels that could have been derived from the *same AST parent node*.
 
-system_prompt = ["""You are an AI assistant. You will be given a list of tree levels.
-                 You will find out segment pairs from these levels in a way that a segment pair can be derived from the same AST node.
-                 Input: A list of tree levels separated by square brackets, the nodes in a level are separated by commas.
-                 Output: A list of pairs as json, the format should be json[siblings]:[[pair1], [pair2],...[pair_n]]. Each pair should be two list of sibling nodes.
-                 - Each pair should contain two **different** lists of nodes, these nodes should represent identical AST parents.
-                 - Remeber there could be recursive structure, suggest the smallest recursion free units.
-                 - Discard if two lists in a pair are exactly the same.
-                 - Limit the list to best 20 suggestions."""]
+                INPUT:
+                - A list of tree levels enclosed in square brackets.
+                - Nodes within a level are separated by commas.
+                - Consider all levels, but output pairs of segments.
+
+                OUTPUT:
+                Return a JSON object of the form:
+                {"siblings": [ [segmentA, segmentB], [segmentC, segmentD], ... ] }
+
+                Where:
+                - Each segment is a list of adjacent sibling nodes from a level.
+                - Each pair contains **two different segments**.
+                - A segment pair represents two sibling groups that likely share the same AST parent.
+
+                RULES:
+                1. Segments must be **contiguous** subsequences from a level (no skipping or reordering).
+                2. Each pair must contain two **distinct** segments (discard identical duplicates).
+                3. Segments should be **small, recursion-free units** (due to tree expansion).
+                Typical sizes: 2–5 nodes.
+                4. Segments in a pair should be **structurally similar**, suggesting they come 
+                from the same grammar construct (e.g., two expressions, two assignments, 
+                two operator patterns, two clauses).
+                5. Do NOT invent tokens, rename nodes, or infer new syntax.
+                6. Return only the **best 20 pairs** (never more).
+
+                GOAL:
+                Identify pairs of sibling-node segments that could plausibly originate from 
+                the same AST rule, helping to detect repetition and structural symmetry 
+                in the grammar.
+"""]
 
     
 

@@ -1,22 +1,51 @@
 from openai import OpenAI
 client = OpenAI()
 
+# You are an AI assistant. You will help to build parse trees from flat tree levels.
+#     You will combine adjacent nodes from a tree level. Those nodes will be placed under a new parent node at that position.
+#     You will suggest node groups in a way that will build the complete parse tree iteratively.
+#     Input: A list of tree levels separated by square brackets, the nodes in a level are separated by commas.
+#     Output: A list of unique groups as json, the format should be json[siblings]:[[node1, node2, ...],...group_n].
+#     The workflow should be:
+#     - Break an input level into smaller independent units, remember there will be recursive structure.
+#     - Think what smallest units represent a language construct, free of recursion.
+#     - The group will create a new level at that position in the tree.
+#     - The group should represent a grammar rule of the language.
+#     - Remember recursive expansion makes the tree level long, don't suggest long groups. 
+#     - A group can be as small as two tokens only.
+#     - A level can be concatenation of multiple statments, suggest groups that represent a single statement.
+#     - Limit the group list to best **20** suggestions. Never more than that.
 
+system_prompt = ["""
+                 
+    You are assisting a grammar inference system. Your task is to propose 
+    small structural groupings (“bubbles”) from a list of *flat tree levels*. 
+    Each bubble groups a contiguous set of adjacent nodes under a new parent node.
 
-system_prompt = ["""You are an AI assistant. You will help to build parse trees from flat tree levels.
-    You will combine adjacent nodes from a tree level. Those nodes will be placed under a new parent node at that position.
-    You will suggest node groups in a way that will build the complete parse tree iteratively.
-    Input: A list of tree levels separated by square brackets, the nodes in a level are separated by commas.
-    Output: A list of unique groups as json, the format should be json[siblings]:[[node1, node2, ...],...group_n].
-    The workflow should be:
-    - Break an input level into smaller independent units, remember there will be recursive structure.
-    - Think what smallest units represent a language construct, free of recursion.
-    - The group will create a new level at that position in the tree.
-    - The group should represent a grammar rule of the language.
-    - Remember recursive expansion makes the tree level long, don't suggest long groups. 
-    - A group can be as small as two tokens only.
-    - A level can be concatenation of multiple statments, suggest groups that represent a single statement.
-    - Limit the group list to best **20** suggestions. Never more than that."""]
+    Your suggestions will be used to build complete parse trees *iteratively*.
+
+    INPUT:
+    - A list of tree levels enclosed in square brackets.
+    - Each level contains nodes separated by commas.
+    - Consider only the *flat sibling list* shown in the last level.
+
+    OUTPUT:
+    - A JSON object with one key, "siblings", whose value is a list of groups.
+    - Each group is a list of adjacent node names, e.g.:
+    {"siblings": [["x", "=", "y"], ["y", "+", "3"], ...]}
+
+    TASK RULES:
+    1. Propose only **contiguous** groups (no skipping or reordering).
+    2. Identify *small*, recursion-free semantic units, atomic expressions or sub-expressions.
+    3. Groups should be meaningful language constructs.
+    4. Avoid long groups: recursion expands levels, so long spans are unlikely 
+    to be correct. Favor short, compositional groupings (2–5 items typically).
+    5. Do NOT introduce new tokens, rename nodes, or invent structure.
+    6. A level may contain multiple concatenated statements—group within each.
+    7. Return **at most 20 high-confidence groups**. Never more.
+
+    GOAL:
+    Suggest structures that help gradually reconstruct the parse tree."""]
 
 
 system_message = [{'role': 'system', 'content': system_prompt[0]}]

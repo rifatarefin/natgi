@@ -108,15 +108,16 @@ def build_start_grammar(oracle, leaves, bbl_bounds = (3,10)):
         augmented = {t.derived_string(): t for t in new_trees}
         reduced_trees = hdd_decompose(new_trees, oracle, augmented)
         grammar_reduced = build_grammar(reduced_trees)
-        grammar_reduced = expand_tokens(oracle, grammar_reduced, reduced_trees)
-        # new_trees += reduced_trees
-        grammar_reduced = minimize(grammar_reduced)
+        # grammar_reduced = expand_tokens(oracle, grammar_reduced, reduced_trees)
+        new_trees += reduced_trees
+        # grammar_reduced = minimize(grammar_reduced)
         # print(str(grammar))
         # print(str(grammar_reduced))
         hdd_grammar = grammar.copy()
         hdd_grammar.merge(grammar_reduced)
-        # hdd_grammar = expand_tokens(oracle, hdd_grammar, new_trees)
         hdd_grammar = minimize(hdd_grammar)
+        hdd_grammar = expand_tokens(oracle, hdd_grammar, new_trees)
+        # hdd_grammar = minimize(hdd_grammar)
 
     s = time.time()
     
@@ -231,6 +232,7 @@ def build_naive_parse_trees(leaves: List[List[ParseNode]], bracket_items: List, 
 def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dict[str, ParseNode]):
     """
     Hierarchical delta debugging to break down seed inputs into smaller valid inputs.
+    new_trees contain the newly added decomposed trees
     """
     # pt = PrettyPrintTree(lambda x: x.children, lambda x: x.payload)
     
@@ -241,7 +243,7 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
         try:
             seed = node.derived_string()
             oracle.parse(seed)
-            seed = seed.replace(" ", "")
+            # seed = seed.replace(" ", "")
             if seed not in new_trees:
                 if node.payload != START:
                     node.payload = START
@@ -253,6 +255,9 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
             return False
     
     def ddmin(node: ParseNode):
+        """
+        minimizes a flat level into a list of smaller valid levels
+        """
         reduced = []
         n = len(node.children)
         granularity = 2
@@ -268,7 +273,7 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
                 trial_node.update_cache_info()
 
                 if try_parse(trial_node):
-                    reduced.append(trial_node.copy())
+                    reduced.append(trial_node)
                 
             for i in range(granularity):
                 start = i * chunk_size
@@ -277,7 +282,7 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
                 trial_node.children = node.children[start:end]
                 trial_node.update_cache_info()
                 if try_parse(trial_node):
-                    reduced.append(trial_node.copy())
+                    reduced.append(trial_node)
             if reduced:
                 return reduced
             granularity += 1
@@ -287,16 +292,17 @@ def hdd_decompose(trees: List[ParseNode], oracle: ExternalOracle, new_trees: dic
                     
                 
     
-    def hdd(node: ParseNode):
+    def hdd(node: ParseNode) -> List[ParseNode]:
         if node.is_terminal:
             return [node]
         
         nodes = ddmin(node)
         for node in nodes:
             for index in range(len(node.children)):
-                idx_children = hdd(node.children[index])
+                idx_children = hdd(node.children[index].copy())
                 for child in idx_children:
                     node.children[index] = child
+                    node.cache_valid = False
                     node.update_cache_info()
                     try_parse(node)
 
@@ -704,6 +710,9 @@ def build_trees(oracle, leaves):
         global LLM_CALLS
         LLM_CALLS += 1
         layer = get_tree_layers(best_trees)
+        # don't call 2-bubbles if longest layer is less than 10, it might allow invalid merges
+        if not one_bubble and (not layer or len(layer[0]) <10):
+            return []
         prompt = '\n'.join([str(i) for i in layer])
         bubble_list = bubble_api(prompt, accepted_bubbles) if one_bubble else bubble_pair_api(prompt, accepted_bubbles)       # llm call here
         try:
@@ -748,7 +757,7 @@ def build_trees(oracle, leaves):
     # break the group_size loop if no valid merge after increasing group size by threshold
     # for group_size in range(MIN_GROUP_LEN, MAX_GROUP_LEN):
 
-    threshold = 5 if USE_LLM else 0
+    threshold = 3 if USE_LLM else 0
     count = 0
     # have to keep a list of accepted bubbles
     accepted_bubbles = {}
@@ -773,7 +782,7 @@ def build_trees(oracle, leaves):
             # remove duplicates
             bubble_dedup = remove_dup(bubble_list)
             # sort by length, shorter bubbles should be applied first
-            bubble_dedup = sorted(bubble_dedup, key=lambda x: len(x), reverse=True)
+            # bubble_dedup = sorted(bubble_dedup, key=lambda x: len(x), reverse=True)
             # get bubbles from string
             for b in bubble_dedup:
                 cand = ''.join(b)
@@ -788,14 +797,16 @@ def build_trees(oracle, leaves):
                     all_bubbles[cand] = grp
 
             # one_bubbles = sorted(all_bubbles.values(), key=lambda x: len(x.bubbled_elems))
-            # keep last added 60 bubbles
+            # keep last added 50 bubbles
             all_bubbles = dict(list(all_bubbles.items())[-50:])
-            one_bubbles = list(reversed(all_bubbles.values()))
+            # one_bubbles = list(reversed(all_bubbles.values()))
+            # sort by length, shorter bubbles should be applied first
+            one_bubbles = sorted(all_bubbles.values(), key=lambda x: len(x.bubbled_elems))
             TIME_GROUPING += time.time() - group_start
 
             best_trees, updated = bubble_loop(best_trees, count, one_bubbles, accepted_bubbles)
             if updated:
-                threshold = 5
+                threshold = 3
             else:
                 threshold -= 1
         
@@ -833,7 +844,7 @@ def build_trees(oracle, leaves):
 
             best_trees, updated = bubble_loop(best_trees, count, two_bubbles, accepted_bubbles)
             if updated:
-                threshold = 5
+                threshold = 3
         # Keep only the last 100 entries in accepted_bubbles
         if len(accepted_bubbles) > 100:
             accepted_bubbles = dict(list(accepted_bubbles.items())[-100:])
