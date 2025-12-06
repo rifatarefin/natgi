@@ -27,7 +27,6 @@ system_prompt = ["""
     INPUT:
     - A list of tree levels enclosed in square brackets.
     - Each level contains nodes separated by commas.
-    - Consider only the *flat sibling list* shown in the last level.
 
     OUTPUT:
     - A JSON object with one key, "siblings", whose value is a list of groups.

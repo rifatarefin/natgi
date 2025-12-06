@@ -180,7 +180,7 @@ def main(oracle_cmd, guide_examples_folder,  log_file_name):
         
         if hdd_grammar:
             pickle.dump(hdd_grammar.rules, open(log_file_name + ".gramdict", "wb"))
-        else:
+        # else:
             pickle.dump(start_grammar.rules, open(log_file_name + "_no_hdd.gramdict", "wb"))
 
         print(f'Date: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}', file=f)

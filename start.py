@@ -108,16 +108,16 @@ def build_start_grammar(oracle, leaves, bbl_bounds = (3,10)):
         augmented = {t.derived_string(): t for t in new_trees}
         reduced_trees = hdd_decompose(new_trees, oracle, augmented)
         grammar_reduced = build_grammar(reduced_trees)
-        # grammar_reduced = expand_tokens(oracle, grammar_reduced, reduced_trees)
+        grammar_reduced = expand_tokens(oracle, grammar_reduced, reduced_trees)
         new_trees += reduced_trees
-        # grammar_reduced = minimize(grammar_reduced)
+        grammar_reduced = minimize(grammar_reduced)
         # print(str(grammar))
         # print(str(grammar_reduced))
         hdd_grammar = grammar.copy()
         hdd_grammar.merge(grammar_reduced)
-        hdd_grammar = minimize(hdd_grammar)
-        hdd_grammar = expand_tokens(oracle, hdd_grammar, new_trees)
         # hdd_grammar = minimize(hdd_grammar)
+        # hdd_grammar = expand_tokens(oracle, hdd_grammar, new_trees)
+        hdd_grammar = minimize(hdd_grammar)
 
     s = time.time()
     
@@ -707,14 +707,14 @@ def build_trees(oracle, leaves):
         """
         Get list of bubbles from LLM
         """
-        global LLM_CALLS
-        LLM_CALLS += 1
         layer = get_tree_layers(best_trees)
-        # don't call 2-bubbles if longest layer is less than 10, it might allow invalid merges
-        if not one_bubble and (not layer or len(layer[0]) <10):
+        # don't call 2-bubbles if longest layer is less than 7, it might allow redundant merges
+        if not one_bubble and (not layer or len(layer[0]) < 7):
             return []
         prompt = '\n'.join([str(i) for i in layer])
         bubble_list = bubble_api(prompt, accepted_bubbles) if one_bubble else bubble_pair_api(prompt, accepted_bubbles)       # llm call here
+        global LLM_CALLS
+        LLM_CALLS += 1
         try:
             bubble_list = json.loads(bubble_list)['siblings']
 
@@ -757,7 +757,7 @@ def build_trees(oracle, leaves):
     # break the group_size loop if no valid merge after increasing group size by threshold
     # for group_size in range(MIN_GROUP_LEN, MAX_GROUP_LEN):
 
-    threshold = 3 if USE_LLM else 0
+    threshold = 5 if USE_LLM else 0
     count = 0
     # have to keep a list of accepted bubbles
     accepted_bubbles = {}
@@ -806,7 +806,7 @@ def build_trees(oracle, leaves):
 
             best_trees, updated = bubble_loop(best_trees, count, one_bubbles, accepted_bubbles)
             if updated:
-                threshold = 3
+                threshold = 5
             else:
                 threshold -= 1
         
@@ -844,7 +844,7 @@ def build_trees(oracle, leaves):
 
             best_trees, updated = bubble_loop(best_trees, count, two_bubbles, accepted_bubbles)
             if updated:
-                threshold = 3
+                threshold = 5
         # Keep only the last 100 entries in accepted_bubbles
         if len(accepted_bubbles) > 100:
             accepted_bubbles = dict(list(accepted_bubbles.items())[-100:])
