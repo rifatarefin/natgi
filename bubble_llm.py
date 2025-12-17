@@ -27,6 +27,7 @@ system_prompt = ["""
     INPUT:
     - A list of tree levels enclosed in square brackets.
     - Each level contains nodes separated by commas.
+    - Consider all levels, and output bubbles from any level.
 
     OUTPUT:
     - A JSON object with one key, "siblings", whose value is a list of groups.
@@ -57,7 +58,7 @@ system_message = [{'role': 'system', 'content': system_prompt[0]}]
 #                  Only show list of siblings as json output. The format should be json[siblings]:[[node1, node2, ...],...]'})
 chat_log = []
 old_trees = []
-def bubble_api(trees, old_bubbles):
+def bubble_api(trees):
     # global chat_log
     # if feedback:
     #     chat_log.append({'role': 'system', 'name': 'feedback', 'content': f"Following suggestions were applied to the trees. Get hint from these groups to find similar patterns. \

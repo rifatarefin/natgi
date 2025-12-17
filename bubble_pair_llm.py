@@ -17,7 +17,7 @@ system_prompt = ["""You are assisting a grammar inference system.
                 INPUT:
                 - A list of tree levels enclosed in square brackets.
                 - Nodes within a level are separated by commas.
-                - Consider all levels, but output pairs of segments.
+                - Consider all levels, and output pairs of segments.
 
                 OUTPUT:
                 Return a JSON object of the form:
@@ -50,7 +50,7 @@ system_prompt = ["""You are assisting a grammar inference system.
 system_message = [{'role': 'system', 'content': system_prompt[0]}]
 old_trees = []
 old_examples = []
-def bubble_pair_api(trees, old_bubbles=""):
+def bubble_pair_api(trees):
     
     
     # if old_bubbles:

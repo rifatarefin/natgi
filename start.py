@@ -571,13 +571,7 @@ def build_trees(oracle, leaves):
         grammar = build_grammar(trees)
 
         grammar, new_trees, coalesce_caused, coalesced_into = coalesce(oracle, trees, grammar, new_bubble)
-        # if not coalesce_caused and not isinstance(new_bubble, tuple):
-        #     grammar, new_trees, partial_coalesces = coalesce_partial(oracle, trees, grammar, new_bubble)
-        #     if partial_coalesces:
-        #         print("\n(partial)")
-        #         coalesce_caused = True
-
-        # grammar = minimize(grammar)
+        
         new_size = grammar.size()
         if coalesce_caused:
             return 1, new_trees, coalesced_into
@@ -592,35 +586,41 @@ def build_trees(oracle, leaves):
         if isinstance(bubble, Bubble):
             for elem in bubble.bubbled_elems:
                 if elem.payload in coalesced_into:
+                    # assuming multi-hop coalescing is already handled
                     new_nt = coalesced_into[elem.payload]
-                    # delete coalesced nt
-                    # coalesced_into.pop(elem.payload)
-                    while new_nt in coalesced_into and not new_nt == coalesced_into[new_nt]:
-                        # old_nt = new_nt
-                        new_nt = coalesced_into[new_nt]
-                        # coalesced_into.pop(old_nt)
                     elem.payload = new_nt
-                    # elem.update_cache_info()
             bubble.new_nt = allocate_tid()
+            bubble.bubble_str = ''.join([e.payload for e in bubble.bubbled_elems])
         else:
             for bubble_single in bubble:
                 for elem in bubble_single.bubbled_elems:
                     if elem.payload in coalesced_into:
                         new_nt = coalesced_into[elem.payload]
-                        # delete coalesced nt
-                        # coalesced_into.pop(elem.payload)
-                        while new_nt in coalesced_into and not new_nt == coalesced_into[new_nt]:
-                            # old_nt = new_nt
-                            new_nt = coalesced_into[new_nt]
-                            # coalesced_into.pop(old_nt)
                         elem.payload = new_nt
-                        # elem.update_cache_info()
+                        
                 bubble_single.new_nt = allocate_tid()
+                bubble_single.bubble_str = ''.join([e.payload for e in bubble_single.bubbled_elems])
         return bubble
+    
+    def update_all_bubbles(all_bubbles, coalesced_into, best_trees):
+        """
+        After a bubble_loop call, update all bubbles to reflect the new nonterminals
+        """
+        for k in list(all_bubbles.keys()):
+            bubble = all_bubbles[k]
+            updated_bubble = get_updated_bubble(bubble, coalesced_into)
+            all_bubbles.pop(k)
+            bubble_tokens = [e.payload for e in updated_bubble.bubbled_elems]
+            valid_bubble = to_bubble(best_trees, bubble_tokens)
+            if valid_bubble:
+                all_bubbles[valid_bubble.bubble_str] = valid_bubble
+
     
     def bubble_loop(best_trees, count, bubble_list, no_llm = False, grp_size = -1):    # delete grp_size later
         updated, nlg = False, len(bubble_list)
-        
+        loop_coalesce_into = {}
+        nt_set = set()
+        print(f"Bubbles in list: {nlg}")
         for i, grouping in enumerate(bubble_list):
             
             reapply = True
@@ -662,11 +662,18 @@ def build_trees(oracle, leaves):
                     print(grouping_str)
                     print("coalesced into: ", coalesced_into)
 
+                    # first, flatten multi-hop coalesced_into
+                    for k in list(coalesced_into.keys()):
+                        v = coalesced_into[k]
+                        while v in coalesced_into and not v == coalesced_into[v]:
+                            v = coalesced_into[v]
+                        coalesced_into[k] = v
 
                     grouping = get_updated_bubble(grouping, coalesced_into)                           
                     updated, valid_bubble = True, True
 
                     # need to maintain another coalesced_into for the entire bubble loop?
+                    loop_coalesce_into.update(coalesced_into)
                
                 else:
                     reapply = False
@@ -676,9 +683,14 @@ def build_trees(oracle, leaves):
                 if no_llm:
                     break
 
+        # flatten loop_coalesce_into
+        for k in list(loop_coalesce_into.keys()):
+            v = loop_coalesce_into[k]
+            while v in loop_coalesce_into and not v == loop_coalesce_into[v]:
+                v = loop_coalesce_into[v]
+            loop_coalesce_into[k] = v
         
-        
-        return best_trees, updated
+        return best_trees, updated, loop_coalesce_into
 
     def get_llm_bubble(best_trees, one_bubble = True):
         """
@@ -698,10 +710,7 @@ def build_trees(oracle, leaves):
         except:
             print("LLM failed to generate bubbles")
             return get_llm_bubble(best_trees, one_bubble)
-        # if bubble_list and all(len(b)==2 for b in bubble_list):
-        #     # two-bubble
-        #     bubble_list = [b for b in bubble_list if len(b[0])>3 or len(b[1])>3]
-
+        
         return bubble_list[:100]
 
     best_trees = build_naive_parse_trees(leaves, [], oracle)
@@ -739,7 +748,9 @@ def build_trees(oracle, leaves):
             pre_bubble_layers = get_tree_layers(best_trees, False)
             pre_bubbles = [to_bubble(best_trees, b) for b in pre_bubble_layers]
             pre_bubbles = [b for b in pre_bubbles if b]
-            best_trees, updated = bubble_loop(best_trees, count, pre_bubbles)
+            best_trees, updated, coalesced_into = bubble_loop(best_trees, count, pre_bubbles)
+            if updated:
+                update_all_bubbles(all_bubbles, coalesced_into, best_trees)
 
         updated = True
         while updated:
@@ -771,9 +782,12 @@ def build_trees(oracle, leaves):
             one_bubbles = sorted(all_bubbles.values(), key=lambda x: len(x.bubbled_elems))
             TIME_GROUPING += time.time() - group_start
 
-            best_trees, updated = bubble_loop(best_trees, count, one_bubbles)
+            best_trees, updated, coalesced_into = bubble_loop(best_trees, count, one_bubbles)
+                
             if updated:
                 threshold = 5
+                # update all_bubbles according to coalesced_into
+                update_all_bubbles(all_bubbles, coalesced_into, best_trees)
             else:
                 threshold -= 1
         
@@ -809,9 +823,10 @@ def build_trees(oracle, leaves):
             except:
                 break
 
-            best_trees, updated = bubble_loop(best_trees, count, two_bubbles)
+            best_trees, updated, coalesced_into = bubble_loop(best_trees, count, two_bubbles)
             if updated:
                 threshold = 5
+                update_all_bubbles(all_bubbles, coalesced_into, best_trees)
 
 
     # layer = get_longest_layer(best_trees, [])
@@ -821,7 +836,7 @@ def build_trees(oracle, leaves):
         grp_size = MIN_GROUP_LEN
         while updated or threshold:
             bubble_list = group(best_trees, grp_size)
-            best_trees, updated = bubble_loop(best_trees, count, bubble_list, True, grp_size)
+            best_trees, updated, _ = bubble_loop(best_trees, count, bubble_list, True, grp_size)
             
             count+=1
             if not updated:
