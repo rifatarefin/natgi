@@ -143,7 +143,7 @@ def build_naive_parse_trees(leaves: List[List[ParseNode]], bracket_items: List, 
     get_class = {t: t for t in terminals}
     quotes = ["\"", "\'"]
 
-    def braces_tree(leaves: List[ParseNode], index: int, first: ParseNode = None):
+    def braces_tree(leaves: List[ParseNode], index: int, open_list: List[int], close_list: List[int], first: ParseNode = None):
         """ 
         returns a initial parse tree based on brackets.
         input: a {b c}
@@ -155,40 +155,6 @@ def build_naive_parse_trees(leaves: List[List[ParseNode]], bracket_items: List, 
               { b c }
         """
 
-        # children = []
-        # if root == False:
-        #     children.append(ParseNode(get_class[leaves[index].payload], False, [leaves[index]]))
-        #     index+=1
-        # else:
-        #     nonlocal bracket_items
-        #     bracket_items = []
-
-        # while index<len(leaves):
-        #     node = leaves[index]
-        #     token = node.payload
-            
-            
-        #     # special case: single bracket surrounded by quotes e.g. "{"
-        #     if len(token) == 1 and index-1>=0 and index+1<len(leaves) and \
-        #         leaves[index-1].payload in quotes and leaves[index+1].payload == leaves[index-1].payload:
-
-        #         children.append(ParseNode(get_class[token], False, [node]))
-
-        #     # make a recursive call to add a new level. The index points to the position where the bracket is closed
-        #     elif token == "{" or token == "[" or token == "(":
-
-        #         child, index = braces_tree(leaves, index)
-        #         children.append(child)
-
-        #     elif token == "}" or token == "]" or token == ")":
-        #         children.append(ParseNode(get_class[token], False, [node]))
-        #         bracket_items.append(len(children))
-        #         return ParseNode(allocate_tid(), False, children), index
-            
-        #     else:
-        #         children.append(ParseNode(get_class[token], False, [node]))
-        #     index += 1
-
         if first:
             children = [first]
         else:
@@ -199,21 +165,14 @@ def build_naive_parse_trees(leaves: List[List[ParseNode]], bracket_items: List, 
         while index < len(leaves):
             node = leaves[index]
             token = node.payload
-
-            # special case: single bracket surrounded by quotes e.g. "{"
-            if len(token) == 1 and index-1>=0 and index+1<len(leaves) and \
-                leaves[index-1].payload in quotes and leaves[index+1].payload == leaves[index-1].payload:
-                children.append(ParseNode(get_class[token], False, [node]))
+            
+            
+            if (token == "{" or token == "[" or token == "(") and index in open_list:
                 index += 1
-
-            # opening bracket
-            elif token in ("{", "[", "("):
-                # increment index to move past the opening bracket
-                index += 1
-                child, index = braces_tree(leaves, index, node)
+                child, index = braces_tree(leaves, index, open_list, close_list, node)
                 children.append(child)
 
-            elif token in ("}", "]", ")"):
+            elif (token == "}" or token == "]" or token == ")") and index in close_list:
                 children.append(ParseNode(get_class[token], False, [node]))
                 bracket_items.append(len(children))
                 return ParseNode(allocate_tid(), False, children), index + 1
@@ -230,9 +189,10 @@ def build_naive_parse_trees(leaves: List[List[ParseNode]], bracket_items: List, 
     avg_bracket_lengths_all_trees=[]
     str_lengths = []
     for leaf_list in leaves:
-        leaf_str = ''.join([leaf.payload for leaf in leaf_list])
-        if is_balanced(leaf_str):
-            new_children, brackets = braces_tree(leaf_list, index = 0)
+        leaf_str = [leaf.payload for leaf in leaf_list]
+        open_close = is_balanced(leaf_str, is_list=True)
+        if open_close:
+            new_children, brackets = braces_tree(leaf_list, 0, open_close[0], open_close[1])
         else:
             print("Flat tree")
             new_children = ParseNode(START, False, [ParseNode(get_class[leaf.payload], False, [leaf]) for leaf in leaf_list])
@@ -243,10 +203,10 @@ def build_naive_parse_trees(leaves: List[List[ParseNode]], bracket_items: List, 
             oracle.parse(new_children.derived_string())
 
         except:
-            print("\nInvalid seed input")
+            print("\nInvalid tree constructed!")
             exit(1)
 
-        # new_tree = ParseNode(START, False, new_children)
+        
         trees.append(new_children)
         bracket_counts.append(len(brackets))             #brackets = per tree bracket lengths
         avg_bracket_lengths_all_trees.append(sum(brackets)/len(brackets))
@@ -1272,7 +1232,7 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
         nt2_derivable_strings = list(dict.fromkeys(nt2_derivable_strings))
         nt1_valid, nt1_check_strings = replacement_valid(oracle, nt1_derivable_strings, nt2, trees)
         if not nt1_valid:
-            return False
+            return False        # TODO: check half merge
         nt2_valid, nt2_check_strings = replacement_valid(oracle, nt2_derivable_strings, nt1, trees)
         if not nt2_valid:
             return False
@@ -1439,6 +1399,9 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
                     class_nt = generate_label_api((s1, s2))
                     print(f"LLM suggested label: {class_nt} for {s1} and {s2}")
 
+                    # if conflicts with existing labels, try to merge them
+                    merge_node = class_nt if class_nt in label_set else None
+                    
                     # keep old labels in order to avoid them
                     old_labels = {class_nt: 1}
                     attempts = 0
@@ -1448,18 +1411,23 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
                         class_nt = regenerate_label((s1, s2), list(old_labels.keys()))
                         old_labels[class_nt] = 1
                         attempts += 1
-                        if attempts > 5:
+                        if attempts >= 5:
                             while class_nt in old_labels:
                                 if not class_nt[-1].isdigit():
                                     class_nt += "1"
-                                class_nt = class_nt[:-1] + str(int(class_nt[-1]) + 1)   #increment the last digit
+                                else:
+                                    class_nt = class_nt[:-1] + str(int(class_nt[-1]) + 1)   #increment the last digit
                             
                             old_labels[class_nt] = 1
                         print(f" Next suggestion: {class_nt}")
+                    
+                    if merge_node:
+                        pairs.append((class_nt, merge_node))
                     # class_nt = allocate_tid()
                 # temporary way-around
                 # if re.search(r'[^a-zA-Z0-9]', class_nt) or re.match(r'^\d+$', class_nt):
                 #     class_nt = allocate_tid()
+
             label_set.add(class_nt)
             classes = {class_nt: [first, second]}
             get_class = {first: class_nt, second: class_nt}

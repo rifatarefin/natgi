@@ -36,8 +36,10 @@ system_prompt = ["""You are assisting a grammar inference system.
                 4. Segments in a pair should be **structurally similar**, suggesting they come 
                 from the same grammar construct (e.g., two expressions, two assignments, 
                 two operator patterns, two clauses).
-                5. Do NOT invent tokens, rename nodes, or infer new syntax.
-                6. Return only the **best 20 pairs** (never more).
+                5. Expressions may be unary, binary, or n-ary; 
+                 segment groupings should reflect the correct arity of each expression.
+                6. Do NOT invent tokens, rename nodes, or infer new syntax.
+                7. Return only the **best 20 pairs** (never more).
 
                 GOAL:
                 Identify pairs of sibling-node segments that could plausibly originate from 

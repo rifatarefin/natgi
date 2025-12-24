@@ -17,7 +17,6 @@ client = OpenAI()
 #     - Limit the group list to best **20** suggestions. Never more than that.
 
 system_prompt = ["""
-                 
     You are assisting a grammar inference system. Your task is to propose 
     small structural groupings (“bubbles”) from a list of *flat tree levels*. 
     Each bubble groups a contiguous set of adjacent nodes under a new parent node.
@@ -32,20 +31,22 @@ system_prompt = ["""
     OUTPUT:
     - A JSON object with one key, "siblings", whose value is a list of groups.
     - Each group is a list of adjacent node names, e.g.:
-    {"siblings": [["x", "=", "y"], ["y", "+", "3"], ...]}
+      {"siblings": [["x", "=", "y"], ["y", "+", "3"], ...]}
 
     TASK RULES:
     1. Propose only **contiguous** groups (no skipping or reordering).
     2. Identify *small*, recursion-free semantic units, atomic expressions or sub-expressions.
-    3. Groups should be meaningful language constructs.
-    4. Avoid long groups: recursion expands levels, so long spans are unlikely 
-    to be correct. Favor short, compositional groupings (2–5 items typically).
+    3. Groups should be meaningful language constructs (e.g., statements, expressions, blocks for programming languages).
+    4. Avoid long groups: recursion expands levels, so long spans are unlikely to be correct. Favor short, compositional groupings (as small as 2 nodes).
     5. Do NOT introduce new tokens, rename nodes, or invent structure.
     6. A level may contain multiple concatenated statements—group within each.
     7. Return **at most 20 high-confidence groups**. Never more.
+    8. Expressions may be unary, binary, or n-ary; groupings should reflect the correct arity of each expression.
+    9. Do not output duplicate groups or groups that span an entire level unless it is a minimal construct.
 
     GOAL:
-    Suggest structures that help gradually reconstruct the parse tree."""]
+    Suggest structures that help gradually reconstruct the parse tree. Focus on atomic, meaningful, and compositional units that reflect the underlying grammar.
+"""]
 
 
 system_message = [{'role': 'system', 'content': system_prompt[0]}]

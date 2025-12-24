@@ -11,7 +11,7 @@ from parse_tree import ParseNode
 last_bubble_lst = None
 last_bubble_pairs = None
 
-def is_balanced(tokens: str):
+def is_balanced(tokens, is_list = False):
         """
         helper function to check if a bubble has balanced brackets.
         """
@@ -19,8 +19,11 @@ def is_balanced(tokens: str):
         close_list = ["]","}",")"]
         stack = []
         quote = []
+        open_indices = []
+        closing_indices = []
         for idx, i in enumerate(tokens):
             if len(quote) == 1:
+                # found a matching quote
                 if i == quote[0]:
                     quote.pop()
                 continue
@@ -29,14 +32,16 @@ def is_balanced(tokens: str):
                 quote.append(i)
             elif i in open_list:
                 stack.append(i)
+                open_indices.append(idx)
             elif i in close_list:
                 pos = close_list.index(i)
                 if (stack and open_list[pos] == stack[-1]):
                     stack.pop()
+                    closing_indices.append(idx)
                 else:
                     return False
         if not stack:
-            return True
+            return (open_indices, closing_indices) if is_list else True
         return False
 
 imbalance = 0
