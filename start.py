@@ -107,17 +107,21 @@ def build_start_grammar(oracle, leaves, bbl_bounds = (3,10)):
     if HDD:
         augmented = {t.derived_string(): t for t in new_trees}
         reduced_trees = hdd_decompose(new_trees, oracle, augmented)
-        grammar_reduced = build_grammar(reduced_trees)
-        grammar_reduced = expand_tokens(oracle, grammar_reduced, reduced_trees)
-        new_trees += reduced_trees
-        grammar_reduced = minimize(grammar_reduced)
-        # print(str(grammar))
-        # print(str(grammar_reduced))
-        hdd_grammar = grammar.copy()
-        hdd_grammar.merge(grammar_reduced)
-        # hdd_grammar = minimize(hdd_grammar)
-        # hdd_grammar = expand_tokens(oracle, hdd_grammar, new_trees)
-        hdd_grammar = minimize(hdd_grammar)
+        if len(reduced_trees) > 0:
+            print(f"HDD decomposed {len(reduced_trees)} new trees.")
+            grammar_reduced = build_grammar(reduced_trees)
+            grammar_reduced = expand_tokens(oracle, grammar_reduced, reduced_trees)
+            new_trees += reduced_trees
+            grammar_reduced = minimize(grammar_reduced)
+            # print(str(grammar))
+            # print(str(grammar_reduced))
+            hdd_grammar = grammar.copy()
+            hdd_grammar.merge(grammar_reduced)
+            # hdd_grammar = minimize(hdd_grammar)
+            # hdd_grammar = expand_tokens(oracle, hdd_grammar, new_trees)
+            hdd_grammar = minimize(hdd_grammar)
+        else:
+            hdd_grammar = grammar
 
     s = time.time()
     
@@ -1231,19 +1235,25 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
         nt1_derivable_strings = list(dict.fromkeys(nt1_derivable_strings))
         nt2_derivable_strings = list(dict.fromkeys(nt2_derivable_strings))
         nt1_valid, nt1_check_strings = replacement_valid(oracle, nt1_derivable_strings, nt2, trees)
-        if not nt1_valid:
-            return False        # TODO: check half merge
+        # if not nt1_valid:
+        #     return False        # TODO: check half merge
         nt2_valid, nt2_check_strings = replacement_valid(oracle, nt2_derivable_strings, nt1, trees)
-        if not nt2_valid:
-            return False
+        # if not nt2_valid:
+        #     return False
 
 
         if MUST_EXPAND_IN_COALESCE and coalesce_target is not None:
             if trees.represented_by_derived_grammar(nt1_check_strings) and \
                 trees.represented_by_derived_grammar(nt2_check_strings):
                 return False
+        if nt1_valid and nt2_valid:
+            return "<TRUE>"
+        if nt1_valid:
+            return nt1
+        if nt2_valid:
+            return nt2
 
-        return True
+        return False
 
 
     def get_updated_trees(get_class: Dict[str, str], trees):
@@ -1332,16 +1342,45 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
                 new_checked.add((second, first))
         return new_checked
     
+    def get_llm_label(first, second, tree_list, grammar, max_attempts=5):
+        """
+        Suggests a label using LLM, avoiding conflicts with existing labels.
+        Returns the label and the dictionary of old labels.
+        """
+        s1 = min(tree_list.derivable_in_trees(first)) if first else ""
+        s2 = min(tree_list.derivable_in_trees(second)) if second else ""
+        class_nt = generate_label_api((s1, s2))
+        print(f"LLM suggested label: {class_nt} for {s1} and {s2}")
+
+        if class_nt == first or class_nt == second:
+            return class_nt
+
+        old_labels = {class_nt: 1}
+        attempts = 0
+        while (class_nt in grammar.rules.keys()):
+            class_nt = regenerate_label((s1, s2), list(old_labels.keys()))
+            old_labels[class_nt] = 1
+            attempts += 1
+            if attempts >= max_attempts:
+                while class_nt in old_labels or class_nt in grammar.rules.keys():
+                    if not class_nt[-1].isdigit():
+                        class_nt += "_1"
+                    else:
+                        # increment the trailing number
+                        i = len(class_nt) - 1
+                        while i >= 0 and class_nt[i].isdigit():
+                            i -= 1
+                        number_part = class_nt[i+1:]
+                        class_nt = class_nt[:i+1] + str(int(number_part) + 1)
+                old_labels[class_nt] = 1
+            print(f" Next suggestion: {class_nt}")
+        return class_nt
+    
     # Define helpful data structures
-    # nonterminals = list(dict.fromkeys(grammar.rules.keys()))
     # store non-terminals depth-wise across all trees
     nonterminals = sorted(grammar.rules.items(), key=lambda x: x[1].depth)
     nonterminals = [x[0] for x in nonterminals]
     nonterminals.remove("start")
-    # nonterminals.remove("epsilon")
-    # nonterminals = list(nonterminals)
-    # append numbers to break ties in node labeling
-    uf = UnionFind(nonterminals)
 
     # Get all unique pairs of nonterminals
     pairs = []
@@ -1383,62 +1422,85 @@ def coalesce(oracle, trees: List[ParseNode], grammar: Grammar,
             checked.add((first, second))
             checked.add((second, first))
 
-        # If the nonterminals can replace each other in every context, they are replaceable
-        if replacement_valid_and_expanding(first, second, tree_list):
-            if first == START or second == START:
-                class_nt = START
-            else:
-                if first in label_set:
-                    class_nt = first
-                elif second in label_set:
-                    class_nt = second
+        update_required = False
+        replacement = replacement_valid_and_expanding(first, second, tree_list)
+        if replacement:
+
+            classes = {}
+            get_class = {}
+            # If the nonterminals can replace each other in every context, they are replaceable
+            if replacement == "<TRUE>":
+                if first == START or second == START:
+                    class_nt = START
                 else:
-                    # ask llm for label suggestion, expand to terminals from the nonterminal nodes
-                    s1 = min(tree_list.derivable_in_trees(first))
-                    s2 = min(tree_list.derivable_in_trees(second))
-                    class_nt = generate_label_api((s1, s2))
-                    print(f"LLM suggested label: {class_nt} for {s1} and {s2}")
+                    if first in label_set:
+                        class_nt = first
+                    elif second in label_set:
+                        class_nt = second
+                    else:
+                        # ask llm for label suggestion, expand to terminals from the nonterminal nodes
+                        class_nt = get_llm_label(first, second, tree_list, grammar)
 
-                    # if conflicts with existing labels, try to merge them
-                    merge_node = class_nt if class_nt in label_set else None
+                        # class_nt = allocate_tid()
+                    # temporary way-around
+                    # if re.search(r'[^a-zA-Z0-9]', class_nt) or re.match(r'^\d+$', class_nt):
+                    #     class_nt = allocate_tid()
+
+                label_set.add(class_nt)
+                classes = {class_nt: [first, second]}
+                get_class = {first: class_nt, second: class_nt}
+                coalesced_into[first] = class_nt
+                coalesced_into[second] = class_nt
+                update_required = True
+                merges += 1
+
+            # elif replacement == first and isinstance(coalesce_target, Bubble):
+            #     """
+            #     nt2
+            #     /   \
+            # nt1  nt3
+            # nt1 replaces nt2 only, nt2 doesn't replace nt1. Don't merge but retain the new tree
+            #     """
+            #     nt1_as_child = all(first in bodies for bodies in grammar.rules[second].bodies)
+            #     if nt1_as_child:
+            #         pair_merged = True
+            #         if second.startswith("t") and second[1:].isdigit(): # relabel artificial nonterminals
                     
-                    # keep old labels in order to avoid them
-                    old_labels = {class_nt: 1}
-                    attempts = 0
-                    while (class_nt != first and class_nt != second) and \
-                        (class_nt in grammar.rules.keys()):
-
-                        class_nt = regenerate_label((s1, s2), list(old_labels.keys()))
-                        old_labels[class_nt] = 1
-                        attempts += 1
-                        if attempts >= 5:
-                            while class_nt in old_labels:
-                                if not class_nt[-1].isdigit():
-                                    class_nt += "1"
-                                else:
-                                    class_nt = class_nt[:-1] + str(int(class_nt[-1]) + 1)   #increment the last digit
-                            
-                            old_labels[class_nt] = 1
-                        print(f" Next suggestion: {class_nt}")
+            #             class_nt = get_llm_label("", second, tree_list, grammar)
+            #             label_set.add(class_nt)
+            #             classes = {class_nt: [second]}
+            #             get_class = {second: class_nt}
+            #             coalesced_into[second] = class_nt
                     
-                    if merge_node:
-                        pairs.append((class_nt, merge_node))
-                    # class_nt = allocate_tid()
-                # temporary way-around
-                # if re.search(r'[^a-zA-Z0-9]', class_nt) or re.match(r'^\d+$', class_nt):
-                #     class_nt = allocate_tid()
+            elif replacement == second and isinstance(coalesce_target, Bubble):
+                """
+                nt1
+                /   \
+            nt2  nt3
+                nt2 replaces nt1 only, nt1 doesn't replace nt2. Don't merge but retain the new tree
+                """
+                nt2_as_child = all(second in bodies for bodies in grammar.rules[first].bodies)
+                if nt2_as_child:
+                    
+                    coalesce_caused = True
+                    if first.startswith("t") and first[1:].isdigit(): # relabel artificial nonterminals
+                        update_required = True
+                        class_nt = get_llm_label(first, first, tree_list, grammar)
+                        label_set.add(class_nt)
+                        classes = {class_nt: [first]}
+                        get_class = {first: class_nt}
+                        coalesced_into[first] = class_nt
 
-            label_set.add(class_nt)
-            classes = {class_nt: [first, second]}
-            get_class = {first: class_nt, second: class_nt}
-            coalesced_into[first] = class_nt
-            coalesced_into[second] = class_nt
-            grammar = get_updated_grammar(classes, get_class, grammar)
-            new_inner_trees = get_updated_trees(get_class, tree_list.inner_list)
-            checked = update_checked(checked, coalesced_into)
-            tree_list = ParseTreeList(new_inner_trees, grammar)
-            coalesce_caused = True
-            merges += 1
+                    print(f"{second} replaces {first}")
+                
+            # Update the grammar and the trees
+            if update_required:
+                coalesce_caused = True
+                grammar = get_updated_grammar(classes, get_class, grammar)
+                new_inner_trees = get_updated_trees(get_class, tree_list.inner_list)
+                checked = update_checked(checked, coalesced_into)
+                tree_list = ParseTreeList(new_inner_trees, grammar)
+
     trees = tree_list.inner_list
 
     return grammar, trees, coalesce_caused, coalesced_into

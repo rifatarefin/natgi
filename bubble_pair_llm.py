@@ -73,7 +73,8 @@ def bubble_pair_api(trees):
         messages=prompt,
         seed = 101,
         response_format={"type": "json_object"},
-        temperature=0
+        temperature=0,
+        max_tokens=1000
     )
     response = gpt.choices[0].message.content
     print(response)
