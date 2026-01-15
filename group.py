@@ -28,7 +28,7 @@ def is_balanced(tokens, is_list = False):
                     quote.pop()
                 continue
 
-            if (i == "\"" or i == "\'") and idx+1 < len(tokens) and i in tokens[idx+1:]:    #there is another matching quote following
+            if (i == "\"" or i == "\'" or i == "`") and idx+1 < len(tokens) and i in tokens[idx+1:]:    #there is another matching quote following
                 quote.append(i)
             elif i in open_list:
                 stack.append(i)
